@@ -1,0 +1,9 @@
+{
+  "name": "tying.ai",
+  "version": "1.0.0",
+  "description": "Tying.ai landing page",
+  "scripts": {
+    "build": "cp index.html dist/",
+    "start": "echo 'No start command needed'"
+  }
+} 
