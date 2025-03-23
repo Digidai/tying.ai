@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "echo 'Building static site'",
-    "deploy": "echo 'Deploying static site'"
+    "build": "echo 'No build needed'",
+    "deploy": "echo 'No deploy needed'"
   }
 } 
