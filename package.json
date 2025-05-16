@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "mkdir -p dist && cp index.html sitemap.xml dist/"
+    "build": "mkdir -p dist && cp ./*.html ./*.xml ./*.txt dist/ 2>/dev/null || true"
   }
 } 
