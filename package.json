@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "echo 'Static site deployment'"
+    "build": "mkdir -p dist && cp index.html sitemap.xml dist/"
   }
 } 
