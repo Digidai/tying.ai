@@ -4,5 +4,8 @@
   "private": true,
   "scripts": {
     "build": "mkdir -p dist && cp -r wiki dist/ && cp ./*.html ./*.xml ./*.txt dist/ 2>/dev/null || true"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
   }
-} 
+}
