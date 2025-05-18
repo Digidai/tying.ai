@@ -4,5 +4,8 @@
   "private": true,
   "scripts": {
     "build": "mkdir -p dist && cp ./*.html ./*.xml ./*.txt dist/ 2>/dev/null || true"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
-} 
+}
