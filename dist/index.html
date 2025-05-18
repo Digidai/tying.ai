@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tying.ai - Smart AI Assistant providing professional AI solutions. Coming soon, stay tuned.">
+    <meta name="keywords" content="AI, artificial intelligence, smart assistant, Tying.ai, coming soon, generative AI, machine learning, natural language processing, business automation, AI tools, data analytics">
+    <meta name="author" content="Tying.ai">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Tying.ai - Smart AI Assistant">
+    <meta property="og:description" content="Tying.ai - Smart AI Assistant providing professional AI solutions. Coming soon, stay tuned.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tying.ai">
+    <meta property="og:image" content="https://tying.ai/og-image.jpg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Tying.ai">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tying.ai - Smart AI Assistant">
+    <meta name="twitter:description" content="Tying.ai - Smart AI Assistant providing professional AI solutions. Coming soon, stay tuned.">
+    <meta name="twitter:image" content="https://tying.ai/og-image.jpg">
+    <meta name="twitter:site" content="@tyingai">
+    <link rel="canonical" href="https://tying.ai">
+    <title>Tying.ai - Smart AI Assistant | Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes noise {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-1%, -1%); }
+            20% { transform: translate(1%, 1%); }
+            30% { transform: translate(-1%, 1%); }
+            40% { transform: translate(1%, -1%); }
+            50% { transform: translate(0, 0); }
+            60% { transform: translate(-1%, 1%); }
+            70% { transform: translate(1%, -1%); }
+            80% { transform: translate(-1%, -1%); }
+            90% { transform: translate(1%, 1%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(var(--tx), var(--ty)) rotate(var(--r)); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        body {
+            background: linear-gradient(-45deg, #1a1a1a, #2a2a2a, #1f1f1f, #252525);
+            background-size: 400% 400%;
+            animation: gradient 30s ease infinite;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: 0;
+            animation: noise 2s steps(10) infinite;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            background: rgba(15, 15, 15, 0.98);
+            padding: 4rem;
+            border-radius: 32px;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.2),
+                0 2px 8px rgba(0, 0, 0, 0.1),
+                0 1px 2px rgba(255, 255, 255, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: float 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 32px;
+            padding: 1px;
+            background: linear-gradient(45deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 32px;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+                rgba(255, 255, 255, 0.03) 0%,
+                transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .container:hover::after {
+            opacity: 1;
+        }
+
+        .container .noise {
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        .container .material {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+            border-radius: 32px;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            letter-spacing: -3px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transform: translateZ(30px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        p {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            transform: translateZ(20px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .coming-soon {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            position: relative;
+            display: inline-block;
+            transform: translateZ(25px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .coming-soon::before,
+        .coming-soon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .coming-soon::before {
+            left: -40px;
+        }
+
+        .coming-soon::after {
+            right: -40px;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            animation: particleFloat 4s ease-in-out infinite;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 2.5rem;
+                border-radius: 24px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            p {
+                font-size: 1.1rem;
+            }
+
+            .coming-soon::before,
+            .coming-soon::after {
+                width: 20px;
+            }
+
+            .coming-soon::before {
+                left: -25px;
+            }
+
+            .coming-soon::after {
+                right: -25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <div class="noise"></div>
+        <div class="material"></div>
+        <h1>Tying.ai</h1>
+        <p class="tagline">Smart AI Assistant</p>
+        <p class="description">Providing professional AI solutions</p>
+        <div class="coming-soon">
+            <span class="line"></span>
+            <span>Coming Soon</span>
+            <span class="line"></span>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles with physics
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 25; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.setProperty('--tx', `${(Math.random() - 0.5) * 40}px`);
+            particle.style.setProperty('--ty', `${(Math.random() - 0.5) * 40}px`);
+            particle.style.setProperty('--r', `${(Math.random() - 0.5) * 360}deg`);
+            particle.style.animationDelay = Math.random() * 4 + 's';
+            particle.style.animationDuration = (3 + Math.random() * 2) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Enhanced mouse move effect with physics
+        const container = document.querySelector('.container');
+        let currentX = 0;
+        let currentY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        let velocityX = 0;
+        let velocityY = 0;
+        let lastTime = performance.now();
+
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const { left, top, width, height } = container.getBoundingClientRect();
+            targetX = (clientX - left) / width - 0.5;
+            targetY = (clientY - top) / height - 0.5;
+
+            // Update light effect position
+            container.style.setProperty('--mouse-x', `${(clientX - left) / width * 100}%`);
+            container.style.setProperty('--mouse-y', `${(clientY - top) / height * 100}%`);
+        });
+
+        function updatePhysics(currentTime) {
+            const deltaTime = (currentTime - lastTime) / 1000;
+            lastTime = currentTime;
+
+            // Physics-based movement with velocity and damping
+            const damping = 0.85;
+            const spring = 0.08;
+            
+            velocityX += (targetX - currentX) * spring * deltaTime;
+            velocityY += (targetY - currentY) * spring * deltaTime;
+            
+            velocityX *= damping;
+            velocityY *= damping;
+            
+            currentX += velocityX * deltaTime;
+            currentY += velocityY * deltaTime;
+
+            // Apply transform with physics
+            container.style.transform = `
+                perspective(1000px)
+                rotateX(${currentY * 4}deg)
+                rotateY(${currentX * 4}deg)
+                translateZ(30px)
+            `;
+
+            // Apply subtle movement to text elements with physics
+            const elements = container.querySelectorAll('h1, p, .coming-soon');
+            elements.forEach((el, index) => {
+                const depth = (index + 1) * 8;
+                const elementX = currentX * (1 - index * 0.15);
+                const elementY = currentY * (1 - index * 0.15);
+                el.style.transform = `
+                    translateZ(${depth}px)
+                    rotateX(${elementY * 2}deg)
+                    rotateY(${elementX * 2}deg)
+                `;
+            });
+
+            requestAnimationFrame(updatePhysics);
+        }
+
+        requestAnimationFrame(updatePhysics);
+
+        // Reset transform on mouse leave with smooth transition
+        container.addEventListener('mouseleave', () => {
+            targetX = 0;
+            targetY = 0;
+        });
+    </script>
+</body>
+</html> 
