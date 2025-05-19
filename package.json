@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "mkdir -p dist && cp -r wiki dist/ && cp ./*.html ./*.xml ./*.txt dist/ 2>/dev/null || true"
+    "build": "rm -rf dist && mkdir -p dist && cp -r report position wiki dist/ 2>/dev/null || true && cp ./*.html ./*.xml ./*.txt dist/ 2>/dev/null || true"
   },
   "dependencies": {
     "serve": "^14.2.4"
