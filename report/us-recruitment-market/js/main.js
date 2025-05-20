@@ -1,21 +1,21 @@
-// 美国招聘市场分析报告 - 主脚本文件
+// US Recruitment Market Analysis Report - Main script file
 
-// 当DOM加载完成后执行
+// Execute when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // 初始化图表和可视化内容
+    // Initialize charts and visual content
     initMermaid();
     
-    // 添加滚动动画效果
+    // Add scroll animation effects
     initScrollAnimations();
     
-    // 初始化导航栏行为
+    // Initialize navigation behavior
     initNavigation();
     
-    // 更新报告生成时间
+    // Update report generation time
     updateReportTime();
 });
 
-// 初始化Mermaid图表
+// Initialize Mermaid diagrams
 function initMermaid() {
     if (typeof mermaid !== 'undefined') {
         mermaid.initialize({
@@ -31,7 +31,7 @@ function initMermaid() {
     }
 }
 
-// 滚动动画效果
+// Scroll animation effect
 function initScrollAnimations() {
     const elements = document.querySelectorAll('.fade-in-element');
     
@@ -51,7 +51,7 @@ function initScrollAnimations() {
     });
 }
 
-// 导航栏行为
+// Navigation behavior
 function initNavigation() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
@@ -62,7 +62,7 @@ function initNavigation() {
         });
     }
     
-    // 滚动时导航栏变化
+    // Change navbar on scroll
     window.addEventListener('scroll', () => {
         const header = document.querySelector('header');
         if (header) {
@@ -76,7 +76,7 @@ function initNavigation() {
         }
     });
 
-    // 平滑滚动到锚点
+    // Smooth scroll to anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -89,7 +89,7 @@ function initNavigation() {
                     behavior: 'smooth'
                 });
                 
-                // 如果在移动视图中，点击后关闭导航菜单
+                // Close navigation menu on mobile after click
                 if (navMenu && !navMenu.classList.contains('hidden')) {
                     navMenu.classList.add('hidden');
                 }
@@ -98,7 +98,7 @@ function initNavigation() {
     });
 }
 
-// 更新报告生成时间
+// Update report generation time
 function updateReportTime() {
     const timeElement = document.getElementById('report-time');
     if (timeElement) {
@@ -110,6 +110,6 @@ function updateReportTime() {
             hour: '2-digit',
             minute: '2-digit'
         };
-        timeElement.textContent = now.toLocaleDateString('zh-CN', options);
+        timeElement.textContent = now.toLocaleDateString('en-US', options);
     }
 }
