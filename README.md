@@ -1,29 +1,29 @@
-# tying.ai 官网
+# tying.ai Official Website
 
-这是 tying.ai 的官方网站，展示即将登录信息。
+This is the official website of tying.ai, showcasing our upcoming launch.
 
-## 技术栈
+## Tech Stack
 
 - Next.js 14
 - TypeScript
 - Tailwind CSS
 - ESLint
 
-## 开发环境设置
+## Development Setup
 
-1. 安装依赖：
+1. Install dependencies:
 ```bash
 npm install
 ```
 
-2. 运行开发服务器：
+2. Run the development server:
 ```bash
 npm run dev
 ```
 
-3. 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## 构建生产版本
+## Build for Production
 
 ```bash
 npm run build
