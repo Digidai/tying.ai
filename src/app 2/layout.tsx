@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'tying.ai - 即将登录',
-  description: 'tying.ai 即将登录，敬请期待',
+  title: 'tying.ai - Coming Soon',
+  description: 'tying.ai is coming soon, stay tuned',
   openGraph: {
     title: 'Tying.ai - Smart AI Assistant',
     description: 'Providing professional AI solutions. Coming soon.',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         alt: 'Tying.ai Logo',
       },
     ],
-    locale: 'zh_CN',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh">
+    <html lang="en">
       <body className={inter.className}>{children}</body>
     </html>
   )

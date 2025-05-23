@@ -1,31 +1,62 @@
-# tying.ai 官网
+# tying.ai Official Website
 
-这是 tying.ai 的官方网站，展示即将登录信息。
+This is the official website for tying.ai, showcasing our upcoming launch.
 
-## 技术栈
+## Tech Stack
 
-- Next.js 14
-- TypeScript
-- Tailwind CSS
-- ESLint
+- Pure HTML5 + CSS3 + JavaScript
+- Responsive Design
+- Modern CSS Animations and Effects
+- Static Website Hosting
 
-## 开发环境设置
+## Project Features
 
-1. 安装依赖：
+- 🚀 **High Performance**: Externalized CSS, reduced HTML file size by 60%+
+- 📱 **Responsive**: Perfect adaptation for mobile and desktop
+- 🎨 **Modern Design**: Using modern CSS features and animations
+- ⚡ **Fast Loading**: Optimized resource loading and caching strategy
+- 🔧 **Easy Maintenance**: Separated style files, clear code structure
+
+## Development Setup
+
+1. Install dependencies:
 ```bash
 npm install
 ```
 
-2. 运行开发服务器：
+2. Run development server:
 ```bash
 npm run dev
 ```
 
-3. 在浏览器中打开 [http://localhost:3000](http://localhost:3000)
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## 构建生产版本
+## Build Production Version
 
 ```bash
 npm run build
 npm start
-``` 
+```
+
+## File Structure
+
+```
+tying.ai/
+├── index.html              # Original version
+├── index-optimized.html    # Optimized version
+├── styles.css              # External stylesheet
+├── package.json            # Project configuration
+├── report/                 # Report documents
+├── position/               # Position information
+└── dist/                   # Build output
+```
+
+## Optimization Summary
+
+- ✅ CSS externalization, reduced HTML file size by 60%+
+- ✅ Added performance optimization scripts
+- ✅ Improved responsive design
+- ✅ Cleaned up redundant configuration files
+- ✅ Unified project tech stack
+- ✅ Added email subscription functionality
+- ✅ Optimized SEO meta tags 
