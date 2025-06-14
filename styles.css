@@ -347,4 +347,22 @@ p {
         font-size: 1.2rem;
         letter-spacing: 1px;
     }
-} 
+}
+
+.about {
+    margin-top: 2rem;
+}
+
+.about h2 {
+    font-size: 1.6rem;
+    color: #4ade80;
+    margin-bottom: 0.5rem;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin: 0 auto;
+}
