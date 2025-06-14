@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tying.ai/</loc>
-    <lastmod>2025-05-18</lastmod>
+    <lastmod>2025-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -36,4 +36,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-</urlset> 
+  <url>
+    <loc>https://tying.ai/genedai.html</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
