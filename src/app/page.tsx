@@ -21,9 +21,6 @@ export default function Home() {
             <p className="text-gray-400">
               We're building the next generation AI experience
             </p>
-            <p className="mt-4 max-w-xl mx-auto text-gray-300">
-              Tying.ai delivers generative AI and machine learning technologies that automate workflows and offer actionable insights.
-            </p>
             <div className="flex space-x-4 justify-center">
               <a href="#" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors">
                 Join Waitlist
