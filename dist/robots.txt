@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://tying.ai/sitemap.xml
