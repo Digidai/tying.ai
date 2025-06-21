@@ -1,858 +1,432 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>营销百科全书 - Marketing Encyclopedia</title>
-    <meta name="description" content="全面的营销百科全书，涵盖数字营销、品牌战略、消费者行为、市场分析等营销领域的核心概念和最佳实践">
-    <meta name="keywords" content="营销,市场营销,数字营销,品牌策略,消费者行为,营销百科,Marketing Encyclopedia">
-    <meta name="author" content="Marketing Wiki Team">
-    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>GeneDai - Product Leader & Innovator</title>
+    <meta name="description" content="Gene Dai is a product leader and Co-founder of OpenJobs AI specializing in user growth, platform products, and user experience design. Based in Seattle, WA.">
+    <meta name="keywords" content="Gene Dai, Product Manager, Product Leader, Co-founder, OpenJobs AI, User Growth, Platform Products, UX Design, Seattle, Zuoyebang, Liepin, Smzdm, Boss Zhipin, Kanzhun, Dora, Feel">
+    <meta name="robots" content="index, follow">
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="营销百科全书 - Marketing Encyclopedia">
-    <meta property="og:description" content="全面的营销百科全书，涵盖营销领域的核心概念和最佳实践">
-    <meta property="og:url" content="">
-    
-    <!-- Twitter -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="GeneDai - Product Leader & Innovator">
+    <meta property="og:description" content="Gene Dai is a product leader and Co-founder of OpenJobs AI specializing in user growth, platform products, and user experience design. Based in Seattle, WA.">
+    <meta property="og:url" content="https://tying.ai/genedai.html">
+    <meta property="og:image" content="https://tying.ai/images/gene_dai_profile.jpg"> 
+    <meta property="og:site_name" content="Tying AI">
+    <meta property="profile:first_name" content="Gene">
+    <meta property="profile:last_name" content="Dai">
+    <meta property="profile:username" content="genedai">
+    <meta property="profile:gender" content="male">
+
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="营销百科全书 - Marketing Encyclopedia">
-    <meta name="twitter:description" content="全面的营销百科全书，涵盖营销领域的核心概念和最佳实践">
+    <meta name="twitter:title" content="GeneDai - Product Leader & Innovator">
+    <meta name="twitter:description" content="Gene Dai is a product leader and Co-founder of OpenJobs AI specializing in user growth, platform products, and user experience design. Based in Seattle, WA.">
+    <meta name="twitter:image" content="https://tying.ai/images/gene_dai_profile.jpg"> 
+    <meta name="twitter:site" content="@tyingai"> 
+    <meta name="twitter:creator" content="@genedai_twitter"> 
+
+    <link rel="canonical" href="https://tying.ai/genedai.html">
     
     <style>
-        * {
+        /* Reset and base styles */
+        html, body, #main {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #ffffff;
+            color: #000000;
             line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
         }
         
+        /* Layout */
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 80px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        /* Navigation */
+        .nav-wrapper {
+            margin-bottom: 80px;
+            display: none;
         }
         
-        header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        nav {
-            background: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav ul {
-            list-style: none;
+        .nav-menu {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
         }
         
-        nav a {
+        .nav-link {
             text-decoration: none;
-            color: #333;
+            color: #696969;
             font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s ease;
+            font-size: 16px;
+            transition: color 0.2s ease;
+            position: relative;
         }
         
-        nav a:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
+        .nav-link.current {
+            color: #000000;
         }
         
-        main {
-            padding: 3rem 0;
+        .nav-link:hover {
+            color: #000000;
         }
         
-        .intro {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
-            text-align: center;
+        .nav-link.current::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #000000;
         }
         
-        .intro h2 {
-            color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        /* Main content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 80px;
+            margin-top: 40px;
         }
         
-        .intro p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
+        .text-content {
+            max-width: 650px;
         }
         
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+        .text-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 0 0 24px 0;
+            color: #696969;
+            font-weight: 400;
         }
         
-        .category {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .text-content p:first-child {
+            font-size: 20px;
+            margin-bottom: 32px;
+            font-weight: 400;
         }
         
-        .category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        .text-content strong {
+            color: #000000;
+            font-weight: 600;
         }
         
-        .category h3 {
-            color: #667eea;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+        .text-content a {
+            color: #000000;
+            text-decoration: none;
+        }
+        
+        .text-content a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
+            padding-top: 40px;
+        }
+        
+        .location-info {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
+            color: #696969;
+            font-size: 16px;
         }
         
-        .category .icon {
-            font-size: 2rem;
-        }
-        
-        .category p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .topics {
-            list-style: none;
-        }
-        
-        .topics li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            transition: color 0.3s ease;
-        }
-        
-        .topics li:hover {
-            color: #667eea;
-            cursor: pointer;
-        }
-        
-        .topics li:last-child {
-            border-bottom: none;
-        }
-        
-        .featured {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 15px;
-            text-align: center;
-            margin: 3rem 0;
-        }
-        
-        .featured h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .featured p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: white;
-            color: #f5576c;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
-        .search-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 3rem 0;
-            text-align: center;
-        }
-        
-        .search-section h2 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-        
-        .search-box {
-            max-width: 500px;
-            margin: 0 auto;
+        .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 32px;
         }
         
-        .search-box input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 50px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-        
-        .search-box input:focus {
-            border-color: #667eea;
-        }
-        
-        .search-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-        
-        .search-btn:hover {
-            background: #5a67d8;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .stat {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .stat h3 {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat p {
-            color: #666;
+        .social-link {
+            color: #696969;
+            text-decoration: none;
+            font-size: 16px;
             font-weight: 500;
+            transition: color 0.2s ease;
         }
         
-        .concepts {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 3rem 0;
+        .social-link:hover {
+            color: #000000;
         }
         
-        .concepts h2 {
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .concept-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .concept {
-            padding: 1.5rem;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            transition: border-color 0.3s ease;
-        }
-        
-        .concept:hover {
-            border-color: #667eea;
-        }
-        
-        .concept h4 {
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        
-        .concept p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        footer {
-            background: #333;
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-            margin-top: 4rem;
-        }
-        
-        footer h3 {
-            margin-bottom: 1rem;
-        }
-        
-        footer p {
-            opacity: 0.8;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-        }
-        
+        /* Responsive design */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
+            .container {
+                padding: 60px 30px;
             }
             
-            nav ul {
+            .nav-wrapper {
+                margin-bottom: 60px;
+            }
+            
+            .nav-menu {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 24px;
+                margin-bottom: 40px;
+            }
+            
+            .main-content {
+                margin-bottom: 60px;
+            }
+            
+            .text-content p {
+                font-size: 16px;
+                line-height: 1.7;
+                margin-bottom: 20px;
+            }
+            
+            .text-content p:first-child {
+                font-size: 17px;
+                margin-bottom: 24px;
+            }
+            
+            .footer {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 24px;
+                text-align: center;
             }
             
-            .categories {
-                grid-template-columns: 1fr;
-            }
-            
-            .search-box {
-                flex-direction: column;
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .concept-grid {
-                grid-template-columns: 1fr;
+            .social-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
             }
         }
         
         @media (max-width: 480px) {
             .container {
-                padding: 0 15px;
+                padding: 40px 20px;
             }
             
-            header h1 {
-                font-size: 1.8rem;
+            .nav-menu {
+                gap: 20px;
             }
             
-            .intro h2 {
-                font-size: 2rem;
+            .nav-wrapper {
+                margin-bottom: 40px;
             }
             
-            .featured h2 {
-                font-size: 2rem;
+            .main-content {
+                margin-bottom: 40px;
             }
             
-            .stats {
-                grid-template-columns: 1fr;
+            .social-links {
+                gap: 16px;
             }
+        }
+        
+        /* Animations */
+        .text-content {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Highlight effect */
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, transparent 95%, #a8edea 95%);
+            background-size: 0% 100%;
+            background-repeat: no-repeat;
+            background-position: 0 100%;
+            transition: background-size 0.3s ease;
+            padding: 2px 0;
+        }
+        
+        .highlight:hover {
+            background-size: 100% 100%;
         }
     </style>
 </head>
 <body>
-    <header>
+    <div id="main">
         <div class="container">
-            <h1>营销百科全书</h1>
-            <p>Marketing Encyclopedia - 深入探索现代营销的核心理念与实践</p>
-        </div>
-    </header>
-
-    <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#digital-marketing">数字营销</a></li>
-                <li><a href="#brand-strategy">品牌策略</a></li>
-                <li><a href="#consumer-behavior">消费者行为</a></li>
-                <li><a href="#market-analysis">市场分析</a></li>
-                <li><a href="#content-marketing">内容营销</a></li>
-                <li><a href="#social-media">社交媒体</a></li>
-                <li><a href="#seo-sem">SEO/SEM</a></li>
-                <li><a href="#analytics">数据分析</a></li>
-                <li><a href="#emerging-trends">新兴趋势</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <main>
-        <div class="container">
-            <section class="intro">
-                <h2>欢迎来到营销知识宝库</h2>
-                <p>这里汇集了现代营销领域的核心概念、策略、工具和最佳实践。无论您是营销新手还是资深专家，都能在这里找到有价值的洞察和实用的指导。我们致力于为您提供最全面、最前沿的营销知识。</p>
-            </section>
-
-            <section class="search-section">
-                <h2>搜索营销知识</h2>
-                <div class="search-box">
-                    <input type="text" placeholder="输入关键词搜索营销概念..." id="searchInput">
-                    <button class="search-btn" id="searchBtn">搜索</button>
-                </div>
-            </section>
-
-            <section class="stats">
-                <div class="stat">
-                    <h3>800+</h3>
-                    <p>营销概念</p>
-                </div>
-                <div class="stat">
-                    <h3>12</h3>
-                    <p>专业领域</p>
-                </div>
-                <div class="stat">
-                    <h3>150+</h3>
-                    <p>实用案例</p>
-                </div>
-                <div class="stat">
-                    <h3>24/7</h3>
-                    <p>在线访问</p>
-                </div>
-            </section>
-
-            <section class="categories">
-                <div class="category" id="digital-marketing">
-                    <h3><span class="icon">📱</span>数字营销 Digital Marketing</h3>
-                    <p>探索数字化时代的营销策略，包括在线广告、电子邮件营销、移动营销等现代营销手段。</p>
-                    <ul class="topics">
-                        <li>搜索引擎营销 (SEM)</li>
-                        <li>社交媒体广告</li>
-                        <li>程序化购买</li>
-                        <li>移动应用营销</li>
-                        <li>电子邮件营销</li>
-                        <li>联盟营销</li>
-                        <li>营销自动化</li>
-                        <li>个性化营销</li>
-                        <li>网红营销</li>
-                        <li>直播营销</li>
-                        <li>短视频营销</li>
-                        <li>私域流量</li>
-                        <li>增长黑客</li>
-                    </ul>
-                </div>
-
-                <div class="category" id="brand-strategy">
-                    <h3><span class="icon">🎯</span>品牌策略 Brand Strategy</h3>
-                    <p>深入了解品牌建设的核心要素，从品牌定位到品牌传播的全方位策略指南。</p>
-                    <ul class="topics">
-                        <li>品牌定位</li>
-                        <li>品牌价值主张</li>
-                        <li>品牌识别系统</li>
-                        <li>品牌传播策略</li>
-                        <li>品牌体验设计</li>
-                        <li>品牌危机管理</li>
-                        <li>品牌资产评估</li>
-                        <li>品牌延伸策略</li>
-                        <li>品牌故事营销</li>
-                        <li>企业文化传播</li>
-                        <li>品牌社会责任</li>
-                        <li>品牌合作伙伴关系</li>
-                        <li>品牌数字化转型</li>
-                    </ul>
-                </div>
-
-                <div class="category" id="consumer-behavior">
-                    <h3><span class="icon">👥</span>消费者行为 Consumer Behavior</h3>
-                    <p>研究消费者决策过程、购买动机和行为模式，为营销策略提供科学依据。</p>
-                    <ul class="topics">
-                        <li>消费者决策过程</li>
-                        <li>购买动机分析</li>
-                        <li>消费者心理学</li>
-                        <li>客户旅程映射</li>
-                        <li>消费者细分</li>
-                        <li>消费趋势分析</li>
-                        <li>用户体验研究</li>
-                        <li>消费者洞察</li>
-                    </ul>
-                </div>
-
-                <div class="category" id="market-analysis">
-                    <h3><span class="icon">📊</span>市场分析 Market Analysis</h3>
-                    <p>掌握市场研究方法、竞争分析技巧和市场趋势预测，做出明智的营销决策。</p>
-                    <ul class="topics">
-                        <li>市场细分</li>
-                        <li>竞争分析</li>
-                        <li>SWOT 分析</li>
-                        <li>市场规模评估</li>
-                        <li>趋势预测</li>
-                        <li>价格策略</li>
-                        <li>市场进入策略</li>
-                        <li>市场定位</li>
-                    </ul>
-                </div>
-
-                <div class="category" id="content-marketing">
-                    <h3><span class="icon">📝</span>内容营销 Content Marketing</h3>
-                    <p>学习如何创造有价值的内容，建立与目标受众的深度连接，提升品牌影响力。</p>
-                    <ul class="topics">
-                        <li>内容策略规划</li>
-                        <li>内容创作技巧</li>
-                        <li>视频营销</li>
-                        <li>博客营销</li>
-                        <li>内容分发渠道</li>
-                        <li>用户生成内容</li>
-                        <li>内容效果评估</li>
-                        <li>故事营销</li>
-                    </ul>
-                </div>
-
-                <div class="category" id="social-media">
-                    <h3><span class="icon">💬</span>社交媒体 Social Media</h3>
-                    <p>掌握各大社交平台的营销策略，建立强大的社交媒体影响力和用户社群。</p>
-                    <ul class="topics">
-                        <li>社交媒体策略</li>
-                        <li>社区管理</li>
-                        <li>KOL 营销</li>
-                        <li>病毒式营销</li>
-                        <li>社交电商</li>
-                        <li>用户参与度</li>
-                        <li>社交媒体广告</li>
-                        <li>口碑营销</li>
-                    </ul>
-                </div>
-
-                <div class="category" id="seo-sem">
-                    <h3><span class="icon">🔍</span>SEO/SEM</h3>
-                    <p>优化搜索引擎表现，提升网站可见性和流量质量的专业技能和策略。</p>
-                    <ul class="topics">
-                        <li>关键词研究</li>
-                        <li>技术 SEO</li>
-                        <li>内容优化</li>
-                        <li>链接建设</li>
-                        <li>PPC 广告</li>
-                        <li>转化率优化</li>
-                        <li>本地 SEO</li>
-                        <li>语音搜索优化</li>
-                    </ul>
-                </div>
-
-                <div class="category" id="analytics">
-                    <h3><span class="icon">📈</span>数据分析 Analytics</h3>
-                    <p>运用数据驱动的方法评估营销效果，优化营销 ROI，做出基于数据的决策。</p>
-                    <ul class="topics">
-                        <li>营销指标体系</li>
-                        <li>数据可视化</li>
-                        <li>A/B 测试</li>
-                        <li>归因分析</li>
-                        <li>客户生命周期价值</li>
-                        <li>预测分析</li>
-                        <li>营销 ROI 计算</li>
-                        <li>实时数据监控</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="concepts">
-                <h2>核心营销概念</h2>
-                <div class="concept-grid">
-                    <div class="concept">
-                        <h4>4P 营销组合</h4>
-                        <p>产品 (Product)、价格 (Price)、渠道 (Place)、促销 (Promotion) 是传统营销理论的核心框架。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>客户生命周期价值 (CLV)</h4>
-                        <p>客户在整个关系期间为企业创造的净价值，是衡量客户重要性的关键指标。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>转化漏斗</h4>
-                        <p>描述客户从初次接触到最终购买的转化过程，帮助识别优化机会。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>客户获取成本 (CAC)</h4>
-                        <p>获取一个新客户所需的平均成本，是评估营销效率的重要指标。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>品牌忠诚度</h4>
-                        <p>消费者对特定品牌的重复购买倾向和情感依附程度。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>市场细分</h4>
-                        <p>将大市场划分为具有相似需求或特征的较小群体，以便精准营销。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>营销自动化</h4>
-                        <p>使用软件平台和技术自动化重复性营销任务，提高效率和个性化程度。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>增长黑客</h4>
-                        <p>通过创新的、低成本的策略快速实现用户增长和业务扩张的方法论。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>全渠道营销</h4>
-                        <p>在所有营销渠道中提供无缝、一致的客户体验，实现协同效应。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>用户画像</h4>
-                        <p>基于真实数据构建的代表目标用户群体的虚拟角色模型。</p>
-                    </div>
-                    <div class="concept">
-                        <h4>营销漏斗优化</h4>
-                        <p>分析和改善客户从认知到购买各阶段的转化率的系统性方法。</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="featured">
-                <h2>最新营销趋势</h2>
-                <p>了解 2024 年最前沿的营销趋势和新兴技术，保持您的营销策略与时俱进。包括 AI 营销、语音搜索优化、隐私保护营销等前沿话题。</p>
-                <a href="#emerging-trends" class="btn">探索趋势</a>
-            </section>
-            
-            <section class="categories" id="emerging-trends">
-                <div class="category">
-                    <h3><span class="icon">🤖</span>AI 智能营销 AI Marketing</h3>
-                    <p>探索人工智能在营销领域的应用，从智能推荐到自动化客户服务的全方位解决方案。</p>
-                    <ul class="topics">
-                        <li>机器学习个性化</li>
-                        <li>聊天机器人营销</li>
-                        <li>AI 内容生成</li>
-                        <li>预测性分析</li>
-                        <li>智能广告投放</li>
-                        <li>语音营销</li>
-                        <li>计算机视觉营销</li>
-                        <li>智能客户细分</li>
-                    </ul>
-                </div>
-
-                <div class="category">
-                    <h3><span class="icon">🌐</span>Web3 营销 Web3 Marketing</h3>
-                    <p>了解区块链、NFT、元宇宙等 Web3 技术如何重塑数字营销的未来格局。</p>
-                    <ul class="topics">
-                        <li>NFT 营销策略</li>
-                        <li>元宇宙品牌体验</li>
-                        <li>区块链社区建设</li>
-                        <li>加密货币营销</li>
-                        <li>去中心化营销</li>
-                        <li>虚拟现实营销</li>
-                        <li>数字藏品营销</li>
-                        <li>DAO 营销</li>
-                    </ul>
-                </div>
-
-                <div class="category">
-                    <h3><span class="icon">🔒</span>隐私营销 Privacy-First Marketing</h3>
-                    <p>在隐私保护日益重要的时代，学习如何在尊重用户隐私的前提下进行有效营销。</p>
-                    <ul class="topics">
-                        <li>Cookie-less 营销</li>
-                        <li>第一方数据策略</li>
-                        <li>零方数据收集</li>
-                        <li>隐私保护技术</li>
-                        <li>GDPR 合规营销</li>
-                        <li>透明度营销</li>
-                        <li>可信营销环境</li>
-                        <li>数据极简主义</li>
-                    </ul>
-                </div>
-
-                <div class="category">
-                    <h3><span class="icon">🌱</span>可持续营销 Sustainable Marketing</h3>
-                    <p>将环境保护和社会责任融入营销策略，实现商业成功与可持续发展的平衡。</p>
-                    <ul class="topics">
-                        <li>绿色营销策略</li>
-                        <li>碳中和品牌</li>
-                        <li>循环经济营销</li>
-                        <li>社会影响营销</li>
-                        <li>ESG 传播</li>
-                        <li>可持续包装</li>
-                        <li>环保消费引导</li>
-                        <li>企业社会责任</li>
-                    </ul>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <h3>营销百科全书</h3>
-            <p>致力于为营销专业人士提供最全面、最实用的知识资源</p>
-            <div class="footer-links">
-                <a href="#">关于我们</a>
-                <a href="#">联系方式</a>
-                <a href="#">隐私政策</a>
-                <a href="#">使用条款</a>
-                <a href="#">帮助中心</a>
+            <!-- Navigation -->
+            <div class="nav-wrapper">
+                <nav class="nav-menu">
+                    <a href="#" class="nav-link current">About</a>
+                    <a href="#" class="nav-link">Experience</a>
+                    <a href="#" class="nav-link">Portfolio</a>
+                    <a href="#" class="nav-link">Contact</a>
+                </nav>
             </div>
-            <p>&copy; 2024 Marketing Encyclopedia. All rights reserved.</p>
+            
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="text-content">
+                    <p><span style="color: #696969;">Gene Dai currently focuses on</span> user growth, platform products, and user experience design as the <strong>Co-founder of OpenJobs AI</strong>. He has served as product lead at multiple renowned internet companies, bringing extensive expertise in platform and tool product development.</p>
+                    
+                    <p>He specializes in platform and tool product design, with deep domain knowledge across recruitment, fitness & wellness, e-commerce, and sharing economy verticals. From user acquisition and growth strategies to product roadmaps, he has hands-on experience scaling products from 0-to-1 launches through mature optimization cycles.</p>
+                    
+                    <p>His career spans leadership roles including Platform Product Lead at <strong>Zuoyebang</strong>, User Product Lead at <strong>Liepin</strong>, Product Director at <strong>Smzdm</strong>, Community & Social Product Lead at <strong>Boss Zhipin</strong>, and Product & Business Lead at <strong>Kanzhun</strong>.</p>
+                    
+                    <p>Additionally, he held product leadership positions at <strong>Dora</strong> and served as Product Partner & CPO at <strong>Feel</strong>, accumulating comprehensive product experience across both startups and large-scale platforms.</p>
+                    
+                    <p>He's passionate about user experience design and excels at data-driven product decisions. In his spare time, he explores emerging product paradigms and business models, with a particular focus on <a href="#" class="highlight">user behavior analytics</a> and growth optimization.</p>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <div class="location-info">
+                    <span>⚲</span>
+                    <span>Seattle, WA</span>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.digidai.com" class="social-link" target="_blank">Website</a>
+                    <a href="mailto:daiq@live.cn" class="social-link">Email</a>
+                    <a href="https://www.instagram.com/gene_dai_" class="social-link" target="_blank">Instagram</a>
+                    <a href="https://www.linkedin.com/in/daijc" class="social-link" target="_blank">LinkedIn</a>
+                    <a href="https://medium.com/@daijc" class="social-link" target="_blank">Medium</a>
+                </div>
+            </div>
         </div>
-    </footer>
-
+    </div>
+    
     <script>
-        // 搜索功能
-        document.getElementById('searchBtn').addEventListener('click', function() {
-            performSearch();
-        });
-        
-        function performSearch() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-            if (!searchTerm) {
-                alert('请输入搜索关键词');
-                return;
-            }
-            
-            // 搜索所有相关内容
-            const allTopics = document.querySelectorAll('.topics li, .concept h4, .category h3');
-            let results = [];
-            
-            allTopics.forEach(element => {
-                const text = element.textContent.toLowerCase();
-                if (text.includes(searchTerm)) {
-                    results.push({
-                        element: element,
-                        text: element.textContent,
-                        category: element.closest('.category') ? element.closest('.category').querySelector('h3').textContent : '核心概念'
-                    });
-                }
-            });
-            
-            if (results.length > 0) {
-                displaySearchResults(results, searchTerm);
-            } else {
-                alert(`未找到与"${searchTerm}"相关的内容。请尝试其他关键词。`);
-            }
-        }
-        
-        function displaySearchResults(results, searchTerm) {
-            const resultText = results.map(result => 
-                `• ${result.text} (${result.category})`
-            ).join('\n');
-            
-            alert(`找到 ${results.length} 个相关结果:\n\n${resultText}\n\n点击确定后将滚动到第一个结果`);
-            
-            // 滚动到第一个结果
-            if (results[0].element.closest('.category')) {
-                results[0].element.closest('.category').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-                // 高亮显示
-                results[0].element.style.backgroundColor = '#fff3cd';
-                setTimeout(() => {
-                    results[0].element.style.backgroundColor = '';
-                }, 3000);
-            }
-        }
-
-        // 回车键搜索
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('searchBtn').click();
-            }
-        });
-
-        // 平滑滚动
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // 点击主题展开详情
-        document.querySelectorAll('.topics li').forEach(item => {
-            item.addEventListener('click', function() {
-                const topic = this.textContent;
-                alert(`详细内容正在开发中：${topic}\n\n这里将包含详细的定义、应用案例和实践指南。`);
-            });
-        });
-
-        // 点击概念显示详情
-        document.querySelectorAll('.concept').forEach(concept => {
-            concept.addEventListener('click', function() {
-                const title = this.querySelector('h4').textContent;
-                const description = this.querySelector('p').textContent;
-                alert(`${title}\n\n${description}\n\n点击确定查看更多详细信息...`);
-            });
-        });
-
-        // 添加滚动效果
-        window.addEventListener('scroll', function() {
-            const categories = document.querySelectorAll('.category');
-            categories.forEach(category => {
-                const rect = category.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    category.style.opacity = '1';
-                    category.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
-        // 初始化动画
+        // Add smooth scrolling and interaction effects
         document.addEventListener('DOMContentLoaded', function() {
-            const categories = document.querySelectorAll('.category');
-            categories.forEach(category => {
-                category.style.opacity = '0';
-                category.style.transform = 'translateY(20px)';
-                category.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            // Smooth navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active state
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('current'));
+                    this.classList.add('current');
+                });
             });
+            
+            // Add subtle animations on load
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            // Real-time server time display
+            function updateTime() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                });
+                const locationElement = document.querySelector('.location-info span:last-child');
+                if (locationElement) {
+                    locationElement.textContent = `${timeString}`;
+                }
+            }
+            
+            updateTime();
+            setInterval(updateTime, 60000); // Update every minute
         });
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Gene Dai",
+        "alternateName": "Dai Juncheng",
+        "url": "https://tying.ai/genedai.html",
+        "image": "https://tying.ai/images/gene_dai_profile.jpg",
+        "jobTitle": "Product Leader, Co-founder",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Tying AI"
+        },
+        "memberOf": {
+          "@type": "OrganizationRole",
+          "organization": {
+            "@type": "Organization",
+            "name": "OpenJobs AI"
+          },
+          "roleName": "Co-founder"
+        },
+        "alumniOf": [
+          {
+            "@type": "OrganizationRole",
+            "organization": {
+              "@type": "Organization",
+              "name": "Zuoyebang"
+            },
+            "roleName": "Platform Product Lead"
+          },
+          {
+            "@type": "OrganizationRole",
+            "organization": {
+              "@type": "Organization",
+              "name": "Liepin"
+            },
+            "roleName": "User Product Lead"
+          },
+          {
+            "@type": "OrganizationRole",
+            "organization": {
+              "@type": "Organization",
+              "name": "Smzdm"
+            },
+            "roleName": "Product Director"
+          }
+        ],
+        "knowsAbout": ["User Growth", "Platform Products", "User Experience Design", "Recruitment", "Fitness & Wellness", "E-commerce", "Sharing Economy"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Seattle",
+          "addressRegion": "WA"
+        },
+        "sameAs": [
+          "https://www.digidai.com",
+          "https://www.linkedin.com/in/daijc",
+          "https://medium.com/@daijc",
+          "https://www.instagram.com/gene_dai_"
+        ]
+      }
+    }
+    </script>
 </body>
-</html> 
+</html>
