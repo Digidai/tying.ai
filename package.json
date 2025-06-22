@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "serve -s . -l 3000",
-    "build": "rm -rf dist && mkdir -p dist && cp -r report position wiki dist/ 2>/dev/null || true && cp ./*.html ./*.xml ./*.txt dist/ 2>/dev/null || true && cp styles.css minimal.css dist/ 2>/dev/null || true",
+    "build": "rm -rf dist && mkdir -p dist && cp -r report position wiki dist/ 2>/dev/null || true && cp ./*.html ./*.xml ./*.txt dist/ 2>/dev/null || true && cp styles.css minimal.css wiki.css dist/ 2>/dev/null || true",
     "start": "serve -s dist -l 3000",
     "clean": "rm -rf dist .next"
   },
