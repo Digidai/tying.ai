@@ -3,48 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketing Encyclopedia</title>
+    <title>Marketing Encyclopedia | Tying AI</title>
     <meta name="description" content="A comprehensive marketing encyclopedia covering core concepts and best practices in digital marketing, brand strategy, consumer behavior, market analysis, and more.">
-    <meta name="keywords" content="marketing, digital marketing, brand strategy, consumer behavior, market analysis, Marketing Encyclopedia">
+    <meta name="keywords" content="marketing, digital marketing, brand strategy, consumer behavior, market analysis, Marketing Encyclopedia, Tying AI">
     <meta name="author" content="Marketing Wiki Team">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Marketing Encyclopedia">
+    <meta property="og:title" content="Marketing Encyclopedia | Tying AI">
     <meta property="og:description" content="A comprehensive marketing encyclopedia covering core concepts and best practices.">
-    <meta property="og:url" content="">
+    <meta property="og:url" content="https://tying.ai/wiki/marketing/index.html">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Marketing Encyclopedia">
+    <meta name="twitter:title" content="Marketing Encyclopedia | Tying AI">
     <meta name="twitter:description" content="A comprehensive marketing encyclopedia covering core concepts and best practices.">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Marketing Encyclopedia</h1>
-            <p>Explore the core concepts and practices of modern marketing</p>
-        </div>
+        <h1>Marketing Encyclopedia / 营销百科全书</h1>
     </header>
-
     <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#digital-marketing">Digital Marketing</a></li>
-                <li><a href="#brand-strategy">Brand Strategy</a></li>
-                <li><a href="#consumer-behavior">Consumer Behavior</a></li>
-                <li><a href="#market-analysis">Market Analysis</a></li>
-                <li><a href="#content-marketing">Content Marketing</a></li>
-                <li><a href="#social-media">Social Media</a></li>
-                <li><a href="#seo-sem">SEO/SEM</a></li>
-                <li><a href="#analytics">Data Analytics</a></li>
-                <li><a href="#emerging-trends">Emerging Trends</a></li>
-            </ul>
-        </div>
+        <a href="../../index.html">Home</a>
+        <a href="../table-of-contents.html">Table of Contents</a>
     </nav>
-
     <main>
         <div class="container">
             <section class="intro">
@@ -428,9 +412,7 @@
         document.querySelectorAll('.topics li').forEach(item => {
             item.addEventListener('click', function() {
                 const topic = this.textContent;
-                alert(`Detailed content is under development: ${topic}
-
-This section will include detailed definitions, application cases, and practical guides.`);
+                alert(`Detailed content is under development: ${topic}\n\nThis section will include detailed definitions, application cases, and practical guides.`);
             });
         });
 
@@ -439,11 +421,7 @@ This section will include detailed definitions, application cases, and practical
             concept.addEventListener('click', function() {
                 const title = this.querySelector('h4').textContent;
                 const description = this.querySelector('p').textContent;
-                alert(`${title}
-
-${description}
-
-Click OK to view more details...`);
+                alert(`${title}\n\n${description}\n\nClick OK to view more details...`);
             });
         });
 
@@ -470,4 +448,4 @@ Click OK to view more details...`);
         });
     </script>
 </body>
-</html> 
+</html>
