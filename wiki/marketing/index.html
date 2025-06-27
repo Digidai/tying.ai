@@ -1,438 +1,46 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>营销百科全书 - Marketing Encyclopedia</title>
-    <meta name="description" content="全面的营销百科全书，涵盖数字营销、品牌战略、消费者行为、市场分析等营销领域的核心概念和最佳实践">
-    <meta name="keywords" content="营销,市场营销,数字营销,品牌策略,消费者行为,营销百科,Marketing Encyclopedia">
+    <title>Marketing Encyclopedia</title>
+    <meta name="description" content="A comprehensive marketing encyclopedia covering core concepts and best practices in digital marketing, brand strategy, consumer behavior, market analysis, and more.">
+    <meta name="keywords" content="marketing, digital marketing, brand strategy, consumer behavior, market analysis, Marketing Encyclopedia">
     <meta name="author" content="Marketing Wiki Team">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="营销百科全书 - Marketing Encyclopedia">
-    <meta property="og:description" content="全面的营销百科全书，涵盖营销领域的核心概念和最佳实践">
+    <meta property="og:title" content="Marketing Encyclopedia">
+    <meta property="og:description" content="A comprehensive marketing encyclopedia covering core concepts and best practices.">
     <meta property="og:url" content="">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="营销百科全书 - Marketing Encyclopedia">
-    <meta name="twitter:description" content="全面的营销百科全书，涵盖营销领域的核心概念和最佳实践">
+    <meta name="twitter:title" content="Marketing Encyclopedia">
+    <meta name="twitter:description" content="A comprehensive marketing encyclopedia covering core concepts and best practices.">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        nav {
-            background: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-        
-        nav a:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        main {
-            padding: 3rem 0;
-        }
-        
-        .intro {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-        
-        .intro h2 {
-            color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .intro p {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .category {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        
-        .category h3 {
-            color: #667eea;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .category .icon {
-            font-size: 2rem;
-        }
-        
-        .category p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .topics {
-            list-style: none;
-        }
-        
-        .topics li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            transition: color 0.3s ease;
-        }
-        
-        .topics li:hover {
-            color: #667eea;
-            cursor: pointer;
-        }
-        
-        .topics li:last-child {
-            border-bottom: none;
-        }
-        
-        .featured {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 15px;
-            text-align: center;
-            margin: 3rem 0;
-        }
-        
-        .featured h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .featured p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: white;
-            color: #f5576c;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
-        .search-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 3rem 0;
-            text-align: center;
-        }
-        
-        .search-section h2 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-        
-        .search-box {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .search-box input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 50px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-        
-        .search-box input:focus {
-            border-color: #667eea;
-        }
-        
-        .search-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-        
-        .search-btn:hover {
-            background: #5a67d8;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .stat {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .stat h3 {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat p {
-            color: #666;
-            font-weight: 500;
-        }
-        
-        .concepts {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 3rem 0;
-        }
-        
-        .concepts h2 {
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
-        .concept-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .concept {
-            padding: 1.5rem;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            transition: border-color 0.3s ease;
-        }
-        
-        .concept:hover {
-            border-color: #667eea;
-        }
-        
-        .concept h4 {
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-        
-        .concept p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        footer {
-            background: #333;
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-            margin-top: 4rem;
-        }
-        
-        footer h3 {
-            margin-bottom: 1rem;
-        }
-        
-        footer p {
-            opacity: 0.8;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .categories {
-                grid-template-columns: 1fr;
-            }
-            
-            .search-box {
-                flex-direction: column;
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .concept-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .intro h2 {
-                font-size: 2rem;
-            }
-            
-            .featured h2 {
-                font-size: 2rem;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>营销百科全书</h1>
-            <p>Marketing Encyclopedia - 深入探索现代营销的核心理念与实践</p>
+            <h1>Marketing Encyclopedia</h1>
+            <p>Explore the core concepts and practices of modern marketing</p>
         </div>
     </header>
 
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#digital-marketing">数字营销</a></li>
-                <li><a href="#brand-strategy">品牌策略</a></li>
-                <li><a href="#consumer-behavior">消费者行为</a></li>
-                <li><a href="#market-analysis">市场分析</a></li>
-                <li><a href="#content-marketing">内容营销</a></li>
-                <li><a href="#social-media">社交媒体</a></li>
+                <li><a href="#digital-marketing">Digital Marketing</a></li>
+                <li><a href="#brand-strategy">Brand Strategy</a></li>
+                <li><a href="#consumer-behavior">Consumer Behavior</a></li>
+                <li><a href="#market-analysis">Market Analysis</a></li>
+                <li><a href="#content-marketing">Content Marketing</a></li>
+                <li><a href="#social-media">Social Media</a></li>
                 <li><a href="#seo-sem">SEO/SEM</a></li>
-                <li><a href="#analytics">数据分析</a></li>
-                <li><a href="#emerging-trends">新兴趋势</a></li>
+                <li><a href="#analytics">Data Analytics</a></li>
+                <li><a href="#emerging-trends">Emerging Trends</a></li>
             </ul>
         </div>
     </nav>
@@ -440,283 +48,283 @@
     <main>
         <div class="container">
             <section class="intro">
-                <h2>欢迎来到营销知识宝库</h2>
-                <p>这里汇集了现代营销领域的核心概念、策略、工具和最佳实践。无论您是营销新手还是资深专家，都能在这里找到有价值的洞察和实用的指导。我们致力于为您提供最全面、最前沿的营销知识。</p>
+                <h2>Welcome to the Marketing Knowledge Hub</h2>
+                <p>This is a comprehensive resource for core concepts, strategies, tools, and best practices in modern marketing. Whether you're a marketing novice or a seasoned expert, you'll find valuable insights and practical guidance here. We are committed to providing you with the most comprehensive and cutting-edge marketing knowledge.</p>
             </section>
 
             <section class="search-section">
-                <h2>搜索营销知识</h2>
+                <h2>Search Marketing Knowledge</h2>
                 <div class="search-box">
-                    <input type="text" placeholder="输入关键词搜索营销概念..." id="searchInput">
-                    <button class="search-btn" id="searchBtn">搜索</button>
+                    <input type="text" placeholder="Search marketing concepts..." id="searchInput">
+                    <button class="search-btn" id="searchBtn">Search</button>
                 </div>
             </section>
 
             <section class="stats">
                 <div class="stat">
                     <h3>800+</h3>
-                    <p>营销概念</p>
+                    <p>Marketing Concepts</p>
                 </div>
                 <div class="stat">
                     <h3>12</h3>
-                    <p>专业领域</p>
+                    <p>Specialized Fields</p>
                 </div>
                 <div class="stat">
                     <h3>150+</h3>
-                    <p>实用案例</p>
+                    <p>Practical Cases</p>
                 </div>
                 <div class="stat">
                     <h3>24/7</h3>
-                    <p>在线访问</p>
+                    <p>Online Access</p>
                 </div>
             </section>
 
             <section class="categories">
                 <div class="category" id="digital-marketing">
-                    <h3><span class="icon">📱</span>数字营销 Digital Marketing</h3>
-                    <p>探索数字化时代的营销策略，包括在线广告、电子邮件营销、移动营销等现代营销手段。</p>
+                    <h3><span class="icon">📱</span>Digital Marketing</h3>
+                    <p>Explore marketing strategies in the digital age, including online advertising, email marketing, mobile marketing, and other modern marketing methods.</p>
                     <ul class="topics">
-                        <li>搜索引擎营销 (SEM)</li>
-                        <li>社交媒体广告</li>
-                        <li>程序化购买</li>
-                        <li>移动应用营销</li>
-                        <li>电子邮件营销</li>
-                        <li>联盟营销</li>
-                        <li>营销自动化</li>
-                        <li>个性化营销</li>
-                        <li>网红营销</li>
-                        <li>直播营销</li>
-                        <li>短视频营销</li>
-                        <li>私域流量</li>
-                        <li>增长黑客</li>
+                        <li>Search Engine Marketing (SEM)</li>
+                        <li>Social Media Advertising</li>
+                        <li>Programmatic Buying</li>
+                        <li>Mobile App Marketing</li>
+                        <li>Email Marketing</li>
+                        <li>Affiliate Marketing</li>
+                        <li>Marketing Automation</li>
+                        <li>Personalized Marketing</li>
+                        <li>Influencer Marketing</li>
+                        <li>Live Streaming Marketing</li>
+                        <li>Short Video Marketing</li>
+                        <li>Private Domain Traffic</li>
+                        <li>Growth Hacking</li>
                     </ul>
                 </div>
 
                 <div class="category" id="brand-strategy">
-                    <h3><span class="icon">🎯</span>品牌策略 Brand Strategy</h3>
-                    <p>深入了解品牌建设的核心要素，从品牌定位到品牌传播的全方位策略指南。</p>
+                    <h3><span class="icon">🎯</span>Brand Strategy</h3>
+                    <p>Gain in-depth understanding of the core elements of brand building, from brand positioning to comprehensive brand communication strategies.</p>
                     <ul class="topics">
-                        <li>品牌定位</li>
-                        <li>品牌价值主张</li>
-                        <li>品牌识别系统</li>
-                        <li>品牌传播策略</li>
-                        <li>品牌体验设计</li>
-                        <li>品牌危机管理</li>
-                        <li>品牌资产评估</li>
-                        <li>品牌延伸策略</li>
-                        <li>品牌故事营销</li>
-                        <li>企业文化传播</li>
-                        <li>品牌社会责任</li>
-                        <li>品牌合作伙伴关系</li>
-                        <li>品牌数字化转型</li>
+                        <li>Brand Positioning</li>
+                        <li>Brand Value Proposition</li>
+                        <li>Brand Identity System</li>
+                        <li>Brand Communication Strategy</li>
+                        <li>Brand Experience Design</li>
+                        <li>Brand Crisis Management</li>
+                        <li>Brand Equity Assessment</li>
+                        <li>Brand Extension Strategy</li>
+                        <li>Brand Storytelling</li>
+                        <li>Corporate Culture Communication</li>
+                        <li>Brand Social Responsibility</li>
+                        <li>Brand Partnerships</li>
+                        <li>Brand Digital Transformation</li>
                     </ul>
                 </div>
 
                 <div class="category" id="consumer-behavior">
-                    <h3><span class="icon">👥</span>消费者行为 Consumer Behavior</h3>
-                    <p>研究消费者决策过程、购买动机和行为模式，为营销策略提供科学依据。</p>
+                    <h3><span class="icon">👥</span>Consumer Behavior</h3>
+                    <p>Study consumer decision-making processes, purchase motivations, and behavioral patterns to provide scientific basis for marketing strategies.</p>
                     <ul class="topics">
-                        <li>消费者决策过程</li>
-                        <li>购买动机分析</li>
-                        <li>消费者心理学</li>
-                        <li>客户旅程映射</li>
-                        <li>消费者细分</li>
-                        <li>消费趋势分析</li>
-                        <li>用户体验研究</li>
-                        <li>消费者洞察</li>
+                        <li>Consumer Decision Process</li>
+                        <li>Purchase Motivation Analysis</li>
+                        <li>Consumer Psychology</li>
+                        <li>Customer Journey Mapping</li>
+                        <li>Consumer Segmentation</li>
+                        <li>Consumer Trend Analysis</li>
+                        <li>User Experience Research</li>
+                        <li>Consumer Insights</li>
                     </ul>
                 </div>
 
                 <div class="category" id="market-analysis">
-                    <h3><span class="icon">📊</span>市场分析 Market Analysis</h3>
-                    <p>掌握市场研究方法、竞争分析技巧和市场趋势预测，做出明智的营销决策。</p>
+                    <h3><span class="icon">📊</span>Market Analysis</h3>
+                    <p>Master market research methods, competitive analysis techniques, and market trend forecasting to make informed marketing decisions.</p>
                     <ul class="topics">
-                        <li>市场细分</li>
-                        <li>竞争分析</li>
-                        <li>SWOT分析</li>
-                        <li>市场规模评估</li>
-                        <li>趋势预测</li>
-                        <li>价格策略</li>
-                        <li>市场进入策略</li>
-                        <li>市场定位</li>
+                        <li>Market Segmentation</li>
+                        <li>Competitive Analysis</li>
+                        <li>SWOT Analysis</li>
+                        <li>Market Size Estimation</li>
+                        <li>Trend Forecasting</li>
+                        <li>Pricing Strategy</li>
+                        <li>Market Entry Strategy</li>
+                        <li>Market Positioning</li>
                     </ul>
                 </div>
 
                 <div class="category" id="content-marketing">
-                    <h3><span class="icon">📝</span>内容营销 Content Marketing</h3>
-                    <p>学习如何创造有价值的内容，建立与目标受众的深度连接，提升品牌影响力。</p>
+                    <h3><span class="icon">📝</span>Content Marketing</h3>
+                    <p>Learn how to create valuable content, build deep connections with target audiences, and enhance brand influence.</p>
                     <ul class="topics">
-                        <li>内容策略规划</li>
-                        <li>内容创作技巧</li>
-                        <li>视频营销</li>
-                        <li>博客营销</li>
-                        <li>内容分发渠道</li>
-                        <li>用户生成内容</li>
-                        <li>内容效果评估</li>
-                        <li>故事营销</li>
+                        <li>Content Strategy Planning</li>
+                        <li>Content Creation Techniques</li>
+                        <li>Video Marketing</li>
+                        <li>Blog Marketing</li>
+                        <li>Content Distribution Channels</li>
+                        <li>User-Generated Content</li>
+                        <li>Content Performance Evaluation</li>
+                        <li>Storytelling Marketing</li>
                     </ul>
                 </div>
 
                 <div class="category" id="social-media">
-                    <h3><span class="icon">💬</span>社交媒体 Social Media</h3>
-                    <p>掌握各大社交平台的营销策略，建立强大的社交媒体影响力和用户社群。</p>
+                    <h3><span class="icon">💬</span>Social Media</h3>
+                    <p>Master marketing strategies for major social platforms, build strong social media influence and user communities.</p>
                     <ul class="topics">
-                        <li>社交媒体策略</li>
-                        <li>社区管理</li>
-                        <li>KOL营销</li>
-                        <li>病毒式营销</li>
-                        <li>社交电商</li>
-                        <li>用户参与度</li>
-                        <li>社交媒体广告</li>
-                        <li>口碑营销</li>
+                        <li>Social Media Strategy</li>
+                        <li>Community Management</li>
+                        <li>KOL Marketing</li>
+                        <li>Viral Marketing</li>
+                        <li>Social E-commerce</li>
+                        <li>User Engagement</li>
+                        <li>Social Media Advertising</li>
+                        <li>Word-of-Mouth Marketing</li>
                     </ul>
                 </div>
 
                 <div class="category" id="seo-sem">
                     <h3><span class="icon">🔍</span>SEO/SEM</h3>
-                    <p>优化搜索引擎表现，提升网站可见性和流量质量的专业技能和策略。</p>
+                    <p>Optimize search engine performance, enhance website visibility and traffic quality with professional skills and strategies.</p>
                     <ul class="topics">
-                        <li>关键词研究</li>
-                        <li>技术SEO</li>
-                        <li>内容优化</li>
-                        <li>链接建设</li>
-                        <li>PPC广告</li>
-                        <li>转化率优化</li>
-                        <li>本地SEO</li>
-                        <li>语音搜索优化</li>
+                        <li>Keyword Research</li>
+                        <li>Technical SEO</li>
+                        <li>Content Optimization</li>
+                        <li>Link Building</li>
+                        <li>PPC Advertising</li>
+                        <li>Conversion Rate Optimization</li>
+                        <li>Local SEO</li>
+                        <li>Voice Search Optimization</li>
                     </ul>
                 </div>
 
                 <div class="category" id="analytics">
-                    <h3><span class="icon">📈</span>数据分析 Analytics</h3>
-                    <p>运用数据驱动的方法评估营销效果，优化营销ROI，做出基于数据的决策。</p>
+                    <h3><span class="icon">📈</span>Data Analytics</h3>
+                    <p>Apply data-driven methods to evaluate marketing effectiveness, optimize marketing ROI, and make data-based decisions.</p>
                     <ul class="topics">
-                        <li>营销指标体系</li>
-                        <li>数据可视化</li>
-                        <li>A/B测试</li>
-                        <li>归因分析</li>
-                        <li>客户生命周期价值</li>
-                        <li>预测分析</li>
-                        <li>营销ROI计算</li>
-                        <li>实时数据监控</li>
+                        <li>Marketing Metrics System</li>
+                        <li>Data Visualization</li>
+                        <li>A/B Testing</li>
+                        <li>Attribution Analysis</li>
+                        <li>Customer Lifetime Value</li>
+                        <li>Predictive Analytics</li>
+                        <li>Marketing ROI Calculation</li>
+                        <li>Real-time Data Monitoring</li>
                     </ul>
                 </div>
             </section>
 
             <section class="concepts">
-                <h2>核心营销概念</h2>
+                <h2>Core Marketing Concepts</h2>
                 <div class="concept-grid">
                     <div class="concept">
-                        <h4>4P营销组合</h4>
-                        <p>产品(Product)、价格(Price)、渠道(Place)、促销(Promotion)是传统营销理论的核心框架。</p>
+                        <h4>4P Marketing Mix</h4>
+                        <p>Product, Price, Place, Promotion are the core framework of traditional marketing theory.</p>
                     </div>
                     <div class="concept">
-                        <h4>客户生命周期价值(CLV)</h4>
-                        <p>客户在整个关系期间为企业创造的净价值，是衡量客户重要性的关键指标。</p>
+                        <h4>Customer Lifetime Value (CLV)</h4>
+                        <p>The net value a customer generates for a business over their entire relationship, a key metric for measuring customer importance.</p>
                     </div>
                     <div class="concept">
-                        <h4>转化漏斗</h4>
-                        <p>描述客户从初次接触到最终购买的转化过程，帮助识别优化机会。</p>
+                        <h4>Conversion Funnel</h4>
+                        <p>Describes the customer's conversion process from initial contact to final purchase, helping identify optimization opportunities.</p>
                     </div>
                     <div class="concept">
-                        <h4>客户获取成本(CAC)</h4>
-                        <p>获取一个新客户所需的平均成本，是评估营销效率的重要指标。</p>
+                        <h4>Customer Acquisition Cost (CAC)</h4>
+                        <p>The average cost to acquire a new customer, an important metric for evaluating marketing efficiency.</p>
                     </div>
                     <div class="concept">
-                        <h4>品牌忠诚度</h4>
-                        <p>消费者对特定品牌的重复购买倾向和情感依附程度。</p>
+                        <h4>Brand Loyalty</h4>
+                        <p>The consumer's tendency to repeatedly purchase a specific brand and their emotional attachment to it.</p>
                     </div>
                     <div class="concept">
-                        <h4>市场细分</h4>
-                        <p>将大市场划分为具有相似需求或特征的较小群体，以便精准营销。</p>
+                        <h4>Market Segmentation</h4>
+                        <p>Dividing a large market into smaller groups with similar needs or characteristics for precise marketing.</p>
                     </div>
                     <div class="concept">
-                        <h4>营销自动化</h4>
-                        <p>使用软件平台和技术自动化重复性营销任务，提高效率和个性化程度。</p>
+                        <h4>Marketing Automation</h4>
+                        <p>Using software platforms and technology to automate repetitive marketing tasks, improving efficiency and personalization.</p>
                     </div>
                     <div class="concept">
-                        <h4>增长黑客</h4>
-                        <p>通过创新的、低成本的策略快速实现用户增长和业务扩张的方法论。</p>
+                        <h4>Growth Hacking</h4>
+                        <p>A methodology for rapidly achieving user growth and business expansion through innovative, low-cost strategies.</p>
                     </div>
                     <div class="concept">
-                        <h4>全渠道营销</h4>
-                        <p>在所有营销渠道中提供无缝、一致的客户体验，实现协同效应。</p>
+                        <h4>Omnichannel Marketing</h4>
+                        <p>Providing a seamless, consistent customer experience across all marketing channels to achieve synergy.</p>
                     </div>
                     <div class="concept">
-                        <h4>用户画像</h4>
-                        <p>基于真实数据构建的代表目标用户群体的虚拟角色模型。</p>
+                        <h4>User Persona</h4>
+                        <p>A virtual character model representing target user groups, built based on real data.</p>
                     </div>
                     <div class="concept">
-                        <h4>营销漏斗优化</h4>
-                        <p>分析和改善客户从认知到购买各阶段的转化率的系统性方法。</p>
+                        <h4>Marketing Funnel Optimization</h4>
+                        <p>A systematic approach to analyzing and improving conversion rates at each stage of the customer journey, from awareness to purchase.</p>
                     </div>
                 </div>
             </section>
 
             <section class="featured">
-                <h2>最新营销趋势</h2>
-                <p>了解2024年最前沿的营销趋势和新兴技术，保持您的营销策略与时俱进。包括AI营销、语音搜索优化、隐私保护营销等前沿话题。</p>
-                <a href="#emerging-trends" class="btn">探索趋势</a>
+                <h2>Latest Marketing Trends</h2>
+                <p>Discover the cutting-edge marketing trends and emerging technologies of 2024 to keep your marketing strategy up-to-date. Includes topics like AI marketing, voice search optimization, and privacy-first marketing.</p>
+                <a href="#emerging-trends" class="btn">Explore Trends</a>
             </section>
             
             <section class="categories" id="emerging-trends">
                 <div class="category">
-                    <h3><span class="icon">🤖</span>AI智能营销 AI Marketing</h3>
-                    <p>探索人工智能在营销领域的应用，从智能推荐到自动化客户服务的全方位解决方案。</p>
+                    <h3><span class="icon">🤖</span>AI Marketing</h3>
+                    <p>Explore the application of artificial intelligence in marketing, from intelligent recommendations to comprehensive solutions for automated customer service.</p>
                     <ul class="topics">
-                        <li>机器学习个性化</li>
-                        <li>聊天机器人营销</li>
-                        <li>AI内容生成</li>
-                        <li>预测性分析</li>
-                        <li>智能广告投放</li>
-                        <li>语音营销</li>
-                        <li>计算机视觉营销</li>
-                        <li>智能客户细分</li>
+                        <li>Machine Learning Personalization</li>
+                        <li>Chatbot Marketing</li>
+                        <li>AI Content Generation</li>
+                        <li>Predictive Analytics</li>
+                        <li>Smart Ad Placement</li>
+                        <li>Voice Marketing</li>
+                        <li>Computer Vision Marketing</li>
+                        <li>Intelligent Customer Segmentation</li>
                     </ul>
                 </div>
 
                 <div class="category">
-                    <h3><span class="icon">🌐</span>Web3营销 Web3 Marketing</h3>
-                    <p>了解区块链、NFT、元宇宙等Web3技术如何重塑数字营销的未来格局。</p>
+                    <h3><span class="icon">🌐</span>Web3 Marketing</h3>
+                    <p>Understand how Web3 technologies like blockchain, NFTs, and the metaverse are reshaping the future landscape of digital marketing.</p>
                     <ul class="topics">
-                        <li>NFT营销策略</li>
-                        <li>元宇宙品牌体验</li>
-                        <li>区块链社区建设</li>
-                        <li>加密货币营销</li>
-                        <li>去中心化营销</li>
-                        <li>虚拟现实营销</li>
-                        <li>数字藏品营销</li>
-                        <li>DAO营销</li>
+                        <li>NFT Marketing Strategies</li>
+                        <li>Metaverse Brand Experience</li>
+                        <li>Blockchain Community Building</li>
+                        <li>Cryptocurrency Marketing</li>
+                        <li>Decentralized Marketing</li>
+                        <li>Virtual Reality Marketing</li>
+                        <li>Digital Collectibles Marketing</li>
+                        <li>DAO Marketing</li>
                     </ul>
                 </div>
 
                 <div class="category">
-                    <h3><span class="icon">🔒</span>隐私营销 Privacy-First Marketing</h3>
-                    <p>在隐私保护日益重要的时代，学习如何在尊重用户隐私的前提下进行有效营销。</p>
+                    <h3><span class="icon">🔒</span>Privacy-First Marketing</h3>
+                    <p>In an era where privacy protection is increasingly important, learn how to market effectively while respecting user privacy.</p>
                     <ul class="topics">
-                        <li>Cookie-less营销</li>
-                        <li>第一方数据策略</li>
-                        <li>零方数据收集</li>
-                        <li>隐私保护技术</li>
-                        <li>GDPR合规营销</li>
-                        <li>透明度营销</li>
-                        <li>可信营销环境</li>
-                        <li>数据极简主义</li>
+                        <li>Cookie-less Marketing</li>
+                        <li>First-Party Data Strategy</li>
+                        <li>Zero-Party Data Collection</li>
+                        <li>Privacy-Enhancing Technologies</li>
+                        <li>GDPR Compliant Marketing</li>
+                        <li>Transparency Marketing</li>
+                        <li>Trusted Marketing Environment</li>
+                        <li>Data Minimalism</li>
                     </ul>
                 </div>
 
                 <div class="category">
-                    <h3><span class="icon">🌱</span>可持续营销 Sustainable Marketing</h3>
-                    <p>将环境保护和社会责任融入营销策略，实现商业成功与可持续发展的平衡。</p>
+                    <h3><span class="icon">🌱</span>Sustainable Marketing</h3>
+                    <p>Integrate environmental protection and social responsibility into marketing strategies to achieve a balance between business success and sustainable development.</p>
                     <ul class="topics">
-                        <li>绿色营销策略</li>
-                        <li>碳中和品牌</li>
-                        <li>循环经济营销</li>
-                        <li>社会影响营销</li>
-                        <li>ESG传播</li>
-                        <li>可持续包装</li>
-                        <li>环保消费引导</li>
-                        <li>企业社会责任</li>
+                        <li>Green Marketing Strategies</li>
+                        <li>Carbon Neutral Brands</li>
+                        <li>Circular Economy Marketing</li>
+                        <li>Social Impact Marketing</li>
+                        <li>ESG Communication</li>
+                        <li>Sustainable Packaging</li>
+                        <li>Eco-Friendly Consumer Guidance</li>
+                        <li>Corporate Social Responsibility</li>
                     </ul>
                 </div>
             </section>
@@ -725,14 +333,14 @@
 
     <footer>
         <div class="container">
-            <h3>营销百科全书</h3>
-            <p>致力于为营销专业人士提供最全面、最实用的知识资源</p>
+            <h3>Marketing Encyclopedia</h3>
+            <p>Dedicated to providing marketing professionals with the most comprehensive and practical knowledge resources</p>
             <div class="footer-links">
-                <a href="#">关于我们</a>
-                <a href="#">联系方式</a>
-                <a href="#">隐私政策</a>
-                <a href="#">使用条款</a>
-                <a href="#">帮助中心</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Help Center</a>
             </div>
             <p>&copy; 2024 Marketing Encyclopedia. All rights reserved.</p>
         </div>
@@ -747,11 +355,11 @@
         function performSearch() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
             if (!searchTerm) {
-                alert('请输入搜索关键词');
+                alert('Please enter a search term');
                 return;
             }
             
-            // 搜索所有相关内容
+            // Search all relevant content
             const allTopics = document.querySelectorAll('.topics li, .concept h4, .category h3');
             let results = [];
             
@@ -761,15 +369,16 @@
                     results.push({
                         element: element,
                         text: element.textContent,
-                        category: element.closest('.category') ? element.closest('.category').querySelector('h3').textContent : '核心概念'
+                        category: element.closest('.category') ? element.closest('.category').querySelector('h3').textContent : 'Core Concepts'
                     });
                 }
             });
             
             if (results.length > 0) {
                 displaySearchResults(results, searchTerm);
-            } else {
-                alert(`未找到与"${searchTerm}"相关的内容。请尝试其他关键词。`);
+            }
+            else {
+                alert(`No content found related to "${searchTerm}". Please try other keywords.`);
             }
         }
         
@@ -778,7 +387,7 @@
                 `• ${result.text} (${result.category})`
             ).join('\n');
             
-            alert(`找到 ${results.length} 个相关结果:\n\n${resultText}\n\n点击确定后将滚动到第一个结果`);
+            alert(`Found ${results.length} relevant results:\n\n${resultText}\n\nClick OK to scroll to the first result`);
             
             // 滚动到第一个结果
             if (results[0].element.closest('.category')) {
@@ -815,20 +424,26 @@
             });
         });
 
-        // 点击主题展开详情
+        // Click on topic to expand details
         document.querySelectorAll('.topics li').forEach(item => {
             item.addEventListener('click', function() {
                 const topic = this.textContent;
-                alert(`详细内容正在开发中: ${topic}\n\n这里将包含详细的定义、应用案例和实践指南。`);
+                alert(`Detailed content is under development: ${topic}
+
+This section will include detailed definitions, application cases, and practical guides.`);
             });
         });
 
-        // 点击概念显示详情
+        // Click on concept to show details
         document.querySelectorAll('.concept').forEach(concept => {
             concept.addEventListener('click', function() {
                 const title = this.querySelector('h4').textContent;
                 const description = this.querySelector('p').textContent;
-                alert(`${title}\n\n${description}\n\n点击确定查看更多详细信息...`);
+                alert(`${title}
+
+${description}
+
+Click OK to view more details...`);
             });
         });
 
