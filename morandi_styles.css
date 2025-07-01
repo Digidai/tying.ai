@@ -1,0 +1,41 @@
+
+body {
+    background-color: #f4f1ea; /* Soft, light beige */
+    color: #5a5a5a; /* Muted dark gray */
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #a89a8e; /* Dusty rose */
+    font-weight: 300;
+}
+
+a {
+    color: #7a9e9f; /* Muted teal */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#wiki-links {
+    list-style-type: none;
+    padding: 0;
+}
+
+#wiki-links li {
+    margin-bottom: 10px;
+}
