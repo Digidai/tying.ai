@@ -1,13 +1,12 @@
 :root {
-    --notion-bg-light: #F7F7F7; /* Very light gray, almost white */
-    --notion-bg-white: #FFFFFF;
-    --notion-text-dark: #333333;
-    --notion-text-medium: #666666;
-    --notion-text-light: #999999;
-    --notion-border: #E0E0E0;
-    --notion-shadow: rgba(0, 0, 0, 0.05);
-    --notion-accent-blue: #2F80ED; /* A slightly brighter blue for links/accents */
-    --notion-accent-blue-hover: #256DD0;
+    --klein-blue: #002FA7;
+    --klein-blue-dark: #001F7A;
+    --klein-blue-light: #3352B3;
+    --text-light: #F0F0F0;
+    --text-dark: #FFFFFF;
+    --accent-color: #FFD700; /* Gold for accent, stands out on Klein Blue */
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -18,8 +17,8 @@
 }
 
 body {
-    background-color: var(--notion-bg-light);
-    color: var(--notion-text-dark);
+    background-color: var(--klein-blue);
+    color: var(--text-light);
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
@@ -39,10 +38,10 @@ body {
 
 .main-header {
     width: 100%;
-    background-color: var(--notion-bg-white);
+    background-color: var(--klein-blue-dark);
     padding: 1rem 0;
-    box-shadow: 0 2px 8px var(--notion-shadow);
-    border-bottom: 1px solid var(--notion-border);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header-content {
@@ -61,7 +60,7 @@ body {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: var(--notion-text-dark);
+    color: var(--text-dark);
 }
 
 .site-logo-img {
@@ -85,7 +84,7 @@ body {
 }
 
 .main-nav a {
-    color: var(--notion-text-medium);
+    color: var(--text-light);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9rem;
@@ -95,8 +94,8 @@ body {
 }
 
 .main-nav a:hover {
-    background-color: var(--notion-border);
-    color: var(--notion-text-dark);
+    background-color: var(--klein-blue-light);
+    color: var(--text-dark);
 }
 
 .main-content {
@@ -110,29 +109,29 @@ section {
 }
 
 .hero-section {
-    background-color: var(--notion-bg-white);
+    background-color: var(--klein-blue);
     padding: 6rem 0;
-    border-bottom: 1px solid var(--notion-border);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .hero-section h1 {
     font-size: 3.5rem;
-    color: var(--notion-text-dark);
+    color: var(--text-dark);
     margin-bottom: 1rem;
     font-weight: 700;
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
-    color: var(--notion-text-medium);
+    color: var(--text-light);
     max-width: 600px;
     margin: 0 auto 2rem auto;
 }
 
 .btn-primary {
     display: inline-block;
-    background-color: var(--notion-accent-blue);
-    color: #FFFFFF;
+    background-color: var(--accent-color);
+    color: var(--klein-blue-dark);
     padding: 0.8rem 1.8rem;
     border-radius: 6px;
     text-decoration: none;
@@ -141,17 +140,17 @@ section {
 }
 
 .btn-primary:hover {
-    background-color: var(--notion-accent-blue-hover);
+    background-color: #FFC400;
 }
 
 .featured-topics-section {
-    background-color: var(--notion-bg-light);
+    background-color: var(--klein-blue-dark);
 }
 
 .featured-topics-section h2,
 .about-section h2 {
     font-size: 2rem;
-    color: var(--notion-text-dark);
+    color: var(--text-dark);
     margin-bottom: 2.5rem;
     font-weight: 600;
 }
@@ -164,53 +163,53 @@ section {
 }
 
 .topic-card {
-    background-color: var(--notion-bg-white);
-    border: 1px solid var(--notion-border);
+    background-color: var(--klein-blue-light);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1.5rem;
     text-align: left;
     text-decoration: none;
-    color: var(--notion-text-dark);
-    box-shadow: 0 1px 4px var(--notion-shadow);
+    color: var(--text-dark);
+    box-shadow: 0 1px 4px var(--shadow-color);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .topic-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px var(--notion-shadow);
+    box-shadow: 0 6px 12px var(--shadow-color);
 }
 
 .topic-card h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--notion-text-dark);
+    color: var(--text-dark);
     font-weight: 600;
 }
 
 .topic-card p {
     font-size: 0.9rem;
-    color: var(--notion-text-medium);
+    color: var(--text-light);
 }
 
 .about-section {
-    background-color: var(--notion-bg-white);
-    border-top: 1px solid var(--notion-border);
+    background-color: var(--klein-blue);
+    border-top: 1px solid var(--border-color);
 }
 
 .about-section p {
     max-width: 800px;
     margin: 0 auto;
-    color: var(--notion-text-medium);
+    color: var(--text-light);
     font-size: 1rem;
 }
 
 .main-footer {
     width: 100%;
-    background-color: var(--notion-bg-white);
-    color: var(--notion-text-light);
+    background-color: var(--klein-blue-dark);
+    color: var(--text-light);
     text-align: center;
     padding: 1.5rem 0;
-    border-top: 1px solid var(--notion-border);
+    border-top: 1px solid var(--border-color);
 }
 
 .main-footer p {
