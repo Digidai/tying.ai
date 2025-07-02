@@ -7,6 +7,12 @@
     --accent-color: #FFD700; /* Gold for accent, stands out on Klein Blue */
     --border-color: rgba(255, 255, 255, 0.1);
     --shadow-color: rgba(0, 0, 0, 0.3);
+    --wiki-bg: #F8F8F8; /* Light background for wiki content */
+    --wiki-text: #333333;
+    --wiki-border: #E0E0E0;
+    --wiki-card-bg: #FFFFFF;
+    --wiki-link: #2F80ED;
+    --wiki-link-hover: #256DD0;
 }
 
 * {
@@ -17,8 +23,8 @@
 }
 
 body {
-    background-color: var(--klein-blue);
-    color: var(--text-light);
+    background-color: var(--wiki-bg); /* Changed to light background for wiki */
+    color: var(--wiki-text);
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
@@ -98,109 +104,111 @@ body {
     color: var(--text-dark);
 }
 
-.main-content {
+.main-content.wiki-home {
     flex-grow: 1;
     width: 100%;
+    padding: 2rem 0;
+    background-color: var(--wiki-bg);
 }
 
-section {
-    padding: 4rem 0;
+.wiki-welcome {
     text-align: center;
+    margin-bottom: 3rem;
 }
 
-.hero-section {
-    background-color: var(--klein-blue);
-    padding: 6rem 0;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.hero-section h1 {
-    font-size: 3.5rem;
-    color: var(--text-dark);
+.wiki-welcome h1 {
+    font-size: 2.8rem;
+    color: var(--wiki-text);
     margin-bottom: 1rem;
-    font-weight: 700;
 }
 
-.hero-subtitle {
-    font-size: 1.2rem;
-    color: var(--text-light);
-    max-width: 600px;
+.wiki-welcome p {
+    font-size: 1.1rem;
+    color: var(--wiki-text);
+    max-width: 700px;
     margin: 0 auto 2rem auto;
 }
 
-.btn-primary {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--klein-blue-dark);
-    padding: 0.8rem 1.8rem;
-    border-radius: 6px;
-    text-decoration: none;
+.search-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--wiki-border);
+    border-radius: 4px;
+    font-size: 1rem;
+    color: var(--wiki-text);
+}
+
+.search-bar input::placeholder {
+    color: var(--wiki-text);
+    opacity: 0.7;
+}
+
+.search-bar button {
+    background-color: var(--klein-blue);
+    color: var(--text-dark);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
     font-weight: 600;
     transition: background-color 0.2s ease;
 }
 
-.btn-primary:hover {
-    background-color: #FFC400;
-}
-
-.featured-topics-section {
-    background-color: var(--klein-blue-dark);
-}
-
-.featured-topics-section h2,
-.about-section h2 {
-    font-size: 2rem;
-    color: var(--text-dark);
-    margin-bottom: 2.5rem;
-    font-weight: 600;
-}
-
-.topic-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.topic-card {
+.search-bar button:hover {
     background-color: var(--klein-blue-light);
-    border: 1px solid var(--border-color);
+}
+
+.wiki-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.section-card {
+    background-color: var(--wiki-card-bg);
+    border: 1px solid var(--wiki-border);
     border-radius: 8px;
     padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.section-card h2 {
+    font-size: 1.5rem;
+    color: var(--wiki-text);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--wiki-border);
+    padding-bottom: 0.5rem;
     text-align: left;
-    text-decoration: none;
-    color: var(--text-dark);
-    box-shadow: 0 1px 4px var(--shadow-color);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.topic-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px var(--shadow-color);
+.section-card ul {
+    list-style: none;
+    padding: 0;
 }
 
-.topic-card h3 {
-    font-size: 1.2rem;
+.section-card li {
     margin-bottom: 0.5rem;
-    color: var(--text-dark);
-    font-weight: 600;
 }
 
-.topic-card p {
-    font-size: 0.9rem;
-    color: var(--text-light);
+.section-card li a {
+    color: var(--wiki-link);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
 }
 
-.about-section {
-    background-color: var(--klein-blue);
-    border-top: 1px solid var(--border-color);
-}
-
-.about-section p {
-    max-width: 800px;
-    margin: 0 auto;
-    color: var(--text-light);
-    font-size: 1rem;
+.section-card li a:hover {
+    color: var(--wiki-link-hover);
+    text-decoration: underline;
 }
 
 .main-footer {
@@ -243,45 +251,31 @@ section {
         font-size: 0.85rem;
     }
 
-    .hero-section {
-        padding: 4rem 0;
+    .wiki-welcome h1 {
+        font-size: 2.2rem;
     }
 
-    .hero-section h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero-subtitle {
+    .wiki-welcome p {
         font-size: 1rem;
     }
 
-    .btn-primary {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+    .search-bar {
+        flex-direction: column;
     }
 
-    .featured-topics-section h2,
-    .about-section h2 {
-        font-size: 1.8rem;
+    .search-bar button {
+        width: 100%;
     }
 
-    .topic-grid {
+    .wiki-sections {
         grid-template-columns: 1fr;
     }
 
-    .topic-card {
-        padding: 1rem;
+    .section-card h2 {
+        font-size: 1.3rem;
     }
 
-    .topic-card h3 {
-        font-size: 1.1rem;
-    }
-
-    .topic-card p {
-        font-size: 0.85rem;
-    }
-
-    .about-section p {
+    .section-card li a {
         font-size: 0.9rem;
     }
 }
@@ -295,21 +289,19 @@ section {
         font-size: 0.8rem;
     }
 
-    .hero-section h1 {
-        font-size: 2rem;
+    .wiki-welcome h1 {
+        font-size: 1.8rem;
     }
 
-    .hero-subtitle {
+    .wiki-welcome p {
         font-size: 0.9rem;
     }
 
-    .btn-primary {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
+    .section-card h2 {
+        font-size: 1.2rem;
     }
 
-    .featured-topics-section h2,
-    .about-section h2 {
-        font-size: 1.6rem;
+    .section-card li a {
+        font-size: 0.85rem;
     }
 }
