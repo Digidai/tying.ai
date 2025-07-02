@@ -1,18 +1,15 @@
 :root {
-    --klein-blue: #002FA7;
-    --klein-blue-dark: #001F7A;
-    --klein-blue-light: #3352B3;
-    --text-light: #F0F0F0;
-    --text-dark: #FFFFFF;
-    --accent-color: #FFD700; /* Gold for accent, stands out on Klein Blue */
-    --border-color: rgba(255, 255, 255, 0.1);
-    --shadow-color: rgba(0, 0, 0, 0.3);
-    --wiki-bg: #F8F8F8; /* Light background for wiki content */
-    --wiki-text: #333333;
-    --wiki-border: #E0E0E0;
-    --wiki-card-bg: #FFFFFF;
-    --wiki-link: #2F80ED;
-    --wiki-link-hover: #256DD0;
+    --primary-blue: #002FA7; /* Klein Blue */
+    --primary-blue-dark: #001F7A;
+    --primary-blue-light: #3352B3;
+    --accent-gold: #FFD700;
+    --text-dark: #333333;
+    --text-light: #FFFFFF;
+    --bg-light: #F8F8F8;
+    --bg-white: #FFFFFF;
+    --border-color: #E0E0E0;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -23,31 +20,26 @@
 }
 
 body {
-    background-color: var(--wiki-bg); /* Changed to light background for wiki */
-    color: var(--wiki-text);
+    background-color: var(--bg-light);
+    color: var(--text-dark);
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    position: relative;
 }
 
 .container {
-    max-width: 960px;
-    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
+/* Header */
 .main-header {
     width: 100%;
-    background-color: var(--klein-blue-dark);
+    background-color: var(--bg-white);
     padding: 1rem 0;
-    box-shadow: 0 2px 8px var(--shadow-color);
-    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-light);
 }
 
 .header-content {
@@ -70,238 +62,300 @@ body {
 }
 
 .site-logo-img {
-    width: 32px;
-    height: 32px;
-    margin-right: 0.5rem;
+    width: 36px;
+    height: 36px;
+    margin-right: 0.6rem;
 }
 
 .site-title {
-    font-size: 1.8rem;
-    font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 700;
     margin: 0;
 }
 
 .main-nav ul {
     list-style: none;
     display: flex;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
+    gap: 1.5rem;
 }
 
 .main-nav a {
-    color: var(--text-light);
+    color: var(--text-dark);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.main-nav a:hover {
-    background-color: var(--klein-blue-light);
-    color: var(--text-dark);
-}
-
-.main-content.wiki-home {
-    flex-grow: 1;
-    width: 100%;
-    padding: 2rem 0;
-    background-color: var(--wiki-bg);
-}
-
-.wiki-welcome {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.wiki-welcome h1 {
-    font-size: 2.8rem;
-    color: var(--wiki-text);
-    margin-bottom: 1rem;
-}
-
-.wiki-welcome p {
-    font-size: 1.1rem;
-    color: var(--wiki-text);
-    max-width: 700px;
-    margin: 0 auto 2rem auto;
-}
-
-.search-bar {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.search-bar input {
-    flex-grow: 1;
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--wiki-border);
-    border-radius: 4px;
     font-size: 1rem;
-    color: var(--wiki-text);
-}
-
-.search-bar input::placeholder {
-    color: var(--wiki-text);
-    opacity: 0.7;
-}
-
-.search-bar button {
-    background-color: var(--klein-blue);
-    color: var(--text-dark);
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
-}
-
-.search-bar button:hover {
-    background-color: var(--klein-blue-light);
-}
-
-.wiki-sections {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.section-card {
-    background-color: var(--wiki-card-bg);
-    border: 1px solid var(--wiki-border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.section-card h2 {
-    font-size: 1.5rem;
-    color: var(--wiki-text);
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--wiki-border);
-    padding-bottom: 0.5rem;
-    text-align: left;
-}
-
-.section-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.section-card li {
-    margin-bottom: 0.5rem;
-}
-
-.section-card li a {
-    color: var(--wiki-link);
-    text-decoration: none;
-    font-size: 0.95rem;
+    padding: 0.5rem 0;
     transition: color 0.2s ease;
 }
 
-.section-card li a:hover {
-    color: var(--wiki-link-hover);
-    text-decoration: underline;
+.main-nav a:hover {
+    color: var(--primary-blue);
 }
 
+/* Main Content Sections */
+.main-content {
+    flex-grow: 1;
+}
+
+section {
+    padding: 5rem 0;
+    text-align: center;
+}
+
+h1, h2 {
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+p {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    padding: 8rem 0;
+}
+
+.hero-section h1 {
+    color: var(--text-light);
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+}
+
+.hero-buttons .btn {
+    margin: 0 1rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent-gold);
+    color: var(--primary-blue-dark);
+    border: 2px solid var(--accent-gold);
+}
+
+.btn-primary:hover {
+    background-color: #FFC400;
+    border-color: #FFC400;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+/* Features Section */
+.features-section {
+    background-color: var(--bg-white);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+.feature-card h3 {
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+/* CTA Section */
+.cta-section {
+    background-color: var(--primary-blue-dark);
+    color: var(--text-light);
+}
+
+.cta-section h2 {
+    color: var(--text-light);
+}
+
+.cta-section p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+/* Footer */
 .main-footer {
     width: 100%;
-    background-color: var(--klein-blue-dark);
-    color: var(--text-light);
-    text-align: center;
-    padding: 1.5rem 0;
+    background-color: var(--bg-white);
+    color: var(--text-dark);
+    padding: 2rem 0;
     border-top: 1px solid var(--border-color);
+}
+
+.main-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .main-footer p {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    color: var(--text-dark);
 }
 
-/* Responsive adjustments */
+.footer-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-blue);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .hero-section h1 {
+        font-size: 3.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;
         gap: 1rem;
     }
-
-    .site-branding {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .site-title {
-        font-size: 1.6rem;
-    }
-
     .main-nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
+        gap: 1rem;
     }
-
-    .main-nav a {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.85rem;
+    .hero-section {
+        padding: 6rem 0;
     }
-
-    .wiki-welcome h1 {
-        font-size: 2.2rem;
+    .hero-section h1 {
+        font-size: 2.8rem;
     }
-
-    .wiki-welcome p {
-        font-size: 1rem;
+    .hero-subtitle {
+        font-size: 1.1rem;
     }
-
-    .search-bar {
-        flex-direction: column;
+    .hero-buttons .btn {
+        margin: 0.5rem 0;
+        width: 80%;
     }
-
-    .search-bar button {
-        width: 100%;
+    h1 {
+        font-size: 2.5rem;
     }
-
-    .wiki-sections {
+    h2 {
+        font-size: 2rem;
+    }
+    .features-grid {
         grid-template-columns: 1fr;
     }
-
-    .section-card h2 {
-        font-size: 1.3rem;
+    .feature-card {
+        padding: 1.5rem;
     }
-
-    .section-card li a {
-        font-size: 0.9rem;
+    .feature-card h3 {
+        font-size: 1.5rem;
+    }
+    .main-footer .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .footer-links a {
+        margin-left: 0;
     }
 }
 
 @media (max-width: 480px) {
+    .site-logo-img {
+        width: 30px;
+        height: 30px;
+    }
     .site-title {
         font-size: 1.4rem;
     }
-
     .main-nav a {
-        font-size: 0.8rem;
-    }
-
-    .wiki-welcome h1 {
-        font-size: 1.8rem;
-    }
-
-    .wiki-welcome p {
         font-size: 0.9rem;
     }
-
-    .section-card h2 {
-        font-size: 1.2rem;
+    .hero-section h1 {
+        font-size: 2rem;
     }
-
-    .section-card li a {
-        font-size: 0.85rem;
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    section {
+        padding: 3rem 0;
     }
 }
