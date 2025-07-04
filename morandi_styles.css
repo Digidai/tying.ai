@@ -1,41 +1,629 @@
+/* Morandi Style CSS - 莫兰迪风格通用样式表 */
+
+/* Morandi Color Palette - 莫兰迪风格配色 */
+:root {
+    /* Primary Colors - 主色调 */
+    --morandi-primary: #8B9DC3;      /* 柔和的蓝灰色 */
+    --morandi-secondary: #B8A9C9;    /* 淡雅的紫灰色 */
+    --morandi-accent: #D4C4A8;       /* 温暖的米灰色 */
+    
+    /* Background Colors - 背景色 */
+    --morandi-bg-primary: #F8F7F4;   /* 主背景色 - 温暖的白色 */
+    --morandi-bg-secondary: #F0EFEB; /* 次要背景色 - 淡米色 */
+    --morandi-bg-tertiary: #E8E6E0;  /* 第三背景色 - 浅灰色 */
+    --morandi-bg-card: #FFFFFF;      /* 卡片背景色 - 纯白色 */
+    
+    /* Text Colors - 文字颜色 */
+    --morandi-text-primary: #4A4A4A;   /* 主要文字 - 深灰色 */
+    --morandi-text-secondary: #6B6B6B; /* 次要文字 - 中灰色 */
+    --morandi-text-muted: #9A9A9A;     /* 弱化文字 - 浅灰色 */
+    --morandi-text-light: #B8B8B8;     /* 浅色文字 - 很浅的灰色 */
+    
+    /* Border Colors - 边框颜色 */
+    --morandi-border-primary: #E0DED8;   /* 主要边框 - 浅米色 */
+    --morandi-border-secondary: #D4D2CC; /* 次要边框 - 中米色 */
+    --morandi-border-accent: #C8C6C0;    /* 强调边框 - 深米色 */
+    
+    /* Gradient Colors - 渐变色 */
+    --morandi-gradient-primary: linear-gradient(135deg, #8B9DC3 0%, #B8A9C9 100%);
+    --morandi-gradient-secondary: linear-gradient(135deg, #D4C4A8 0%, #E8E6E0 100%);
+    --morandi-gradient-accent: linear-gradient(135deg, #B8A9C9 0%, #D4C4A8 100%);
+    --morandi-gradient-hero: linear-gradient(135deg, #8B9DC3 0%, #B8A9C9 50%, #D4C4A8 100%);
+    
+    /* Interactive Colors - 交互颜色 */
+    --morandi-hover: #7A8BB3;        /* 悬停状态 - 深蓝灰色 */
+    --morandi-active: #6B7BA3;       /* 激活状态 - 更深蓝灰色 */
+    --morandi-focus: #5C6B93;        /* 焦点状态 - 最深蓝灰色 */
+    
+    /* Status Colors - 状态颜色 */
+    --morandi-success: #A8C4A8;      /* 成功色 - 淡绿色 */
+    --morandi-warning: #C4B8A8;      /* 警告色 - 淡橙色 */
+    --morandi-error: #C4A8A8;        /* 错误色 - 淡红色 */
+    --morandi-info: #A8B8C4;         /* 信息色 - 淡蓝色 */
+    
+    /* Shadow Colors - 阴影颜色 */
+    --morandi-shadow-light: rgba(139, 157, 195, 0.1);
+    --morandi-shadow-medium: rgba(139, 157, 195, 0.15);
+    --morandi-shadow-heavy: rgba(139, 157, 195, 0.2);
+    
+    /* Overlay Colors - 遮罩颜色 */
+    --morandi-overlay-light: rgba(248, 247, 244, 0.8);
+    --morandi-overlay-medium: rgba(248, 247, 244, 0.9);
+    --morandi-overlay-heavy: rgba(248, 247, 244, 0.95);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-    background-color: #f4f1ea; /* Soft, light beige */
-    color: #5a5a5a; /* Muted dark gray */
-    font-family: sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    margin: 0;
-    padding: 20px;
+    color: var(--morandi-text-primary);
+    background-color: var(--morandi-bg-primary);
+    overflow-x: hidden;
 }
 
-h1, h2, h3 {
-    color: #a89a8e; /* Dusty rose */
-    font-weight: 300;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--morandi-text-primary);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1rem;
 }
 
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.125rem; }
+h6 { font-size: 1rem; }
+
+p {
+    color: var(--morandi-text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* Links */
 a {
-    color: #7a9e9f; /* Muted teal */
+    color: var(--morandi-primary);
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 a:hover {
+    color: var(--morandi-hover);
     text-decoration: underline;
 }
 
+/* Container */
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0 2rem;
 }
 
-#wiki-links {
-    list-style-type: none;
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: var(--morandi-gradient-primary);
+    color: white;
+    box-shadow: 0 4px 15px var(--morandi-shadow-medium);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--morandi-shadow-heavy);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background: var(--morandi-bg-card);
+    color: var(--morandi-text-primary);
+    border: 2px solid var(--morandi-border-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--morandi-bg-secondary);
+    border-color: var(--morandi-border-accent);
+    transform: translateY(-2px);
+    color: var(--morandi-text-primary);
+    text-decoration: none;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--morandi-primary);
+    border: 2px solid var(--morandi-primary);
+}
+
+.btn-outline:hover {
+    background: var(--morandi-primary);
+    color: white;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+/* Cards */
+.card {
+    background: var(--morandi-bg-card);
+    border: 1px solid var(--morandi-border-primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px var(--morandi-shadow-light);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px var(--morandi-shadow-medium);
+    border-color: var(--morandi-border-accent);
+}
+
+.card-header {
+    border-bottom: 1px solid var(--morandi-border-primary);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--morandi-text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+    color: var(--morandi-text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--morandi-text-primary);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--morandi-border-primary);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--morandi-bg-card);
+    color: var(--morandi-text-primary);
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--morandi-primary);
+    box-shadow: 0 0 0 3px var(--morandi-shadow-light);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--morandi-bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--morandi-shadow-light);
+    border: 1px solid var(--morandi-border-primary);
+}
+
+.table th {
+    background: var(--morandi-gradient-primary);
+    color: white;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--morandi-border-primary);
+    color: var(--morandi-text-secondary);
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table tr:hover {
+    background: var(--morandi-bg-secondary);
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 1.5rem;
+    color: var(--morandi-text-secondary);
+}
+
+li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Blockquotes */
+blockquote {
+    position: relative;
+    padding: 1.5rem 2rem;
+    background: var(--morandi-bg-secondary);
+    border-left: 4px solid var(--morandi-primary);
+    margin: 1.5rem 0;
+    font-style: italic;
+    border-radius: 8px;
+    color: var(--morandi-text-secondary);
+}
+
+blockquote::before {
+    content: '"';
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    font-size: 3rem;
+    color: var(--morandi-primary);
+    opacity: 0.3;
+    line-height: 1;
+}
+
+/* Navigation */
+.nav {
+    background: var(--morandi-bg-card);
+    border-bottom: 1px solid var(--morandi-border-primary);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px var(--morandi-shadow-light);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--morandi-text-primary);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
     padding: 0;
 }
 
-#wiki-links li {
-    margin-bottom: 10px;
+.nav-links a {
+    color: var(--morandi-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--morandi-primary);
+    background: var(--morandi-bg-secondary);
+    text-decoration: none;
+}
+
+/* Footer */
+.footer {
+    background: var(--morandi-bg-tertiary);
+    color: var(--morandi-text-secondary);
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--morandi-border-primary);
+    margin-top: 4rem;
+}
+
+/* Hero Section */
+.hero {
+    background: var(--morandi-gradient-hero);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(139, 157, 195, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(184, 169, 201, 0.3) 0%, transparent 50%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+/* Sections */
+.section {
+    padding: 4rem 0;
+    background: var(--morandi-bg-card);
+}
+
+.section-alt {
+    background: var(--morandi-bg-secondary);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--morandi-text-primary);
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--morandi-text-secondary);
+    font-size: 1.125rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid Layouts */
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: var(--morandi-text-primary); }
+.text-secondary { color: var(--morandi-text-secondary); }
+.text-muted { color: var(--morandi-text-muted); }
+
+.bg-primary { background: var(--morandi-bg-primary); }
+.bg-secondary { background: var(--morandi-bg-secondary); }
+.bg-card { background: var(--morandi-bg-card); }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+.p-4 { padding: 2rem; }
+
+.rounded { border-radius: 8px; }
+.rounded-lg { border-radius: 12px; }
+.rounded-xl { border-radius: 16px; }
+
+.shadow { box-shadow: 0 4px 20px var(--morandi-shadow-light); }
+.shadow-lg { box-shadow: 0 8px 30px var(--morandi-shadow-medium); }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--morandi-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--morandi-border-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--morandi-border-accent);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.125rem;
+    }
+    
+    .section {
+        padding: 3rem 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .nav-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .section {
+        padding: 2rem 0;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .card {
+        padding: 1rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* Focus States for Accessibility */
+.btn:focus,
+.form-input:focus,
+.nav-links a:focus,
+.card:focus {
+    outline: 2px solid var(--morandi-primary);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .card,
+    .table,
+    .nav {
+        border: 2px solid var(--morandi-text-primary);
+    }
+    
+    .btn {
+        border: 2px solid var(--morandi-text-primary);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .btn,
+    a {
+        transition: none;
+    }
+    
+    .card:hover,
+    .btn:hover {
+        transform: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .nav,
+    .footer {
+        display: none;
+    }
+    
+    .card,
+    .table {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .hero {
+        background: #f0f0f0;
+        color: black;
+    }
 }

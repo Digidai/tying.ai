@@ -1,13 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Morandi Color Palette - 莫兰迪风格配色 */
 :root {
-    --text-primary: #18181b;
-    --text-secondary: #52525b;
-    --primary-color: #3b82f6;
-    --primary-color-dark: #1d4ed8;
-    --bg-primary: #f9fafb;
-    --bg-card: #ffffff;
-    --border-color: #e5e7eb;
+    /* Primary Colors - 主色调 */
+    --morandi-primary: #8B9DC3;      /* 柔和的蓝灰色 */
+    --morandi-secondary: #B8A9C9;    /* 淡雅的紫灰色 */
+    --morandi-accent: #D4C4A8;       /* 温暖的米灰色 */
+    
+    /* Background Colors - 背景色 */
+    --morandi-bg-primary: #F8F7F4;   /* 主背景色 - 温暖的白色 */
+    --morandi-bg-secondary: #F0EFEB; /* 次要背景色 - 淡米色 */
+    --morandi-bg-tertiary: #E8E6E0;  /* 第三背景色 - 浅灰色 */
+    --morandi-bg-card: #FFFFFF;      /* 卡片背景色 - 纯白色 */
+    
+    /* Text Colors - 文字颜色 */
+    --morandi-text-primary: #4A4A4A;   /* 主要文字 - 深灰色 */
+    --morandi-text-secondary: #6B6B6B; /* 次要文字 - 中灰色 */
+    --morandi-text-muted: #9A9A9A;     /* 弱化文字 - 浅灰色 */
+    --morandi-text-light: #B8B8B8;     /* 浅色文字 - 很浅的灰色 */
+    
+    /* Border Colors - 边框颜色 */
+    --morandi-border-primary: #E0DED8;   /* 主要边框 - 浅米色 */
+    --morandi-border-secondary: #D4D2CC; /* 次要边框 - 中米色 */
+    --morandi-border-accent: #C8C6C0;    /* 强调边框 - 深米色 */
+    
+    /* Gradient Colors - 渐变色 */
+    --morandi-gradient-primary: linear-gradient(135deg, #8B9DC3 0%, #B8A9C9 100%);
+    --morandi-gradient-secondary: linear-gradient(135deg, #D4C4A8 0%, #E8E6E0 100%);
+    --morandi-gradient-accent: linear-gradient(135deg, #B8A9C9 0%, #D4C4A8 100%);
+    
+    /* Interactive Colors - 交互颜色 */
+    --morandi-hover: #7A8BB3;        /* 悬停状态 - 深蓝灰色 */
+    --morandi-active: #6B7BA3;       /* 激活状态 - 更深蓝灰色 */
+    --morandi-focus: #5C6B93;        /* 焦点状态 - 最深蓝灰色 */
+    
+    /* Status Colors - 状态颜色 */
+    --morandi-success: #A8C4A8;      /* 成功色 - 淡绿色 */
+    --morandi-warning: #C4B8A8;      /* 警告色 - 淡橙色 */
+    --morandi-error: #C4A8A8;        /* 错误色 - 淡红色 */
+    --morandi-info: #A8B8C4;         /* 信息色 - 淡蓝色 */
+    
+    /* Shadow Colors - 阴影颜色 */
+    --morandi-shadow-light: rgba(139, 157, 195, 0.1);
+    --morandi-shadow-medium: rgba(139, 157, 195, 0.15);
+    --morandi-shadow-heavy: rgba(139, 157, 195, 0.2);
+    
+    /* Legacy variables for compatibility */
+    --text-primary: var(--morandi-text-primary);
+    --text-secondary: var(--morandi-text-secondary);
+    --primary-color: var(--morandi-primary);
+    --primary-color-dark: var(--morandi-hover);
+    --bg-primary: var(--morandi-bg-primary);
+    --bg-card: var(--morandi-bg-card);
+    --border-color: var(--morandi-border-primary);
 }
 
 * {
@@ -23,30 +68,270 @@ html {
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
+    color: var(--morandi-text-primary);
+    background-color: var(--morandi-bg-primary);
 }
 
-/* Decorative monospace font for code-like elements */
-.font-geist-mono {
-    font-family: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', 'Ubuntu Mono', 'Roboto Mono', Menlo, Monaco, Consolas, monospace;
-    font-size: 0.95em;
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--morandi-bg-card);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px var(--morandi-shadow-light);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
-/* Subtle animations for hover states */
-a, button {
-    transition: all 0.2s ease;
+/* Header */
+header {
+    background: var(--morandi-gradient-primary);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: 16px 16px 0 0;
+    margin: -2rem -2rem 2rem -2rem;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Enhancing the appearance of blockquotes */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(139, 157, 195, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(184, 169, 201, 0.3) 0%, transparent 50%);
+}
+
+header h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+header p {
+    position: relative;
+    z-index: 2;
+    font-size: 1.125rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Navigation */
+nav {
+    background: var(--morandi-bg-secondary);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--morandi-border-primary);
+    margin: -2rem -2rem 2rem -2rem;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--morandi-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--morandi-primary);
+    background: var(--morandi-bg-card);
+}
+
+/* Main Content */
+main {
+    padding: 2rem 0;
+}
+
+/* Section Styling */
+section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--morandi-bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--morandi-border-primary);
+}
+
+section h2 {
+    color: var(--morandi-text-primary);
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--morandi-border-primary);
+    position: relative;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--morandi-gradient-primary);
+}
+
+section h3 {
+    color: var(--morandi-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem 0;
+}
+
+section p {
+    color: var(--morandi-text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 1.5rem;
+    color: var(--morandi-text-secondary);
+}
+
+li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.skill-category {
+    background: var(--morandi-bg-card);
+    border: 1px solid var(--morandi-border-primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--morandi-shadow-medium);
+    border-color: var(--morandi-border-accent);
+}
+
+.skill-category h4 {
+    color: var(--morandi-text-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    background: var(--morandi-gradient-secondary);
+    color: var(--morandi-text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    background: var(--morandi-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Career Path */
+.career-timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.career-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--morandi-gradient-primary);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -2.5rem;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    background: var(--morandi-primary);
+    border-radius: 50%;
+    border: 3px solid var(--morandi-bg-card);
+    box-shadow: 0 0 0 3px var(--morandi-border-primary);
+}
+
+.timeline-content {
+    background: var(--morandi-bg-card);
+    border: 1px solid var(--morandi-border-primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 24px var(--morandi-shadow-medium);
+    border-color: var(--morandi-border-accent);
+}
+
+.timeline-content h4 {
+    color: var(--morandi-text-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    color: var(--morandi-text-secondary);
+    margin-bottom: 1rem;
+}
+
+/* Blockquotes */
 blockquote {
     position: relative;
     padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    background-color: rgba(59, 130, 246, 0.05);
-    border-left: 4px solid var(--primary-color);
+    margin: 1.5rem 0;
+    background: var(--morandi-bg-secondary);
+    border-left: 4px solid var(--morandi-primary);
     font-style: italic;
-    border-radius: 0.25rem;
+    border-radius: 8px;
+    color: var(--morandi-text-secondary);
 }
 
 blockquote::before {
@@ -55,30 +340,37 @@ blockquote::before {
     top: 0;
     left: 0.5rem;
     font-size: 2.5rem;
-    color: rgba(59, 130, 246, 0.2);
+    color: var(--morandi-primary);
+    opacity: 0.3;
     font-family: Georgia, serif;
 }
 
-/* Table styling refinements */
+/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem 0;
     font-size: 0.95rem;
+    background: var(--morandi-bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--morandi-border-primary);
 }
 
 table th {
-    background-color: #f3f4f6;
+    background: var(--morandi-bg-secondary);
     font-weight: 600;
     text-align: left;
-    padding: 0.75rem 1rem;
-    border-bottom: 2px solid var(--border-color);
+    padding: 1rem;
+    border-bottom: 2px solid var(--morandi-border-primary);
+    color: var(--morandi-text-primary);
 }
 
 table td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--border-color);
+    padding: 1rem;
+    border-bottom: 1px solid var(--morandi-border-primary);
     vertical-align: top;
+    color: var(--morandi-text-secondary);
 }
 
 table tr:last-child td {
@@ -86,26 +378,62 @@ table tr:last-child td {
 }
 
 table tr:hover {
-    background-color: rgba(243, 244, 246, 0.5);
+    background: var(--morandi-bg-secondary);
+}
+
+/* Footer */
+footer {
+    background: var(--morandi-bg-tertiary);
+    color: var(--morandi-text-secondary);
+    text-align: center;
+    padding: 2rem;
+    border-radius: 0 0 16px 16px;
+    margin: 2rem -2rem -2rem -2rem;
+    border-top: 1px solid var(--morandi-border-primary);
+}
+
+/* Decorative monospace font for code-like elements */
+.font-geist-mono {
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', 'Ubuntu Mono', 'Roboto Mono', Menlo, Monaco, Consolas, monospace;
+    font-size: 0.95em;
+    background: var(--morandi-bg-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: var(--morandi-text-primary);
+}
+
+/* Subtle animations for hover states */
+a, button {
+    transition: all 0.3s ease;
+}
+
+a {
+    color: var(--morandi-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--morandi-hover);
+    text-decoration: underline;
 }
 
 /* Custom scrollbar for better UX */
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--morandi-bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
+    background: var(--morandi-border-secondary);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #a1a1a1;
+    background: var(--morandi-border-accent);
 }
 
 /* Print-friendly styles */
@@ -130,25 +458,70 @@ table tr:hover {
         max-width: none;
         padding: 0;
         margin: 0;
+        box-shadow: none;
+        border-radius: 0;
     }
     
     section {
         page-break-inside: avoid;
+        background: #fff;
+        border: 1px solid #ccc;
+    }
+    
+    header {
+        background: #f0f0f0;
+        color: #000;
+        border-radius: 0;
     }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 1.75rem;
+    .container {
+        padding: 1rem;
+        margin: 1rem;
     }
     
-    h2 {
+    header {
+        padding: 2rem 1rem;
+        margin: -1rem -1rem 1rem -1rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    section {
+        padding: 1.5rem;
+    }
+    
+    section h2 {
         font-size: 1.5rem;
     }
     
-    .container {
-        padding: 1rem;
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .career-timeline {
+        padding-left: 1.5rem;
+    }
+    
+    .career-timeline::before {
+        left: -0.5rem;
+    }
+    
+    .timeline-item {
+        margin-bottom: 1.5rem;
+    }
+    
+    .timeline-marker {
+        left: -1.75rem;
     }
     
     table {
@@ -156,20 +529,108 @@ table tr:hover {
     }
     
     table th, table td {
-        padding: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    footer {
+        margin: 1rem -1rem -1rem -1rem;
+        padding: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem;
+    .container {
+        padding: 0.75rem;
+        margin: 0.5rem;
     }
     
-    h2 {
+    header {
+        padding: 1.5rem 0.75rem;
+        margin: -0.75rem -0.75rem 0.75rem -0.75rem;
+    }
+    
+    header h1 {
+        font-size: 1.75rem;
+    }
+    
+    section {
+        padding: 1rem;
+    }
+    
+    section h2 {
         font-size: 1.25rem;
     }
     
+    .skill-category {
+        padding: 1rem;
+    }
+    
+    .timeline-content {
+        padding: 1rem;
+    }
+    
+    table {
+        font-size: 0.8rem;
+    }
+    
+    table th, table td {
+        padding: 0.5rem;
+    }
+    
+    footer {
+        margin: 0.75rem -0.75rem -0.75rem -0.75rem;
+        padding: 1rem;
+    }
+}
+
+/* Focus States for Accessibility */
+a:focus,
+button:focus,
+.skill-category:focus,
+.timeline-content:focus {
+    outline: 2px solid var(--morandi-primary);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
     .container {
-        padding: 0.75rem;
+        border: 2px solid var(--morandi-text-primary);
+    }
+    
+    section {
+        border: 2px solid var(--morandi-text-primary);
+    }
+    
+    .skill-category,
+    .timeline-content {
+        border: 2px solid var(--morandi-text-primary);
+    }
+    
+    table {
+        border: 2px solid var(--morandi-text-primary);
+    }
+    
+    .skill-tag {
+        border: 1px solid var(--morandi-text-primary);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .skill-category,
+    .timeline-content,
+    a,
+    button {
+        transition: none;
+    }
+    
+    .skill-category:hover,
+    .timeline-content:hover {
+        transform: none;
+    }
+    
+    .skill-tag:hover {
+        transform: none;
     }
 }
