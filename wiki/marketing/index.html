@@ -21,89 +21,152 @@
     
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Marketing Encyclopedia / 营销百科全书</h1>
+    <header class="main-header">
+        <div class="header-content container">
+            <div class="site-branding">
+                <a href="../../index.html" class="logo-link" aria-label="Tying.ai Homepage">
+                    <img src="../../klein_blue_logo_abstract.svg" alt="Tying.ai Logo" class="site-logo-img" width="40" height="40">
+                    <span class="site-title">Tying.ai</span>
+                </a>
+            </div>
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
+                <ul>
+                    <li><a href="../../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../table-of-contents.html" class="nav-link">Wiki</a></li>
+                    <li><a href="../../position/software-engineer/index.html" class="nav-link">Careers</a></li>
+                    <li><a href="../../report/us-recruitment-market/index.html" class="nav-link">Reports</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </header>
-    <nav>
-        <a href="../../index.html">Home</a>
-        <a href="../table-of-contents.html">Table of Contents</a>
-    </nav>
-    <main>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
         <div class="container">
-            <section class="intro">
-                <h2>Welcome to the Marketing Knowledge Hub</h2>
-                <p>This is a comprehensive resource for core concepts, strategies, tools, and best practices in modern marketing. Whether you're a marketing novice or a seasoned expert, you'll find valuable insights and practical guidance here. We are committed to providing you with the most comprehensive and cutting-edge marketing knowledge.</p>
-            </section>
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="../../index.html" aria-label="Go to homepage">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="../table-of-contents.html" aria-label="Go to wiki">Wiki</a>
+                </li>
+                <li class="breadcrumb-item" aria-current="page">
+                    <span>Marketing</span>
+                </li>
+            </ol>
+        </div>
+    </nav>
+    <main class="main-content" role="main">
+        <section class="wiki-hero-section">
+            <div class="container">
+                <div class="wiki-hero-content">
+                    <h1 class="wiki-hero-title">
+                        <span class="gradient-text">Marketing Encyclopedia</span>
+                        <br>营销百科全书
+                    </h1>
+                    <p class="wiki-hero-subtitle">
+                        A comprehensive resource for core concepts, strategies, tools, and best practices in modern marketing. Whether you're a marketing novice or a seasoned expert, you'll find valuable insights and practical guidance here.
+                    </p>
+                    <div class="wiki-stats" role="region" aria-label="Marketing wiki statistics">
+                        <div class="stat-item">
+                            <span class="stat-number" aria-label="800 plus">800+</span>
+                            <span class="stat-label">Marketing Concepts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" aria-label="12">12</span>
+                            <span class="stat-label">Specialized Fields</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" aria-label="150 plus">150+</span>
+                            <span class="stat-label">Practical Cases</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" aria-label="24/7">24/7</span>
+                            <span class="stat-label">Online Access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <section class="search-section">
-                <h2>Search Marketing Knowledge</h2>
-                <div class="search-box">
-                    <input type="text" placeholder="Search marketing concepts..." id="searchInput">
-                    <button class="search-btn" id="searchBtn">Search</button>
-                </div>
-            </section>
+        <section class="wiki-content-section">
+            <div class="container">
 
-            <section class="stats">
-                <div class="stat">
-                    <h3>800+</h3>
-                    <p>Marketing Concepts</p>
-                </div>
-                <div class="stat">
-                    <h3>12</h3>
-                    <p>Specialized Fields</p>
-                </div>
-                <div class="stat">
-                    <h3>150+</h3>
-                    <p>Practical Cases</p>
-                </div>
-                <div class="stat">
-                    <h3>24/7</h3>
-                    <p>Online Access</p>
-                </div>
-            </section>
-
-            <section class="categories">
-                <div class="category" id="digital-marketing">
-                    <h3><span class="icon">📱</span>Digital Marketing</h3>
-                    <p>Explore marketing strategies in the digital age, including online advertising, email marketing, mobile marketing, and other modern marketing methods.</p>
-                    <ul class="topics">
-                        <li>Search Engine Marketing (SEM)</li>
-                        <li>Social Media Advertising</li>
-                        <li>Programmatic Buying</li>
-                        <li>Mobile App Marketing</li>
-                        <li>Email Marketing</li>
-                        <li>Affiliate Marketing</li>
-                        <li>Marketing Automation</li>
-                        <li>Personalized Marketing</li>
-                        <li>Influencer Marketing</li>
-                        <li>Live Streaming Marketing</li>
-                        <li>Short Video Marketing</li>
-                        <li>Private Domain Traffic</li>
-                        <li>Growth Hacking</li>
-                    </ul>
+                <div class="search-container">
+                    <div class="search-box">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input type="text" id="searchInput" placeholder="Search marketing concepts..." class="search-input" aria-label="Search marketing concepts">
+                        <button class="search-clear" id="searchClear" style="display: none;" aria-label="Clear search">×</button>
+                    </div>
                 </div>
 
-                <div class="category" id="brand-strategy">
-                    <h3><span class="icon">🎯</span>Brand Strategy</h3>
-                    <p>Gain in-depth understanding of the core elements of brand building, from brand positioning to comprehensive brand communication strategies.</p>
-                    <ul class="topics">
-                        <li>Brand Positioning</li>
-                        <li>Brand Value Proposition</li>
-                        <li>Brand Identity System</li>
-                        <li>Brand Communication Strategy</li>
-                        <li>Brand Experience Design</li>
-                        <li>Brand Crisis Management</li>
-                        <li>Brand Equity Assessment</li>
-                        <li>Brand Extension Strategy</li>
-                        <li>Brand Storytelling</li>
-                        <li>Corporate Culture Communication</li>
-                        <li>Brand Social Responsibility</li>
-                        <li>Brand Partnerships</li>
-                        <li>Brand Digital Transformation</li>
-                    </ul>
-                </div>
+                <div class="category-grid" id="categoryGrid">
+                    <div class="category-card" data-category="digital-marketing">
+                        <div class="category-icon" aria-hidden="true">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                        </div>
+                        <h2>Digital Marketing</h2>
+                        <p>Explore marketing strategies in the digital age, including online advertising, email marketing, mobile marketing, and other modern marketing methods.</p>
+                        <div class="career-list" data-category="digital-marketing">
+                            <span class="career-link">Search Engine Marketing (SEM)</span>
+                            <span class="career-link">Social Media Advertising</span>
+                            <span class="career-link">Programmatic Buying</span>
+                            <span class="career-link">Mobile App Marketing</span>
+                            <span class="career-link">Email Marketing</span>
+                            <span class="career-link">Affiliate Marketing</span>
+                            <span class="career-link">Marketing Automation</span>
+                            <span class="career-link">Personalized Marketing</span>
+                            <span class="career-link">Influencer Marketing</span>
+                            <span class="career-link">Live Streaming Marketing</span>
+                            <span class="career-link">Short Video Marketing</span>
+                            <span class="career-link">Private Domain Traffic</span>
+                            <span class="career-link">Growth Hacking</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card" data-category="brand-strategy">
+                        <div class="category-icon" aria-hidden="true">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                                <line x1="15" y1="9" x2="15.01" y2="9"/>
+                            </svg>
+                        </div>
+                        <h2>Brand Strategy</h2>
+                        <p>Gain in-depth understanding of the core elements of brand building, from brand positioning to comprehensive brand communication strategies.</p>
+                        <div class="career-list" data-category="brand-strategy">
+                            <span class="career-link">Brand Positioning</span>
+                            <span class="career-link">Brand Value Proposition</span>
+                            <span class="career-link">Brand Identity System</span>
+                            <span class="career-link">Brand Communication Strategy</span>
+                            <span class="career-link">Brand Experience Design</span>
+                            <span class="career-link">Brand Crisis Management</span>
+                            <span class="career-link">Brand Equity Assessment</span>
+                            <span class="career-link">Brand Extension Strategy</span>
+                            <span class="career-link">Brand Storytelling</span>
+                            <span class="career-link">Corporate Culture Communication</span>
+                            <span class="career-link">Brand Social Responsibility</span>
+                            <span class="career-link">Brand Partnerships</span>
+                            <span class="career-link">Brand Digital Transformation</span>
+                        </div>
+                    </div>
 
                 <div class="category" id="consumer-behavior">
                     <h3><span class="icon">👥</span>Consumer Behavior</h3>
