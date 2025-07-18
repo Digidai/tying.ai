@@ -1,0 +1,39 @@
+<svg width="600" height="300" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .title { font-family: Inter, Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #333; text-anchor: middle; }
+        .hub { font-family: Inter, Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #fff; text-anchor: middle; }
+        .spoke-text { font-family: Inter, Arial, sans-serif; font-size: 12px; fill: #444; text-anchor: middle; }
+        .hub-circle { fill: #007ACC; }
+        .spoke-line { stroke: #007ACC; stroke-width: 2; }
+        .spoke-node { fill: #EFEFEF; stroke: #007ACC; stroke-width: 1.5; }
+    </style>
+    <text x="300" y="30" class="title">Future Trends in AI Software Engineering</text>
+    
+    <circle cx="300" cy="150" r="50" class="hub-circle" />
+    <text x="300" y="155" class="hub">AI's Evolution</text>
+
+    <!-- Spoke 1: Generative AI -->
+    <line x1="300" y1="100" x2="300" y2="50" class="spoke-line" />
+    <circle cx="300" cy="50" r="10" class="spoke-node" />
+    <text x="300" y="40" class="spoke-text">Generative AI & Automation</text>
+
+    <!-- Spoke 2: AI-Enhanced DevOps -->
+    <line x1="350" y1="150" x2="450" y2="150" class="spoke-line" />
+    <circle cx="450" cy="150" r="10" class="spoke-node" />
+    <text x="450" y="135" class="spoke-text">AI-Enhanced DevOps</text>
+
+    <!-- Spoke 3: Upskilling & New Roles -->
+    <line x1="300" y1="200" x2="300" y2="250" class="spoke-line" />
+    <circle cx="300" cy="250" r="10" class="spoke-node" />
+    <text x="300" y="270" class="spoke-text">Upskilling & New Roles</text>
+
+    <!-- Spoke 4: Ethical AI & Regulation -->
+    <line x1="250" y1="150" x2="150" y2="150" class="spoke-line" />
+    <circle cx="150" cy="150" r="10" class="spoke-node" />
+    <text x="150" y="135" class="spoke-text">Ethical AI & Regulation</text>
+
+    <!-- Spoke 5: SEI Platforms -->
+    <line x1="259" y1="100" x2="180" y2="70" class="spoke-line" />
+    <circle cx="180" cy="70" r="10" class="spoke-node" />
+    <text x="180" y="60" class="spoke-text">SEI Platforms</text>
+</svg>

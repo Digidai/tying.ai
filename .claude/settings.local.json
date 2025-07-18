@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(git commit:*)",
+      "Bash(python3:*)",
+      "WebFetch(domain:tying.ai)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": []
+  }
+}

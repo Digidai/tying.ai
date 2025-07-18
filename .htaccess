@@ -1,0 +1,46 @@
+RewriteEngine On
+
+# Specific 301 Redirects
+Redirect 301 /wiki/table-of-contents.html /careers/
+Redirect 301 /position/software-engineer/ /careers/tech/software-engineer/
+Redirect 301 /position/product-manager/ /careers/tech/product-manager/
+Redirect 301 /position/ai-product-manager/ /careers/tech/ai-product-manager/
+Redirect 301 /report/us-recruitment-market/ /reports/market/us-recruitment-2024/
+Redirect 301 /report/agentic-ai-vs-ai-agent/ /reports/skills/agentic-ai-analysis/
+
+# General Redirects for old structures
+RedirectMatch 301 ^/wiki/(.*)$ /careers/$1
+RedirectMatch 301 ^/position/(.*)$ /careers/$1
+RedirectMatch 301 ^/report/(.*)$ /reports/$1
+
+# Enable Caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # CSS
+  ExpiresByType text/css "access plus 1 year"
+
+  # Javascript
+  ExpiresByType application/javascript "access plus 1 year"
+
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # Fonts
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  ExpiresByType application/x-font-ttf "access plus 1 year"
+  ExpiresByType font/opentype "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <filesMatch "\.(css|js|jpg|jpeg|png|gif|webp|svg|ico|woff|woff2|ttf|otf)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </filesMatch>
+</IfModule>
