@@ -1,0 +1,118 @@
+{
+  "site": {
+    "name": "Tying.ai",
+    "url": "https://tying.ai",
+    "description": "AI Career Intelligence Platform providing comprehensive career guidance and market analysis",
+    "keywords": ["AI", "career", "intelligence", "software engineer", "product manager", "market analysis"],
+    "author": "Tying.ai Team",
+    "language": "en"
+  },
+  "seo": {
+    "autoUpdate": true,
+    "sitemap": {
+      "enabled": true,
+      "priority": {
+        "home": 1.0,
+        "category": 0.9,
+        "article": 0.8,
+        "report": 0.7
+      },
+      "changefreq": {
+        "home": "weekly",
+        "category": "monthly",
+        "article": "yearly",
+        "report": "monthly"
+      }
+    },
+    "robots": {
+      "enabled": true,
+      "crawlDelay": 1,
+      "disallow": [
+        "/node_modules/",
+        "/.next/",
+        "/dist/",
+        "/.git/",
+        "/scripts/",
+        "/.DS_Store",
+        "/package.json",
+        "/package-lock.json"
+      ],
+      "allow": [
+        "/",
+        "/careers/",
+        "/reports/",
+        "/about/"
+      ]
+    },
+    "llms": {
+      "enabled": true,
+      "includeStructuredData": true,
+      "includeSiteStructure": true
+    },
+    "structuredData": {
+      "enabled": true,
+      "type": "WebSite",
+      "searchAction": true
+    }
+  },
+  "content": {
+    "categories": {
+      "engineering": {
+        "name": "Engineering Careers",
+        "path": "/careers/engineering/",
+        "description": "Aerospace, civil, electrical, mechanical, and other engineering roles"
+      },
+      "arts": {
+        "name": "Arts & Design Careers",
+        "path": "/careers/arts/",
+        "description": "Creative professionals, designers, and entertainment industry roles"
+      },
+      "business": {
+        "name": "Business Careers",
+        "path": "/careers/business/",
+        "description": "Finance, marketing, HR, and business operations roles"
+      },
+      "tech": {
+        "name": "Technology Careers",
+        "path": "/careers/tech/",
+        "description": "Software development, AI, data science, and IT roles"
+      },
+      "other": {
+        "name": "Other Professional Roles",
+        "path": "/careers/other/",
+        "description": "Healthcare, social services, and specialized professional roles"
+      }
+    },
+    "reports": {
+      "market": {
+        "name": "Market Reports",
+        "path": "/reports/market/",
+        "description": "Market analysis and industry reports"
+      }
+    }
+  },
+  "performance": {
+    "optimization": {
+      "enabled": true,
+      "minifyHtml": true,
+      "minifyCss": true,
+      "minifyJs": true,
+      "compressImages": true
+    },
+    "caching": {
+      "enabled": true,
+      "maxAge": 86400
+    }
+  },
+  "monitoring": {
+    "seoAudit": {
+      "enabled": true,
+      "checkTitle": true,
+      "checkMetaDescription": true,
+      "checkStructuredData": true,
+      "checkImageAlt": true,
+      "checkLinks": true,
+      "checkPerformance": true
+    }
+  }
+} 

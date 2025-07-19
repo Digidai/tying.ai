@@ -1,0 +1,20 @@
+name = "tying-ai"
+main = "src/worker.js"
+compatibility_date = "2024-01-27"
+compatibility_flags = ["nodejs_compat"]
+
+[site]
+bucket = "./public"
+
+[env.production]
+name = "tying-ai"
+route = "tying.ai/*"
+zone_id = "your-zone-id"
+
+[env.staging]
+name = "tying-ai-staging"
+route = "staging.tying.ai/*"
+
+[build]
+command = "npm run build"
+watch_dir = "public" 

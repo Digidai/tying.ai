@@ -1,0 +1,18 @@
+{
+  "name": "tying.ai",
+  "version": "2.0.0",
+  "description": "AI Career Intelligence Platform",
+  "structure": {
+    "public": "Static files and pages",
+    "src": "Source code and components",
+    "config": "Configuration files",
+    "docs": "Documentation",
+    "scripts": "Build and automation scripts"
+  },
+  "seo": {
+    "autoUpdate": true,
+    "sitemap": "public/sitemap.xml",
+    "robots": "public/robots.txt",
+    "llms": "public/llms.txt"
+  }
+}

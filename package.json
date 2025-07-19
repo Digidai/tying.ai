@@ -1,18 +1,50 @@
 {
   "name": "tying.ai",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "AI Career Intelligence Platform with automated SEO management",
   "private": true,
   "scripts": {
-    "dev": "serve -s . -l 3000",
-    "build": "rm -rf dist && mkdir -p dist && cp -r report position wiki dist/ 2>/dev/null || true && cp ./*.html ./*.xml ./*.txt dist/ 2>/dev/null || true && cp styles.css minimal.css dist/ 2>/dev/null || true",
-    "start": "serve -s dist -l 3000",
-    "clean": "rm -rf dist .next"
+    "dev": "npx wrangler dev",
+    "build": "npm run generate-seo && npm run build-static",
+    "build-static": "rm -rf dist && mkdir -p dist && cp -r public/* dist/ 2>/dev/null || true && cp -r src dist/ 2>/dev/null || true",
+    "start": "npx wrangler dev",
+    "clean": "rm -rf dist .next",
+    "generate-seo": "node scripts/generate-seo.js",
+    "update-sitemap": "node scripts/update-sitemap.js",
+    "update-robots": "node scripts/update-robots.js",
+    "update-llms": "node scripts/update-llms.js",
+    "seo-audit": "node scripts/seo-audit.js",
+    "fix-seo": "node scripts/fix-seo-warnings.js",
+    "organize": "node scripts/organize-structure.js",
+    "deploy": "npx wrangler deploy",
+    "deploy:staging": "npx wrangler deploy --env staging",
+    "deploy:cloudflare": "node scripts/deploy-cloudflare.js",
+    "setup": "npm install && npm run organize && npm run generate-seo",
+    "preview": "npx wrangler dev --local",
+    "tail": "npx wrangler tail"
   },
   "dependencies": {
-    "serve": "^14.2.4"
+    "chalk": "^4.1.2",
+    "cheerio": "^1.1.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10"
   },
   "devDependencies": {
-    "html-minifier": "^4.0.0"
+    "@cloudflare/kv-asset-handler": "^0.3.0",
+    "html-minifier": "^4.0.0",
+    "wrangler": "^4.25.0"
+  },
+  "keywords": [
+    "ai",
+    "career",
+    "intelligence",
+    "seo",
+    "automation",
+    "tying.ai"
+  ],
+  "author": "Tying.ai Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
- 

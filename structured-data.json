@@ -1,0 +1,17 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Tying.ai",
+  "url": "https://tying.ai",
+  "description": "AI Career Intelligence Platform providing comprehensive career guidance and market analysis",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://tying.ai/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Tying.ai",
+    "url": "https://tying.ai"
+  }
+}
