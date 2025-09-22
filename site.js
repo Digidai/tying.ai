@@ -9,6 +9,22 @@
     header: null,
     lastScrollTop: 0,
     headerScrollHandlerAttached: false,
+    scrollThreshold: 100,
+    performanceMode: false,
+  };
+
+  // Performance detection
+  const detectPerformance = () => {
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+    const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
+    
+    state.performanceMode = isSlowConnection || isLowEndDevice || 
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (state.performanceMode) {
+      document.documentElement.classList.add('performance-mode');
+    }
   };
 
   const markElement = (element, key) => {
@@ -31,9 +47,26 @@
       toggle.setAttribute('aria-expanded', String(!isExpanded));
       toggle.classList.toggle('active');
       nav.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = !isExpanded ? 'hidden' : '';
     };
 
     toggle.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!nav.contains(event.target) && !toggle.contains(event.target) && nav.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && nav.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
 
     nav.querySelectorAll('a').forEach((link) => {
       if (!markElement(link, 'menuEnhanced')) {
@@ -58,7 +91,13 @@
         const target = document.querySelector(href);
         if (target) {
           event.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const headerHeight = document.querySelector('.main-header')?.offsetHeight || 0;
+          const targetPosition = target.offsetTop - headerHeight - 20;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
         }
       });
     });
@@ -73,8 +112,10 @@
       (entries, observerInstance) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            observerInstance.unobserve(entry.target);
+            const element = entry.target;
+            const animationType = element.dataset.animation || 'fadeInUp';
+            element.classList.add('animate-in', animationType);
+            observerInstance.unobserve(element);
           }
         });
       },
@@ -91,7 +132,7 @@
       return;
     }
 
-    if (!state.canAnimate) {
+    if (!state.canAnimate || state.performanceMode) {
       targets.forEach((element) => {
         if (markElement(element, 'animationApplied')) {
           element.classList.add('animate-in');
@@ -114,7 +155,18 @@
     }
 
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > state.lastScrollTop && scrollTop > 120) {
+    const isScrollingDown = scrollTop > state.lastScrollTop;
+    const isPastThreshold = scrollTop > state.scrollThreshold;
+
+    // Add scrolled class for styling
+    if (isPastThreshold) {
+      state.header.classList.add('scrolled');
+    } else {
+      state.header.classList.remove('scrolled');
+    }
+
+    // Hide/show header based on scroll direction
+    if (isScrollingDown && isPastThreshold) {
       state.header.classList.add('is-hidden');
     } else {
       state.header.classList.remove('is-hidden');
@@ -133,23 +185,136 @@
     state.header.classList.remove('is-hidden');
 
     if (!state.headerScrollHandlerAttached) {
-      window.addEventListener('scroll', handleScroll, { passive: true });
+      let ticking = false;
+      const optimizedScrollHandler = () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
       state.headerScrollHandlerAttached = true;
     }
   };
 
+  const initButtonEffects = () => {
+    // Add ripple effect to buttons
+    document.querySelectorAll('.btn').forEach((button) => {
+      if (markElement(button, 'rippleEffect')) {
+        button.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+          
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = x + 'px';
+          ripple.style.top = y + 'px';
+          ripple.classList.add('ripple');
+          
+          this.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      }
+    });
+  };
+
+  const initCardHoverEffects = () => {
+    document.querySelectorAll('.feature-card, .content-card').forEach((card) => {
+      if (markElement(card, 'hoverEffect')) {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-8px)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      }
+    });
+  };
+
+  const initLazyLoading = () => {
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.classList.remove('lazy');
+              observer.unobserve(img);
+            }
+          }
+        });
+      });
+
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+  };
+
   const initGlobalInteractions = () => {
+    detectPerformance();
     initMobileMenu();
     initAnchorLinks();
     initAnimations();
     initHeaderScroll();
+    initButtonEffects();
+    initCardHoverEffects();
+    initLazyLoading();
+  };
+
+  // Add CSS for ripple effect
+  const addRippleStyles = () => {
+    if (!document.getElementById('ripple-styles')) {
+      const style = document.createElement('style');
+      style.id = 'ripple-styles';
+      style.textContent = `
+        .btn {
+          position: relative;
+          overflow: hidden;
+        }
+        .ripple {
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.3);
+          transform: scale(0);
+          animation: ripple-animation 0.6s linear;
+          pointer-events: none;
+        }
+        @keyframes ripple-animation {
+          to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+        .performance-mode * {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
   };
 
   window.initGlobalInteractions = initGlobalInteractions;
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGlobalInteractions);
+    document.addEventListener('DOMContentLoaded', () => {
+      addRippleStyles();
+      initGlobalInteractions();
+    });
   } else {
+    addRippleStyles();
     initGlobalInteractions();
   }
 })();

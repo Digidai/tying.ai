@@ -1,3 +1,50 @@
 User-agent: *
 Allow: /
+
+# Sitemap
 Sitemap: https://tying.ai/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /sw.js
+Disallow: /manifest.json
+
+# Allow important files
+Allow: /styles.css
+Allow: /site.js
+Allow: /scripts/
+Allow: /components/
+Allow: /images/
+Allow: /favicon.ico
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 3
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
