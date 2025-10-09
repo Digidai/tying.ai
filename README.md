@@ -1,13 +1,12 @@
 # tying.ai Official Website
 
-This repository contains the source for **tying.ai**, a small landing page powered by plain HTML/CSS/JavaScript and a minimal Next.js setup.
+This repository contains the source for **tying.ai**, a lightweight static website built with plain HTML, CSS, and a small amount of JavaScript.
 
 ## Tech Stack
 
 - Static HTML5 and CSS3
-- Vanilla JavaScript for effects
-- [Next.js](https://nextjs.org/) (used in `src/app`)
-- Node `serve` for local development
+- Vanilla JavaScript for interactions
+- [serve](https://www.npmjs.com/package/serve) for local development and previews
 
 ## Development Setup
 
@@ -16,7 +15,7 @@ npm install
 npm run dev
 ```
 
-Open <http://localhost:3000> in your browser.
+The development server exposes the site at <http://localhost:3000> using `serve`.
 
 ## Build and Preview
 
@@ -25,33 +24,31 @@ npm run build
 npm start
 ```
 
-The build script copies the site into `dist/` and `npm start` serves it on port 3000.
+The build script copies the site into `dist/` and `npm start` serves the generated folder on port 3000.
 
 ## Project Structure
 
 ```text
 .
-├── index.html            # Main landing page
-├── index-optimized.html  # Minified variant
-├── genedai.html          # Additional page
-├── styles.css            # Global styles
-├── src/app/              # Next.js pages and layout
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── position/             # Job descriptions
-├── report/               # Documentation
-├── wiki/                 # Wiki pages
-└── dist/                 # Build output (generated)
+├── components/            # Shared UI snippets
+├── index.html             # Main landing page
+├── index-optimized.html   # Minified variant of the landing page
+├── genedai.html           # Additional landing page experiment
+├── styles.css             # Primary stylesheet
+├── minimal*.css           # Alternate style variants
+├── report/                # Documentation and analysis
+├── position/              # Job descriptions
+├── wiki/                  # Wiki pages
+├── scripts/               # Automation helpers
+└── dist/                  # Build output (generated)
 ```
 
 ## Optimization Summary
 
-- ✅ CSS extracted into a separate file
+- ✅ CSS extracted into dedicated files
 - ✅ Added performance scripts
 - ✅ Improved responsive design
 - ✅ Cleaned redundant config files
-- ✅ Unified tech stack
+- ✅ Unified static-site tooling
 - ✅ Added email subscription functionality
 - ✅ Optimized SEO meta tags
-
