@@ -7,8 +7,22 @@
       "Bash(find:*)",
       "Bash(grep:*)",
       "Bash(git commit:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)",
+      "Bash(git rm:*)",
+      "Bash(/bashes)",
+      "Bash(awk:*)",
+      "Bash(for file in index.html genedai.html position/index.html report/index.html)",
+      "Bash(do echo \"检查 $file:\")",
+      "Bash(done)",
+      "Bash(for file in styles.css genedai.css)",
+      "Bash(tree:*)",
+      "Bash(cat:*)",
+      "Bash(xargs ls:*)",
+      "Bash(do echo \"$file:\")"
     ],
-    "deny": []
+    "deny": [],
+    "confirmCommands": false
   }
 }
