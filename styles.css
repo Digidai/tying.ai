@@ -788,13 +788,17 @@ li a:hover {
     flex-wrap: wrap;
 }
 
-/* Notion-Style Footer - Simple & Clean */
+/* Glassmorphism Footer - Floating Glass */
 .main-footer {
-    background: var(--footer-bg);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
     color: var(--text-secondary);
     padding: var(--space-4xl) 0 var(--space-2xl);
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--glass-border);
     margin-top: var(--space-4xl);
+    box-shadow: 0 -8px 32px rgba(31, 38, 135, 0.08);
+    position: relative;
 }
 
 .footer-content {
