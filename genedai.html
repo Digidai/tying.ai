@@ -30,7 +30,7 @@
     <meta name="twitter:creator" content="@genedai_twitter">
 
     <link rel="canonical" href="https://tying.ai/genedai.html">
-    <link rel="stylesheet" href="genedai.css">
+    <link rel="stylesheet" href="/genedai.css">
 </head>
 <body>
     <div id="main">
@@ -64,7 +64,8 @@
             <div class="footer">
                 <div class="location-info">
                     <span>⚲</span>
-                    <span>Seattle, WA</span>
+                    <span class="location-text">Seattle, WA</span>
+                    <span class="time-text"></span>
                 </div>
 
                 <div class="social-links">
@@ -111,9 +112,9 @@
                     second: '2-digit',
                     hour12: true
                 });
-                const locationElement = document.querySelector('.location-info span:last-child');
-                if (locationElement) {
-                    locationElement.textContent = `${timeString}`;
+                const timeElement = document.querySelector('.time-text');
+                if (timeElement) {
+                    timeElement.textContent = ` • ${timeString}`;
                 }
             }
 
