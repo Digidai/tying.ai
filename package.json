@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "serve -s . -l 3000",
-    "build": "rm -rf dist && mkdir -p dist && (cp -r report position wiki components scripts dist/ 2>/dev/null || true) && (cp ./*.html ./*.xml ./*.txt dist/ 2>/dev/null || true) && (cp styles.css minimal.css site.js dist/ 2>/dev/null || true)",
+    "build": "bash build.sh",
+    "build:simple": "rm -rf dist && mkdir -p dist && cp -r report position wiki components scripts assets dist/ && cp ./*.html ./*.xml ./*.txt ./*.json ./*.ico ./*.css ./*.js dist/ 2>/dev/null || true",
     "start": "serve -s dist -l 3000",
     "clean": "rm -rf dist .next"
   },
@@ -12,7 +13,9 @@
     "serve": "^14.2.4"
   },
   "devDependencies": {
-    "html-minifier": "^4.0.0"
+    "html-minifier": "^4.0.0",
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.36.0"
   }
 }
  
