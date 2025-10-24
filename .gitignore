@@ -73,4 +73,16 @@ temp/
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts 
+next-env.d.ts
+
+# Backup and duplicate files
+*.backup
+*-backup.*
+*.bak
+*~
+* 2.*
+* 2/
+
+# Local configuration
+.vscode/settings.json
+.idea/workspace.xml
