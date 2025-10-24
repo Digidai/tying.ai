@@ -13,12 +13,16 @@ This document tracks in-depth research articles about HR technology products and
 - **Article URL**: `/report/greenhouse-ats-2025/`
 - **Word Count**: ~8,500 words (comprehensive deep-dive)
 
-### 2. [NEXT] Workday - Enterprise HR Management
-- **Status**: Queued
-- **Focus**: Cloud-based HCM and financial management
-- **Topics**: Platform capabilities, AI integration, workforce planning, analytics
+### 2. ✅ Workday - Enterprise HR Management
+- **Status**: COMPLETED
+- **Focus**: Cloud-based HCM and unified workforce management
+- **Topics**: Platform architecture, Skills Cloud, AI (Illuminate), pricing, ROI, competitive analysis vs SAP/Oracle
+- **Article Date**: 2025-10-24
+- **Article Status**: Published
+- **Article URL**: `/report/workday-hcm-2025/`
+- **Word Count**: ~10,000+ words (comprehensive enterprise HCM analysis)
 
-### 3. BambooHR - SMB HR Software
+### 3. [NEXT] BambooHR - SMB HR Software
 - **Status**: Queued
 - **Focus**: HR software for small and medium businesses
 - **Topics**: Employee experience, onboarding, performance management
@@ -63,6 +67,23 @@ This document tracks in-depth research articles about HR technology products and
   - Honest pros/cons assessment
   - Future outlook & 2026-2027 predictions
 - **Research Sources**: G2 reports, customer reviews, market analysis, web search
+- **Link to OpenJobs-AI**: ✅ Included in conclusion section
+
+### Workday HCM 2025: The Complete Enterprise HR Guide (October 24, 2025)
+- **URL**: `/report/workday-hcm-2025/`
+- **Word Count**: ~10,000+ words
+- **Key Topics**:
+  - $30.87B enterprise HCM market landscape & competitive positioning
+  - Cloud-native architecture & unified platform design
+  - Core capabilities: HR, payroll, talent, recruiting, workforce planning, analytics
+  - Skills Cloud deep-dive: ML-powered skills intelligence, graph technology
+  - Technical architecture: OMS, Integration Cloud Platform, REST APIs
+  - Competitive analysis: Workday vs SAP SuccessFactors vs Oracle HCM Cloud
+  - Comprehensive pricing ($99 PEPM avg), implementation costs, ROI calculations
+  - Customer success stories (UPP Group, Elders, Sharp HealthCare, Cisco)
+  - Detailed strengths/limitations assessment
+  - 2026-2027 predictions & 17-19% growth strategy
+- **Research Sources**: Market reports, Workday documentation, customer case studies, competitive analysis
 - **Link to OpenJobs-AI**: ✅ Included in conclusion section
 
 ## Research Guidelines
