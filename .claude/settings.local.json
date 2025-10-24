@@ -2,10 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(for file in /Users/dai/Documents/CursorProjects/tying.ai/report/*/index.html)",
-      "Bash(do echo \"=== $file ===\")"
+      "Bash(do echo \"=== $file ===\")",
+      "Bash(/Users/dai/Documents/CursorProjects/tying.ai/migrate-wiki-headers.sh)"
     ],
     "deny": [],
-    "confirmCommands": false,
-    "ask": []
+    "ask": [],
+    "confirmCommands": false
   }
 }
