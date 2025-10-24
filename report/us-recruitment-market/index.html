@@ -37,34 +37,9 @@
     </script>
 </head>
 <body>
-    <!-- Header -->
-    <header class="main-header" role="banner">
-        <div class="container">
-            <div class="header-content">
-                <div class="site-branding">
-                    <a href="/" class="logo-link" aria-label="Tying.ai Homepage">
-                        <span class="site-logo-emoji" role="img" aria-label="Tying.ai Logo">🤖</span>
-                        <span class="site-title">Tying.ai</span>
-                    </a>
-                </div>
+    <!-- Header Component -->
+    <div id="site-header"></div>
 
-                <nav class="main-nav" role="navigation" aria-label="Main navigation">
-                    <ul>
-                        <li><a href="/" class="nav-link">Home</a></li>
-                        <li><a href="/wiki/table-of-contents.html" class="nav-link">Career Wiki</a></li>
-                        <li><a href="/position/" class="nav-link">Position Guide</a></li>
-                        <li><a href="/report/" class="nav-link active" aria-current="page">Industry Reports</a></li>
-                    </ul>
-                </nav>
-
-                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </header>
     <!-- Navigation Bar -->
     <header class="fixed w-full z-50 transition-all duration-300 bg-transparent">
         <nav class="container mx-auto px-6 py-3">
@@ -541,6 +516,7 @@
             </div>
         </div>
     </footer>
+    <script src="/scripts/layout.js"></script>
     <script src="/site.js" defer></script>
 </body>
 </html>

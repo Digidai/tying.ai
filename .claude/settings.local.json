@@ -1,37 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls:*)",
-      "Bash(git add:*)",
-      "Bash(git push:*)",
-      "Bash(find:*)",
-      "Bash(grep:*)",
-      "Bash(git commit:*)",
-      "Bash(python3:*)",
-      "Bash(git pull:*)",
-      "Bash(git checkout:*)",
-      "Bash(git rm:*)",
-      "Bash(/bashes)",
-      "Bash(awk:*)",
-      "Bash(for file in index.html genedai.html position/index.html report/index.html)",
-      "Bash(do echo \"检查 $file:\")",
-      "Bash(done)",
-      "Bash(for file in styles.css genedai.css)",
-      "Bash(tree:*)",
-      "Bash(cat:*)",
-      "Bash(xargs ls:*)",
-      "Bash(do echo \"$file:\")",
-      "Bash(test:*)",
-      "Bash(for dir in /Users/dai/Documents/CursorProjects/tying.ai/{assets,components,position,public,report,scripts,src,wiki})",
-      "Bash(git restore:*)",
-      "Bash(chmod:*)",
-      "Bash(for file in *.html)",
-      "Bash(do if [[ \"$file\" =~ ^[0-9] ]])",
-      "Bash(then if ! grep -q \"$file\" table-of-contents.html)",
-      "Bash(then echo \"$file\")",
-      "Bash(fi)"
+      "Bash(for file in /Users/dai/Documents/CursorProjects/tying.ai/report/*/index.html)",
+      "Bash(do echo \"=== $file ===\")"
     ],
     "deny": [],
-    "confirmCommands": false
+    "confirmCommands": false,
+    "ask": []
   }
 }
