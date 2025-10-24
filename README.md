@@ -44,12 +44,12 @@ The build script copies the site into `dist/` and `npm start` serves the generat
 ## Project Structure
 
 ```text
-<<<<<<< HEAD
 tying.ai/
 ├── index.html              # Main landing page
 ├── genedai.html            # Personal profile page
-├── styles.css              # Main stylesheet
-├── site.js                 # Main JavaScript
+├── styles.css              # Main stylesheet (Glassmorphism design)
+├── genedai.css             # Dedicated stylesheet for genedai.html
+├── site.js                 # Main JavaScript with interactions
 ├── sw.js                   # Service Worker
 ├── manifest.json           # PWA manifest
 ├── sitemap.xml            # SEO sitemap
@@ -59,53 +59,28 @@ tying.ai/
 │   └── footer.html
 ├── scripts/               # JavaScript modules
 │   └── layout.js
-├── position/              # Job descriptions
+├── position/              # Job position guides
 ├── report/                # Industry reports
 ├── wiki/                  # Career wiki pages
-├── dist/                  # Build output (generated)
-└── src/app/               # Next.js components (legacy)
-=======
-.
-├── components/            # Shared UI snippets
-├── index.html             # Main landing page
-├── index-optimized.html   # Minified variant of the landing page
-├── genedai.html           # Additional landing page experiment
-├── styles.css             # Primary stylesheet
-├── minimal*.css           # Alternate style variants
-├── report/                # Documentation and analysis
-├── position/              # Job descriptions
-├── wiki/                  # Wiki pages
-├── scripts/               # Automation helpers
+├── assets/                # Static assets (icons, images)
 └── dist/                  # Build output (generated)
->>>>>>> 76c32fc1005119781f769f8ee00c36216d8a041c
 ```
 
 ## Key Pages
 
-<<<<<<< HEAD
 - **Homepage** (`/`): Main landing page with features and content
-- **Career Wiki** (`/wiki/`): Comprehensive career database
-- **Industry Reports** (`/report/`): Market analysis and trends
-- **Position Guide** (`/position/`): Job descriptions and requirements
-- **Profile** (`/genedai.html`): Personal profile page
+- **Career Wiki** (`/wiki/`): Comprehensive career database with 180+ job profiles
+- **Industry Reports** (`/report/`): Market analysis and career insights
+- **Position Guide** (`/position/`): Detailed job guides for Software Engineer, Product Manager, AI PM
+- **Profile** (`/genedai.html`): Personal profile page with minimalist design
 
 ## Optimization Features
 
-- ✅ Modern CSS with variables and animations
-- ✅ Service Worker for offline functionality
-- ✅ Complete SEO optimization
-- ✅ Accessibility compliance
-- ✅ Performance monitoring
-- ✅ Responsive design
-- ✅ Dark mode support
-- ✅ PWA capabilities
-
-=======
-- ✅ CSS extracted into dedicated files
-- ✅ Added performance scripts
-- ✅ Improved responsive design
-- ✅ Cleaned redundant config files
-- ✅ Unified static-site tooling
-- ✅ Added email subscription functionality
-- ✅ Optimized SEO meta tags
->>>>>>> 76c32fc1005119781f769f8ee00c36216d8a041c
+- ✅ Glassmorphism design system with CSS variables
+- ✅ Service Worker for offline functionality (PWA)
+- ✅ Complete SEO optimization with meta tags and structured data
+- ✅ WCAG 2.1 AA accessibility compliance
+- ✅ Performance optimizations (lazy loading, reduced motion support)
+- ✅ Fully responsive design (mobile-first approach)
+- ✅ Component-based architecture with dynamic header/footer
+- ✅ Smooth animations with IntersectionObserver
