@@ -20,7 +20,16 @@
       "Bash(tree:*)",
       "Bash(cat:*)",
       "Bash(xargs ls:*)",
-      "Bash(do echo \"$file:\")"
+      "Bash(do echo \"$file:\")",
+      "Bash(test:*)",
+      "Bash(for dir in /Users/dai/Documents/CursorProjects/tying.ai/{assets,components,position,public,report,scripts,src,wiki})",
+      "Bash(git restore:*)",
+      "Bash(chmod:*)",
+      "Bash(for file in *.html)",
+      "Bash(do if [[ \"$file\" =~ ^[0-9] ]])",
+      "Bash(then if ! grep -q \"$file\" table-of-contents.html)",
+      "Bash(then echo \"$file\")",
+      "Bash(fi)"
     ],
     "deny": [],
     "confirmCommands": false
