@@ -318,3 +318,199 @@
     initGlobalInteractions();
   }
 })();
+
+// ===== GLASSMORPHISM ENHANCEMENTS =====
+
+(function() {
+  // Glass card shimmer effect on hover
+  const initGlassShimmer = () => {
+    document.querySelectorAll('.glass-card, .feature-card, .content-card').forEach(card => {
+      if (card.dataset.shimmerInit) return;
+      card.dataset.shimmerInit = 'true';
+      
+      card.addEventListener('mouseenter', function(e) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        
+        const shimmer = document.createElement('div');
+        shimmer.className = 'card-shimmer';
+        shimmer.style.cssText = `
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+          );
+          transform: rotate(45deg);
+          pointer-events: none;
+          z-index: 10;
+        `;
+        
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(shimmer);
+        
+        shimmer.animate([
+          { left: '-50%' },
+          { left: '150%' }
+        ], {
+          duration: 800,
+          easing: 'ease-out'
+        }).onfinish = () => shimmer.remove();
+      });
+    });
+  };
+
+  // Parallax effect for background elements
+  const initParallax = () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    
+    const parallaxElements = document.querySelectorAll('[data-parallax]');
+    if (!parallaxElements.length) return;
+    
+    let ticking = false;
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      
+      parallaxElements.forEach(el => {
+        const speed = el.dataset.parallax || 0.5;
+        const yPos = -(scrolled * speed);
+        el.style.transform = `translateY(${yPos}px)`;
+      });
+      
+      ticking = false;
+    };
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+  };
+
+  // Number counter animation for stats
+  const initCounterAnimations = () => {
+    const counters = document.querySelectorAll('[data-counter]');
+    if (!counters.length || !('IntersectionObserver' in window)) return;
+    
+    const animateCounter = (element) => {
+      const target = parseInt(element.dataset.counter);
+      const duration = 2000;
+      const start = 0;
+      const startTime = performance.now();
+      
+      const updateCounter = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const current = Math.floor(start + (target - start) * easeOutQuart);
+        
+        element.textContent = current.toLocaleString();
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = target.toLocaleString();
+        }
+      };
+      
+      requestAnimationFrame(updateCounter);
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.counted) {
+          entry.target.dataset.counted = 'true';
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => observer.observe(counter));
+  };
+
+  // Glass button hover effect with gradient
+  const initGlassButtonEffects = () => {
+    document.querySelectorAll('.glass-button, .btn-primary').forEach(button => {
+      if (button.dataset.glassEffect) return;
+      button.dataset.glassEffect = 'true';
+      
+      button.addEventListener('mouseenter', function() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        
+        this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        this.style.transform = 'translateY(-2px) scale(1.02)';
+      });
+      
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  };
+
+  // Stagger animation for card grids
+  const initStaggerAnimation = () => {
+    if (!('IntersectionObserver' in window)) return;
+    
+    const grids = document.querySelectorAll('.features-grid, .content-grid');
+    if (!grids.length) return;
+    
+    grids.forEach(grid => {
+      const cards = grid.querySelectorAll('.feature-card, .content-card');
+      if (!cards.length) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll('.feature-card, .content-card');
+            cards.forEach((card, index) => {
+              if (!card.dataset.staggered) {
+                card.dataset.staggered = 'true';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                  card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                  card.style.opacity = '1';
+                  card.style.transform = 'translateY(0)';
+                }, index * 100);
+              }
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      observer.observe(grid);
+    });
+  };
+
+  // Initialize all Glassmorphism enhancements
+  const initGlassmorphismEnhancements = () => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        initGlassShimmer();
+        initParallax();
+        initCounterAnimations();
+        initGlassButtonEffects();
+        initStaggerAnimation();
+      });
+    } else {
+      initGlassShimmer();
+      initParallax();
+      initCounterAnimations();
+      initGlassButtonEffects();
+      initStaggerAnimation();
+    }
+  };
+
+  initGlassmorphismEnhancements();
+})();
