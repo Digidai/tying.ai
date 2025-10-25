@@ -1713,11 +1713,44 @@ li a:hover {
         -webkit-backdrop-filter: none;
         background: rgba(255, 255, 255, 0.95);
     }
-    
+
     .float-animation,
     .shimmer,
     .gradient-animate {
         animation: none;
     }
 }
+
+/* ====================================
+   SVG Icon System (replaces Font Awesome)
+   ==================================== */
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+    fill: currentColor;
+}
+
+.icon-lg {
+    width: 1.33em;
+    height: 1.33em;
+}
+
+.icon-2x {
+    width: 2em;
+    height: 2em;
+}
+
+.icon-3x {
+    width: 3em;
+    height: 3em;
+}
+
+/* Icon color utilities */
+.text-green-500 { color: #10b981; }
+.text-red-500 { color: #ef4444; }
+.text-yellow-500 { color: #eab308; }
+.text-blue-500 { color: #3b82f6; }
 
