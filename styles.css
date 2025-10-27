@@ -313,7 +313,7 @@ li a:hover {
 }
 
 .nav-link {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 600;
     font-size: var(--font-size-sm);
