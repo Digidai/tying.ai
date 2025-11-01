@@ -1062,45 +1062,7 @@ li a:hover {
     }
 }
 
-/* Performance optimizations */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    .hero-logo-emoji {
-        animation: none;
-    }
-    
-    .hero-section::before {
-        animation: none;
-    }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    :root {
-        --primary-color: #0000ff;
-        --text-primary: #000000;
-        --text-secondary: #333333;
-        --border-color: #000000;
-    }
-    
-    .btn-primary {
-        background: #0000ff;
-        color: #ffffff;
-        border: 2px solid #000000;
-    }
-    
-    .feature-card,
-    .content-card {
-        border: 2px solid #000000;
-    }
-}
+/* Performance optimizations - moved to consolidated section below */
 
 /* Enhanced Accessibility Styles */
 .sr-only {
