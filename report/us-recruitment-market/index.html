@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>US Recruitment Market Analysis Report | 2024-2025</title>
-    
-    <!-- Stylesheets -->
-    <link href="https://g.alicdn.com/code/lib/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.font.im/css?family=Noto+Serif:wght@400;500;600;700&family=Noto+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null">
+
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/styles.css" as="style">
+    <link rel="preload" href="/site.js" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap&subset=latin" as="style">
+
+    <!-- Unified Stylesheets (replaces Tailwind CDN ~50KB + Font Awesome CDN ~75KB + Noto Fonts ~15KB) -->
+    <!-- Using site-wide Inter font instead of Noto for consistency -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap&subset=latin" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
     <link href="/morandi_styles.css" rel="stylesheet">
-    
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
+
+    <!-- Scripts (unified, removed non-existent js/main.js) -->
+    <script src="/site.js" defer></script>
 
     <meta name="description" content="In-depth analysis of the US recruitment market for 2024-2025, covering trends, challenges, and opportunities in the American job market.">
     <meta name="keywords" content="US recruitment, US job market, employment trends, labor market analysis, 2024-2025 forecast, Tying.ai, AI in recruitment, workforce analytics">
@@ -21,10 +30,11 @@
     <meta property="og:site_name" content="Tying.ai"/>
     <meta property="og:url" content="https://tying.ai/report/us-recruitment-market/">
     <meta property="og:description" content="Comprehensive analysis of the US job market trends, challenges, and future outlook for 2024-2025.">
-    <meta property="og:image" content="https://img.alicdn.com/imgextra/i4/O1CN01VFxaDc1s3EZKig0PM_!!6000000005710-0-tps-300-300.jpg">
+    <!-- TODO: Create dedicated OG image for this report -->
+    <meta property="og:image" content="https://tying.ai/klein_blue_logo_abstract.svg">
     <link rel="canonical" href="https://tying.ai/report/us-recruitment-market/">
-    <link rel="shortcut icon" type="image/png" href="https://img.alicdn.com/imgextra/i4/O1CN01yBfg3x1iNi4YggwIt_!!6000000004401-2-tps-72-72.png">
-    <link rel="icon" type="image/png" href="https://img.alicdn.com/imgextra/i4/O1CN01yBfg3x1iNi4YggwIt_!!6000000004401-2-tps-72-72.png"/>
+    <!-- Use site-wide favicon instead of external CDN -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
     <script type="application/ld+json">
     {
