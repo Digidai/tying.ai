@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Product Manager: Role, Responsibilities, Skills, Career | Tying.ai</title>
     <meta name="description" content="Explore the role of an AI Product Manager: key responsibilities, essential skills (technical & soft), career path, salary insights, and future trends in AI product management. Your guide to succeeding as a PM in the AI industry.">
     <meta name="keywords" content="AI Product Manager, Product Management, Artificial Intelligence, Machine Learning, Career, Skills, Salary, Roadmap, Strategy, Agile, Tying.ai">
@@ -14,16 +14,34 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://tying.ai/position/product-manager/">
     <meta property="og:site_name" content="Tying.ai">
-    <meta property="og:image" content="https://tying.ai/images/og-ai-product-manager.jpg">
-    <meta name="twitter:card" content="summary_large_image">
+    <!-- TODO: Create dedicated OG image (1200x630px) for better social sharing -->
+    <meta property="og:image" content="https://tying.ai/klein_blue_logo_abstract.svg">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@TyingAI">
     <meta name="twitter:title" content="AI Product Manager: Role, Responsibilities, Skills, Career | Tying.ai">
     <meta name="twitter:description" content="Your comprehensive guide to becoming a successful AI Product Manager. Learn about skills, responsibilities, and career outlook.">
-    <meta name="twitter:image" content="https://tying.ai/images/twitter-ai-product-manager.jpg">
+    <meta name="twitter:image" content="https://tying.ai/klein_blue_logo_abstract.svg">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/styles.css" as="style">
+    <link rel="preload" href="/site.js" as="script">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap&subset=latin" rel="stylesheet">
+
+    <!-- Unified Stylesheets -->
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/morandi_styles.css">
+
+    <!-- Unified Scripts -->
+    <script src="/site.js" defer></script>
 
     <script type="application/ld+json">
     {
@@ -385,9 +403,8 @@
     </div>
 
     <script src="/scripts/layout.js"></script>
-    <script src="/site.js" defer></script>
     <script>
-        lucide.createIcons();
+        // Removed lucide.createIcons() - no longer using Lucide CDN
 
         // Scroll Progress Indicator
         const scrollIndicator = document.getElementById('scrollIndicator');
