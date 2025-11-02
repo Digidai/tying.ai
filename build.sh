@@ -14,7 +14,7 @@ mkdir -p dist
 
 # Copy directory structure
 echo "📁 Copying directory structure..."
-cp -r report position wiki components scripts assets dist/ 2>/dev/null || true
+cp -r report position wiki components scripts assets js dist/ 2>/dev/null || true
 
 # Copy static files (XML, TXT, JSON, etc.)
 echo "📄 Copying static files..."
@@ -22,12 +22,16 @@ cp ./*.xml ./*.txt ./*.json ./*.ico browserconfig.xml dist/ 2>/dev/null || true
 
 # Minify CSS files with advanced optimizations
 echo "🎨 Minifying CSS files..."
-npx cleancss -o dist/styles.css styles.css --level 2 --format keepBreaks
+npx cleancss -o dist/layout.css layout.css --level 2 --format keepBreaks
+npx cleancss -o dist/components.css components.css --level 2 --format keepBreaks
+npx cleancss -o dist/utilities.css utilities.css --level 2 --format keepBreaks
 npx cleancss -o dist/genedai.css genedai.css --level 2 --format keepBreaks 2>/dev/null || true
 
 # Minify JavaScript files with advanced optimizations
 echo "⚡ Minifying JavaScript files..."
-npx terser site.js -o dist/site.js --compress --mangle --toplevel --ecma 2018
+npx terser js/main.js -o dist/js/main.js --compress --mangle --toplevel --ecma 2020 --module
+npx terser js/modules/*.js -o dist/js/modules/ --compress --mangle --toplevel --ecma 2020 --module
+npx terser site.js -o dist/site.js --compress --mangle --toplevel --ecma 2018 2>/dev/null || true
 npx terser sw.js -o dist/sw.js --compress --mangle --toplevel --ecma 2018 2>/dev/null || true
 npx terser scripts/layout.js -o dist/scripts/layout.js --compress --mangle --toplevel --ecma 2018 2>/dev/null || true
 
@@ -106,8 +110,14 @@ echo "✅ Build complete!"
 echo ""
 echo "📊 Build summary:"
 du -sh dist | awk '{print "  Total size: " $1}'
-if [ -f "dist/styles.css.gz" ]; then
-  echo "  Gzipped CSS: $(du -h dist/styles.css.gz | cut -f1)"
+if [ -f "dist/layout.css.gz" ]; then
+  echo "  Gzipped Layout CSS: $(du -h dist/layout.css.gz | cut -f1)"
+fi
+if [ -f "dist/components.css.gz" ]; then
+  echo "  Gzipped Components CSS: $(du -h dist/components.css.gz | cut -f1)"
+fi
+if [ -f "dist/utilities.css.gz" ]; then
+  echo "  Gzipped Utilities CSS: $(du -h dist/utilities.css.gz | cut -f1)"
 fi
 if [ -f "dist/site.js.gz" ]; then
   echo "  Gzipped JS: $(du -h dist/site.js.gz | cut -f1)"
