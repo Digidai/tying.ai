@@ -29,8 +29,32 @@ npx cleancss -o dist/genedai.css genedai.css --level 2 --format keepBreaks 2>/de
 
 # Minify JavaScript files with advanced optimizations
 echo "⚡ Minifying JavaScript files..."
+
+# Minify module loader first (critical for lazy loading)
+npx terser js/module-loader.js -o dist/js/module-loader.js --compress --mangle --toplevel --ecma 2020 --module
+
+# Minify main application
 npx terser js/main.js -o dist/js/main.js --compress --mangle --toplevel --ecma 2020 --module
-npx terser js/modules/*.js -o dist/js/modules/ --compress --mangle --toplevel --ecma 2020 --module
+
+# Minify core modules (always loaded)
+for module in performance-optimizer animation-manager navigation-controller interaction-handler; do
+  if [ -f "js/modules/$module.js" ]; then
+    npx terser "js/modules/$module.js" -o "dist/js/modules/$module.js" --compress --mangle --toplevel --ecma 2020 --module
+    echo "  ✓ Minified $module.js"
+  fi
+done
+
+# Minify lazy modules (optimized for code splitting)
+for module in analytics chatbot charts forms; do
+  if [ -f "js/modules/$module.js" ]; then
+    npx terser "js/modules/$module.js" -o "dist/js/modules/$module.js" \
+      --compress --mangle --toplevel --ecma 2020 --module \
+      --define module.exports=false
+    echo "  ✓ Minified lazy module $module.js"
+  fi
+done
+
+# Minify legacy JavaScript files
 npx terser site.js -o dist/site.js --compress --mangle --toplevel --ecma 2018 2>/dev/null || true
 npx terser sw.js -o dist/sw.js --compress --mangle --toplevel --ecma 2018 2>/dev/null || true
 npx terser scripts/layout.js -o dist/scripts/layout.js --compress --mangle --toplevel --ecma 2018 2>/dev/null || true
@@ -92,15 +116,52 @@ cat > dist/.htaccess << 'EOF'
 
 <IfModule mod_expires.c>
     ExpiresActive on
-    ExpiresByType text/css "access plus 1 year"
+    # Core modules - cache longer (critical for performance)
     ExpiresByType application/javascript "access plus 1 year"
+    <Files "js/module-loader.js">
+        ExpiresActive on
+        ExpiresByType application/javascript "access plus 1 year"
+    </Files>
+    <Files "js/main.js">
+        ExpiresActive on
+        ExpiresByType application/javascript "access plus 1 year"
+    </Files>
+    <FilesMatch "^js/modules/(performance-optimizer|animation-manager|navigation-controller|interaction-handler)\.js$">
+        ExpiresActive on
+        ExpiresByType application/javascript "access plus 1 year"
+    </FilesMatch>
+
+    # Lazy modules - cache shorter (may be updated frequently)
+    <FilesMatch "^js/modules/(analytics|chatbot|charts|forms)\.js$">
+        ExpiresActive on
+        ExpiresByType application/javascript "access plus 1 week"
+    </FilesMatch>
+
+    # CSS files
+    ExpiresByType text/css "access plus 1 year"
+
+    # Images
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/jpg "access plus 1 year"
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/gif "access plus 1 year"
     ExpiresByType image/ico "access plus 1 year"
     ExpiresByType image/icon "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    # HTML files
     ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# HTTP/2 Server Push for critical modules
+<IfModule mod_headers.c>
+    <Files "index.html">
+        Header add Link "</js/module-loader.js>; rel=preload; as=script"
+        Header add Link "</js/main.js>; rel=preload; as=script"
+        Header add Link "</layout.css>; rel=preload; as=style"
+        Header add Link "</components.css>; rel=preload; as=style"
+        Header add Link "</utilities.css>; rel=preload; as=style"
+    </Files>
 </IfModule>
 EOF
 
@@ -122,6 +183,19 @@ fi
 if [ -f "dist/site.js.gz" ]; then
   echo "  Gzipped JS: $(du -h dist/site.js.gz | cut -f1)"
 fi
+if [ -f "dist/js/module-loader.js.gz" ]; then
+  echo "  Gzipped Module Loader: $(du -h dist/js/module-loader.js.gz | cut -f1)"
+fi
+if [ -f "dist/js/main.js.gz" ]; then
+  echo "  Gzipped Main App: $(du -h dist/js/main.js.gz | cut -f1)"
+fi
+
+# Count lazy modules
+lazy_modules_count=$(find dist/js/modules -name "*.js" 2>/dev/null | wc -l)
+if [ "$lazy_modules_count" -gt 0 ]; then
+  echo "  Lazy modules available: $lazy_modules_count"
+fi
+
 echo "  Location: ./dist/"
 echo ""
 echo "🚀 Performance optimizations applied:"
@@ -129,5 +203,8 @@ echo "  ✓ Advanced minification"
 echo "  ✓ Gzip compression"
 echo "  ✓ Browser caching headers"
 echo "  ✓ Reduced bundle sizes"
+echo "  ✓ Code splitting and lazy loading"
+echo "  ✓ HTTP/2 server push for critical resources"
+echo "  ✓ Differential caching for core vs lazy modules"
 echo ""
 echo "💡 Run 'npm start' to serve the production build"
