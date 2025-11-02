@@ -11,6 +11,9 @@
     headerScrollHandlerAttached: false,
     scrollThreshold: 100,
     performanceMode: false,
+    // Cache for performance
+    cachedElements: new Map(),
+    ticking: false,
   };
 
   // Performance detection
@@ -36,70 +39,82 @@
   };
 
   const initMobileMenu = () => {
-    const toggle = document.querySelector('.mobile-menu-toggle');
-    const nav = document.querySelector('.main-nav');
+    // Cache elements
+    const toggle = state.cachedElements.get('mobileToggle') || document.querySelector('.mobile-menu-toggle');
+    const nav = state.cachedElements.get('mainNav') || document.querySelector('.main-nav');
+
     if (!toggle || !nav || !markElement(toggle, 'menuEnhanced')) {
       return;
     }
+
+    // Cache elements
+    state.cachedElements.set('mobileToggle', toggle);
+    state.cachedElements.set('mainNav', nav);
 
     const toggleMenu = () => {
       const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', String(!isExpanded));
       toggle.classList.toggle('active');
       nav.classList.toggle('active');
-      
+
       // Prevent body scroll when menu is open
       document.body.style.overflow = !isExpanded ? 'hidden' : '';
     };
 
     toggle.addEventListener('click', toggleMenu);
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (event) => {
+    // Use event delegation for better performance
+    const handleOutsideClick = (event) => {
       if (!nav.contains(event.target) && !toggle.contains(event.target) && nav.classList.contains('active')) {
         toggleMenu();
       }
-    });
+    };
 
-    // Close menu on escape key
-    document.addEventListener('keydown', (event) => {
+    const handleEscapeKey = (event) => {
       if (event.key === 'Escape' && nav.classList.contains('active')) {
         toggleMenu();
       }
-    });
+    };
 
-    nav.querySelectorAll('a').forEach((link) => {
-      if (!markElement(link, 'menuEnhanced')) {
-        return;
+    document.addEventListener('click', handleOutsideClick, { passive: true });
+    document.addEventListener('keydown', handleEscapeKey, { passive: true });
+
+    // Use event delegation for navigation links
+    nav.addEventListener('click', (event) => {
+      const link = event.target.closest('a');
+      if (link && !markElement(link, 'menuEnhanced') && toggle.classList.contains('active')) {
+        toggleMenu();
       }
-      link.addEventListener('click', () => {
-        if (toggle.classList.contains('active')) {
-          toggleMenu();
-        }
-      });
     });
   };
 
   const initAnchorLinks = () => {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    // Use event delegation for better performance
+    const header = state.cachedElements.get('header') || document.querySelector('.main-header');
+    if (header) {
+      state.cachedElements.set('header', header);
+    }
+
+    document.addEventListener('click', (event) => {
+      const anchor = event.target.closest('a[href^="#"]');
+      if (!anchor) return;
+
       const href = anchor.getAttribute('href');
       if (!href || href.length <= 1 || !markElement(anchor, 'smoothScroll')) {
         return;
       }
 
-      anchor.addEventListener('click', (event) => {
-        const target = document.querySelector(href);
-        if (target) {
-          event.preventDefault();
-          const headerHeight = document.querySelector('.main-header')?.offsetHeight || 0;
-          const targetPosition = target.offsetTop - headerHeight - 20;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
+      event.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        const headerHeight = header?.offsetHeight || 0;
+        const targetPosition = target.offsetTop - headerHeight - 20;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
     });
   };
 
@@ -176,23 +191,23 @@
   };
 
   const initHeaderScroll = () => {
-    const header = document.querySelector('.main-header');
+    const header = state.cachedElements.get('header') || document.querySelector('.main-header');
     if (!header) {
       return;
     }
 
     state.header = header;
+    state.cachedElements.set('header', header);
     state.header.classList.remove('is-hidden');
 
     if (!state.headerScrollHandlerAttached) {
-      let ticking = false;
       const optimizedScrollHandler = () => {
-        if (!ticking) {
+        if (!state.ticking) {
           requestAnimationFrame(() => {
             handleScroll();
-            ticking = false;
+            state.ticking = false;
           });
-          ticking = true;
+          state.ticking = true;
         }
       };
 
@@ -202,28 +217,30 @@
   };
 
   const initButtonEffects = () => {
-    // Add ripple effect to buttons
-    document.querySelectorAll('.btn').forEach((button) => {
-      if (markElement(button, 'rippleEffect')) {
-        button.addEventListener('click', function(e) {
-          const ripple = document.createElement('span');
-          const rect = this.getBoundingClientRect();
-          const size = Math.max(rect.width, rect.height);
-          const x = e.clientX - rect.left - size / 2;
-          const y = e.clientY - rect.top - size / 2;
-          
-          ripple.style.width = ripple.style.height = size + 'px';
-          ripple.style.left = x + 'px';
-          ripple.style.top = y + 'px';
-          ripple.classList.add('ripple');
-          
-          this.appendChild(ripple);
-          
-          setTimeout(() => {
-            ripple.remove();
-          }, 600);
-        });
-      }
+    // Use event delegation for better performance
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('.btn');
+      if (!button || !markElement(button, 'rippleEffect')) return;
+
+      const ripple = document.createElement('span');
+      const rect = button.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = event.clientX - rect.left - size / 2;
+      const y = event.clientY - rect.top - size / 2;
+
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      ripple.classList.add('ripple');
+
+      button.appendChild(ripple);
+
+      // Use requestAnimationFrame for better performance
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
     });
   };
 
@@ -367,28 +384,32 @@
 
   // Parallax effect for background elements
   const initParallax = () => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || state.performanceMode) return;
+
     const parallaxElements = document.querySelectorAll('[data-parallax]');
     if (!parallaxElements.length) return;
-    
-    let ticking = false;
+
+    // Cache elements and their speeds
+    const cachedElements = Array.from(parallaxElements).map(el => ({
+      element: el,
+      speed: parseFloat(el.dataset.parallax) || 0.5
+    }));
+
     const handleScroll = () => {
       const scrolled = window.pageYOffset;
-      
-      parallaxElements.forEach(el => {
-        const speed = el.dataset.parallax || 0.5;
+
+      cachedElements.forEach(({element, speed}) => {
         const yPos = -(scrolled * speed);
-        el.style.transform = `translateY(${yPos}px)`;
+        element.style.transform = `translateY(${yPos}px)`;
       });
-      
-      ticking = false;
+
+      state.ticking = false;
     };
-    
+
     window.addEventListener('scroll', () => {
-      if (!ticking) {
+      if (!state.ticking) {
         requestAnimationFrame(handleScroll);
-        ticking = true;
+        state.ticking = true;
       }
     }, { passive: true });
   };

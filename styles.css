@@ -80,9 +80,10 @@
     --line-height-normal: 1.65;  /* Increased from 1.6 */
     --line-height-relaxed: 1.85;  /* Increased from 1.8 */
 
-    /* Transitions - Quick and Subtle */
+    /* Transitions - Optimized for performance */
     --transition-fast: 150ms ease;
     --transition-normal: 200ms ease;
+    --transition-transform: transform 150ms ease;
 
     /* Header & Footer */
     --header-height: 56px;

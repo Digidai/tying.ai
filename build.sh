@@ -20,16 +20,16 @@ cp -r report position wiki components scripts assets dist/ 2>/dev/null || true
 echo "📄 Copying static files..."
 cp ./*.xml ./*.txt ./*.json ./*.ico browserconfig.xml dist/ 2>/dev/null || true
 
-# Minify CSS files
+# Minify CSS files with advanced optimizations
 echo "🎨 Minifying CSS files..."
-npx cleancss -o dist/styles.css styles.css
-npx cleancss -o dist/genedai.css genedai.css 2>/dev/null || true
+npx cleancss -o dist/styles.css styles.css --level 2 --format keepBreaks
+npx cleancss -o dist/genedai.css genedai.css --level 2 --format keepBreaks 2>/dev/null || true
 
-# Minify JavaScript files
+# Minify JavaScript files with advanced optimizations
 echo "⚡ Minifying JavaScript files..."
-npx terser site.js -o dist/site.js --compress --mangle
-npx terser sw.js -o dist/sw.js --compress --mangle 2>/dev/null || true
-npx terser scripts/layout.js -o dist/scripts/layout.js --compress --mangle 2>/dev/null || true
+npx terser site.js -o dist/site.js --compress --mangle --toplevel --ecma 2018
+npx terser sw.js -o dist/sw.js --compress --mangle --toplevel --ecma 2018 2>/dev/null || true
+npx terser scripts/layout.js -o dist/scripts/layout.js --compress --mangle --toplevel --ecma 2018 2>/dev/null || true
 
 # Minify HTML files (root level)
 echo "📝 Minifying HTML files..."
@@ -63,12 +63,61 @@ for dir in dist/report dist/position dist/wiki dist/components; do
   fi
 done
 
+# Create compressed versions for better performance
+echo "📦 Creating compressed versions..."
+if command -v gzip >/dev/null 2>&1; then
+  find dist -name "*.js" -o -name "*.css" -o -name "*.html" | while read file; do
+    gzip -c "$file" > "$file.gz"
+  done
+fi
+
+# Create .htaccess for performance optimization
+cat > dist/.htaccess << 'EOF'
+# Performance optimizations
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/ico "access plus 1 year"
+    ExpiresByType image/icon "access plus 1 year"
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+EOF
+
 # Calculate size savings
 echo ""
 echo "✅ Build complete!"
 echo ""
 echo "📊 Build summary:"
 du -sh dist | awk '{print "  Total size: " $1}'
+if [ -f "dist/styles.css.gz" ]; then
+  echo "  Gzipped CSS: $(du -h dist/styles.css.gz | cut -f1)"
+fi
+if [ -f "dist/site.js.gz" ]; then
+  echo "  Gzipped JS: $(du -h dist/site.js.gz | cut -f1)"
+fi
 echo "  Location: ./dist/"
+echo ""
+echo "🚀 Performance optimizations applied:"
+echo "  ✓ Advanced minification"
+echo "  ✓ Gzip compression"
+echo "  ✓ Browser caching headers"
+echo "  ✓ Reduced bundle sizes"
 echo ""
 echo "💡 Run 'npm start' to serve the production build"
