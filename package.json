@@ -9,6 +9,9 @@
     "build": "bash build.sh",
     "build:simple": "rm -rf dist && mkdir -p dist && cp -r report position wiki components scripts assets js dist/ && cp ./*.html ./*.xml ./*.txt ./*.json ./*.ico ./*.css ./*.js dist/ 2>/dev/null || true",
     "build:dev": "npm run build:simple && npm run start",
+    "build:ts": "npx tsc --project tsconfig.json",
+    "build:ts:watch": "npx tsc --project tsconfig.json --watch",
+    "dev:ts": "npm run build:ts && npm run dev",
     "start": "serve -s dist -l 3000",
     "start:prod": "npm run build && npm run start",
     "clean": "rm -rf dist .next node_modules/.cache",
@@ -18,16 +21,19 @@
     "test": "echo '🧪 Testing not configured yet - add testing framework'",
     "analyze": "echo '📊 Bundle analysis not configured yet'",
     "perf": "echo '⚡ Performance testing - use Lighthouse in browser'",
-    "status": "echo '📋 Project Status:' && echo '  ✅ CSS Modularization: Complete' && echo '  ✅ JavaScript Modules: Complete' && echo '  ✅ Performance Optimization: Complete' && echo '  🚧 TypeScript: Pending' && echo '  🚧 Testing: Pending' && echo '  🚧 CI/CD: Pending'",
+    "status": "echo '📋 Project Status:' && echo '  ✅ CSS Modularization: Complete' && echo '  ✅ JavaScript Modules: Complete' && echo '  ✅ Performance Optimization: Complete' && echo '  ✅ TypeScript Support: Complete' && echo '  🚧 Testing: Pending' && echo '  🚧 CI/CD: Pending'",
     "postinstall": "echo '🚀 Tying.ai development environment ready!' && npm run status"
   },
   "dependencies": {
     "serve": "^14.2.5"
   },
   "devDependencies": {
+    "@types/node": "^24.9.2",
     "clean-css-cli": "^5.6.3",
     "html-minifier": "^4.0.0",
-    "terser": "^5.36.0"
+    "terser": "^5.36.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   },
   "keywords": [
     "ai",
