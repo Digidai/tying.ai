@@ -2,20 +2,57 @@
   "name": "tying.ai",
   "version": "1.0.0",
   "private": true,
+  "description": "AI Career Guidance Platform - Comprehensive career insights and guidance",
   "scripts": {
-    "dev": "serve -s . -l 3000",
+    "dev": "serve -s . -l 3000 --cors --single",
+    "dev:watch": "npm run build:simple && serve -s dist -l 3000 --watch",
     "build": "bash build.sh",
-    "build:simple": "rm -rf dist && mkdir -p dist && cp -r report position wiki components scripts assets dist/ && cp ./*.html ./*.xml ./*.txt ./*.json ./*.ico ./*.css ./*.js dist/ 2>/dev/null || true",
+    "build:simple": "rm -rf dist && mkdir -p dist && cp -r report position wiki components scripts assets js dist/ && cp ./*.html ./*.xml ./*.txt ./*.json ./*.ico ./*.css ./*.js dist/ 2>/dev/null || true",
+    "build:dev": "npm run build:simple && npm run start",
     "start": "serve -s dist -l 3000",
-    "clean": "rm -rf dist .next"
+    "start:prod": "npm run build && npm run start",
+    "clean": "rm -rf dist .next node_modules/.cache",
+    "lint": "echo '🔍 Linting not configured yet - add ESLint for JavaScript linting'",
+    "lint:fix": "echo '🔧 Auto-fix not configured yet'",
+    "format": "echo '📝 Formatting not configured yet - add Prettier for code formatting'",
+    "test": "echo '🧪 Testing not configured yet - add testing framework'",
+    "analyze": "echo '📊 Bundle analysis not configured yet'",
+    "perf": "echo '⚡ Performance testing - use Lighthouse in browser'",
+    "status": "echo '📋 Project Status:' && echo '  ✅ CSS Modularization: Complete' && echo '  ✅ JavaScript Modules: Complete' && echo '  ✅ Performance Optimization: Complete' && echo '  🚧 TypeScript: Pending' && echo '  🚧 Testing: Pending' && echo '  🚧 CI/CD: Pending'",
+    "postinstall": "echo '🚀 Tying.ai development environment ready!' && npm run status"
   },
   "dependencies": {
-    "serve": "^14.2.4"
+    "serve": "^14.2.5"
   },
   "devDependencies": {
-    "html-minifier": "^4.0.0",
     "clean-css-cli": "^5.6.3",
+    "html-minifier": "^4.0.0",
     "terser": "^5.36.0"
+  },
+  "keywords": [
+    "ai",
+    "career",
+    "guidance",
+    "jobs",
+    "technology",
+    "performance",
+    "optimization",
+    "modular",
+    "javascript",
+    "css"
+  ],
+  "author": "Tying.ai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Digidai/tying.ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Digidai/tying.ai/issues"
+  },
+  "homepage": "https://tying.ai",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
   }
 }
- 
