@@ -17,7 +17,11 @@
       "Bash(git push:*)",
       "Bash(npm install:*)",
       "Bash(npm run dev)",
-      "Bash(npm run build:simple:*)"
+      "Bash(npm run build:simple:*)",
+      "Bash(for:*)",
+      "Bash(do echo:*)",
+      "Bash(done)",
+      "Bash(npm ls:*)"
     ],
     "deny": [],
     "ask": [],

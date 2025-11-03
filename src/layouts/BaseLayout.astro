@@ -105,12 +105,14 @@ const structuredData = {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- 样式文件 -->
-  <link rel="stylesheet" href="/src/styles/design-tokens.css" />
-  <link rel="stylesheet" href="/src/styles/global.css" />
-  <link rel="stylesheet" href="/src/styles/components.css" />
+  <style>
+    @import '../styles/design-tokens.css';
+    @import '../styles/global.css';
+    @import '../styles/components.css';
+  </style>
 
   <!-- 预加载关键资源 -->
-  <link rel="preload" href="/src/scripts/main.js" as="script" />
+  <link rel="preload" href="/src/scripts/main.ts" as="script" />
 
   <!-- DNS预解析 -->
   <link rel="dns-prefetch" href="//www.google-analytics.com" />
@@ -145,7 +147,7 @@ const structuredData = {
   </div>
 
   <!-- 脚本文件 -->
-  <script src="/src/scripts/main.js" defer></script>
+  <script src="/src/scripts/main.ts" defer></script>
 
   <!-- Google Analytics -->
   <script is:inline>
@@ -162,7 +164,19 @@ const structuredData = {
   </script>
 
   <!-- 性能监控 -->
-  <script type="module" src="/src/scripts/performance-monitor.js"></script>
+  <script type="module">
+    // 简单的性能监控
+    if ('PerformanceObserver' in window) {
+      const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.entryType === 'navigation') {
+            console.log('Page load time:', entry.loadEventEnd - entry.fetchStart, 'ms');
+          }
+        }
+      });
+      observer.observe({ entryTypes: ['navigation'] });
+    }
+  </script>
 </body>
 </html>
 
