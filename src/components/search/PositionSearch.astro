@@ -1,0 +1,266 @@
+---
+import Button from '@/components/ui/Button.astro';
+import type { SearchFilters, SearchResult } from '@/types';
+
+export interface Props {
+  initialFilters?: SearchFilters;
+  showAdvanced?: boolean;
+  class?: string;
+}
+
+const {
+  initialFilters = {},
+  showAdvanced = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<section class={`position-search ${className}`}>
+  <!-- 搜索表单 -->
+  <form id="search-form" class="space-y-6">
+    <!-- 主要搜索区域 -->
+    <div class="flex flex-col md:flex-row gap-4">
+      <!-- 关键词搜索 -->
+      <div class="flex-1">
+        <label for="keywords" class="block text-sm font-medium text-neutral-700 mb-2">
+          搜索职位
+        </label>
+        <div class="relative">
+          <input
+            type="text"
+            id="keywords"
+            name="keywords"
+            placeholder="职位名称、公司、技能..."
+            class="w-full px-4 py-3 pl-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            value={initialFilters.keywords || ''}
+          />
+          <svg class="absolute left-3 top-3.5 w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 地点搜索 -->
+      <div class="md:w-64">
+        <label for="location" class="block text-sm font-medium text-neutral-700 mb-2">
+          地点
+        </label>
+        <div class="relative">
+          <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="城市或地区..."
+            class="w-full px-4 py-3 pl-10 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            value={initialFilters.location || ''}
+          />
+          <svg class="absolute left-3 top-3.5 w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 搜索按钮 -->
+      <div class="md:w-32 flex items-end">
+        <Button type="submit" variant="primary" class="w-full">
+          搜索
+        </Button>
+      </div>
+    </div>
+
+    <!-- 高级筛选 -->
+    {showAdvanced && (
+      <div class="bg-neutral-50 rounded-lg p-6 space-y-6">
+        <h3 class="text-lg font-semibold text-neutral-900">高级筛选</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- 职位类型 -->
+          <div>
+            <label class="block text-sm font-medium text-neutral-700 mb-2">
+              职位类型
+            </label>
+            <div class="space-y-2">
+              {['full-time', 'part-time', 'contract', 'internship'].map(type => (
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="type"
+                    value={type}
+                    class="rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
+                  />
+                  <span class="ml-2 text-sm text-neutral-700">
+                    {type === 'full-time' ? '全职' :
+                     type === 'part-time' ? '兼职' :
+                     type === 'contract' ? '合同工' : '实习'}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- 经验级别 -->
+          <div>
+            <label class="block text-sm font-medium text-neutral-700 mb-2">
+              经验级别
+            </label>
+            <div class="space-y-2">
+              {['entry', 'junior', 'mid', 'senior', 'lead'].map(level => (
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="experience"
+                    value={level}
+                    class="rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
+                  />
+                  <span class="ml-2 text-sm text-neutral-700">
+                    {level === 'entry' ? '入门' :
+                     level === 'junior' ? '初级' :
+                     level === 'mid' ? '中级' :
+                     level === 'senior' ? '高级' : '主管'}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- 远程工作 -->
+          <div>
+            <label class="block text-sm font-medium text-neutral-700 mb-2">
+              远程工作
+            </label>
+            <div class="space-y-2">
+              {['remote', 'hybrid', 'on-site'].map(remoteType => (
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="remote"
+                    value={remoteType}
+                    class="rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
+                  />
+                  <span class="ml-2 text-sm text-neutral-700">
+                    {remoteType === 'remote' ? '完全远程' :
+                     remoteType === 'hybrid' ? '混合办公' : '现场办公'}
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- 薪资范围 -->
+          <div>
+            <label class="block text-sm font-medium text-neutral-700 mb-2">
+              年薪范围 (USD)
+            </label>
+            <div class="space-y-2">
+              <input
+                type="number"
+                name="salaryMin"
+                placeholder="最低薪资"
+                class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
+              />
+              <input
+                type="number"
+                name="salaryMax"
+                placeholder="最高薪资"
+                class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+  </form>
+
+  <!-- 搜索结果区域 -->
+  <div id="search-results" class="mt-8">
+    <!-- 结果统计 -->
+    <div id="results-stats" class="flex items-center justify-between mb-6">
+      <div class="text-neutral-600">
+        <span id="results-count">加载中...</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <select id="sort-select" class="px-3 py-2 border border-neutral-300 rounded-md focus:ring-primary-500 focus:border-primary-500">
+          <option value="relevance">相关性</option>
+          <option value="date-desc">最新发布</option>
+          <option value="date-asc">最早发布</option>
+          <option value="salary-desc">薪资从高到低</option>
+          <option value="salary-asc">薪资从低到高</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 结果列表 -->
+    <div id="results-list" class="space-y-4">
+      <!-- 搜索结果将在这里动态显示 -->
+    </div>
+
+    <!-- 分页 -->
+    <div id="pagination" class="mt-8 flex justify-center">
+      <!-- 分页控件将在这里动态显示 -->
+    </div>
+  </div>
+</section>
+
+<!-- 搜索模板 -->
+<template id="position-card-template">
+  <div class="bg-white rounded-lg shadow-sm border border-neutral-200 p-6 hover:shadow-md transition-shadow duration-200">
+    <div class="flex items-start justify-between mb-4">
+      <div class="flex-1">
+        <h3 class="text-lg font-semibold text-neutral-900 mb-1"></h3>
+        <p class="text-neutral-600 text-sm mb-2"></p>
+        <div class="flex items-center gap-4 text-sm text-neutral-500">
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            </svg>
+            <span class="location"></span>
+          </span>
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span class="type"></span>
+          </span>
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="salary"></span>
+          </span>
+        </div>
+      </div>
+      <div class="ml-4">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+          <span class="remote"></span>
+        </span>
+      </div>
+    </div>
+    <p class="text-neutral-600 text-sm mb-4 line-clamp-2"></p>
+    <div class="flex items-center justify-between">
+      <div class="flex flex-wrap gap-1">
+        <!-- 技能标签将在这里动态显示 -->
+      </div>
+      <div class="text-xs text-neutral-500">
+        <span class="posted-at"></span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  // 搜索功能将在前端JavaScript中实现
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('Position search component loaded');
+    // 这里可以添加搜索功能的初始化代码
+  });
+</script>

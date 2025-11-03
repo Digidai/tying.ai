@@ -1,0 +1,417 @@
+---
+import MainLayout from '@/layouts/BaseLayout.astro';
+
+const pageTitle = "Career Wiki - 100+ Job Profiles & Career Guides | Tying.ai";
+const pageDescription = "Explore 100+ detailed career profiles across 8 industries. Get comprehensive job descriptions, required skills, salary information, and career outlook for software engineering, AI, business, arts, and more.";
+---
+
+<MainLayout title={pageTitle} description={pageDescription}>
+  <main class="min-h-screen bg-gradient-to-br from-neutral-50 to-white">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-primary-600 text-white">
+      <div class="absolute inset-0 bg-black opacity-20"></div>
+      <div class="relative container mx-auto px-4 py-24">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-5xl md:text-6xl font-bold mb-6">
+            Career Wiki
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 opacity-90">
+            Comprehensive guides for 100+ career paths across technology, engineering, business, and creative industries
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#categories" class="px-8 py-3 bg-white text-primary-600 rounded-lg font-semibold hover:bg-neutral-100 transition-colors">
+              Browse Categories
+            </a>
+            <a href="/search" class="px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
+              Search Careers
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0">
+        <svg class="w-full h-12 fill-neutral-50" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,96L48,90.7C96,85,192,75,288,72C384,69,480,75,576,80C672,85,768,91,864,90.7C960,91,1056,85,1152,80C1248,75,1344,69,1392,66.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div class="text-4xl font-bold text-primary-600 mb-2">100+</div>
+              <div class="text-neutral-600">Career Profiles</div>
+            </div>
+            <div>
+              <div class="text-4xl font-bold text-primary-600 mb-2">8</div>
+              <div class="text-neutral-600">Industries</div>
+            </div>
+            <div>
+              <div class="text-4xl font-bold text-primary-600 mb-2">50+</div>
+              <div class="text-neutral-600">Skills Covered</div>
+            </div>
+            <div>
+              <div class="text-4xl font-bold text-primary-600 mb-2">24/7</div>
+              <div class="text-neutral-600">Free Access</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Categories -->
+    <section id="categories" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-neutral-900 mb-4">
+              Explore Career Categories
+            </h2>
+            <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+              Navigate through comprehensive career guides organized by industry and discipline
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Engineering & Technology -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-white">
+                <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Engineering & Technology</h3>
+                <p class="opacity-90">30+ career profiles</p>
+              </div>
+              <div class="p-6">
+                <ul class="space-y-3 mb-6">
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Aerospace Engineers
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Software Engineers
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Data Scientists
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Network Architects
+                  </li>
+                </ul>
+                <a href="/wiki/1-1-aerospace-engineering-and-operations-technologists-and-technicians/" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700">
+                  Explore Engineering
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Business & Management -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 text-white">
+                <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Business & Management</h3>
+                <p class="opacity-90">25+ career profiles</p>
+              </div>
+              <div class="p-6">
+                <ul class="space-y-3 mb-6">
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Product Managers
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Financial Analysts
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Marketing Managers
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Management Analysts
+                  </li>
+                </ul>
+                <a href="/wiki/4-1-accountants-and-auditors/" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700">
+                  Explore Business
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Creative & Arts -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div class="bg-gradient-to-br from-pink-500 to-pink-600 p-6 text-white">
+                <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Creative & Arts</h3>
+                <p class="opacity-90">20+ career profiles</p>
+              </div>
+              <div class="p-6">
+                <ul class="space-y-3 mb-6">
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Fine Artists
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Graphic Designers
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Fashion Designers
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Musicians & Composers
+                  </li>
+                </ul>
+                <a href="/wiki/2.3-fine-artists/" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700">
+                  Explore Creative
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Healthcare & Social Services -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div class="bg-gradient-to-br from-green-500 to-green-600 p-6 text-white">
+                <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Healthcare & Social Services</h3>
+                <p class="opacity-90">15+ career profiles</p>
+              </div>
+              <div class="p-6">
+                <ul class="space-y-3 mb-6">
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Social Workers
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Community Health Workers
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Marriage & Family Therapists
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Rehabilitation Counselors
+                  </li>
+                </ul>
+                <a href="/wiki/5-1-community-health-workers/" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700">
+                  Explore Healthcare
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Construction & Trades -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-6 text-white">
+                <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Construction & Trades</h3>
+                <p class="opacity-90">10+ career profiles</p>
+              </div>
+              <div class="p-6">
+                <ul class="space-y-3 mb-6">
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Carpenters
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Boilermakers
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Construction Inspectors
+                  </li>
+                  <li class="flex items-center text-neutral-600">
+                    <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    Grounds Maintenance Workers
+                  </li>
+                </ul>
+                <a href="/wiki/7-1-boilermakers/" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700">
+                  Explore Trades
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Featured Careers -->
+            <div class="bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl p-6 text-white">
+              <h3 class="text-2xl font-bold mb-4">Featured Careers</h3>
+              <p class="opacity-90 mb-6">
+                Explore our most popular and in-demand career profiles
+              </p>
+              <div class="space-y-4">
+                <div class="flex items-center">
+                  <span class="text-3xl mr-4">👨‍💻</span>
+                  <div>
+                    <div class="font-semibold">Software Engineer</div>
+                    <div class="text-sm opacity-80">High demand, great salary</div>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-3xl mr-4">📊</span>
+                  <div>
+                    <div class="font-semibold">Data Scientist</div>
+                    <div class="text-sm opacity-80">AI & Machine Learning focus</div>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-3xl mr-4">🎨</span>
+                  <div>
+                    <div class="font-semibold">UX Designer</div>
+                    <div class="text-sm opacity-80">Creative tech role</div>
+                  </div>
+                </div>
+              </div>
+              <a href="/wiki/software-engineer/" class="inline-flex items-center text-white font-semibold hover:opacity-90 mt-6">
+                View Featured Careers
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Development Resources -->
+    <section class="py-20 bg-neutral-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-neutral-900 mb-4">
+              Career Development Resources
+            </h2>
+            <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+              Tools and resources to help you advance in your chosen career path
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg p-8 text-center">
+              <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-neutral-900 mb-3">Career Assessments</h3>
+              <p class="text-neutral-600 mb-4">
+                Discover your strengths and find careers that match your personality and skills
+              </p>
+              <a href="#" class="text-primary-600 font-medium hover:text-primary-700">
+                Take Assessment →
+              </a>
+            </div>
+
+            <div class="bg-white rounded-lg p-8 text-center">
+              <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-neutral-900 mb-3">Skill Development</h3>
+              <p class="text-neutral-600 mb-4">
+                Learn the skills needed for your target career with our curated resources
+              </p>
+              <a href="#" class="text-primary-600 font-medium hover:text-primary-700">
+                Develop Skills →
+              </a>
+            </div>
+
+            <div class="bg-white rounded-lg p-8 text-center">
+              <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-neutral-900 mb-3">Industry Insights</h3>
+              <p class="text-neutral-600 mb-4">
+                Stay updated with the latest trends and opportunities in your field
+              </p>
+              <a href="/report/" class="text-primary-600 font-medium hover:text-primary-700">
+                View Reports →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</MainLayout>

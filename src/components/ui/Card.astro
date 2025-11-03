@@ -2,31 +2,49 @@
 export interface Props {
   interactive?: boolean;
   hoverable?: boolean;
-  elevated?: boolean;
-  glass?: boolean;
+  featured?: boolean;
   class?: string;
-  children?: any;
 }
 
 const {
   interactive = false,
-  hoverable = true,
-  elevated = false,
-  glass = false,
+  hoverable = false,
+  featured = false,
   class: className = '',
-  children,
 } = Astro.props;
 
+// 基础样式类
+const baseClasses = 'bg-white rounded-xl shadow-sm border border-neutral-200';
+
+// 交互和悬停效果
+const interactiveClasses = interactive
+  ? 'transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2'
+  : '';
+
+const hoverableClasses = hoverable
+  ? 'hover:shadow-lg hover:border-primary-200 hover:-translate-y-1'
+  : '';
+
+const featuredClasses = featured
+  ? 'ring-2 ring-primary-500 ring-offset-2 shadow-lg'
+  : '';
+
+// 构建CSS类名
 const cssClasses = [
-  'card',
-  interactive && 'card-interactive',
-  hoverable && 'hover:shadow-lg hover:border-neutral-300',
-  elevated && 'card-elevated',
-  glass && 'card-glass',
+  baseClasses,
+  interactiveClasses,
+  hoverableClasses,
+  featuredClasses,
   className,
 ].filter(Boolean).join(' ');
+
+// 确定HTML标签
+const Component = interactive ? 'button' : 'div';
+const attributes = interactive
+  ? { class: cssClasses, type: 'button' }
+  : { class: cssClasses };
 ---
 
-<div class={cssClasses}>
-  <slot>{children}</slot>
-</div>
+<Component {...attributes}>
+  <slot />
+</Component>
