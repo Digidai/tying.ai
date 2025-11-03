@@ -1,0 +1,223 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: string;
+  locale?: string;
+  url?: string;
+  noIndex?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  description = "Tying.ai - Career guidance and position information platform",
+  image = "/favicon.ico",
+  type = "website",
+  locale = "en",
+  url = new URL(Astro.url.pathname, Astro.site).href,
+  noIndex = false,
+  class: className = "",
+} = Astro.props;
+
+// 网站配置
+const siteConfig = {
+  name: "Tying.ai",
+  url: "https://tying.ai",
+  author: "Tying.ai Team",
+  twitterHandle: "@tying_ai",
+};
+
+// 结构化数据
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": type === "article" ? "Article" : "WebSite",
+  "name": title,
+  "description": description,
+  "url": url,
+  "image": image,
+  "publisher": {
+    "@type": "Organization",
+    "name": siteConfig.name,
+    "url": siteConfig.url,
+  },
+  ...(type === "article" && {
+    "author": {
+      "@type": "Person",
+      "name": siteConfig.author,
+    },
+    "datePublished": new Date().toISOString(),
+    "dateModified": new Date().toISOString(),
+  }),
+};
+---
+
+<!DOCTYPE html>
+<html lang={locale} class={className}>
+<head>
+  <!-- Meta标签 -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- 基础SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content={siteConfig.author} />
+
+  {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={url} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={type} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:url" content={url} />
+  <meta property="og:site_name" content={siteConfig.name} />
+  <meta property="og:locale" content={locale} />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={image} />
+  <meta property="twitter:url" content={url} />
+  <meta property="twitter:site" content={siteConfig.twitterHandle} />
+  <meta property="twitter:creator" content={siteConfig.twitterHandle} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#3b82f6" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- 样式文件 -->
+  <link rel="stylesheet" href="/src/styles/design-tokens.css" />
+  <link rel="stylesheet" href="/src/styles/global.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+
+  <!-- 预加载关键资源 -->
+  <link rel="preload" href="/src/scripts/main.js" as="script" />
+
+  <!-- DNS预解析 -->
+  <link rel="dns-prefetch" href="//www.google-analytics.com" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+
+  <!-- 结构化数据 -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+
+  <!-- Service Worker 注册 -->
+  <script is:inline>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <!-- 跳过链接 -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- 页面内容 -->
+  <div id="app" class="min-h-screen flex flex-col">
+    <slot />
+  </div>
+
+  <!-- 脚本文件 -->
+  <script src="/src/scripts/main.js" defer></script>
+
+  <!-- Google Analytics -->
+  <script is:inline>
+    (function() {
+      // Google Analytics 4 配置将在实际部署时添加
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID', {
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+    })();
+  </script>
+
+  <!-- 性能监控 -->
+  <script type="module" src="/src/scripts/performance-monitor.js"></script>
+</body>
+</html>
+
+<style>
+  /* 布局特定样式 */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* 焦点样式增强 */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  /* 减少动画模式 */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* 打印样式 */
+  @media print {
+    body {
+      font-size: 12pt;
+      line-height: 1.4;
+    }
+
+    #app {
+      display: block;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+  }
+</style>

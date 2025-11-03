@@ -1,0 +1,32 @@
+---
+export interface Props {
+  interactive?: boolean;
+  hoverable?: boolean;
+  elevated?: boolean;
+  glass?: boolean;
+  class?: string;
+  children?: any;
+}
+
+const {
+  interactive = false,
+  hoverable = true,
+  elevated = false,
+  glass = false,
+  class: className = '',
+  children,
+} = Astro.props;
+
+const cssClasses = [
+  'card',
+  interactive && 'card-interactive',
+  hoverable && 'hover:shadow-lg hover:border-neutral-300',
+  elevated && 'card-elevated',
+  glass && 'card-glass',
+  className,
+].filter(Boolean).join(' ');
+---
+
+<div class={cssClasses}>
+  <slot>{children}</slot>
+</div>

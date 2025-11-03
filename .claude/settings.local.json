@@ -10,7 +10,9 @@
       "Bash(bash:*)",
       "Bash(GIT_TERMINAL_PROMPT=0 git push:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nfix: 提升导航栏文字对比度 - 解决看不清问题\n\n问题原因：\n- 导航链接使用 --text-secondary 颜色 (#787774)\n- 灰色太淡，对比度不够，导致文字难以辨认\n\n修复内容：\n- 将导航链接颜色从 var(--text-secondary) 改为 var(--text-primary)\n- 颜色从 #787774 (灰色) 变为 #37352F (深灰/黑色)\n- 显著提升文字可读性和对比度\n\n影响范围：\n- 主导航栏的所有链接 (Home, Career Wiki, Position Guide, Industry Reports)\n\n预期效果：\n- 导航文字清晰可读\n- 更好的视觉层次和对比度\n- 保持字体权重 600 以确保清晰度\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nfix: 提升导航栏文字对比度 - 解决看不清问题\n\n问题原因：\n- 导航链接使用 --text-secondary 颜色 (#787774)\n- 灰色太淡，对比度不够，导致文字难以辨认\n\n修复内容：\n- 将导航链接颜色从 var(--text-secondary) 改为 var(--text-primary)\n- 颜色从 #787774 (灰色) 变为 #37352F (深灰/黑色)\n- 显著提升文字可读性和对比度\n\n影响范围：\n- 主导航栏的所有链接 (Home, Career Wiki, Position Guide, Industry Reports)\n\n预期效果：\n- 导航文字清晰可读\n- 更好的视觉层次和对比度\n- 保持字体权重 600 以确保清晰度\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(find:*)",
+      "Bash(open:*)"
     ],
     "deny": [],
     "ask": [],

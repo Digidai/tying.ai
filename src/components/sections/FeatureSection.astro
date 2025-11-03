@@ -1,0 +1,91 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  features: Array<{
+    icon: string;
+    title: string;
+    description: string;
+    link?: string;
+    linkText?: string;
+  }>;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  features,
+  class: className = '',
+} = Astro.props;
+---
+
+<section class={`py-20 bg-white ${className}`}>
+  <div class="container mx-auto px-4">
+    <!-- 标题区域 -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+        {title}
+      </h2>
+      {description && (
+        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+          {description}
+        </p>
+      )}
+    </div>
+
+    <!-- 特性网格 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature, index) => (
+        <Card
+          interactive
+          hoverable
+          class="group text-center"
+        >
+          <div class="p-8">
+            <!-- 图标 -->
+            <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">
+              {feature.icon}
+            </div>
+
+            <!-- 标题 -->
+            <h3 class="text-xl font-semibold text-neutral-900 mb-4 group-hover:text-primary-600 transition-colors duration-200">
+              {feature.title}
+            </h3>
+
+            <!-- 描述 -->
+            <p class="text-neutral-600 mb-6 leading-relaxed">
+              {feature.description}
+            </p>
+
+            <!-- 链接 -->
+            {feature.link && feature.linkText && (
+              <Button
+                variant="ghost"
+                size="sm"
+                href={feature.link}
+                class="group-hover:bg-primary-50 mx-auto"
+              >
+                {feature.linkText}
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </Button>
+            )}
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* 确保图标动画流畅 */
+  .group:hover .group-hover\\:scale-110 {
+    transform: scale(1.1);
+  }
+
+  .group:hover .group-hover\\:translate-x-1 {
+    transform: translateX(0.25rem);
+  }
+</style>

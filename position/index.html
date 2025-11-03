@@ -52,6 +52,7 @@
     <link rel="stylesheet" href="/layout.css">
     <link rel="stylesheet" href="/components.css">
     <link rel="stylesheet" href="/utilities.css">
+    <link rel="stylesheet" href="styles/position.css">
 </head>
 <body>
     <div id="site-header"></div>
@@ -82,37 +83,21 @@
         </section>
 
         <!-- Positions Section -->
-        <section class="features-section" id="positions" aria-labelledby="positions-title">
+        <section class="positions-section" id="positions" aria-labelledby="positions-title">
             <div class="container">
                 <div class="section-header">
-                    <h2 id="positions-title" class="section-title">Available Position Guides</h2>
+                    <h2 id="positions-title" class="section-title">岗位指南</h2>
+                    <p class="section-subtitle">探索技术、工程和商业领域的详细岗位指导和职业路径</p>
                 </div>
-                
-                <div class="features-grid">
-                    <article class="feature-card">
-                        <h3>Software Engineer</h3>
-                        <p>Comprehensive guide to software development roles, from junior developers to senior architects. Learn about required skills, technologies, and career progression.</p>
-                        <a href="software-engineer/" class="feature-link">
-                            View Guide
-                        </a>
-                    </article>
 
-                    <article class="feature-card">
-                        <h3>Product Manager</h3>
-                        <p>Deep dive into product management roles, including responsibilities, skills, tools, and career paths from associate to senior product management positions.</p>
-                        <a href="product-manager/" class="feature-link">
-                            View Guide
-                        </a>
-                    </article>
+                <!-- 搜索组件 -->
+                <div id="position-search"></div>
 
-                    <article class="feature-card">
-                        <h3>AI Product Manager</h3>
-                        <p>Specialized guide for AI and machine learning product management, covering unique challenges, required knowledge, and emerging opportunities in AI products.</p>
-                        <a href="ai-product-manager/" class="feature-link">
-                            View Guide
-                        </a>
-                    </article>
-                </div>
+                <!-- 筛选组件 -->
+                <div id="position-filter"></div>
+
+                <!-- 岗位列表组件 -->
+                <div id="position-list"></div>
             </div>
         </section>
 
@@ -139,6 +124,13 @@
     <!-- JavaScript -->
     <script src="/site.js" defer></script>
     <script src="/scripts/layout.js" defer></script>
+
+    <!-- 岗位列表组件脚本 -->
+    <script src="data/positions.js" defer></script>
+    <script src="components/search.js" defer></script>
+    <script src="components/filter.js" defer></script>
+    <script src="components/position-list.js" defer></script>
+    <script src="scripts/position-app.js" defer></script>
 
     <!-- Service Worker Registration -->
     <script>

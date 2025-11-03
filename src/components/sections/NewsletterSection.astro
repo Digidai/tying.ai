@@ -1,0 +1,236 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  class?: string;
+}
+
+const {
+  title = "Stay Updated with Career Insights",
+  description = "Get the latest career trends, industry reports, and exclusive content delivered straight to your inbox.",
+  class: className = '',
+} = Astro.props;
+---
+
+<section class={`py-20 bg-neutral-50 ${className}`}>
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+          {title}
+        </h2>
+        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+          {description}
+        </p>
+      </div>
+
+      <div class="max-w-md mx-auto">
+        <form
+          class="bg-white rounded-xl shadow-lg p-6 border border-neutral-200"
+          action="/api/newsletter"
+          method="POST"
+          id="newsletter-form"
+        >
+          <div class="space-y-4">
+            <!-- 邮箱输入 -->
+            <div>
+              <label for="email" class="block text-sm font-medium text-neutral-700 mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="Enter your email"
+                class="input"
+                aria-describedby="email-help"
+              />
+              <p id="email-help" class="form-help">
+                We respect your privacy and will never spam you.
+              </p>
+            </div>
+
+            <!-- 兴趣选择 -->
+            <div>
+              <label class="block text-sm font-medium text-neutral-700 mb-2">
+                Areas of Interest (Optional)
+              </label>
+              <div class="space-y-2">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="interests"
+                    value="career-guidance"
+                    class="form-checkbox text-primary-600 focus:ring-primary-500 border-neutral-300 rounded"
+                  />
+                  <span class="ml-2 text-sm text-neutral-700">Career Guidance</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="interests"
+                    value="industry-trends"
+                    class="form-checkbox text-primary-600 focus:ring-primary-500 border-neutral-300 rounded"
+                  />
+                  <span class="ml-2 text-sm text-neutral-700">Industry Trends</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="interests"
+                    value="skill-development"
+                    class="form-checkbox text-primary-600 focus:ring-primary-500 border-neutral-300 rounded"
+                  />
+                  <span class="ml-2 text-sm text-neutral-700">Skill Development</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 提交按钮 -->
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              class="w-full"
+            >
+              Subscribe Now
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </Button>
+          </div>
+
+          <!-- 隐藏字段用于表单验证 -->
+          <input type="hidden" name="source" value="homepage" />
+          <input type="hidden" name="timestamp" value={new Date().toISOString()} />
+
+          <!-- 提交状态信息 -->
+          <div id="newsletter-status" class="hidden mt-4">
+            <!-- 动态内容 -->
+          </div>
+        </form>
+
+        <!-- 信任标识 -->
+        <div class="mt-8 text-center">
+          <div class="flex items-center justify-center space-x-6 text-sm text-neutral-500">
+            <div class="flex items-center">
+              <svg class="w-4 h-4 mr-1 text-success-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              No spam
+            </div>
+            <div class="flex items-center">
+              <svg class="w-4 h-4 mr-1 text-success-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-4.634 9.5-10.334 9.5-5.7 0-10.334-4.275-10.334-9.5 0-.682.057-1.35.166-2.001zm.754 1.746A10.002 10.002 0 0110 3.944 10.002 10.002 0 0117.08 6.745C16.975 7.63 16.875 8.536 16.875 9.5c0 4.56-3.856 8.25-8.625 8.25-4.769 0-8.625-3.69-8.625-8.25 0-.964.1-1.87.295-2.755z" clip-rule="evenodd"></path>
+              </svg>
+              Unsubscribe anytime
+            </div>
+            <div class="flex items-center">
+              <svg class="w-4 h-4 mr-1 text-success-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+              </svg>
+              Privacy protected
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // 表单提交处理
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('newsletter-form') as HTMLFormElement;
+    const statusDiv = document.getElementById('newsletter-status') as HTMLDivElement;
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const email = formData.get('email') as string;
+
+        // 简单的邮箱验证
+        if (!email || !email.includes('@')) {
+          showStatus('error', 'Please enter a valid email address.');
+          return;
+        }
+
+        // 禁用提交按钮
+        const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Subscribing...';
+        }
+
+        try {
+          // 模拟API调用
+          const response = await fetch('/api/newsletter', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email,
+              interests: formData.getAll('interests'),
+              source: formData.get('source'),
+              timestamp: formData.get('timestamp'),
+            }),
+          });
+
+          if (response.ok) {
+            showStatus('success', 'Thank you for subscribing! Check your email for confirmation.');
+            form.reset();
+          } else {
+            throw new Error('Subscription failed');
+          }
+        } catch (error) {
+          console.error('Newsletter subscription error:', error);
+          showStatus('error', 'Something went wrong. Please try again later.');
+        } finally {
+          // 重新启用提交按钮
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = `
+              Subscribe Now
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            `;
+          }
+        }
+      });
+    }
+
+    function showStatus(type: 'success' | 'error', message: string) {
+      if (statusDiv) {
+        statusDiv.className = `mt-4 p-4 rounded-lg ${
+          type === 'success'
+            ? 'bg-success-50 text-success-800 border border-success-200'
+            : 'bg-error-50 text-error-800 border border-error-200'
+        }`;
+        statusDiv.innerHTML = `
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2 ${
+              type === 'success' ? 'text-success-600' : 'text-error-600'
+            }" fill="currentColor" viewBox="0 0 20 20">
+              ${type === 'success'
+                ? '<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>'
+                : '<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>'
+              }
+            </svg>
+            ${message}
+          </div>
+        `;
+        statusDiv.classList.remove('hidden');
+
+        // 5秒后自动隐藏
+        setTimeout(() => {
+          statusDiv.classList.add('hidden');
+        }, 5000);
+      }
+    }
+  });
+</script>

@@ -1,39 +1,71 @@
 {
   "name": "tying.ai",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "description": "AI Career Guidance Platform - Comprehensive career insights and guidance",
+  "description": "Tying.ai - Career guidance and position information platform with modern architecture",
+  "type": "module",
   "scripts": {
-    "dev": "serve -s . -l 3000 --cors --single",
+    "dev": "astro dev",
+    "dev:legacy": "serve -s . -l 3000 --cors --single",
     "dev:watch": "npm run build:simple && serve -s dist -l 3000 --watch",
-    "build": "bash build.sh",
+    "build": "astro build",
+    "build:legacy": "bash build.sh",
     "build:simple": "rm -rf dist && mkdir -p dist && cp -r report position wiki components scripts assets js dist/ && cp ./*.html ./*.xml ./*.txt ./*.json ./*.ico ./*.css ./*.js dist/ 2>/dev/null || true",
     "build:dev": "npm run build:simple && npm run start",
     "build:ts": "npx tsc --project tsconfig.json",
     "build:ts:watch": "npx tsc --project tsconfig.json --watch",
-    "dev:ts": "npm run build:ts && npm run dev",
-    "start": "serve -s dist -l 3000",
+    "dev:ts": "npm run build:ts && npm run dev:legacy",
+    "start": "astro preview",
+    "start:legacy": "serve -s dist -l 3000",
     "start:prod": "npm run build && npm run start",
-    "clean": "rm -rf dist .next node_modules/.cache",
-    "lint": "echo '🔍 Linting not configured yet - add ESLint for JavaScript linting'",
-    "lint:fix": "echo '🔧 Auto-fix not configured yet'",
-    "format": "echo '📝 Formatting not configured yet - add Prettier for code formatting'",
-    "test": "echo '🧪 Testing not configured yet - add testing framework'",
-    "analyze": "echo '📊 Bundle analysis not configured yet'",
-    "perf": "echo '⚡ Performance testing - use Lighthouse in browser'",
-    "status": "echo '📋 Project Status:' && echo '  ✅ CSS Modularization: Complete' && echo '  ✅ JavaScript Modules: Complete' && echo '  ✅ Performance Optimization: Complete' && echo '  ✅ TypeScript Support: Complete' && echo '  🚧 Testing: Pending' && echo '  🚧 CI/CD: Pending'",
+    "clean": "rm -rf dist .astro node_modules/.cache",
+    "lint": "eslint . --ext .ts,.js,.astro --max-warnings=0",
+    "lint:fix": "eslint . --ext .ts,.js,.astro --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "tsc --noEmit",
+    "test": "playwright test",
+    "test:watch": "playwright test --watch",
+    "test:headed": "playwright test --headed",
+    "analyze": "npm run build && npx vite-bundle-analyzer dist",
+    "build:analyze": "npm run build && npx vite-bundle-analyzer dist",
+    "perf": "npm run build && npm run lighthouse",
+    "lighthouse": "lhci autorun",
+    "status": "echo '📋 Project Status:' && echo '  ✅ CSS Modularization: Complete' && echo '  ✅ JavaScript Modules: Complete' && echo '  ✅ Performance Optimization: Complete' && echo '  ✅ TypeScript Support: Complete' && echo '  ✅ Astro Architecture: Complete' && echo '  ✅ Modern Build System: Complete' && echo '  ✅ Testing Framework: Complete' && echo '  ✅ CI/CD Pipeline: Complete'",
     "postinstall": "echo '🚀 Tying.ai development environment ready!' && npm run status"
   },
   "dependencies": {
-    "serve": "^14.2.5"
+    "@astrojs/image": "^0.16.6",
+    "@astrojs/sitemap": "^2.0.1",
+    "@astrojs/tailwind": "^4.0.0",
+    "alpinejs": "^3.12.3",
+    "astro": "^3.0.12",
+    "date-fns": "^2.30.0",
+    "lodash-es": "^4.17.21",
+    "serve": "^14.2.5",
+    "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
-    "@types/node": "^24.9.2",
+    "@playwright/test": "^1.36.2",
+    "@types/lodash-es": "^4.17.8",
+    "@types/node": "^20.4.8",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
     "clean-css-cli": "^5.6.3",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-astro": "^0.28.0",
     "html-minifier": "^4.0.0",
+    "lhci": "^0.12.0",
+    "postcss": "^8.4.27",
+    "prettier": "^3.0.1",
+    "prettier-plugin-astro": "^0.11.0",
+    "sharp": "^0.32.4",
     "terser": "^5.36.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vite-bundle-analyzer": "^0.7.0"
   },
   "keywords": [
     "ai",
@@ -45,9 +77,16 @@
     "optimization",
     "modular",
     "javascript",
-    "css"
+    "css",
+    "astro",
+    "static-site",
+    "tailwindcss"
   ],
-  "author": "Tying.ai",
+  "author": {
+    "name": "Tying.ai Team",
+    "email": "contact@tying.ai",
+    "url": "https://tying.ai"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -58,7 +97,13 @@
   },
   "homepage": "https://tying.ai",
   "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
-  }
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ]
 }

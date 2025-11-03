@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     // Basic Options
-    "target": "ES2020",                    // 编译目标版本
+    "target": "ES2022",                    // 编译目标版本
     "module": "ESNext",                    // 模块系统
-    "moduleResolution": "node",           // 模块解析策略
-    "lib": ["ES2020", "DOM", "DOM.Iterable"], // 包含的库文件
+    "moduleResolution": "bundler",         // 模块解析策略 - 适配Astro
+    "lib": ["ES2022", "DOM", "DOM.Iterable"], // 包含的库文件
     "allowJs": true,                       // 允许编译JS文件
     "checkJs": false,                      // 检查JS文件中的错误
-    "jsx": "preserve",                     // JSX处理方式
+    "jsx": "react-jsx",                    // JSX处理方式 - 适配Astro
+    "jsxImportSource": "react",            // JSX导入源
 
     // Strict Type-Checking Options
     "strict": true,                        // 启用所有严格类型检查
@@ -23,19 +24,25 @@
     // Module Resolution Options
     "baseUrl": ".",                        // 基础路径
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/utils/*": ["./src/utils/*"],
-      "@/types/*": ["./src/types/*"]
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/layouts/*": ["src/layouts/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/scripts/*": ["src/scripts/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/types/*": ["src/types/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/data/*": ["src/data/*"]
     },
-    "rootDirs": ["src", "types"],          // 根目录
-    "typeRoots": ["./node_modules/@types", "./types"], // 类型定义文件目录
+    "rootDirs": ["src", "types", "tests"],          // 根目录
+    "typeRoots": ["./node_modules/@types", "./src/types", "./types"], // 类型定义文件目录
 
     // Additional Options
-    "outDir": "./dist/ts",                 // 输出目录 - 使用不同目录避免冲突
+    "outDir": "./dist",                    // 输出目录 - Astro使用
     "rootDir": "./src",                    // 源文件根目录
     "removeComments": false,               // 保留注释用于调试
-    "noEmit": false,                       // 不生成输出文件
+    "noEmit": true,                        // 不生成输出文件 - Astro处理
     "importHelpers": true,                 // 从tslib导入辅助函数
     "downlevelIteration": true,            // 降级迭代器实现
 
@@ -63,17 +70,23 @@
     "tsBuildInfoFile": "./.tsbuildinfo"   // 构建信息文件位置
   },
   "include": [
-    "src/**/*",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.astro",
+    "scripts/**/*.ts",
+    "tests/**/*.ts",
     "types/**/*"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "js",                                  // 排除现有js目录避免冲突
+    ".astro",
+    "public",
+    "**/*.js",
+    "**/*.d.ts",
+    "js/**/*",                             // 排除现有js目录避免冲突
     "**/*.test.ts",
-    "**/*.spec.ts",
-    "**/*.config.js",
-    "**/*.config.ts"
+    "**/*.spec.ts"
   ],
   "ts-node": {
     "esm": true,

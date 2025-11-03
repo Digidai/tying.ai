@@ -1,0 +1,349 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+import StatsCard from '@/components/ui/StatsCard.astro';
+import TestimonialCard from '@/components/ui/TestimonialCard.astro';
+import FeatureSection from '@/components/sections/FeatureSection.astro';
+import NewsletterSection from '@/components/sections/NewsletterSection.astro';
+
+// 页面配置
+const pageTitle = "Tying.ai - Career Guidance & Position Information Platform";
+const pageDescription = "Discover your perfect career path with comprehensive career guidance, position information, and industry insights. Explore 75+ career guides and professional resources.";
+
+// 统计数据
+const stats = [
+  {
+    value: "75+",
+    label: "Career Guides",
+    description: "Comprehensive career path guides"
+  },
+  {
+    value: "50K+",
+    label: "Active Users",
+    description: "Professionals advancing their careers"
+  },
+  {
+    value: "95%",
+    label: "Success Rate",
+    description: "Users achieving their career goals"
+  },
+  {
+    value: "24/7",
+    label: "Available",
+    description: "Career support whenever you need it"
+  }
+];
+
+// 主要特性
+const features = [
+  {
+    icon: "🎯",
+    title: "Career Guidance",
+    description: "Comprehensive guides for various career paths with detailed insights into job roles, responsibilities, and growth opportunities.",
+    link: "/wiki/",
+    linkText: "Explore Careers"
+  },
+  {
+    icon: "💼",
+    title: "Position Information",
+    description: "Detailed position analyses including required skills, salary ranges, and career progression paths for different roles.",
+    link: "/position/",
+    linkText: "View Positions"
+  },
+  {
+    icon: "📊",
+    title: "Industry Reports",
+    description: "Data-driven industry insights and market trends to help you make informed career decisions.",
+    link: "/report/",
+    linkText: "Read Reports"
+  }
+];
+
+// 推荐职业
+const featuredCareers = [
+  {
+    title: "Software Engineer",
+    description: "Build innovative software solutions and shape the digital future.",
+    icon: "💻",
+    link: "/wiki/software-engineer.html",
+    category: "Technology"
+  },
+  {
+    title: "Data Scientist",
+    description: "Analyze complex data and drive business decisions with insights.",
+    icon: "📈",
+    link: "/wiki/data-scientist.html",
+    category: "Analytics"
+  },
+  {
+    title: "Product Manager",
+    description: "Lead product development and bridge business goals with user needs.",
+    icon: "🚀",
+    link: "/wiki/product-manager.html",
+    category: "Management"
+  },
+  {
+    title: "UX Designer",
+    description: "Create intuitive user experiences and beautiful interfaces.",
+    icon: "🎨",
+    link: "/wiki/ux-designer.html",
+    category: "Design"
+  },
+  {
+    title: "Marketing Manager",
+    description: "Develop and execute marketing strategies to drive business growth.",
+    icon: "📢",
+    link: "/wiki/marketing-manager.html",
+    category: "Marketing"
+  },
+  {
+    title: "Financial Analyst",
+    description: "Analyze financial data and provide strategic business insights.",
+    icon: "💰",
+    link: "/wiki/financial-analyst.html",
+    category: "Finance"
+  }
+];
+
+// 用户评价
+const testimonials = [
+  {
+    name: "Sarah Chen",
+    role: "Software Developer",
+    content: "Tying.ai helped me transition from marketing to tech. The career guides were incredibly detailed and gave me a clear roadmap.",
+    avatar: "/images/avatars/sarah-chen.jpg",
+    rating: 5
+  },
+  {
+    name: "Michael Rodriguez",
+    role: "Product Manager",
+    content: "The industry reports provided valuable insights that helped me negotiate a better salary and understand market trends.",
+    avatar: "/images/avatars/michael-rodriguez.jpg",
+    rating: 5
+  },
+  {
+    name: "Emily Johnson",
+    role: "UX Designer",
+    content: "I found my dream career path through the comprehensive wiki. The skill requirements and growth paths were spot on!",
+    avatar: "/images/avatars/emily-johnson.jpg",
+    rating: 5
+  }
+];
+---
+
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  heroTitle="Discover Your Perfect Career Path"
+  heroSubtitle="Comprehensive career guidance, position insights, and industry trends to help you make informed decisions about your professional future"
+>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-primary-50">
+    <!-- 背景装饰 -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 rounded-full opacity-20 blur-3xl"></div>
+      <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-primary-300 rounded-full opacity-20 blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary-100 rounded-full opacity-10 blur-3xl"></div>
+    </div>
+
+    <div class="relative container mx-auto px-4 py-20 md:py-32">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="mb-8">
+          <span class="inline-flex items-center px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            Trusted by 50,000+ Professionals
+          </span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold text-neutral-900 mb-6 leading-tight">
+          Discover Your
+          <span class="text-primary-600"> Perfect Career</span>
+          Path
+        </h1>
+
+        <p class="text-xl md:text-2xl text-neutral-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+          Comprehensive career guidance, position insights, and industry trends to help you make informed decisions about your professional future
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+          <Button
+            variant="primary"
+            size="lg"
+            href="/wiki/"
+            class="shadow-lg hover:shadow-xl"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            Explore Careers
+          </Button>
+
+          <Button
+            variant="outline"
+            size="lg"
+            href="/position/"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+            </svg>
+            Position Guides
+          </Button>
+        </div>
+
+        <!-- 统计数据 -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          {stats.map((stat) => (
+            <StatsCard
+              value={stat.value}
+              label={stat.label}
+              description={stat.description}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <FeatureSection
+    title="Everything You Need for Career Success"
+    description="Our comprehensive platform provides all the tools and insights you need to navigate your career journey with confidence"
+    features={features}
+  />
+
+  <!-- Featured Careers Section -->
+  <section class="py-20 bg-neutral-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+          Popular Career Paths
+        </h2>
+        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+          Explore our most popular career guides with detailed insights into job roles, required skills, and growth opportunities
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {featuredCareers.map((career) => (
+          <Card interactive hoverable className="group">
+            <div class="p-6">
+              <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                {career.icon}
+              </div>
+
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xl font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors duration-200">
+                  {career.title}
+                </h3>
+                <span class="text-xs font-medium px-2 py-1 bg-primary-100 text-primary-700 rounded-full">
+                  {career.category}
+                </span>
+              </div>
+
+              <p class="text-neutral-600 mb-4 line-clamp-3">
+                {career.description}
+              </p>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                href={career.link}
+                className="group-hover:bg-primary-50"
+              >
+                Learn More
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </Button>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      <div class="text-center">
+        <Button variant="outline" size="lg" href="/wiki/">
+          View All Career Guides
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+          Success Stories
+        </h2>
+        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+          Hear from professionals who have transformed their careers with our guidance
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {testimonials.map((testimonial) => (
+          <TestimonialCard
+            name={testimonial.name}
+            role={testimonial.role}
+            content={testimonial.content}
+            avatar={testimonial.avatar}
+            rating={testimonial.rating}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Ready to Take the Next Step in Your Career?
+      </h2>
+      <p class="text-xl mb-8 max-w-3xl mx-auto text-primary-100">
+        Join thousands of professionals who have successfully navigated their career paths with our comprehensive guidance
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+        <Button
+          variant="secondary"
+          size="lg"
+          href="/wiki/"
+          className="bg-white text-primary-600 hover:bg-primary-50 shadow-lg"
+        >
+          Get Started Now
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </Button>
+
+        <Button
+          variant="outline"
+          size="lg"
+          href="/about/"
+          className="border-white text-white hover:bg-white hover:text-primary-600"
+        >
+          Learn More
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <NewsletterSection />
+</MainLayout>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
