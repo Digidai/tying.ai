@@ -46,10 +46,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2563eb">
     <meta name="msapplication-TileColor" content="#2563eb">
-    <meta name="msapplication-config" content="/browserconfig.xml">
+    <meta name="msapplication-config" content="browserconfig.xml">
     
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,9 +65,9 @@
     <!-- SVG Icon Sprite (replaces Font Awesome - saves ~85KB) -->
     
     <title>Tying.ai - AI Career Guidance Platform | Explore Your Future Career</title>
-    <link rel="stylesheet" href="/layout.css">
-    <link rel="stylesheet" href="/components.css">
-    <link rel="stylesheet" href="/utilities.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="utilities.css">
     
     <!-- Enhanced Structured Data -->
     <script type="application/ld+json">
@@ -214,7 +214,7 @@
     <!-- SVG Icon Sprite (loaded asynchronously for performance) -->
     <div id="svg-sprite" style="display: none;"></div>
     <script>
-        fetch('/icons.svg').then(r => r.text()).then(svg => {
+        fetch('icons.svg').then(r => r.text()).then(svg => {
             document.getElementById('svg-sprite').innerHTML = svg;
         });
     </script>
@@ -358,15 +358,15 @@
     <div id="site-footer"></div>
 
     <!-- JavaScript - Module Loading -->
-    <script src="/js/module-loader.js" defer></script>
-    <script type="module" src="/js/main.js" defer></script>
-    <script src="/scripts/layout.js" defer></script>
+    <script src="js/module-loader.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
+    <script src="scripts/layout.js" defer></script>
     
     <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register('sw.js')
                     .then(registration => {
                         console.log('SW registered: ', registration);
                     })
