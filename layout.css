@@ -258,6 +258,35 @@ a:hover {
     padding: 0 var(--space-lg);
 }
 
+@media (max-width: 768px) {
+    .container,
+    .main-footer .footer-container {
+        padding: 0 var(--space-md);
+    }
+
+    section {
+        padding: var(--space-3xl) 0;
+    }
+
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .section-subtitle {
+        font-size: var(--font-size-base);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-sm);
+    }
+
+    section {
+        padding: var(--space-2xl) 0;
+    }
+}
+
 main {
     min-height: calc(100vh - var(--header-height) - 300px);
 }
