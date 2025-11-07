@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import colors from 'tailwindcss/colors';
 
 const config: Config = {
   content: [
@@ -41,26 +42,10 @@ const config: Config = {
         },
 
         // 语义色彩
-        success: {
-          50: '#ecfdf5',
-          500: '#10b981',
-          600: '#059669',
-        },
-        warning: {
-          50: '#fffbeb',
-          500: '#f59e0b',
-          600: '#d97706',
-        },
-        error: {
-          50: '#fef2f2',
-          500: '#ef4444',
-          600: '#dc2626',
-        },
-        info: {
-          50: '#eff6ff',
-          500: '#3b82f6',
-          600: '#2563eb',
-        },
+        success: colors.emerald,
+        warning: colors.amber,
+        error: colors.rose,
+        info: colors.sky,
       },
 
       // 字体系统

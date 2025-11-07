@@ -85,4 +85,4 @@ function initFormHandling() {
 }
 
 // 导出基础功能
-export { initBasicFunctionity };
+export { initBasicFunctionality };
