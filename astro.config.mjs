@@ -35,40 +35,26 @@ export default defineConfig({
         },
       },
     },
+    // 开发服务器优化
+    server: {
+      fs: {
+        strict: false,
+      },
+    },
+    // 优化依赖预构建
+    optimizeDeps: {
+      include: ['lodash-es', 'date-fns', 'alpinejs'],
+      exclude: [],
+    },
+    // 缓存优化
+    cacheDir: 'node_modules/.vite',
   },
 
   // 压缩优化
   compressHTML: true,
 
-  // 预渲染配置
-  prerender: {
-    entries: ['*']
-  },
-
-  // 安全头部配置
-  security: {
-    headers: [
-      {
-        name: 'X-Content-Type-Options',
-        value: 'nosniff',
-      },
-      {
-        name: 'X-Frame-Options',
-        value: 'DENY',
-      },
-      {
-        name: 'X-XSS-Protection',
-        value: '1; mode=block',
-      },
-      {
-        name: 'Referrer-Policy',
-        value: 'strict-origin-when-cross-origin',
-      },
-    ],
-  },
-
-  // 开发工具
+  // 开发工具 - 禁用以加快启动速度
   devToolbar: {
-    enabled: true,
+    enabled: false,
   },
 });

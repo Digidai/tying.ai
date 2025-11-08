@@ -75,6 +75,13 @@ temp/
 *.tsbuildinfo
 next-env.d.ts
 
+# Astro
+.astro/
+
+# Vite
+node_modules/.vite/
+node_modules/.cache/
+
 # Backup and duplicate files
 *.backup
 *-backup.*

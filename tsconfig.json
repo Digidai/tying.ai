@@ -49,8 +49,8 @@
     // Source Map Options
     "sourceMap": true,                     // 生成source map
     "inlineSourceMap": false,              // 内联source map
-    "declaration": true,                   // 生成声明文件
-    "declarationMap": true,                // 生成声明文件source map
+    "declaration": false,                  // 不生成声明文件 (noEmit: true时无需生成)
+    "declarationMap": false,               // 不生成声明文件source map
 
     // Experimental Options
     "experimentalDecorators": true,       // 启用装饰器

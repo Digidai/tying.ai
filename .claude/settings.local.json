@@ -21,7 +21,8 @@
       "Bash(for:*)",
       "Bash(do echo:*)",
       "Bash(done)",
-      "Bash(npm ls:*)"
+      "Bash(npm ls:*)",
+      "Bash(git pull:*)"
     ],
     "deny": [],
     "ask": [],

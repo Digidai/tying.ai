@@ -5,7 +5,8 @@
   "description": "Tying.ai - Career guidance and position information platform with modern architecture",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host localhost --port 3000",
+    "dev:fast": "astro dev --host localhost --port 3000 --no-open",
     "dev:legacy": "serve -s . -l 3000 --cors --single",
     "dev:watch": "npm run build:simple && serve -s dist -l 3000 --watch",
     "build": "astro build",
