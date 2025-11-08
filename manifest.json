@@ -49,7 +49,7 @@
       "name": "Career Wiki",
       "short_name": "Wiki",
       "description": "Browse comprehensive career database",
-      "url": "/wiki/table-of-contents.html",
+      "url": "/wiki/",
       "icons": [
         {
           "src": "favicon.ico",

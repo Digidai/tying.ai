@@ -50,7 +50,8 @@ tying.ai/
 │   └── agentic-ai-vs-ai-agent/
 │
 ├── wiki/                  # Career wiki pages (180+ job profiles)
-│   ├── table-of-contents.html
+│   ├── index.html         # Primary career wiki hub and search
+│   ├── table-of-contents.html  # Legacy URL redirecting to index.html
 │   ├── marketing/
 │   ├── [occupation-code]-[job-name].html
 │   └── ...
