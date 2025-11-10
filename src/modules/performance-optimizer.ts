@@ -74,7 +74,7 @@ export class PerformanceOptimizer {
    */
   private detectPerformanceCapabilities(): void {
     // Check network connection
-    this.connectionInfo = this.getConnectionInfo();
+    this.connectionInfo = this.getNavigatorConnection();
 
     // Check hardware capabilities
     const isLowEndDevice = this.isLowEndDevice();
@@ -157,9 +157,9 @@ export class PerformanceOptimizer {
   }
 
   /**
-   * Get connection information
+   * Get connection information from Navigator API
    */
-  private getConnectionInfo(): ConnectionInfo | null {
+  private getNavigatorConnection(): ConnectionInfo | null {
     const connection = (navigator as any).connection ||
                      (navigator as any).mozConnection ||
                      (navigator as any).webkitConnection;
@@ -325,8 +325,9 @@ export class PerformanceOptimizer {
     // Reduce visual effects
     const glassElements = document.querySelectorAll('.glass-card, .feature-card, .content-card');
     glassElements.forEach((element: Element) => {
-      (element as HTMLElement).style.backdropFilter = 'none';
-      (element as HTMLElement).style.webkitBackdropFilter = 'none';
+      const el = element as HTMLElement;
+      el.style.backdropFilter = 'none';
+      (el.style as any).webkitBackdropFilter = 'none';
     });
 
     console.log('🔋 Performance optimizations applied');
@@ -419,8 +420,11 @@ export class PerformanceOptimizer {
    */
   private setupEventListeners(): void {
     // Connection changes
-    if (this.connectionInfo) {
-      this.connectionInfo.addEventListener('change', this.handleConnectionChange);
+    const connection = (navigator as any).connection ||
+                      (navigator as any).mozConnection ||
+                      (navigator as any).webkitConnection;
+    if (connection) {
+      connection.addEventListener('change', this.handleConnectionChange);
     }
 
     // Page visibility changes
@@ -478,8 +482,8 @@ export class PerformanceOptimizer {
    * Report performance metrics to analytics
    */
   private reportPerformanceMetrics(): void {
-    if (typeof gtag !== 'undefined' && this.performanceMetrics.pageLoadTime) {
-      gtag('event', 'timing_complete', {
+    if (typeof window !== 'undefined' && (window as any).gtag && this.performanceMetrics.pageLoadTime) {
+      (window as any).gtag('event', 'timing_complete', {
         name: 'load',
         value: Math.round(this.performanceMetrics.pageLoadTime)
       });
@@ -495,8 +499,8 @@ export class PerformanceOptimizer {
    * Report Web Vitals to analytics
    */
   private reportWebVital(name: string, value: number): void {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'web_vital', {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'web_vital', {
         name: name,
         value: Math.round(value)
       });
@@ -576,8 +580,11 @@ export class PerformanceOptimizer {
     this.performanceObservers = [];
 
     // Remove event listeners
-    if (this.connectionInfo) {
-      this.connectionInfo.removeEventListener('change', this.handleConnectionChange);
+    const connection = (navigator as any).connection ||
+                      (navigator as any).mozConnection ||
+                      (navigator as any).webkitConnection;
+    if (connection) {
+      connection.removeEventListener('change', this.handleConnectionChange);
     }
     document.removeEventListener('visibilitychange', this.handleVisibilityChange);
 
