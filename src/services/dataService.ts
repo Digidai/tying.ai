@@ -1,4 +1,28 @@
-import type { Position, SearchFilters, SearchResult, CategoryFacet, CompanyFacet, LocationFacet, SkillFacet } from '@/types';
+import type {
+  Position,
+  SearchFilters,
+  SearchResult,
+  CategoryFacet,
+  CompanyFacet,
+  LocationFacet,
+  SkillFacet,
+} from '@/types';
+
+type RawPositionData = Partial<Omit<Position, 'postedAt'>> & {
+  postedAt?: string | number | Date;
+  requirements?: string[];
+  responsibilities?: string[];
+  skills?: string[];
+  tags?: string[];
+  benefits?: string[];
+};
+
+const DEFAULT_CATEGORY: Position['category'] = {
+  id: 'general',
+  name: 'General',
+  description: 'General opportunities',
+  icon: '🧩',
+};
 
 /**
  * 数据服务类 - 管理职位数据的搜索、筛选和管理
@@ -59,28 +83,36 @@ export class DataService {
   /**
    * 转换职位数据格式
    */
-  private transformPositionData(data: any): Position {
+  private transformPositionData = (data: RawPositionData): Position => {
+    const category = data.category ?? DEFAULT_CATEGORY;
+
     return {
       id: data.id || this.generateId(),
-      title: data.title,
-      company: data.company,
-      location: data.location,
+      title: data.title ?? 'Unknown Position',
+      company: data.company ?? 'Unknown Company',
+      location: data.location ?? 'Unknown Location',
       type: data.type || 'full-time',
-      category: data.category,
+      category: {
+        ...category,
+        id: category.id || DEFAULT_CATEGORY.id,
+        name: category.name || DEFAULT_CATEGORY.name,
+        description: category.description || DEFAULT_CATEGORY.description,
+        icon: category.icon || DEFAULT_CATEGORY.icon,
+      },
       experience: data.experience || 'mid',
       salary: data.salary,
       description: data.description || '',
       requirements: data.requirements || [],
       responsibilities: data.responsibilities || [],
-      benefits: data.benefits,
+      benefits: data.benefits || [],
       skills: data.skills || [],
-      postedAt: new Date(data.postedAt || Date.now()),
+      postedAt: data.postedAt ? new Date(data.postedAt) : new Date(),
       isActive: data.isActive !== false,
       remote: data.remote,
       visa: data.visa,
       tags: data.tags || [],
     };
-  }
+  };
 
   /**
    * 搜索职位
@@ -128,6 +160,18 @@ export class DataService {
         }
       }
 
+      // 分类筛选
+      if (filters.category && filters.category.length > 0) {
+        const normalizedFilters = filters.category.map(categoryFilter => categoryFilter.toLowerCase());
+        const categoryId = position.category.id.toLowerCase();
+        const categoryName = position.category.name.toLowerCase();
+        const matchesCategory = normalizedFilters.includes(categoryId) || normalizedFilters.includes(categoryName);
+
+        if (!matchesCategory) {
+          return false;
+        }
+      }
+
       // 地点筛选
       if (filters.location && !position.location.toLowerCase().includes(filters.location.toLowerCase())) {
         return false;
@@ -149,10 +193,10 @@ export class DataService {
       }
 
       // 薪资范围筛选
-      if (filters.salaryMin && position.salary && position.salary.min < filters.salaryMin) {
+      if (filters.salaryMin && position.salary && position.salary.max < filters.salaryMin) {
         return false;
       }
-      if (filters.salaryMax && position.salary && position.salary.max > filters.salaryMax) {
+      if (filters.salaryMax && position.salary && position.salary.min > filters.salaryMax) {
         return false;
       }
 
@@ -173,6 +217,17 @@ export class DataService {
         }
       }
 
+      // 发布时间筛选
+      if (filters.datePosted) {
+        const { start, end } = filters.datePosted;
+        if (start && position.postedAt < start) {
+          return false;
+        }
+        if (end && position.postedAt > end) {
+          return false;
+        }
+      }
+
       // 签证支持筛选
       if (filters.visa && position.visa !== filters.visa) {
         return false;
@@ -185,16 +240,25 @@ export class DataService {
   /**
    * 生成搜索分面
    */
-  private generateFacets(positions: Position[]) {
-    const categories = new Map<string, number>();
+  private generateFacets(positions: Position[]): {
+    categories: CategoryFacet[];
+    companies: CompanyFacet[];
+    locations: LocationFacet[];
+    skills: SkillFacet[];
+  } {
+    const categories = new Map<string, { id: string; name: string; count: number }>();
     const companies = new Map<string, number>();
     const locations = new Map<string, number>();
     const skills = new Map<string, number>();
 
     positions.forEach(position => {
       // 统计分类
-      const categoryName = position.category.name;
-      categories.set(categoryName, (categories.get(categoryName) || 0) + 1);
+      const existingCategory = categories.get(position.category.id);
+      categories.set(position.category.id, {
+        id: position.category.id,
+        name: position.category.name,
+        count: (existingCategory?.count || 0) + 1,
+      });
 
       // 统计公司
       companies.set(position.company, (companies.get(position.company) || 0) + 1);
@@ -209,8 +273,7 @@ export class DataService {
     });
 
     return {
-      categories: Array.from(categories.entries())
-        .map(([name, count]) => ({ id: name, name, count }))
+      categories: Array.from(categories.values())
         .sort((a, b) => b.count - a.count),
       companies: Array.from(companies.entries())
         .map(([name, count]) => ({ id: name, name, count }))
