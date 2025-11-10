@@ -18,13 +18,17 @@
 
   // Performance detection
   const detectPerformance = () => {
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+    const connection =
+      navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const isSlowConnection =
+      connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
     const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-    
-    state.performanceMode = isSlowConnection || isLowEndDevice || 
+
+    state.performanceMode =
+      isSlowConnection ||
+      isLowEndDevice ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
+
     if (state.performanceMode) {
       document.documentElement.classList.add('performance-mode');
     }
@@ -40,7 +44,8 @@
 
   const initMobileMenu = () => {
     // Cache elements
-    const toggle = state.cachedElements.get('mobileToggle') || document.querySelector('.mobile-menu-toggle');
+    const toggle =
+      state.cachedElements.get('mobileToggle') || document.querySelector('.mobile-menu-toggle');
     const nav = state.cachedElements.get('mainNav') || document.querySelector('.main-nav');
 
     if (!toggle || !nav || !markElement(toggle, 'menuEnhanced')) {
@@ -64,13 +69,17 @@
     toggle.addEventListener('click', toggleMenu);
 
     // Use event delegation for better performance
-    const handleOutsideClick = (event) => {
-      if (!nav.contains(event.target) && !toggle.contains(event.target) && nav.classList.contains('active')) {
+    const handleOutsideClick = event => {
+      if (
+        !nav.contains(event.target) &&
+        !toggle.contains(event.target) &&
+        nav.classList.contains('active')
+      ) {
         toggleMenu();
       }
     };
 
-    const handleEscapeKey = (event) => {
+    const handleEscapeKey = event => {
       if (event.key === 'Escape' && nav.classList.contains('active')) {
         toggleMenu();
       }
@@ -80,7 +89,7 @@
     document.addEventListener('keydown', handleEscapeKey, { passive: true });
 
     // Use event delegation for navigation links
-    nav.addEventListener('click', (event) => {
+    nav.addEventListener('click', event => {
       const link = event.target.closest('a');
       if (link && !markElement(link, 'menuEnhanced') && toggle.classList.contains('active')) {
         toggleMenu();
@@ -95,7 +104,7 @@
       state.cachedElements.set('header', header);
     }
 
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', event => {
       const anchor = event.target.closest('a[href^="#"]');
       if (!anchor) return;
 
@@ -112,7 +121,7 @@
 
         window.scrollTo({
           top: targetPosition,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }
     });
@@ -125,7 +134,7 @@
 
     state.observer = new IntersectionObserver(
       (entries, observerInstance) => {
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             const element = entry.target;
             const animationType = element.dataset.animation || 'fadeInUp';
@@ -137,7 +146,7 @@
       {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px',
-      }
+      },
     );
   };
 
@@ -148,7 +157,7 @@
     }
 
     if (!state.canAnimate || state.performanceMode) {
-      targets.forEach((element) => {
+      targets.forEach(element => {
         if (markElement(element, 'animationApplied')) {
           element.classList.add('animate-in');
         }
@@ -157,7 +166,7 @@
     }
 
     ensureObserver();
-    targets.forEach((element) => {
+    targets.forEach(element => {
       if (state.observer && markElement(element, 'animationObserved')) {
         state.observer.observe(element);
       }
@@ -218,7 +227,7 @@
 
   const initButtonEffects = () => {
     // Use event delegation for better performance
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', event => {
       const button = event.target.closest('.btn');
       if (!button || !markElement(button, 'rippleEffect')) return;
 
@@ -245,13 +254,13 @@
   };
 
   const initCardHoverEffects = () => {
-    document.querySelectorAll('.feature-card, .content-card').forEach((card) => {
+    document.querySelectorAll('.feature-card, .content-card').forEach(card => {
       if (markElement(card, 'hoverEffect')) {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
           this.style.transform = 'translateY(-8px)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
           this.style.transform = 'translateY(0)';
         });
       }
@@ -338,16 +347,16 @@
 
 // ===== GLASSMORPHISM ENHANCEMENTS =====
 
-(function() {
+(function () {
   // Glass card shimmer effect on hover
   const initGlassShimmer = () => {
     document.querySelectorAll('.glass-card, .feature-card, .content-card').forEach(card => {
       if (card.dataset.shimmerInit) return;
       card.dataset.shimmerInit = 'true';
-      
-      card.addEventListener('mouseenter', function(e) {
+
+      card.addEventListener('mouseenter', function (e) {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        
+
         const shimmer = document.createElement('div');
         shimmer.className = 'card-shimmer';
         shimmer.style.cssText = `
@@ -366,17 +375,14 @@
           pointer-events: none;
           z-index: 10;
         `;
-        
+
         this.style.position = 'relative';
         this.style.overflow = 'hidden';
         this.appendChild(shimmer);
-        
-        shimmer.animate([
-          { left: '-50%' },
-          { left: '150%' }
-        ], {
+
+        shimmer.animate([{ left: '-50%' }, { left: '150%' }], {
           duration: 800,
-          easing: 'ease-out'
+          easing: 'ease-out',
         }).onfinish = () => shimmer.remove();
       });
     });
@@ -384,7 +390,8 @@
 
   // Parallax effect for background elements
   const initParallax = () => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || state.performanceMode) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || state.performanceMode)
+      return;
 
     const parallaxElements = document.querySelectorAll('[data-parallax]');
     if (!parallaxElements.length) return;
@@ -392,13 +399,13 @@
     // Cache elements and their speeds
     const cachedElements = Array.from(parallaxElements).map(el => ({
       element: el,
-      speed: parseFloat(el.dataset.parallax) || 0.5
+      speed: parseFloat(el.dataset.parallax) || 0.5,
     }));
 
     const handleScroll = () => {
       const scrolled = window.pageYOffset;
 
-      cachedElements.forEach(({element, speed}) => {
+      cachedElements.forEach(({ element, speed }) => {
         const yPos = -(scrolled * speed);
         element.style.transform = `translateY(${yPos}px)`;
       });
@@ -406,55 +413,62 @@
       state.ticking = false;
     };
 
-    window.addEventListener('scroll', () => {
-      if (!state.ticking) {
-        requestAnimationFrame(handleScroll);
-        state.ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!state.ticking) {
+          requestAnimationFrame(handleScroll);
+          state.ticking = true;
+        }
+      },
+      { passive: true },
+    );
   };
 
   // Number counter animation for stats
   const initCounterAnimations = () => {
     const counters = document.querySelectorAll('[data-counter]');
     if (!counters.length || !('IntersectionObserver' in window)) return;
-    
-    const animateCounter = (element) => {
+
+    const animateCounter = element => {
       const target = parseInt(element.dataset.counter);
       const duration = 2000;
       const start = 0;
       const startTime = performance.now();
-      
-      const updateCounter = (currentTime) => {
+
+      const updateCounter = currentTime => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
+
         // Easing function
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
         const current = Math.floor(start + (target - start) * easeOutQuart);
-        
+
         element.textContent = current.toLocaleString();
-        
+
         if (progress < 1) {
           requestAnimationFrame(updateCounter);
         } else {
           element.textContent = target.toLocaleString();
         }
       };
-      
+
       requestAnimationFrame(updateCounter);
     };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.counted) {
-          entry.target.dataset.counted = 'true';
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.dataset.counted) {
+            entry.target.dataset.counted = 'true';
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+
     counters.forEach(counter => observer.observe(counter));
   };
 
@@ -463,15 +477,15 @@
     document.querySelectorAll('.glass-button, .btn-primary').forEach(button => {
       if (button.dataset.glassEffect) return;
       button.dataset.glassEffect = 'true';
-      
-      button.addEventListener('mouseenter', function() {
+
+      button.addEventListener('mouseenter', function () {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        
+
         this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         this.style.transform = 'translateY(-2px) scale(1.02)';
       });
-      
-      button.addEventListener('mouseleave', function() {
+
+      button.addEventListener('mouseleave', function () {
         this.style.transform = 'translateY(0) scale(1)';
       });
     });
@@ -480,36 +494,39 @@
   // Stagger animation for card grids
   const initStaggerAnimation = () => {
     if (!('IntersectionObserver' in window)) return;
-    
+
     const grids = document.querySelectorAll('.features-grid, .content-grid');
     if (!grids.length) return;
-    
+
     grids.forEach(grid => {
       const cards = grid.querySelectorAll('.feature-card, .content-card');
       if (!cards.length) return;
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const cards = entry.target.querySelectorAll('.feature-card, .content-card');
-            cards.forEach((card, index) => {
-              if (!card.dataset.staggered) {
-                card.dataset.staggered = 'true';
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                
-                setTimeout(() => {
-                  card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-                  card.style.opacity = '1';
-                  card.style.transform = 'translateY(0)';
-                }, index * 100);
-              }
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      
+
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const cards = entry.target.querySelectorAll('.feature-card, .content-card');
+              cards.forEach((card, index) => {
+                if (!card.dataset.staggered) {
+                  card.dataset.staggered = 'true';
+                  card.style.opacity = '0';
+                  card.style.transform = 'translateY(30px)';
+
+                  setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                  }, index * 100);
+                }
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
       observer.observe(grid);
     });
   };

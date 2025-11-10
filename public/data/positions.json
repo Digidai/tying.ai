@@ -40,16 +40,7 @@
       "Professional development budget",
       "Flexible work hours"
     ],
-    "skills": [
-      "React",
-      "TypeScript",
-      "JavaScript",
-      "CSS",
-      "HTML",
-      "Next.js",
-      "Node.js",
-      "GraphQL"
-    ],
+    "skills": ["React", "TypeScript", "JavaScript", "CSS", "HTML", "Next.js", "Node.js", "GraphQL"],
     "postedAt": "2024-01-15T10:00:00Z",
     "isActive": true,
     "remote": "hybrid",

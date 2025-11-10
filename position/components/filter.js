@@ -4,22 +4,22 @@
  */
 
 class PositionFilter {
-    constructor(containerId, positionManager) {
-        this.container = document.getElementById(containerId);
-        this.positionManager = positionManager;
-        this.currentFilters = {};
-        this.isExpanded = false;
+  constructor(containerId, positionManager) {
+    this.container = document.getElementById(containerId);
+    this.positionManager = positionManager;
+    this.currentFilters = {};
+    this.isExpanded = false;
 
-        this.init();
-    }
+    this.init();
+  }
 
-    init() {
-        this.render();
-        this.bindEvents();
-    }
+  init() {
+    this.render();
+    this.bindEvents();
+  }
 
-    render() {
-        this.container.innerHTML = `
+  render() {
+    this.container.innerHTML = `
             <div class="position-filter">
                 <!-- 筛选头部 -->
                 <div class="filter-header">
@@ -127,257 +127,283 @@ class PositionFilter {
             </div>
         `;
 
-        this.populateFilterOptions();
-        this.initSalarySlider();
-    }
+    this.populateFilterOptions();
+    this.initSalarySlider();
+  }
 
-    populateFilterOptions() {
-        // 填充分类选项
-        const categories = this.positionManager.getCategories();
-        const categoryContainer = this.container.querySelector('.filter-group:first-child .filter-options');
-        const categoryOptions = categories.map(cat => `
+  populateFilterOptions() {
+    // 填充分类选项
+    const categories = this.positionManager.getCategories();
+    const categoryContainer = this.container.querySelector(
+      '.filter-group:first-child .filter-options',
+    );
+    const categoryOptions = categories
+      .map(
+        cat => `
             <label class="filter-option">
                 <input type="radio" name="category" value="${cat.value}">
                 <span class="filter-label">${cat.label}</span>
             </label>
-        `).join('');
-        categoryContainer.innerHTML += categoryOptions;
+        `,
+      )
+      .join('');
+    categoryContainer.innerHTML += categoryOptions;
 
-        // 填充工作类型选项
-        const jobTypes = this.positionManager.getJobTypes();
-        const typeContainer = this.container.querySelectorAll('.filter-group')[1].querySelector('.filter-options');
-        const typeOptions = jobTypes.map(type => `
+    // 填充工作类型选项
+    const jobTypes = this.positionManager.getJobTypes();
+    const typeContainer = this.container
+      .querySelectorAll('.filter-group')[1]
+      .querySelector('.filter-options');
+    const typeOptions = jobTypes
+      .map(
+        type => `
             <label class="filter-option">
                 <input type="radio" name="type" value="${type.value}">
                 <span class="filter-label">${type.label}</span>
             </label>
-        `).join('');
-        typeContainer.innerHTML += typeOptions;
+        `,
+      )
+      .join('');
+    typeContainer.innerHTML += typeOptions;
 
-        // 填充经验要求选项
-        const experienceLevels = this.positionManager.getExperienceLevels();
-        const experienceContainer = this.container.querySelectorAll('.filter-group')[2].querySelector('.filter-options');
-        const experienceOptions = experienceLevels.map(level => `
+    // 填充经验要求选项
+    const experienceLevels = this.positionManager.getExperienceLevels();
+    const experienceContainer = this.container
+      .querySelectorAll('.filter-group')[2]
+      .querySelector('.filter-options');
+    const experienceOptions = experienceLevels
+      .map(
+        level => `
             <label class="filter-option">
                 <input type="radio" name="experience" value="${level.value}">
                 <span class="filter-label">${level.label}</span>
             </label>
-        `).join('');
-        experienceContainer.innerHTML += experienceOptions;
+        `,
+      )
+      .join('');
+    experienceContainer.innerHTML += experienceOptions;
+  }
+
+  initSalarySlider() {
+    const minSlider = this.container.querySelector('.slider-min');
+    const maxSlider = this.container.querySelector('.slider-max');
+    const minInput = this.container.querySelector('#min-salary');
+    const maxInput = this.container.querySelector('#max-salary');
+    const sliderRange = this.container.querySelector('.slider-range');
+
+    const updateSlider = () => {
+      const minVal = parseInt(minSlider.value);
+      const maxVal = parseInt(maxSlider.value);
+
+      if (minVal > maxVal - 10000) {
+        minSlider.value = maxVal - 10000;
+        minInput.value = minSlider.value;
+      }
+
+      if (maxVal < minVal + 10000) {
+        maxSlider.value = minVal + 10000;
+        maxInput.value = maxSlider.value;
+      }
+
+      const minPercent = (minSlider.value / 300000) * 100;
+      const maxPercent = (maxSlider.value / 300000) * 100;
+
+      sliderRange.style.left = `${minPercent}%`;
+      sliderRange.style.width = `${maxPercent - minPercent}%`;
+    };
+
+    minSlider.addEventListener('input', () => {
+      minInput.value = minSlider.value;
+      updateSlider();
+    });
+
+    maxSlider.addEventListener('input', () => {
+      maxInput.value = maxSlider.value;
+      updateSlider();
+    });
+
+    minInput.addEventListener('input', () => {
+      minSlider.value = minInput.value || 0;
+      updateSlider();
+    });
+
+    maxInput.addEventListener('input', () => {
+      maxSlider.value = maxInput.value || 300000;
+      updateSlider();
+    });
+  }
+
+  bindEvents() {
+    // 切换筛选面板
+    const toggleBtn = this.container.querySelector('.filter-toggle');
+    const filterPanel = this.container.querySelector('.filter-panel');
+
+    toggleBtn.addEventListener('click', () => {
+      this.isExpanded = !this.isExpanded;
+      filterPanel.style.display = this.isExpanded ? 'block' : 'none';
+      toggleBtn.classList.toggle('expanded', this.isExpanded);
+    });
+
+    // 重置筛选
+    const resetBtn = this.container.querySelector('.filter-reset');
+    resetBtn.addEventListener('click', () => {
+      this.resetFilters();
+    });
+
+    // 筛选选项变化事件
+    this.container.addEventListener('change', e => {
+      if (e.target.type === 'radio' || e.target.type === 'checkbox') {
+        this.handleFilterChange();
+      }
+    });
+
+    // 薪资输入变化事件
+    const minSalaryInput = this.container.querySelector('#min-salary');
+    const maxSalaryInput = this.container.querySelector('#max-salary');
+
+    [minSalaryInput, maxSalaryInput].forEach(input => {
+      input.addEventListener('change', () => {
+        this.handleFilterChange();
+      });
+    });
+
+    // 初始状态下展开筛选面板
+    if (window.innerWidth > 768) {
+      this.isExpanded = true;
+      filterPanel.style.display = 'block';
+      toggleBtn.classList.add('expanded');
     }
 
-    initSalarySlider() {
-        const minSlider = this.container.querySelector('.slider-min');
-        const maxSlider = this.container.querySelector('.slider-max');
-        const minInput = this.container.querySelector('#min-salary');
-        const maxInput = this.container.querySelector('#max-salary');
-        const sliderRange = this.container.querySelector('.slider-range');
+    // 响应式处理
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        this.isExpanded = true;
+        filterPanel.style.display = 'block';
+        toggleBtn.classList.add('expanded');
+      } else if (!this.isExpanded) {
+        filterPanel.style.display = 'none';
+        toggleBtn.classList.remove('expanded');
+      }
+    });
+  }
 
-        const updateSlider = () => {
-            const minVal = parseInt(minSlider.value);
-            const maxVal = parseInt(maxSlider.value);
+  handleFilterChange() {
+    this.collectFilters();
+    this.applyFilters();
+    this.updateActiveFilters();
+  }
 
-            if (minVal > maxVal - 10000) {
-                minSlider.value = maxVal - 10000;
-                minInput.value = minSlider.value;
-            }
+  collectFilters() {
+    // 分类筛选
+    const categoryInput = this.container.querySelector('input[name="category"]:checked');
+    const category = categoryInput ? categoryInput.value : '';
 
-            if (maxVal < minVal + 10000) {
-                maxSlider.value = minVal + 10000;
-                maxInput.value = maxSlider.value;
-            }
+    // 工作类型筛选
+    const typeInput = this.container.querySelector('input[name="type"]:checked');
+    const type = typeInput ? typeInput.value : '';
 
-            const minPercent = (minSlider.value / 300000) * 100;
-            const maxPercent = (maxSlider.value / 300000) * 100;
+    // 经验要求筛选
+    const experienceInput = this.container.querySelector('input[name="experience"]:checked');
+    const experience = experienceInput ? experienceInput.value : '';
 
-            sliderRange.style.left = `${minPercent}%`;
-            sliderRange.style.width = `${maxPercent - minPercent}%`;
-        };
+    // 远程工作筛选
+    const remoteInput = this.container.querySelector('input[name="remote"]');
+    const remote = remoteInput.checked;
 
-        minSlider.addEventListener('input', () => {
-            minInput.value = minSlider.value;
-            updateSlider();
-        });
+    // 薪资范围筛选
+    const minSalaryInput = this.container.querySelector('#min-salary');
+    const maxSalaryInput = this.container.querySelector('#max-salary');
+    const minSalary = minSalaryInput.value ? parseInt(minSalaryInput.value) : null;
+    const maxSalary = maxSalaryInput.value ? parseInt(maxSalaryInput.value) : null;
 
-        maxSlider.addEventListener('input', () => {
-            maxInput.value = maxSlider.value;
-            updateSlider();
-        });
+    this.currentFilters = {
+      category,
+      type,
+      experience,
+      remote: remote || null,
+      minSalary,
+      maxSalary,
+    };
+  }
 
-        minInput.addEventListener('input', () => {
-            minSlider.value = minInput.value || 0;
-            updateSlider();
-        });
+  applyFilters() {
+    const results = this.positionManager.setFilters(this.currentFilters);
 
-        maxInput.addEventListener('input', () => {
-            maxSlider.value = maxInput.value || 300000;
-            updateSlider();
-        });
+    // 触发筛选事件
+    this.dispatchFilterEvent('filter', {
+      filters: { ...this.currentFilters },
+      results,
+      totalResults: results.length,
+    });
+  }
+
+  updateActiveFilters() {
+    const activeFiltersContainer = this.container.querySelector('.active-filters');
+    const activeFiltersList = this.container.querySelector('.active-filters-list');
+
+    const activeFilters = [];
+
+    // 添加分类筛选
+    if (this.currentFilters.category) {
+      const categoryLabel = this.container.querySelector(
+        `input[name="category"][value="${this.currentFilters.category}"] + .filter-label`,
+      ).textContent;
+      activeFilters.push({
+        type: 'category',
+        label: categoryLabel,
+        value: this.currentFilters.category,
+      });
     }
 
-    bindEvents() {
-        // 切换筛选面板
-        const toggleBtn = this.container.querySelector('.filter-toggle');
-        const filterPanel = this.container.querySelector('.filter-panel');
-
-        toggleBtn.addEventListener('click', () => {
-            this.isExpanded = !this.isExpanded;
-            filterPanel.style.display = this.isExpanded ? 'block' : 'none';
-            toggleBtn.classList.toggle('expanded', this.isExpanded);
-        });
-
-        // 重置筛选
-        const resetBtn = this.container.querySelector('.filter-reset');
-        resetBtn.addEventListener('click', () => {
-            this.resetFilters();
-        });
-
-        // 筛选选项变化事件
-        this.container.addEventListener('change', (e) => {
-            if (e.target.type === 'radio' || e.target.type === 'checkbox') {
-                this.handleFilterChange();
-            }
-        });
-
-        // 薪资输入变化事件
-        const minSalaryInput = this.container.querySelector('#min-salary');
-        const maxSalaryInput = this.container.querySelector('#max-salary');
-
-        [minSalaryInput, maxSalaryInput].forEach(input => {
-            input.addEventListener('change', () => {
-                this.handleFilterChange();
-            });
-        });
-
-        // 初始状态下展开筛选面板
-        if (window.innerWidth > 768) {
-            this.isExpanded = true;
-            filterPanel.style.display = 'block';
-            toggleBtn.classList.add('expanded');
-        }
-
-        // 响应式处理
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                this.isExpanded = true;
-                filterPanel.style.display = 'block';
-                toggleBtn.classList.add('expanded');
-            } else if (!this.isExpanded) {
-                filterPanel.style.display = 'none';
-                toggleBtn.classList.remove('expanded');
-            }
-        });
+    // 添加工作类型筛选
+    if (this.currentFilters.type) {
+      const typeLabel = this.container.querySelector(
+        `input[name="type"][value="${this.currentFilters.type}"] + .filter-label`,
+      ).textContent;
+      activeFilters.push({
+        type: 'type',
+        label: typeLabel,
+        value: this.currentFilters.type,
+      });
     }
 
-    handleFilterChange() {
-        this.collectFilters();
-        this.applyFilters();
-        this.updateActiveFilters();
+    // 添加经验要求筛选
+    if (this.currentFilters.experience) {
+      const experienceLabel = this.container.querySelector(
+        `input[name="experience"][value="${this.currentFilters.experience}"] + .filter-label`,
+      ).textContent;
+      activeFilters.push({
+        type: 'experience',
+        label: experienceLabel,
+        value: this.currentFilters.experience,
+      });
     }
 
-    collectFilters() {
-        // 分类筛选
-        const categoryInput = this.container.querySelector('input[name="category"]:checked');
-        const category = categoryInput ? categoryInput.value : '';
-
-        // 工作类型筛选
-        const typeInput = this.container.querySelector('input[name="type"]:checked');
-        const type = typeInput ? typeInput.value : '';
-
-        // 经验要求筛选
-        const experienceInput = this.container.querySelector('input[name="experience"]:checked');
-        const experience = experienceInput ? experienceInput.value : '';
-
-        // 远程工作筛选
-        const remoteInput = this.container.querySelector('input[name="remote"]');
-        const remote = remoteInput.checked;
-
-        // 薪资范围筛选
-        const minSalaryInput = this.container.querySelector('#min-salary');
-        const maxSalaryInput = this.container.querySelector('#max-salary');
-        const minSalary = minSalaryInput.value ? parseInt(minSalaryInput.value) : null;
-        const maxSalary = maxSalaryInput.value ? parseInt(maxSalaryInput.value) : null;
-
-        this.currentFilters = {
-            category,
-            type,
-            experience,
-            remote: remote || null,
-            minSalary,
-            maxSalary
-        };
+    // 添加远程工作筛选
+    if (this.currentFilters.remote) {
+      activeFilters.push({
+        type: 'remote',
+        label: '远程工作',
+        value: 'true',
+      });
     }
 
-    applyFilters() {
-        const results = this.positionManager.setFilters(this.currentFilters);
-
-        // 触发筛选事件
-        this.dispatchFilterEvent('filter', {
-            filters: { ...this.currentFilters },
-            results,
-            totalResults: results.length
-        });
+    // 添加薪资范围筛选
+    if (this.currentFilters.minSalary !== null || this.currentFilters.maxSalary !== null) {
+      const minSalary = this.currentFilters.minSalary || 0;
+      const maxSalary = this.currentFilters.maxSalary || '300000+';
+      activeFilters.push({
+        type: 'salary',
+        label: `$${this.formatSalary(minSalary)} - $${this.formatSalary(maxSalary)}`,
+        value: { min: this.currentFilters.minSalary, max: this.currentFilters.maxSalary },
+      });
     }
 
-    updateActiveFilters() {
-        const activeFiltersContainer = this.container.querySelector('.active-filters');
-        const activeFiltersList = this.container.querySelector('.active-filters-list');
-
-        const activeFilters = [];
-
-        // 添加分类筛选
-        if (this.currentFilters.category) {
-            const categoryLabel = this.container.querySelector(`input[name="category"][value="${this.currentFilters.category}"] + .filter-label`).textContent;
-            activeFilters.push({
-                type: 'category',
-                label: categoryLabel,
-                value: this.currentFilters.category
-            });
-        }
-
-        // 添加工作类型筛选
-        if (this.currentFilters.type) {
-            const typeLabel = this.container.querySelector(`input[name="type"][value="${this.currentFilters.type}"] + .filter-label`).textContent;
-            activeFilters.push({
-                type: 'type',
-                label: typeLabel,
-                value: this.currentFilters.type
-            });
-        }
-
-        // 添加经验要求筛选
-        if (this.currentFilters.experience) {
-            const experienceLabel = this.container.querySelector(`input[name="experience"][value="${this.currentFilters.experience}"] + .filter-label`).textContent;
-            activeFilters.push({
-                type: 'experience',
-                label: experienceLabel,
-                value: this.currentFilters.experience
-            });
-        }
-
-        // 添加远程工作筛选
-        if (this.currentFilters.remote) {
-            activeFilters.push({
-                type: 'remote',
-                label: '远程工作',
-                value: 'true'
-            });
-        }
-
-        // 添加薪资范围筛选
-        if (this.currentFilters.minSalary !== null || this.currentFilters.maxSalary !== null) {
-            const minSalary = this.currentFilters.minSalary || 0;
-            const maxSalary = this.currentFilters.maxSalary || '300000+';
-            activeFilters.push({
-                type: 'salary',
-                label: `$${this.formatSalary(minSalary)} - $${this.formatSalary(maxSalary)}`,
-                value: { min: this.currentFilters.minSalary, max: this.currentFilters.maxSalary }
-            });
-        }
-
-        if (activeFilters.length > 0) {
-            activeFiltersContainer.style.display = 'block';
-            activeFiltersList.innerHTML = activeFilters.map(filter => `
+    if (activeFilters.length > 0) {
+      activeFiltersContainer.style.display = 'block';
+      activeFiltersList.innerHTML = activeFilters
+        .map(
+          filter => `
                 <div class="active-filter-tag" data-type="${filter.type}">
                     <span class="filter-tag-label">${filter.label}</span>
                     <button class="filter-tag-remove" aria-label="移除筛选条件">
@@ -387,119 +413,125 @@ class PositionFilter {
                         </svg>
                     </button>
                 </div>
-            `).join('');
+            `,
+        )
+        .join('');
 
-            // 绑定移除筛选事件
-            activeFiltersList.querySelectorAll('.filter-tag-remove').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const tag = e.target.closest('.active-filter-tag');
-                    this.removeFilter(tag.dataset.type);
-                });
-            });
-        } else {
-            activeFiltersContainer.style.display = 'none';
-        }
-    }
-
-    removeFilter(filterType) {
-        switch (filterType) {
-            case 'category':
-                this.container.querySelector('input[name="category"][value=""]').checked = true;
-                break;
-            case 'type':
-                this.container.querySelector('input[name="type"][value=""]').checked = true;
-                break;
-            case 'experience':
-                this.container.querySelector('input[name="experience"][value=""]').checked = true;
-                break;
-            case 'remote':
-                this.container.querySelector('input[name="remote"]').checked = false;
-                break;
-            case 'salary':
-                this.container.querySelector('#min-salary').value = '';
-                this.container.querySelector('#max-salary').value = '';
-                this.container.querySelector('.slider-min').value = 0;
-                this.container.querySelector('.slider-max').value = 300000;
-                this.initSalarySlider();
-                break;
-        }
-        this.handleFilterChange();
-    }
-
-    resetFilters() {
-        // 重置所有筛选条件
-        this.container.querySelectorAll('input[type="radio"]').forEach(input => {
-            if (input.value === '') {
-                input.checked = true;
-            }
+      // 绑定移除筛选事件
+      activeFiltersList.querySelectorAll('.filter-tag-remove').forEach(btn => {
+        btn.addEventListener('click', e => {
+          const tag = e.target.closest('.active-filter-tag');
+          this.removeFilter(tag.dataset.type);
         });
+      });
+    } else {
+      activeFiltersContainer.style.display = 'none';
+    }
+  }
 
-        this.container.querySelectorAll('input[type="checkbox"]').forEach(input => {
-            input.checked = false;
-        });
-
+  removeFilter(filterType) {
+    switch (filterType) {
+      case 'category':
+        this.container.querySelector('input[name="category"][value=""]').checked = true;
+        break;
+      case 'type':
+        this.container.querySelector('input[name="type"][value=""]').checked = true;
+        break;
+      case 'experience':
+        this.container.querySelector('input[name="experience"][value=""]').checked = true;
+        break;
+      case 'remote':
+        this.container.querySelector('input[name="remote"]').checked = false;
+        break;
+      case 'salary':
         this.container.querySelector('#min-salary').value = '';
         this.container.querySelector('#max-salary').value = '';
         this.container.querySelector('.slider-min').value = 0;
         this.container.querySelector('.slider-max').value = 300000;
         this.initSalarySlider();
+        break;
+    }
+    this.handleFilterChange();
+  }
 
-        this.handleFilterChange();
+  resetFilters() {
+    // 重置所有筛选条件
+    this.container.querySelectorAll('input[type="radio"]').forEach(input => {
+      if (input.value === '') {
+        input.checked = true;
+      }
+    });
+
+    this.container.querySelectorAll('input[type="checkbox"]').forEach(input => {
+      input.checked = false;
+    });
+
+    this.container.querySelector('#min-salary').value = '';
+    this.container.querySelector('#max-salary').value = '';
+    this.container.querySelector('.slider-min').value = 0;
+    this.container.querySelector('.slider-max').value = 300000;
+    this.initSalarySlider();
+
+    this.handleFilterChange();
+  }
+
+  formatSalary(amount) {
+    if (typeof amount === 'string' && amount.includes('+')) {
+      return amount;
+    }
+    return (amount / 1000).toFixed(0) + 'k';
+  }
+
+  dispatchFilterEvent(type, data = {}) {
+    const event = new CustomEvent('positionFilter', {
+      detail: { type, ...data },
+    });
+    this.container.dispatchEvent(event);
+  }
+
+  // 公共方法
+  getFilters() {
+    return { ...this.currentFilters };
+  }
+
+  setFilters(filters) {
+    // 设置筛选条件
+    if (filters.category !== undefined) {
+      const categoryInput = this.container.querySelector(
+        `input[name="category"][value="${filters.category}"]`,
+      );
+      if (categoryInput) categoryInput.checked = true;
     }
 
-    formatSalary(amount) {
-        if (typeof amount === 'string' && amount.includes('+')) {
-            return amount;
-        }
-        return (amount / 1000).toFixed(0) + 'k';
+    if (filters.type !== undefined) {
+      const typeInput = this.container.querySelector(`input[name="type"][value="${filters.type}"]`);
+      if (typeInput) typeInput.checked = true;
     }
 
-    dispatchFilterEvent(type, data = {}) {
-        const event = new CustomEvent('positionFilter', {
-            detail: { type, ...data }
-        });
-        this.container.dispatchEvent(event);
+    if (filters.experience !== undefined) {
+      const experienceInput = this.container.querySelector(
+        `input[name="experience"][value="${filters.experience}"]`,
+      );
+      if (experienceInput) experienceInput.checked = true;
     }
 
-    // 公共方法
-    getFilters() {
-        return { ...this.currentFilters };
+    if (filters.remote !== undefined) {
+      this.container.querySelector('input[name="remote"]').checked = filters.remote;
     }
 
-    setFilters(filters) {
-        // 设置筛选条件
-        if (filters.category !== undefined) {
-            const categoryInput = this.container.querySelector(`input[name="category"][value="${filters.category}"]`);
-            if (categoryInput) categoryInput.checked = true;
-        }
-
-        if (filters.type !== undefined) {
-            const typeInput = this.container.querySelector(`input[name="type"][value="${filters.type}"]`);
-            if (typeInput) typeInput.checked = true;
-        }
-
-        if (filters.experience !== undefined) {
-            const experienceInput = this.container.querySelector(`input[name="experience"][value="${filters.experience}"]`);
-            if (experienceInput) experienceInput.checked = true;
-        }
-
-        if (filters.remote !== undefined) {
-            this.container.querySelector('input[name="remote"]').checked = filters.remote;
-        }
-
-        if (filters.minSalary !== undefined) {
-            this.container.querySelector('#min-salary').value = filters.minSalary || '';
-            this.container.querySelector('.slider-min').value = filters.minSalary || 0;
-        }
-
-        if (filters.maxSalary !== undefined) {
-            this.container.querySelector('#max-salary').value = filters.maxSalary || '';
-            this.container.querySelector('.slider-max').value = filters.maxSalary || 300000;
-        }
-
-        this.initSalarySlider();
-        this.handleFilterChange();
+    if (filters.minSalary !== undefined) {
+      this.container.querySelector('#min-salary').value = filters.minSalary || '';
+      this.container.querySelector('.slider-min').value = filters.minSalary || 0;
     }
+
+    if (filters.maxSalary !== undefined) {
+      this.container.querySelector('#max-salary').value = filters.maxSalary || '';
+      this.container.querySelector('.slider-max').value = filters.maxSalary || 300000;
+    }
+
+    this.initSalarySlider();
+    this.handleFilterChange();
+  }
 }
 
 // 导出

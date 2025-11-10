@@ -31,7 +31,7 @@ export default defineConfig({
           manualChunks: {
             // 基础库分组
             vendor: ['lodash-es', 'date-fns'],
-          }
+          },
         },
       },
     },

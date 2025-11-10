@@ -1,12 +1,11 @@
 # 安全审计报告
 
-**日期**: 2025-11-10
-**分析工具**: npm audit
-**项目**: Tying.ai v2.0.0
+**日期**: 2025-11-10 **分析工具**: npm audit **项目**: Tying.ai v2.0.0
 
 ## 摘要
 
 本次安全审计发现 **7 个安全漏洞**：
+
 - 🟡 低风险 (Low): 2 个
 - 🟠 中风险 (Moderate): 3 个
 - 🔴 高风险 (High): 2 个
@@ -15,9 +14,7 @@
 
 ### 1. Astro 框架漏洞 (🔴 High)
 
-**受影响包**: astro@3.6.5
-**当前版本**: 3.6.5
-**安全版本**: 5.15.4+
+**受影响包**: astro@3.6.5 **当前版本**: 3.6.5 **安全版本**: 5.15.4+
 
 **漏洞列表**:
 
@@ -38,7 +35,7 @@
 
 4. **未授权第三方图片** (GHSA-xf8x-j4p2-f749)
    - 严重程度: Moderate
-   - 影响: _image 端点允许未授权的第三方图片
+   - 影响: \_image 端点允许未授权的第三方图片
    - 影响范围: astro <=4.16.18
 
 5. **X-Forwarded-Host 反射攻击** (GHSA-5ff5-9fcw-vg88)
@@ -47,6 +44,7 @@
    - 影响范围: astro <5.14.3
 
 **修复方案**:
+
 ```bash
 npm install astro@latest
 ```
@@ -55,9 +53,7 @@ npm install astro@latest
 
 ### 2. Vite 构建工具漏洞 (🟠 Moderate)
 
-**受影响包**: vite@4.4.9
-**当前版本**: 4.4.9
-**安全版本**: 7.2.2+
+**受影响包**: vite@4.4.9 **当前版本**: 4.4.9 **安全版本**: 7.2.2+
 
 **漏洞列表**:
 
@@ -77,6 +73,7 @@ npm install astro@latest
    - 影响范围: vite >=4.5.3 <5.0.0
 
 **修复方案**:
+
 ```bash
 npm install vite@latest
 ```
@@ -87,41 +84,34 @@ npm install vite@latest
 
 #### devalue (🔴 High)
 
-**受影响包**: devalue (间接依赖)
-**漏洞**: 原型污染 (GHSA-vj54-72f3-p5jv)
-**严重程度**: High
-**影响范围**: devalue <5.3.2
+**受影响包**: devalue (间接依赖) **漏洞**: 原型污染 (GHSA-vj54-72f3-p5jv)
+**严重程度**: High **影响范围**: devalue <5.3.2
 
 **修复**: 通过升级 astro 自动修复
 
 #### cookie (🟡 Low)
 
-**受影响包**: cookie (间接依赖)
-**漏洞**: 接受非法字符 (GHSA-pxg6-pf52-xh8x)
-**严重程度**: Low
-**影响范围**: cookie <0.7.0
+**受影响包**: cookie (间接依赖) **漏洞**: 接受非法字符 (GHSA-pxg6-pf52-xh8x)
+**严重程度**: Low **影响范围**: cookie <0.7.0
 
 **修复**: 通过升级 astro 自动修复
 
 #### esbuild (🟠 Moderate)
 
 **受影响包**: esbuild (间接依赖)
-**漏洞**: 开发服务器请求泄露 (GHSA-67mh-4wv8-2f99)
-**严重程度**: Moderate
-**CVSS 评分**: 5.3
-**影响范围**: esbuild <=0.24.2
+**漏洞**: 开发服务器请求泄露 (GHSA-67mh-4wv8-2f99) **严重程度**: Moderate
+**CVSS 评分**: 5.3 **影响范围**: esbuild <=0.24.2
 
 **修复**: 通过升级 astro/vite 自动修复
 
 #### brace-expansion (🟡 Low)
 
-**受影响包**: brace-expansion (间接依赖)
-**漏洞**: 正则表达式 DoS (GHSA-v6h2-p8h4-qcjw)
-**严重程度**: Low
-**CVSS 评分**: 3.1
-**影响范围**: brace-expansion >=1.0.0 <=1.1.11
+**受影响包**: brace-expansion (间接依赖) **漏洞**: 正则表达式 DoS
+(GHSA-v6h2-p8h4-qcjw) **严重程度**: Low **CVSS 评分**: 3.1 **影响范围**:
+brace-expansion >=1.0.0 <=1.1.11
 
 **修复**:
+
 ```bash
 npm audit fix
 ```
@@ -160,11 +150,13 @@ npm audit fix
 ```
 
 **优点**:
+
 - 无破坏性变更
 - 风险极低
 - 立即可执行
 
 **缺点**:
+
 - 只修复 1 个低风险漏洞
 - 主要漏洞仍然存在
 
@@ -187,11 +179,13 @@ npm run build && npm run dev
 ```
 
 **优点**:
+
 - 修复大部分安全漏洞
 - 分步骤降低风险
 - 可以在每步验证
 
 **缺点**:
+
 - 需要人工介入测试
 - 可能需要代码调整
 - 耗时较长
@@ -206,11 +200,13 @@ npm audit fix
 ```
 
 **优点**:
+
 - 修复所有漏洞
 - 获得最新特性
 - 一次性解决
 
 **缺点**:
+
 - ⚠️ 可能有破坏性变更
 - 需要全面测试
 - 可能需要重写部分代码
@@ -220,14 +216,15 @@ npm audit fix
 在决定升级方案之前，可以采取以下措施降低风险：
 
 1. **禁用 Sourcemaps** (生产环境)
+
    ```javascript
    // astro.config.mjs
    export default defineConfig({
      vite: {
        build: {
-         sourcemap: false  // 防止源码暴露
-       }
-     }
+         sourcemap: false, // 防止源码暴露
+       },
+     },
    });
    ```
 
@@ -249,11 +246,13 @@ npm audit fix
 基于当前项目状态和风险评估，建议采用 **选项 1（保守修复）**：
 
 **理由**:
+
 1. 项目是静态站点，大多数漏洞影响有限
 2. 主版本升级需要充分测试，不适合自动化修复
 3. 当前构建和类型检查已通过，不应引入新的不确定性
 
 **已执行操作**:
+
 ```bash
 # 仅修复可安全修复的问题
 npm audit fix
@@ -284,5 +283,4 @@ npm audit fix
 
 ---
 
-**报告生成**: Claude Code
-**分析时间**: 2025-11-10 03:46 UTC
+**报告生成**: Claude Code **分析时间**: 2025-11-10 03:46 UTC

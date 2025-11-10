@@ -4,47 +4,47 @@
  */
 
 class PositionList {
-    constructor(containerId, positionManager) {
-        this.container = document.getElementById(containerId);
-        this.positionManager = positionManager;
-        this.positions = [];
-        this.isLoading = false;
-        this.hasError = false;
-        this.viewMode = 'grid'; // grid, list
-        this.itemsPerPage = 6;
-        this.currentPage = 1;
-        this.totalPages = 1;
-        this.intersectionObserver = null;
-        this.animationFrameId = null;
+  constructor(containerId, positionManager) {
+    this.container = document.getElementById(containerId);
+    this.positionManager = positionManager;
+    this.positions = [];
+    this.isLoading = false;
+    this.hasError = false;
+    this.viewMode = 'grid'; // grid, list
+    this.itemsPerPage = 6;
+    this.currentPage = 1;
+    this.totalPages = 1;
+    this.intersectionObserver = null;
+    this.animationFrameId = null;
 
-        this.init();
-    }
+    this.init();
+  }
 
-    init() {
-        this.setupIntersectionObserver();
-        this.render();
-        this.bindEvents();
-    }
+  init() {
+    this.setupIntersectionObserver();
+    this.render();
+    this.bindEvents();
+  }
 
-    setupIntersectionObserver() {
-        // 设置懒加载观察器
-        const options = {
-            root: null,
-            rootMargin: '50px',
-            threshold: 0.1
-        };
+  setupIntersectionObserver() {
+    // 设置懒加载观察器
+    const options = {
+      root: null,
+      rootMargin: '50px',
+      threshold: 0.1,
+    };
 
-        this.intersectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.loadItemContent(entry.target);
-                }
-            });
-        }, options);
-    }
+    this.intersectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.loadItemContent(entry.target);
+        }
+      });
+    }, options);
+  }
 
-    render() {
-        this.container.innerHTML = `
+  render() {
+    this.container.innerHTML = `
             <div class="position-list-container">
                 <!-- 列表头部控制栏 -->
                 <div class="list-header">
@@ -153,116 +153,116 @@ class PositionList {
             </div>
         `;
 
-        // 保存组件实例引用
-        this.container.positionList = this;
+    // 保存组件实例引用
+    this.container.positionList = this;
 
-        this.bindViewEvents();
+    this.bindViewEvents();
+  }
+
+  bindEvents() {
+    // 视图切换
+    const viewBtns = this.container.querySelectorAll('.view-btn');
+    viewBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.switchView(btn.dataset.view);
+      });
+    });
+
+    // 排序选择
+    const sortSelect = this.container.querySelector('.sort-select');
+    sortSelect.addEventListener('change', () => {
+      this.handleSort(sortSelect.value);
+    });
+
+    // 分页控制
+    const prevBtn = this.container.querySelector('.pagination-btn.prev');
+    const nextBtn = this.container.querySelector('.pagination-btn.next');
+    const pageSizeSelect = this.container.querySelector('.page-size-select');
+
+    prevBtn.addEventListener('click', () => {
+      this.goToPage(this.currentPage - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      this.goToPage(this.currentPage + 1);
+    });
+
+    pageSizeSelect.addEventListener('change', () => {
+      this.itemsPerPage = parseInt(pageSizeSelect.value);
+      this.currentPage = 1;
+      this.renderPositions();
+    });
+  }
+
+  bindViewEvents() {
+    // 绑定岗位卡片事件
+    this.container.addEventListener('click', e => {
+      const positionCard = e.target.closest('.position-card');
+      if (positionCard && !e.target.closest('.position-actions')) {
+        const positionId = positionCard.dataset.positionId;
+        this.handlePositionClick(positionId);
+      }
+    });
+  }
+
+  setPositions(positions, append = false) {
+    if (append) {
+      this.positions = [...this.positions, ...positions];
+    } else {
+      this.positions = positions;
     }
 
-    bindEvents() {
-        // 视图切换
-        const viewBtns = this.container.querySelectorAll('.view-btn');
-        viewBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.switchView(btn.dataset.view);
-            });
-        });
+    this.totalPages = Math.ceil(this.positions.length / this.itemsPerPage);
+    this.renderPositions();
+  }
 
-        // 排序选择
-        const sortSelect = this.container.querySelector('.sort-select');
-        sortSelect.addEventListener('change', () => {
-            this.handleSort(sortSelect.value);
-        });
+  renderPositions() {
+    const gridContainer = this.container.querySelector('.positions-grid');
+    const totalCount = this.container.querySelector('#total-count');
+    const paginationContainer = this.container.querySelector('.pagination-container');
 
-        // 分页控制
-        const prevBtn = this.container.querySelector('.pagination-btn.prev');
-        const nextBtn = this.container.querySelector('.pagination-btn.next');
-        const pageSizeSelect = this.container.querySelector('.page-size-select');
+    // 更新统计信息
+    totalCount.textContent = this.positions.length;
 
-        prevBtn.addEventListener('click', () => {
-            this.goToPage(this.currentPage - 1);
-        });
-
-        nextBtn.addEventListener('click', () => {
-            this.goToPage(this.currentPage + 1);
-        });
-
-        pageSizeSelect.addEventListener('change', () => {
-            this.itemsPerPage = parseInt(pageSizeSelect.value);
-            this.currentPage = 1;
-            this.renderPositions();
-        });
+    if (this.positions.length === 0) {
+      this.showEmptyState();
+      return;
     }
 
-    bindViewEvents() {
-        // 绑定岗位卡片事件
-        this.container.addEventListener('click', (e) => {
-            const positionCard = e.target.closest('.position-card');
-            if (positionCard && !e.target.closest('.position-actions')) {
-                const positionId = positionCard.dataset.positionId;
-                this.handlePositionClick(positionId);
-            }
-        });
+    this.hideAllStates();
+
+    // 获取当前页的岗位
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    const currentPositions = this.positions.slice(startIndex, endIndex);
+
+    // 渲染岗位卡片
+    gridContainer.innerHTML = currentPositions
+      .map((position, index) => this.createPositionCard(position, startIndex + index))
+      .join('');
+
+    // 启动懒加载观察
+    gridContainer.querySelectorAll('.position-card').forEach(card => {
+      this.intersectionObserver.observe(card);
+    });
+
+    // 更新分页信息
+    this.updatePagination();
+
+    // 显示或隐藏分页
+    if (this.totalPages > 1) {
+      paginationContainer.style.display = 'flex';
+    } else {
+      paginationContainer.style.display = 'none';
     }
+  }
 
-    setPositions(positions, append = false) {
-        if (append) {
-            this.positions = [...this.positions, ...positions];
-        } else {
-            this.positions = positions;
-        }
+  createPositionCard(position, index) {
+    const isFeatured = position.featured;
+    const salaryRange = this.formatSalaryRange(position.salary);
+    const skills = position.skills.slice(0, 4); // 只显示前4个技能
 
-        this.totalPages = Math.ceil(this.positions.length / this.itemsPerPage);
-        this.renderPositions();
-    }
-
-    renderPositions() {
-        const gridContainer = this.container.querySelector('.positions-grid');
-        const totalCount = this.container.querySelector('#total-count');
-        const paginationContainer = this.container.querySelector('.pagination-container');
-
-        // 更新统计信息
-        totalCount.textContent = this.positions.length;
-
-        if (this.positions.length === 0) {
-            this.showEmptyState();
-            return;
-        }
-
-        this.hideAllStates();
-
-        // 获取当前页的岗位
-        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-        const endIndex = startIndex + this.itemsPerPage;
-        const currentPositions = this.positions.slice(startIndex, endIndex);
-
-        // 渲染岗位卡片
-        gridContainer.innerHTML = currentPositions.map((position, index) =>
-            this.createPositionCard(position, startIndex + index)
-        ).join('');
-
-        // 启动懒加载观察
-        gridContainer.querySelectorAll('.position-card').forEach(card => {
-            this.intersectionObserver.observe(card);
-        });
-
-        // 更新分页信息
-        this.updatePagination();
-
-        // 显示或隐藏分页
-        if (this.totalPages > 1) {
-            paginationContainer.style.display = 'flex';
-        } else {
-            paginationContainer.style.display = 'none';
-        }
-    }
-
-    createPositionCard(position, index) {
-        const isFeatured = position.featured;
-        const salaryRange = this.formatSalaryRange(position.salary);
-        const skills = position.skills.slice(0, 4); // 只显示前4个技能
-
-        return `
+    return `
             <article class="position-card ${isFeatured ? 'featured' : ''}" data-position-id="${position.id}" style="--animation-delay: ${index * 0.1}s">
                 ${isFeatured ? '<div class="featured-badge">推荐</div>' : ''}
 
@@ -296,7 +296,10 @@ class PositionList {
 
                 <div class="position-footer">
                     <div class="position-tags">
-                        ${position.tags.slice(0, 3).map(tag => `<span class="position-tag">#${tag}</span>`).join('')}
+                        ${position.tags
+                          .slice(0, 3)
+                          .map(tag => `<span class="position-tag">#${tag}</span>`)
+                          .join('')}
                     </div>
                     <div class="position-actions">
                         <a href="${position.url}" class="btn btn-primary btn-sm" onclick="event.stopPropagation()">
@@ -311,182 +314,182 @@ class PositionList {
                 </div>
             </article>
         `;
+  }
+
+  loadItemContent(card) {
+    // 如果卡片已经被加载，跳过
+    if (card.classList.contains('loaded')) {
+      return;
     }
 
-    loadItemContent(card) {
-        // 如果卡片已经被加载，跳过
-        if (card.classList.contains('loaded')) {
-            return;
-        }
+    // 模拟加载内容（实际项目中可能需要加载更多详细信息）
+    setTimeout(() => {
+      card.classList.add('loaded');
+      this.intersectionObserver.unobserve(card);
+    }, 100);
+  }
 
-        // 模拟加载内容（实际项目中可能需要加载更多详细信息）
-        setTimeout(() => {
-            card.classList.add('loaded');
-            this.intersectionObserver.unobserve(card);
-        }, 100);
+  switchView(viewMode) {
+    if (this.viewMode === viewMode) return;
+
+    this.viewMode = viewMode;
+    const container = this.container.querySelector('.positions-container');
+    const viewBtns = this.container.querySelectorAll('.view-btn');
+
+    // 更新视图样式
+    container.className = `positions-container ${viewMode}-view`;
+
+    // 更新按钮状态
+    viewBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.view === viewMode);
+    });
+
+    // 重新渲染以适应新视图
+    this.renderPositions();
+  }
+
+  handleSort(sortBy) {
+    let sortedPositions = [...this.positions];
+
+    switch (sortBy) {
+      case 'featured':
+        sortedPositions.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+        break;
+      case 'title':
+        sortedPositions.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'salary-low':
+        sortedPositions.sort((a, b) => a.salary.min - b.salary.min);
+        break;
+      case 'salary-high':
+        sortedPositions.sort((a, b) => b.salary.max - a.salary.max);
+        break;
     }
 
-    switchView(viewMode) {
-        if (this.viewMode === viewMode) return;
+    this.positions = sortedPositions;
+    this.currentPage = 1;
+    this.renderPositions();
+  }
 
-        this.viewMode = viewMode;
-        const container = this.container.querySelector('.positions-container');
-        const viewBtns = this.container.querySelectorAll('.view-btn');
+  updatePagination() {
+    const currentPageSpan = this.container.querySelector('.current-page');
+    const totalPagesSpan = this.container.querySelector('.total-pages');
+    const prevBtn = this.container.querySelector('.pagination-btn.prev');
+    const nextBtn = this.container.querySelector('.pagination-btn.next');
 
-        // 更新视图样式
-        container.className = `positions-container ${viewMode}-view`;
+    currentPageSpan.textContent = this.currentPage;
+    totalPagesSpan.textContent = this.totalPages;
 
-        // 更新按钮状态
-        viewBtns.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.view === viewMode);
-        });
+    prevBtn.disabled = this.currentPage === 1;
+    nextBtn.disabled = this.currentPage === this.totalPages;
+  }
 
-        // 重新渲染以适应新视图
-        this.renderPositions();
+  goToPage(page) {
+    if (page < 1 || page > this.totalPages) return;
+
+    this.currentPage = page;
+    this.renderPositions();
+
+    // 滚动到顶部
+    this.container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  showEmptyState() {
+    this.hideAllStates();
+    this.container.querySelector('.empty-state').style.display = 'flex';
+  }
+
+  showLoadingState() {
+    this.hideAllStates();
+    this.container.querySelector('.loading-state').style.display = 'flex';
+    this.isLoading = true;
+  }
+
+  showErrorState() {
+    this.hideAllStates();
+    this.container.querySelector('.error-state').style.display = 'flex';
+    this.hasError = true;
+  }
+
+  hideAllStates() {
+    this.container.querySelector('.loading-state').style.display = 'none';
+    this.container.querySelector('.error-state').style.display = 'none';
+    this.container.querySelector('.empty-state').style.display = 'none';
+    this.isLoading = false;
+    this.hasError = false;
+  }
+
+  handlePositionClick(positionId) {
+    const position = this.positionManager.getPositionById(positionId);
+    if (position) {
+      // 可以添加统计或其他逻辑
+      this.dispatchListEvent('positionClick', { position });
+    }
+  }
+
+  toggleSave(positionId, button) {
+    const isSaved = button.classList.contains('saved');
+
+    if (isSaved) {
+      button.classList.remove('saved');
+      button.setAttribute('aria-label', '收藏岗位');
+    } else {
+      button.classList.add('saved');
+      button.setAttribute('aria-label', '取消收藏');
     }
 
-    handleSort(sortBy) {
-        let sortedPositions = [...this.positions];
+    // 触发收藏事件
+    this.dispatchListEvent('toggleSave', { positionId, isSaved: !isSaved });
+  }
 
-        switch (sortBy) {
-            case 'featured':
-                sortedPositions.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
-                break;
-            case 'title':
-                sortedPositions.sort((a, b) => a.title.localeCompare(b.title));
-                break;
-            case 'salary-low':
-                sortedPositions.sort((a, b) => a.salary.min - b.salary.min);
-                break;
-            case 'salary-high':
-                sortedPositions.sort((a, b) => b.salary.max - a.salary.max);
-                break;
-        }
+  retry() {
+    this.hideErrorState();
+    // 重新加载数据
+    this.dispatchListEvent('retry');
+  }
 
-        this.positions = sortedPositions;
-        this.currentPage = 1;
-        this.renderPositions();
+  resetFilters() {
+    this.dispatchListEvent('resetFilters');
+  }
+
+  // 工具方法
+  formatSalaryRange(salary) {
+    if (salary.min === salary.max) {
+      return `$${(salary.min / 1000).toFixed(0)}k`;
     }
+    return `$${(salary.min / 1000).toFixed(0)}k - $${(salary.max / 1000).toFixed(0)}k`;
+  }
 
-    updatePagination() {
-        const currentPageSpan = this.container.querySelector('.current-page');
-        const totalPagesSpan = this.container.querySelector('.total-pages');
-        const prevBtn = this.container.querySelector('.pagination-btn.prev');
-        const nextBtn = this.container.querySelector('.pagination-btn.next');
+  formatCategory(category) {
+    const categoryMap = {
+      engineering: '工程技术',
+      business: '商业管理',
+      design: '设计创意',
+      marketing: '市场营销',
+    };
+    return categoryMap[category] || category;
+  }
 
-        currentPageSpan.textContent = this.currentPage;
-        totalPagesSpan.textContent = this.totalPages;
+  dispatchListEvent(type, data = {}) {
+    const event = new CustomEvent('positionList', {
+      detail: { type, ...data },
+    });
+    this.container.dispatchEvent(event);
+  }
 
-        prevBtn.disabled = this.currentPage === 1;
-        nextBtn.disabled = this.currentPage === this.totalPages;
+  // 公共方法
+  refresh() {
+    this.renderPositions();
+  }
+
+  destroy() {
+    if (this.intersectionObserver) {
+      this.intersectionObserver.disconnect();
     }
-
-    goToPage(page) {
-        if (page < 1 || page > this.totalPages) return;
-
-        this.currentPage = page;
-        this.renderPositions();
-
-        // 滚动到顶部
-        this.container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
     }
-
-    showEmptyState() {
-        this.hideAllStates();
-        this.container.querySelector('.empty-state').style.display = 'flex';
-    }
-
-    showLoadingState() {
-        this.hideAllStates();
-        this.container.querySelector('.loading-state').style.display = 'flex';
-        this.isLoading = true;
-    }
-
-    showErrorState() {
-        this.hideAllStates();
-        this.container.querySelector('.error-state').style.display = 'flex';
-        this.hasError = true;
-    }
-
-    hideAllStates() {
-        this.container.querySelector('.loading-state').style.display = 'none';
-        this.container.querySelector('.error-state').style.display = 'none';
-        this.container.querySelector('.empty-state').style.display = 'none';
-        this.isLoading = false;
-        this.hasError = false;
-    }
-
-    handlePositionClick(positionId) {
-        const position = this.positionManager.getPositionById(positionId);
-        if (position) {
-            // 可以添加统计或其他逻辑
-            this.dispatchListEvent('positionClick', { position });
-        }
-    }
-
-    toggleSave(positionId, button) {
-        const isSaved = button.classList.contains('saved');
-
-        if (isSaved) {
-            button.classList.remove('saved');
-            button.setAttribute('aria-label', '收藏岗位');
-        } else {
-            button.classList.add('saved');
-            button.setAttribute('aria-label', '取消收藏');
-        }
-
-        // 触发收藏事件
-        this.dispatchListEvent('toggleSave', { positionId, isSaved: !isSaved });
-    }
-
-    retry() {
-        this.hideErrorState();
-        // 重新加载数据
-        this.dispatchListEvent('retry');
-    }
-
-    resetFilters() {
-        this.dispatchListEvent('resetFilters');
-    }
-
-    // 工具方法
-    formatSalaryRange(salary) {
-        if (salary.min === salary.max) {
-            return `$${(salary.min / 1000).toFixed(0)}k`;
-        }
-        return `$${(salary.min / 1000).toFixed(0)}k - $${(salary.max / 1000).toFixed(0)}k`;
-    }
-
-    formatCategory(category) {
-        const categoryMap = {
-            'engineering': '工程技术',
-            'business': '商业管理',
-            'design': '设计创意',
-            'marketing': '市场营销'
-        };
-        return categoryMap[category] || category;
-    }
-
-    dispatchListEvent(type, data = {}) {
-        const event = new CustomEvent('positionList', {
-            detail: { type, ...data }
-        });
-        this.container.dispatchEvent(event);
-    }
-
-    // 公共方法
-    refresh() {
-        this.renderPositions();
-    }
-
-    destroy() {
-        if (this.intersectionObserver) {
-            this.intersectionObserver.disconnect();
-        }
-        if (this.animationFrameId) {
-            cancelAnimationFrame(this.animationFrameId);
-        }
-    }
+  }
 }
 
 // 导出

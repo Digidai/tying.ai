@@ -1,30 +1,30 @@
 # Tying.ai 项目全面分析报告
 
-**分析日期**: 2025-11-08
-**项目版本**: 2.0.0
-**分析师**: Claude Code
+**分析日期**: 2025-11-08 **项目版本**: 2.0.0 **分析师**: Claude Code
 **分析深度**: Very Thorough (非常详尽)
 
 ---
 
 ## 📋 执行摘要
 
-Tying.ai 是一个 **AI 驱动的职业指导和职位信息平台**，采用现代化技术栈（Astro + TypeScript + Tailwind CSS），提供 180+ 职位数据库、职业规划指导和行业报告。
+Tying.ai 是一个 **AI 驱动的职业指导和职位信息平台**，采用现代化技术栈（Astro +
+TypeScript + Tailwind CSS），提供 180+ 职位数据库、职业规划指导和行业报告。
 
 ### 整体评分：3.8/5 ⭐⭐⭐⭐
 
-| 维度 | 评分 | 说明 |
-|------|:----:|------|
-| **代码质量** | 4/5 | 良好的代码组织，缺少测试 |
-| **架构设计** | 4/5 | 现代化但存在双轨架构需清理 |
-| **性能优化** | 5/5 | **出色**，已实现多项优化 |
-| **文档完善** | 4/5 | 详细但语言混合 |
-| **开发体验** | 4/5 | 良好的工具链和脚本 |
-| **测试覆盖** | 2/5 | **严重不足** (<10%) |
+| 维度         | 评分 | 说明                       |
+| ------------ | :--: | -------------------------- |
+| **代码质量** | 4/5  | 良好的代码组织，缺少测试   |
+| **架构设计** | 4/5  | 现代化但存在双轨架构需清理 |
+| **性能优化** | 5/5  | **出色**，已实现多项优化   |
+| **文档完善** | 4/5  | 详细但语言混合             |
+| **开发体验** | 4/5  | 良好的工具链和脚本         |
+| **测试覆盖** | 2/5  | **严重不足** (<10%)        |
 
 ### 核心发现
 
 ✅ **主要优势**:
+
 1. 性能优化突出（Git 优化提升 99.3%）
 2. 设计系统清晰（Glassmorphism 风格）
 3. 功能完整丰富（180+ 职位数据）
@@ -32,6 +32,7 @@ Tying.ai 是一个 **AI 驱动的职业指导和职位信息平台**，采用现
 5. 文档较为详细（13 个 .md 文档）
 
 ⚠️ **主要问题**:
+
 1. 测试覆盖极低 (<10%)
 2. 双轨架构维护负担
 3. TypeScript 覆盖不足（75-80%）
@@ -44,9 +45,9 @@ Tying.ai 是一个 **AI 驱动的职业指导和职位信息平台**，采用现
 
 ### 1.1 项目定义
 
-**项目名称**: Tying.ai
-**标语**: "AI-Powered Career Guidance Platform"
+**项目名称**: Tying.ai **标语**: "AI-Powered Career Guidance Platform"
 **主要功能**:
+
 - 职业引导和规划
 - 职位信息数据库（180+ 职位）
 - 行业报告和趋势分析
@@ -54,12 +55,14 @@ Tying.ai 是一个 **AI 驱动的职业指导和职位信息平台**，采用现
 - 职业发展路径建议
 
 **目标用户**:
+
 - 求职者和职场新人
 - 职业转型人士
 - HR 和招聘人员
 - 职业规划咨询师
 
 **使用场景**:
+
 - 职业路径探索
 - 行业趋势研究
 - 职位要求查询
@@ -68,6 +71,7 @@ Tying.ai 是一个 **AI 驱动的职业指导和职位信息平台**，采用现
 ### 1.2 技术栈
 
 #### 核心框架
+
 ```json
 {
   "前端框架": "Astro 3.6.5 (Static Site Generator)",
@@ -79,6 +83,7 @@ Tying.ai 是一个 **AI 驱动的职业指导和职位信息平台**，采用现
 ```
 
 #### 生产依赖
+
 ```
 astro: 3.6.5
 alpinejs: 3.12.3
@@ -89,6 +94,7 @@ serve: 14.2.5
 ```
 
 #### 开发依赖
+
 ```
 typescript: 5.1.6
 vite: 4.4.9
@@ -189,9 +195,7 @@ tying.ai/
     └── .zsh-performance-tips.md
 ```
 
-**目录数量**: 72 个
-**文件数量**: 约 150+ 个
-**代码行数**: 估计 15,000+ 行
+**目录数量**: 72 个 **文件数量**: 约 150+ 个 **代码行数**: 估计 15,000+ 行
 
 ### 2.2 架构模式
 
@@ -200,6 +204,7 @@ tying.ai/
 项目当前采用 **双轨并行架构**：
 
 **轨道 1: 传统 HTML/CSS/JS**（主要使用）
+
 ```
 index.html (主页)
   ├── layout.css, components.css, utilities.css
@@ -212,6 +217,7 @@ index.html (主页)
 ```
 
 **轨道 2: Astro 现代架构**（部分使用）
+
 ```
 src/pages/index.astro (备用主页)
   ├── src/layouts/
@@ -220,17 +226,20 @@ src/pages/index.astro (备用主页)
 ```
 
 **共存策略**:
+
 - `npm run dev` → Astro 开发服务器
 - `npm run dev:legacy` → 传统静态服务器
 - `npm run build` → Astro 构建
 - `npm run build:legacy` → 传统构建脚本
 
 **优势**:
+
 - 渐进式迁移，风险低
 - 保持现有功能稳定
 - 灵活选择技术方案
 
 **劣势**:
+
 - 维护成本高（双份代码）
 - 开发者认知负担重
 - 构建流程复杂
@@ -285,12 +294,13 @@ class App {
 ```
 
 **模块加载策略**:
+
 ```javascript
 // 懒加载非关键模块
 const lazyModules = {
   analytics: () => import('./modules/analytics.js'),
   chatbot: () => import('./modules/chatbot.js'),
-  charts: () => import('./modules/charts.js')
+  charts: () => import('./modules/charts.js'),
 };
 ```
 
@@ -310,6 +320,7 @@ src/components/
 **当前方案**: **无集中状态管理**
 
 数据流特点:
+
 - 静态数据为主（职位信息、报告）
 - 最小化客户端状态
 - 使用 Alpine.js 管理局部状态
@@ -320,12 +331,11 @@ src/components/
 const userPreferences = {
   theme: localStorage.getItem('theme') || 'light',
   searchFilters: JSON.parse(localStorage.getItem('filters') || '{}'),
-  favoritePositions: JSON.parse(localStorage.getItem('favorites') || '[]')
+  favoritePositions: JSON.parse(localStorage.getItem('favorites') || '[]'),
 };
 ```
 
-**优势**: 简单、性能好
-**劣势**: 复杂交互场景支持不足
+**优势**: 简单、性能好 **劣势**: 复杂交互场景支持不足
 
 ---
 
@@ -336,18 +346,21 @@ const userPreferences = {
 #### JavaScript/TypeScript
 
 **优点**:
+
 - ✅ ES6+ 模块化架构
 - ✅ 明确的职责划分（单一职责原则）
 - ✅ 良好的命名规范（驼峰、语义化）
 - ✅ 注释较为详细
 
 **问题**:
+
 - ⚠️ TypeScript 覆盖率不足（估计 75-80%）
 - ⚠️ 缺少 JSDoc 文档
 - ⚠️ 错误处理不够完善
 - ⚠️ 缺少单元测试
 
 **代码示例** (js/modules/performance-optimizer.js):
+
 ```javascript
 // 良好的类设计和职责分离
 class PerformanceOptimizer {
@@ -358,35 +371,44 @@ class PerformanceOptimizer {
   }
 
   // 清晰的方法命名和逻辑分组
-  detectDeviceCapabilities() { /*...*/ }
-  monitorCoreWebVitals() { /*...*/ }
-  optimizeForLowEndDevice() { /*...*/ }
+  detectDeviceCapabilities() {
+    /*...*/
+  }
+  monitorCoreWebVitals() {
+    /*...*/
+  }
+  optimizeForLowEndDevice() {
+    /*...*/
+  }
 }
 ```
 
 #### HTML
 
 **优点**:
+
 - ✅ 语义化标签使用恰当
 - ✅ SEO 优化完整（meta 标签、结构化数据）
 - ✅ 无障碍支持（ARIA 标签）
 - ✅ 响应式设计实现
 
 **问题**:
+
 - ⚠️ 部分页面过长（index.html 399 行）
 - ⚠️ 重复代码较多（header/footer 未组件化）
 - ⚠️ 内联样式和脚本混合
 
 **SEO 优化示例** (index.html):
+
 ```html
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tying.ai - AI职业规划平台</title>
-  <meta name="description" content="...">
-  <meta property="og:title" content="...">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://tying.ai/">
+  <meta name="description" content="..." />
+  <meta property="og:title" content="..." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://tying.ai/" />
   <!-- 结构化数据 -->
   <script type="application/ld+json">
     {
@@ -401,18 +423,21 @@ class PerformanceOptimizer {
 #### CSS
 
 **优点**:
+
 - ✅ 模块化拆分（layout/components/utilities）
 - ✅ CSS 变量（CSS Custom Properties）使用
 - ✅ BEM 命名规范（部分）
 - ✅ 响应式设计（移动优先）
 
 **问题**:
+
 - ⚠️ styles.css 过大（1757 行，39.9KB）
 - ⚠️ 重复样式较多
 - ⚠️ 未充分利用 Tailwind CSS
 - ⚠️ 部分选择器特异性过高
 
 **CSS 变量设计** (layout.css):
+
 ```css
 :root {
   /* Glassmorphism 设计系统 */
@@ -444,11 +469,11 @@ class PerformanceOptimizer {
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "strict": true,                  // ✅ 严格模式
-    "noImplicitAny": true,          // ✅ 禁止隐式 any
-    "skipLibCheck": true,           // ⚠️ 跳过库检查
-    "noEmit": true,                 // ✅ 不生成文件（Astro 处理）
-    "incremental": true             // ✅ 增量编译
+    "strict": true, // ✅ 严格模式
+    "noImplicitAny": true, // ✅ 禁止隐式 any
+    "skipLibCheck": true, // ⚠️ 跳过库检查
+    "noEmit": true, // ✅ 不生成文件（Astro 处理）
+    "incremental": true // ✅ 增量编译
   }
 }
 ```
@@ -456,11 +481,13 @@ class PerformanceOptimizer {
 **TypeScript 覆盖率**: 估计 **75-80%**
 
 **已 TypeScript 化**:
+
 - ✅ Astro 页面和组件
 - ✅ 部分工具函数
 - ✅ 类型定义文件
 
 **未 TypeScript 化**:
+
 - ❌ js/modules/ 下的核心模块（仍为 .js）
 - ❌ 大部分脚本文件
 - ❌ 构建脚本
@@ -474,6 +501,7 @@ class PerformanceOptimizer {
 #### 配置情况
 
 **Playwright 配置** (playwright.config.ts):
+
 ```typescript
 export default defineConfig({
   testDir: './tests',
@@ -484,22 +512,25 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: 'http://localhost:3000',
-    trace: 'on-first-retry'
-  }
+    trace: 'on-first-retry',
+  },
 });
 ```
 
 **问题**:
+
 - ❌ 无单元测试
 - ❌ 无集成测试
 - ❌ 无 E2E 测试（Playwright 已配置但未编写测试）
 - ❌ 无测试覆盖率报告
 
 **测试框架**:
+
 - Playwright (已配置，未使用)
 - 建议添加: Jest/Vitest (单元测试)
 
 **npm 脚本**:
+
 ```json
 {
   "test": "playwright test",
@@ -509,6 +540,7 @@ export default defineConfig({
 ```
 
 **建议测试优先级**:
+
 1. **高**: 核心模块单元测试（PerformanceOptimizer, NavigationController）
 2. **高**: 搜索功能 E2E 测试
 3. **中**: 页面导航 E2E 测试
@@ -518,33 +550,36 @@ export default defineConfig({
 
 **文档清单** (13 个 Markdown 文件):
 
-| 文档 | 内容 | 完整度 |
-|------|------|--------|
-| README.md | 项目介绍 | ⭐⭐⭐ |
-| DEV_GUIDE.md | 开发指南 | ⭐⭐⭐⭐ |
-| PERFORMANCE_ANALYSIS.md | 性能分析 | ⭐⭐⭐⭐⭐ |
-| STARTUP_OPTIMIZATION.md | 启动优化 | ⭐⭐⭐⭐⭐ |
-| PERFORMANCE_OPTIMIZATION_SUMMARY.md | 优化总结 | ⭐⭐⭐⭐⭐ |
-| DEVELOPMENT_STATUS.md | 开发状态 | ⭐⭐⭐⭐ |
-| PAGE_MIGRATION_COMPLETE.md | 迁移完成 | ⭐⭐⭐⭐ |
-| REDESIGN_SUMMARY.md | 重设计总结 | ⭐⭐⭐⭐ |
-| STRUCTURE.md | 结构说明 | ⭐⭐⭐ |
-| .zsh-performance-tips.md | Zsh 优化 | ⭐⭐⭐⭐⭐ |
-| hr.md | HR 相关 | ⭐⭐ |
-| llms.txt | LLM 提示词 | ⭐⭐⭐ |
+| 文档                                | 内容       | 完整度     |
+| ----------------------------------- | ---------- | ---------- |
+| README.md                           | 项目介绍   | ⭐⭐⭐     |
+| DEV_GUIDE.md                        | 开发指南   | ⭐⭐⭐⭐   |
+| PERFORMANCE_ANALYSIS.md             | 性能分析   | ⭐⭐⭐⭐⭐ |
+| STARTUP_OPTIMIZATION.md             | 启动优化   | ⭐⭐⭐⭐⭐ |
+| PERFORMANCE_OPTIMIZATION_SUMMARY.md | 优化总结   | ⭐⭐⭐⭐⭐ |
+| DEVELOPMENT_STATUS.md               | 开发状态   | ⭐⭐⭐⭐   |
+| PAGE_MIGRATION_COMPLETE.md          | 迁移完成   | ⭐⭐⭐⭐   |
+| REDESIGN_SUMMARY.md                 | 重设计总结 | ⭐⭐⭐⭐   |
+| STRUCTURE.md                        | 结构说明   | ⭐⭐⭐     |
+| .zsh-performance-tips.md            | Zsh 优化   | ⭐⭐⭐⭐⭐ |
+| hr.md                               | HR 相关    | ⭐⭐       |
+| llms.txt                            | LLM 提示词 | ⭐⭐⭐     |
 
 **优点**:
+
 - ✅ 文档数量多，覆盖全面
 - ✅ 性能优化文档非常详细
 - ✅ 开发指南清晰
 
 **问题**:
+
 - ⚠️ 语言混合（中英文混用）
 - ⚠️ 部分文档过时需更新
 - ⚠️ 缺少 API 文档
 - ⚠️ 缺少架构图
 
 **建议**:
+
 - 统一文档语言（建议中文）
 - 添加架构图和流程图
 - 添加 API 文档（如果有后端）
@@ -558,34 +593,36 @@ export default defineConfig({
 
 #### 生产依赖分析
 
-| 依赖 | 版本 | 用途 | 大小 | 评价 |
-|------|------|------|------|------|
-| **astro** | 3.6.5 | 静态站点生成 | ~10MB | ⭐⭐⭐⭐⭐ 核心框架 |
-| **alpinejs** | 3.12.3 | 轻量 JS 框架 | ~15KB | ⭐⭐⭐⭐ 交互增强 |
-| **tailwindcss** | 3.3.3 | CSS 框架 | ~3MB | ⭐⭐⭐⭐ 样式系统 |
-| **lodash-es** | 4.17.21 | 工具库 | ~100KB | ⭐⭐⭐ 可按需优化 |
-| **date-fns** | 2.30.0 | 日期处理 | ~50KB | ⭐⭐⭐⭐ 轻量替代 moment |
-| **serve** | 14.2.5 | 静态服务器 | ~5MB | ⭐⭐⭐ 开发工具 |
+| 依赖            | 版本    | 用途         | 大小   | 评价                     |
+| --------------- | ------- | ------------ | ------ | ------------------------ |
+| **astro**       | 3.6.5   | 静态站点生成 | ~10MB  | ⭐⭐⭐⭐⭐ 核心框架      |
+| **alpinejs**    | 3.12.3  | 轻量 JS 框架 | ~15KB  | ⭐⭐⭐⭐ 交互增强        |
+| **tailwindcss** | 3.3.3   | CSS 框架     | ~3MB   | ⭐⭐⭐⭐ 样式系统        |
+| **lodash-es**   | 4.17.21 | 工具库       | ~100KB | ⭐⭐⭐ 可按需优化        |
+| **date-fns**    | 2.30.0  | 日期处理     | ~50KB  | ⭐⭐⭐⭐ 轻量替代 moment |
+| **serve**       | 14.2.5  | 静态服务器   | ~5MB   | ⭐⭐⭐ 开发工具          |
 
 **依赖健康度**: ✅ 良好
+
 - 无已知安全漏洞
 - 版本较新（6-12 个月内）
 - 社区活跃
 
 **优化建议**:
+
 1. **lodash-es**: 使用 lodash-webpack-plugin 按需引入
 2. **serve**: 仅 devDependencies，不应在生产依赖
 3. 考虑移除未使用的依赖
 
 #### 开发依赖分析
 
-| 依赖 | 版本 | 用途 | 状态 |
-|------|------|------|------|
-| **typescript** | 5.1.6 | 类型系统 | ✅ 使用中 |
-| **vite** | 4.4.9 | 构建工具 | ✅ 使用中 |
-| **@types/node** | 20.4.8 | Node 类型 | ✅ 使用中 |
-| **@tailwindcss/forms** | 0.5.10 | 表单样式 | ⚠️ 未充分使用 |
-| **@tailwindcss/typography** | 0.5.19 | 排版样式 | ⚠️ 未充分使用 |
+| 依赖                        | 版本   | 用途      | 状态          |
+| --------------------------- | ------ | --------- | ------------- |
+| **typescript**              | 5.1.6  | 类型系统  | ✅ 使用中     |
+| **vite**                    | 4.4.9  | 构建工具  | ✅ 使用中     |
+| **@types/node**             | 20.4.8 | Node 类型 | ✅ 使用中     |
+| **@tailwindcss/forms**      | 0.5.10 | 表单样式  | ⚠️ 未充分使用 |
+| **@tailwindcss/typography** | 0.5.19 | 排版样式  | ⚠️ 未充分使用 |
 
 ### 4.2 构建工具和配置
 
@@ -594,7 +631,7 @@ export default defineConfig({
 ```javascript
 export default defineConfig({
   site: 'https://tying.ai',
-  output: 'static',              // ✅ 静态站点生成
+  output: 'static', // ✅ 静态站点生成
 
   integrations: [
     // ⚠️ Tailwind 集成被注释，未启用
@@ -602,7 +639,7 @@ export default defineConfig({
   ],
 
   build: {
-    format: 'file'               // ✅ 文件路由
+    format: 'file', // ✅ 文件路由
   },
 
   vite: {
@@ -610,32 +647,34 @@ export default defineConfig({
       rollupOptions: {
         output: {
           manualChunks: {
-            vendor: ['lodash-es', 'date-fns']  // ✅ 代码分割
-          }
-        }
-      }
+            vendor: ['lodash-es', 'date-fns'], // ✅ 代码分割
+          },
+        },
+      },
     },
     server: {
-      fs: { strict: false }      // ⚠️ 安全性降低
+      fs: { strict: false }, // ⚠️ 安全性降低
     },
     optimizeDeps: {
-      include: ['lodash-es', 'date-fns', 'alpinejs']  // ✅ 预构建
+      include: ['lodash-es', 'date-fns', 'alpinejs'], // ✅ 预构建
     },
-    cacheDir: 'node_modules/.vite'  // ✅ 明确缓存
+    cacheDir: 'node_modules/.vite', // ✅ 明确缓存
   },
 
-  compressHTML: true,            // ✅ HTML 压缩
-  devToolbar: { enabled: false } // ✅ 性能优化
+  compressHTML: true, // ✅ HTML 压缩
+  devToolbar: { enabled: false }, // ✅ 性能优化
 });
 ```
 
 **优化亮点**:
+
 - ✅ 禁用开发工具栏（减少启动时间）
 - ✅ 依赖预构建
 - ✅ 代码分割
 - ✅ HTML 压缩
 
 **待改进**:
+
 - ⚠️ 启用 Tailwind 集成
 - ⚠️ 添加 sitemap 生成
 - ⚠️ 添加 RSS feed
@@ -643,6 +682,7 @@ export default defineConfig({
 #### Vite 配置优化
 
 **预构建优化**:
+
 ```javascript
 optimizeDeps: {
   include: ['lodash-es', 'date-fns', 'alpinejs'],
@@ -651,8 +691,9 @@ optimizeDeps: {
 ```
 
 **缓存策略**:
+
 ```javascript
-cacheDir: 'node_modules/.vite'  // 明确缓存位置
+cacheDir: 'node_modules/.vite'; // 明确缓存位置
 ```
 
 #### Tailwind 配置 (tailwind.config.mjs)
@@ -661,21 +702,19 @@ cacheDir: 'node_modules/.vite'  // 明确缓存位置
 export default {
   content: [
     './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-    './*.html'
+    './*.html',
   ],
   theme: {
     extend: {
       // 自定义主题扩展
-    }
+    },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography')
-  ]
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
 ```
 
 **问题**:
+
 - ⚠️ Astro 中 Tailwind 集成未启用
 - ⚠️ 大部分页面仍使用自定义 CSS
 
@@ -684,12 +723,14 @@ export default {
 #### 设计系统：Glassmorphism
 
 **核心特点**:
+
 - 毛玻璃效果（backdrop-filter: blur）
 - 半透明背景
 - 微妙阴影和边框
 - 现代、优雅的视觉风格
 
 **CSS 变量系统** (layout.css):
+
 ```css
 :root {
   /* Glassmorphism 变量 */
@@ -715,11 +756,11 @@ export default {
   --bg-secondary: #f7fafc;
 
   /* 间距系统（8px 基准） */
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 1rem;      /* 16px */
-  --spacing-lg: 2rem;      /* 32px */
-  --spacing-xl: 4rem;      /* 64px */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 2rem; /* 32px */
+  --spacing-xl: 4rem; /* 64px */
 
   /* 字体系统 */
   --font-heading: 'Inter', 'PingFang SC', sans-serif;
@@ -737,6 +778,7 @@ export default {
 #### CSS 模块化结构
 
 **layout.css** (8.3KB, 324 行):
+
 - CSS 变量定义
 - 重置样式
 - 基础布局
@@ -744,6 +786,7 @@ export default {
 - 响应式断点
 
 **components.css** (10.6KB, 416 行):
+
 - 按钮组件
 - 卡片组件
 - 导航组件
@@ -751,12 +794,14 @@ export default {
 - 模态框
 
 **utilities.css** (9.1KB, 356 行):
+
 - 工具类
 - 动画效果
 - 响应式辅助
 - 可见性控制
 
 **styles.css** (39.9KB, 1757 行):
+
 - 遗留样式
 - 页面特定样式
 - ⚠️ **需要重构**
@@ -764,16 +809,28 @@ export default {
 #### 响应式设计
 
 **断点系统**:
+
 ```css
 /* Mobile First */
-@media (min-width: 640px) { /* sm */ }
-@media (min-width: 768px) { /* md */ }
-@media (min-width: 1024px) { /* lg */ }
-@media (min-width: 1280px) { /* xl */ }
-@media (min-width: 1536px) { /* 2xl */ }
+@media (min-width: 640px) {
+  /* sm */
+}
+@media (min-width: 768px) {
+  /* md */
+}
+@media (min-width: 1024px) {
+  /* lg */
+}
+@media (min-width: 1280px) {
+  /* xl */
+}
+@media (min-width: 1536px) {
+  /* 2xl */
+}
 ```
 
 **优势**:
+
 - ✅ 移动优先策略
 - ✅ 清晰的断点系统
 - ✅ 流式布局
@@ -783,6 +840,7 @@ export default {
 #### ES6 模块系统
 
 **入口文件** (js/main.js):
+
 ```javascript
 // 主应用类
 class TyingAIApp {
@@ -809,10 +867,16 @@ class TyingAIApp {
   }
 
   async loadCoreModules() {
-    const { PerformanceOptimizer } = await import('./modules/performance-optimizer.js');
-    const { NavigationController } = await import('./modules/navigation-controller.js');
+    const { PerformanceOptimizer } = await import(
+      './modules/performance-optimizer.js'
+    );
+    const { NavigationController } = await import(
+      './modules/navigation-controller.js'
+    );
     const { AnimationManager } = await import('./modules/animation-manager.js');
-    const { InteractionHandler } = await import('./modules/interaction-handler.js');
+    const { InteractionHandler } = await import(
+      './modules/interaction-handler.js'
+    );
 
     this.modules.set('performance', new PerformanceOptimizer());
     this.modules.set('navigation', new NavigationController());
@@ -830,18 +894,20 @@ if (document.readyState === 'loading') {
 ```
 
 **模块特点**:
+
 - ✅ 动态导入（代码分割）
 - ✅ 单例模式
 - ✅ 清晰的依赖关系
 - ✅ 错误边界
 
 **懒加载策略**:
+
 ```javascript
 // 仅在需要时加载
 const lazyLoadModules = {
   analytics: () => import('./modules/analytics.js'),
   chatbot: () => import('./modules/chatbot.js'),
-  charts: () => import('./modules/charts.js')
+  charts: () => import('./modules/charts.js'),
 };
 ```
 
@@ -853,37 +919,39 @@ const lazyLoadModules = {
 
 #### 核心页面
 
-| 页面 | 路径 | 行数 | 状态 | 说明 |
-|------|------|------|------|------|
-| **主页** | /index.html | 399 | ✅ 使用中 | 完整 SEO，Glassmorphism 设计 |
-| **主页（Astro）** | /src/pages/index.astro | ? | ⚠️ 备用 | Astro 版本，未使用 |
+| 页面              | 路径                   | 行数 | 状态      | 说明                         |
+| ----------------- | ---------------------- | ---- | --------- | ---------------------------- |
+| **主页**          | /index.html            | 399  | ✅ 使用中 | 完整 SEO，Glassmorphism 设计 |
+| **主页（Astro）** | /src/pages/index.astro | ?    | ⚠️ 备用   | Astro 版本，未使用           |
 
 #### 职位指南页面 (/position/)
 
-| 页面 | 文件名 | 说明 |
-|------|--------|------|
-| 软件工程师 | software-engineer.html | 职业路径、技能要求 |
-| 产品经理 | product-manager.html | PM 完整指南 |
-| AI 产品经理 | ai-product-manager.html | AI PM 专门指南 |
-| 数据科学家 | data-scientist.html | 数据科学职业 |
+| 页面        | 文件名                  | 说明               |
+| ----------- | ----------------------- | ------------------ |
+| 软件工程师  | software-engineer.html  | 职业路径、技能要求 |
+| 产品经理    | product-manager.html    | PM 完整指南        |
+| AI 产品经理 | ai-product-manager.html | AI PM 专门指南     |
+| 数据科学家  | data-scientist.html     | 数据科学职业       |
 
 #### 行业报告 (/report/)
 
-| 页面 | 文件名 | 行数 | 说明 |
-|------|--------|------|------|
-| 美国招聘市场分析 | us-job-market.html | 549 | 2024 行业趋势分析 |
+| 页面             | 文件名             | 行数 | 说明              |
+| ---------------- | ------------------ | ---- | ----------------- |
+| 美国招聘市场分析 | us-job-market.html | 549  | 2024 行业趋势分析 |
 
 #### 职业维基 (/wiki/)
 
 **规模**: 180+ 职位页面
 
 **主索引**: wiki/index.html
+
 - 职位搜索功能
 - 6 维度筛选（行业、职能、技能、等级、地点、薪资）
 - 分页显示
 - 排序功能
 
 **职位页面示例**:
+
 - software-engineer.html
 - product-manager.html
 - ux-designer.html
@@ -898,15 +966,16 @@ const lazyLoadModules = {
 **位置**: wiki/index.html
 
 **功能特性**:
+
 ```javascript
 // 6 维度筛选
 const filters = {
-  industry: [],      // 行业
-  function: [],      // 职能
-  skills: [],        // 技能要求
-  level: '',         // 职级
-  location: '',      // 地点
-  salaryRange: ''    // 薪资范围
+  industry: [], // 行业
+  function: [], // 职能
+  skills: [], // 技能要求
+  level: '', // 职级
+  location: '', // 地点
+  salaryRange: '', // 薪资范围
 };
 
 // 搜索算法
@@ -919,6 +988,7 @@ function searchPositions(query, filters) {
 ```
 
 **交互特性**:
+
 - 实时搜索（防抖）
 - 多选过滤器
 - 结果高亮
@@ -930,6 +1000,7 @@ function searchPositions(query, filters) {
 **位置**: js/modules/performance-optimizer.js
 
 **功能**:
+
 ```javascript
 class PerformanceOptimizer {
   // Core Web Vitals 监控
@@ -943,7 +1014,7 @@ class PerformanceOptimizer {
   // 网络连接检测
   detectNetworkSpeed() {
     const connection = navigator.connection;
-    return connection?.effectiveType;  // '4g', '3g', '2g', 'slow-2g'
+    return connection?.effectiveType; // '4g', '3g', '2g', 'slow-2g'
   }
 
   // 设备性能检测
@@ -951,7 +1022,7 @@ class PerformanceOptimizer {
     return {
       cores: navigator.hardwareConcurrency,
       memory: navigator.deviceMemory,
-      isLowEnd: this.isLowEndDevice()
+      isLowEnd: this.isLowEndDevice(),
     };
   }
 
@@ -965,6 +1036,7 @@ class PerformanceOptimizer {
 ```
 
 **优势**:
+
 - ✅ 实时性能监控
 - ✅ 自适应优化
 - ✅ 用户体验优先
@@ -974,12 +1046,13 @@ class PerformanceOptimizer {
 **位置**: js/modules/animation-manager.js
 
 **功能**:
+
 ```javascript
 class AnimationManager {
   constructor() {
     this.observer = new IntersectionObserver(
       this.handleIntersection.bind(this),
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
   }
 
@@ -1002,7 +1075,7 @@ class AnimationManager {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animate-in');
-        this.observer.unobserve(entry.target);  // 避免重复触发
+        this.observer.unobserve(entry.target); // 避免重复触发
       }
     });
   }
@@ -1010,6 +1083,7 @@ class AnimationManager {
 ```
 
 **优势**:
+
 - ✅ IntersectionObserver 高性能
 - ✅ requestAnimationFrame 优化
 - ✅ 智能降级（低端设备）
@@ -1019,6 +1093,7 @@ class AnimationManager {
 **Service Worker**: sw.js
 
 **功能**:
+
 ```javascript
 // 缓存策略
 const CACHE_VERSION = 'v1';
@@ -1028,14 +1103,15 @@ const CACHE_ASSETS = [
   '/layout.css',
   '/components.css',
   '/utilities.css',
-  '/js/main.js'
+  '/js/main.js',
 ];
 
 // 缓存优先策略
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
+    caches
+      .match(event.request)
+      .then(response => response || fetch(event.request)),
   );
 });
 ```
@@ -1043,6 +1119,7 @@ self.addEventListener('fetch', event => {
 **清单文件**: manifest.json
 
 **PWA 特性**:
+
 - ✅ 离线访问
 - ✅ 安装到桌面
 - ✅ 推送通知（可扩展）
@@ -1066,11 +1143,13 @@ self.addEventListener('fetch', event => {
 ```
 
 **优势**:
+
 - ✅ SEO 友好
 - ✅ 简单直观
 - ✅ 无需客户端路由
 
 **劣势**:
+
 - ⚠️ 页面跳转需重新加载
 - ⚠️ 共享状态困难
 
@@ -1083,14 +1162,17 @@ self.addEventListener('fetch', event => {
 #### 开发服务器启动优化
 
 **优化前**:
+
 - 冷启动: ~15-20 秒
 - 热启动: ~8-12 秒
 
 **优化后**:
+
 - 冷启动: ~8-12 秒（提升 40-50%）
 - 热启动: ~3-5 秒（提升 50-60%）
 
 **优化措施**:
+
 1. 禁用 Astro devToolbar
 2. Vite 依赖预构建
 3. 文件系统检查优化
@@ -1098,6 +1180,7 @@ self.addEventListener('fetch', event => {
 5. 缓存目录明确配置
 
 **配置** (astro.config.mjs):
+
 ```javascript
 {
   devToolbar: { enabled: false },
@@ -1113,16 +1196,19 @@ self.addEventListener('fetch', event => {
 #### Git/CD 性能优化 ⭐⭐⭐
 
 **优化前**:
+
 - `git status`: 28.58 秒
 - `cd` 进入目录: ~30 秒
 
 **优化后**:
+
 - `git status`: 0.027 秒（提升 **99.9%**）
 - `cd` 进入目录: <0.2 秒（提升 **99.3%**）
 
 **根本原因**: Git ahead/behind 计算耗时 28.54 秒
 
 **优化措施**:
+
 ```bash
 # 禁用 ahead/behind 计算（关键优化）
 git config --local status.aheadbehind false
@@ -1141,18 +1227,21 @@ git config --local core.fscache true
 #### 前端性能优化
 
 **资源优化**:
+
 - ✅ CSS 模块化（并行加载）
 - ✅ JavaScript 代码分割
 - ✅ 图片懒加载
 - ✅ Service Worker 缓存
 
 **渲染优化**:
+
 - ✅ requestAnimationFrame（动画）
 - ✅ IntersectionObserver（懒加载）
 - ✅ 防抖/节流（事件处理）
 - ✅ 低端设备自适应
 
 **网络优化**:
+
 - ✅ CDN 资源
 - ✅ 资源预加载
 - ✅ Gzip/Brotli 压缩
@@ -1163,6 +1252,7 @@ git config --local core.fscache true
 #### 短期优化（1-2 周）
 
 **1. 图片优化**
+
 ```javascript
 // 当前：普通图片格式
 <img src="image.png" alt="...">
@@ -1178,6 +1268,7 @@ git config --local core.fscache true
 **预期收益**: 减少 30-50% 图片大小
 
 **2. CSS 优化**
+
 - 合并重复样式
 - 移除未使用的 CSS（PurgeCSS）
 - Critical CSS 内联
@@ -1185,6 +1276,7 @@ git config --local core.fscache true
 **预期收益**: 减少 20-30% CSS 大小
 
 **3. JavaScript 优化**
+
 - Tree-shaking（移除未使用代码）
 - 更精细的代码分割
 - 压缩优化
@@ -1194,16 +1286,19 @@ git config --local core.fscache true
 #### 中期优化（1 个月）
 
 **1. 完全迁移到 Astro**
+
 - 移除双轨架构
 - 统一构建流程
 - 充分利用 Astro 岛屿架构
 
 **预期收益**:
+
 - 减少维护成本 50%
 - 提升构建速度 30%
 - 更好的开发体验
 
 **2. 实现完整的 PWA**
+
 - 离线优先策略
 - 后台同步
 - 推送通知
@@ -1212,6 +1307,7 @@ git config --local core.fscache true
 **预期收益**: 提升用户留存率 20-30%
 
 **3. 性能监控集成**
+
 - Google Analytics 4
 - Sentry 错误追踪
 - Web Vitals 实时监控
@@ -1222,6 +1318,7 @@ git config --local core.fscache true
 #### 长期优化（3 个月）
 
 **1. 边缘计算（Edge Computing）**
+
 - Cloudflare Workers
 - 动态内容缓存
 - 地理位置优化
@@ -1229,6 +1326,7 @@ git config --local core.fscache true
 **预期收益**: 全球访问速度提升 40-60%
 
 **2. 微前端架构**
+
 - 模块独立部署
 - 团队协作优化
 - 渐进式升级
@@ -1236,6 +1334,7 @@ git config --local core.fscache true
 **预期收益**: 开发效率提升 30%
 
 **3. AI 功能增强**
+
 - 智能推荐系统
 - 个性化内容
 - 自然语言搜索
@@ -1251,6 +1350,7 @@ git config --local core.fscache true
 #### npm 脚本
 
 **开发命令**:
+
 ```json
 {
   "dev": "astro dev --host localhost --port 3000",
@@ -1260,6 +1360,7 @@ git config --local core.fscache true
 ```
 
 **构建命令**:
+
 ```json
 {
   "build": "astro build",
@@ -1269,6 +1370,7 @@ git config --local core.fscache true
 ```
 
 **质量检查**:
+
 ```json
 {
   "lint": "eslint . --ext .ts,.js,.astro --max-warnings=0",
@@ -1280,6 +1382,7 @@ git config --local core.fscache true
 ```
 
 **测试命令**:
+
 ```json
 {
   "test": "playwright test",
@@ -1293,6 +1396,7 @@ git config --local core.fscache true
 **代码编辑器**: VSCode（推荐配置）
 
 **.vscode/settings.json**:
+
 ```json
 {
   "editor.formatOnSave": true,
@@ -1302,6 +1406,7 @@ git config --local core.fscache true
 ```
 
 **推荐扩展**:
+
 - Astro
 - ESLint
 - Prettier
@@ -1312,18 +1417,21 @@ git config --local core.fscache true
 #### 构建方案
 
 **方案 1: Astro 构建**（推荐）
+
 ```bash
 npm run build
 # 输出：dist/
 ```
 
 **方案 2: 简单构建**
+
 ```bash
 npm run build:simple
 # 复制文件到 dist/
 ```
 
 **方案 3: 传统构建脚本**
+
 ```bash
 npm run build:legacy
 # 运行 build.sh
@@ -1357,6 +1465,7 @@ npm run build:legacy
    - 成本: 免费（个人）
 
 **推荐部署流程**:
+
 ```bash
 # 1. 本地测试
 npm run build
@@ -1376,15 +1485,18 @@ git push
 #### 分支策略
 
 **主分支**:
+
 - `main`: 生产环境
 - `master`: 备用主分支
 
 **功能分支**:
+
 - `feature/*`: 新功能开发
 - `refactor/*`: 代码重构
 - `fix/*`: Bug 修复
 
 **示例**:
+
 ```bash
 git checkout -b feature/add-search-filters
 # 开发...
@@ -1396,6 +1508,7 @@ git push origin feature/add-search-filters
 #### Git 配置优化
 
 **本地配置** (.git/config):
+
 ```ini
 [core]
     untrackedCache = true
@@ -1407,6 +1520,7 @@ git push origin feature/add-search-filters
 ```
 
 **全局 .gitignore**:
+
 ```
 node_modules/
 dist/
@@ -1426,6 +1540,7 @@ dist/
 #### 高优先级问题
 
 **1. 测试覆盖极低** ⚠️⚠️⚠️
+
 - **问题**: 测试覆盖率 <10%，几乎无测试
 - **影响**: 重构风险高，回归问题难发现
 - **建议**:
@@ -1436,6 +1551,7 @@ dist/
 - **优先级**: 🔴 高
 
 **2. 双轨架构维护负担** ⚠️⚠️
+
 - **问题**: Astro 和传统 HTML 并存，维护成本高
 - **影响**: 开发效率低，容易出错
 - **建议**:
@@ -1446,6 +1562,7 @@ dist/
 - **优先级**: 🟡 中
 
 **3. TypeScript 覆盖不足** ⚠️⚠️
+
 - **问题**: 核心模块仍为 .js，覆盖率 75-80%
 - **影响**: 类型安全不足，重构困难
 - **建议**:
@@ -1458,6 +1575,7 @@ dist/
 #### 中优先级问题
 
 **4. Astro 集成未充分利用** ⚠️
+
 - **问题**: Tailwind 集成被注释，未启用
 - **影响**: 未充分发挥框架能力
 - **建议**:
@@ -1468,6 +1586,7 @@ dist/
 - **优先级**: 🟡 中
 
 **5. CSS 文件过大** ⚠️
+
 - **问题**: styles.css 1757 行，需重构
 - **影响**: 加载时间长，维护困难
 - **建议**:
@@ -1480,6 +1599,7 @@ dist/
 #### 低优先级问题
 
 **6. 文档语言混合** ⚠️
+
 - **问题**: 中英文混用，不一致
 - **影响**: 阅读体验差
 - **建议**: 统一为中文或英文
@@ -1487,6 +1607,7 @@ dist/
 - **优先级**: 🟢 低
 
 **7. 依赖版本更新** ⚠️
+
 - **问题**: 部分依赖 6-12 个月未更新
 - **影响**: 安全风险，功能落后
 - **建议**: 定期更新依赖
@@ -1498,6 +1619,7 @@ dist/
 #### 架构改进
 
 **1. 完成 Astro 迁移**
+
 ```
 Q4 2025: 迁移报告页面
 Q1 2026: 迁移职位指南
@@ -1506,6 +1628,7 @@ Q3 2026: 完全移除传统架构
 ```
 
 **预期收益**:
+
 - 减少代码库大小 30%
 - 提升构建速度 40%
 - 降低维护成本 50%
@@ -1513,21 +1636,23 @@ Q3 2026: 完全移除传统架构
 **2. 引入状态管理**
 
 如果未来需要复杂交互：
+
 ```javascript
 // 建议使用 Zustand（轻量）
 import create from 'zustand';
 
-const useStore = create((set) => ({
+const useStore = create(set => ({
   filters: {},
-  setFilters: (filters) => set({ filters }),
+  setFilters: filters => set({ filters }),
   positions: [],
-  setPositions: (positions) => set({ positions })
+  setPositions: positions => set({ positions }),
 }));
 ```
 
 **3. 组件库建设**
 
 创建可复用组件库：
+
 ```
 src/components/
 ├── Button.astro
@@ -1583,6 +1708,7 @@ test('should navigate to position page', async ({ page }) => {
 **1. 性能预算**
 
 设置性能预算防止退化：
+
 ```javascript
 // lighthouse.config.js
 module.exports = {
@@ -1592,16 +1718,17 @@ module.exports = {
         'first-contentful-paint': ['error', { maxNumericValue: 2000 }],
         'largest-contentful-paint': ['error', { maxNumericValue: 2500 }],
         'cumulative-layout-shift': ['error', { maxNumericValue: 0.1 }],
-        'interactive': ['error', { maxNumericValue: 3000 }]
-      }
-    }
-  }
+        interactive: ['error', { maxNumericValue: 3000 }],
+      },
+    },
+  },
 };
 ```
 
 **2. Bundle 分析**
 
 定期分析 bundle 大小：
+
 ```bash
 npm run build
 npx vite-bundle-visualizer
@@ -1610,6 +1737,7 @@ npx vite-bundle-visualizer
 **3. 监控集成**
 
 添加 Web Vitals 监控：
+
 ```javascript
 import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
 
@@ -1630,6 +1758,7 @@ getTTFB(sendToAnalytics);
 **1. Pre-commit 钩子**
 
 防止低质量代码提交：
+
 ```bash
 npm install -D husky lint-staged
 
@@ -1645,6 +1774,7 @@ npm install -D husky lint-staged
 **2. 自动化文档**
 
 添加 API 文档生成：
+
 ```bash
 npm install -D typedoc
 npx typedoc --out docs src/
@@ -1653,6 +1783,7 @@ npx typedoc --out docs src/
 **3. 开发者指南**
 
 扩展 DEV_GUIDE.md：
+
 - 架构决策记录（ADR）
 - 组件开发规范
 - Git commit 规范
@@ -1664,30 +1795,33 @@ npx typedoc --out docs src/
 
 ### 9.1 已识别的技术债
 
-| 技术债 | 严重程度 | 估算成本 | 建议行动 |
-|--------|----------|----------|----------|
-| **双轨架构** | 🔴 高 | 2-3 个月 | Q1-Q2 2026 逐步迁移 |
-| **缺少测试** | 🔴 高 | 2-4 周 | 立即开始添加 |
-| **TypeScript 覆盖** | 🟡 中 | 1-2 周 | Q4 2025 完成 |
-| **CSS 重构** | 🟡 中 | 1 周 | Q4 2025 |
-| **文档语言** | 🟢 低 | 1-2 天 | Q4 2025 |
-| **依赖更新** | 🟢 低 | 1 天 | 每月一次 |
+| 技术债              | 严重程度 | 估算成本 | 建议行动            |
+| ------------------- | -------- | -------- | ------------------- |
+| **双轨架构**        | 🔴 高    | 2-3 个月 | Q1-Q2 2026 逐步迁移 |
+| **缺少测试**        | 🔴 高    | 2-4 周   | 立即开始添加        |
+| **TypeScript 覆盖** | 🟡 中    | 1-2 周   | Q4 2025 完成        |
+| **CSS 重构**        | 🟡 中    | 1 周     | Q4 2025             |
+| **文档语言**        | 🟢 低    | 1-2 天   | Q4 2025             |
+| **依赖更新**        | 🟢 低    | 1 天     | 每月一次            |
 
 ### 9.2 还债优先级
 
 **Phase 1: 立即行动**（1 个月内）
+
 1. 添加核心模块单元测试
 2. 将 js/modules/ 迁移到 TypeScript
 3. 启用 Astro Tailwind 集成
 4. 设置 pre-commit 钩子
 
 **Phase 2: 短期改进**（2-3 个月）
+
 1. 重构 styles.css
 2. 添加 E2E 测试
 3. 完善文档
 4. 性能预算集成
 
 **Phase 3: 中期规划**（3-6 个月）
+
 1. 完成 Astro 迁移
 2. 组件库建设
 3. 性能监控集成
@@ -1751,6 +1885,7 @@ npx typedoc --out docs src/
 **技术成熟度**: 3.8/5 ⭐⭐⭐⭐
 
 **适用场景**:
+
 - ✅ 中小型信息展示网站
 - ✅ 职业规划类平台
 - ✅ 内容密集型应用
@@ -1758,6 +1893,7 @@ npx typedoc --out docs src/
 - ❌ 大型企业级应用（需架构升级）
 
 **技术选型评价**:
+
 - Astro: ✅ 优秀选择（静态内容为主）
 - TypeScript: ✅ 良好（需提升覆盖率）
 - Tailwind CSS: ⚠️ 未充分利用
@@ -1767,18 +1903,21 @@ npx typedoc --out docs src/
 ### 10.4 总结建议
 
 **立即行动** (High Priority):
+
 1. 添加单元测试（目标 30% 覆盖率）
 2. TypeScript 迁移（js/modules/）
 3. 启用 Astro Tailwind 集成
 4. 设置 CI/CD 流程
 
 **短期改进** (Medium Priority):
+
 1. 重构 styles.css
 2. 添加 E2E 测试
 3. 统一文档语言
 4. 性能监控集成
 
 **长期规划** (Low Priority):
+
 1. 完成 Astro 迁移
 2. 组件库建设
 3. PWA 完整实现
@@ -1791,6 +1930,7 @@ npx typedoc --out docs src/
 ### A. 关键文件清单
 
 **配置文件**:
+
 - `package.json` - 依赖和脚本
 - `astro.config.mjs` - Astro 配置
 - `tailwind.config.mjs` - Tailwind 配置
@@ -1798,6 +1938,7 @@ npx typedoc --out docs src/
 - `playwright.config.ts` - 测试配置
 
 **核心代码**:
+
 - `js/main.js` - 应用入口
 - `js/modules/performance-optimizer.js` - 性能优化
 - `js/modules/navigation-controller.js` - 导航控制
@@ -1805,12 +1946,14 @@ npx typedoc --out docs src/
 - `js/modules/interaction-handler.js` - 交互处理
 
 **样式文件**:
+
 - `layout.css` - 基础布局（8.3KB）
 - `components.css` - UI 组件（10.6KB）
 - `utilities.css` - 工具类（9.1KB）
 - `styles.css` - 传统样式（39.9KB）
 
 **文档文件**:
+
 - `README.md` - 项目介绍
 - `DEV_GUIDE.md` - 开发指南
 - `PERFORMANCE_OPTIMIZATION_SUMMARY.md` - 性能优化总结
@@ -1820,12 +1963,14 @@ npx typedoc --out docs src/
 ### B. 性能指标
 
 **当前性能**:
+
 - 开发服务器冷启动: ~8-12 秒
 - 开发服务器热启动: ~3-5 秒
 - Git 状态检查: 0.027 秒
 - cd 操作: <0.2 秒
 
 **生产性能目标**:
+
 - FCP (First Contentful Paint): <1.5 秒
 - LCP (Largest Contentful Paint): <2.5 秒
 - CLS (Cumulative Layout Shift): <0.1
@@ -1835,6 +1980,7 @@ npx typedoc --out docs src/
 ### C. 联系信息
 
 **项目**:
+
 - GitHub: https://github.com/Digidai/tying.ai
 - 网站: https://tying.ai
 - 邮箱: contact@tying.ai
@@ -1845,7 +1991,4 @@ npx typedoc --out docs src/
 
 **分析报告结束**
 
-生成日期: 2025-11-08
-报告版本: 1.0
-分析工具: Claude Code
-分析级别: Very Thorough
+生成日期: 2025-11-08报告版本: 1.0分析工具: Claude Code分析级别: Very Thorough
