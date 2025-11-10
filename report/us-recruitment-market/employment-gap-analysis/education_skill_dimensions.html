@@ -1,383 +1,367 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Education and Skill Dimensions Analysis</title>
-                <script type="text/javascript" src="https://g.alicdn.com/code/lib/echarts/5.6.0/echarts.min.js"></script>
-
-    
-</head>
-<body >
-    <div id="6fd7d4726c0a4894b5174616b79b204c" class="chart-container" style="width:100%; height:500px; "></div>
+    <script
+      type="text/javascript"
+      src="https://g.alicdn.com/code/lib/echarts/5.6.0/echarts.min.js"
+    ></script>
+  </head>
+  <body>
+    <div
+      id="6fd7d4726c0a4894b5174616b79b204c"
+      class="chart-container"
+      style="width: 100%; height: 500px"
+    ></div>
     <script>
-        var chart_6fd7d4726c0a4894b5174616b79b204c = echarts.init(
-            document.getElementById('6fd7d4726c0a4894b5174616b79b204c'), 'white', {renderer: 'canvas'});
-        var option_6fd7d4726c0a4894b5174616b79b204c = {
-    "animation": true,
-    "animationThreshold": 2000,
-    "animationDuration": 1000,
-    "animationEasing": "cubicOut",
-    "animationDelay": 0,
-    "animationDurationUpdate": 300,
-    "animationEasingUpdate": "cubicOut",
-    "animationDelayUpdate": 0,
-    "aria": {
-        "enabled": false
-    },
-    "color": [
-        "#5793f3",
-        "#d14a61",
-        "#5470c6",
-        "#91cc75",
-        "#fac858",
-        "#ee6666",
-        "#73c0de",
-        "#3ba272",
-        "#fc8452",
-        "#9a60b4",
-        "#ea7ccc"
-    ],
-    "series": [
-        {
-            "type": "bar",
-            "name": "Unemployment Rate (%)",
-            "xAxisIndex": 0,
-            "yAxisIndex": 0,
-            "legendHoverLink": true,
-            "data": [
-                8,
-                4.5,
-                3.2,
-                2.8,
-                1.9
-            ],
-            "realtimeSort": false,
-            "showBackground": false,
-            "stackStrategy": "samesign",
-            "cursor": "pointer",
-            "barMinHeight": 0,
-            "barCategoryGap": "20%",
-            "barGap": "30%",
-            "large": false,
-            "largeThreshold": 400,
-            "seriesLayoutBy": "column",
-            "datasetIndex": 0,
-            "clip": true,
-            "zlevel": 0,
-            "z": 2,
-            "label": {
-                "show": true,
-                "margin": 8,
-                "valueAnimation": false
-            }
+      var chart_6fd7d4726c0a4894b5174616b79b204c = echarts.init(
+        document.getElementById('6fd7d4726c0a4894b5174616b79b204c'),
+        'white',
+        { renderer: 'canvas' },
+      );
+      var option_6fd7d4726c0a4894b5174616b79b204c = {
+        animation: true,
+        animationThreshold: 2000,
+        animationDuration: 1000,
+        animationEasing: 'cubicOut',
+        animationDelay: 0,
+        animationDurationUpdate: 300,
+        animationEasingUpdate: 'cubicOut',
+        animationDelayUpdate: 0,
+        aria: {
+          enabled: false,
         },
-        {
-            "type": "bar",
-            "name": "Underemployment Rate (%)",
-            "xAxisIndex": 0,
-            "yAxisIndex": 0,
-            "legendHoverLink": true,
-            "data": [
-                45,
-                17.9,
-                28,
-                25,
-                22
-            ],
-            "realtimeSort": false,
-            "showBackground": false,
-            "stackStrategy": "samesign",
-            "cursor": "pointer",
-            "barMinHeight": 0,
-            "barCategoryGap": "20%",
-            "barGap": "30%",
-            "large": false,
-            "largeThreshold": 400,
-            "seriesLayoutBy": "column",
-            "datasetIndex": 0,
-            "clip": true,
-            "zlevel": 0,
-            "z": 2,
-            "label": {
-                "show": true,
-                "margin": 8,
-                "valueAnimation": false
-            }
-        },
-        {
-            "type": "pie",
-            "colorBy": "data",
-            "legendHoverLink": true,
-            "selectedMode": false,
-            "selectedOffset": 10,
-            "clockwise": true,
-            "startAngle": 90,
-            "minAngle": 0,
-            "minShowLabelAngle": 0,
-            "avoidLabelOverlap": true,
-            "stillShowZeroSum": true,
-            "percentPrecision": 2,
-            "showEmptyCircle": true,
-            "emptyCircleStyle": {
-                "color": "lightgray",
-                "borderColor": "#000",
-                "borderWidth": 0,
-                "borderType": "solid",
-                "borderDashOffset": 0,
-                "borderCap": "butt",
-                "borderJoin": "bevel",
-                "borderMiterLimit": 10,
-                "opacity": 1
+        color: [
+          '#5793f3',
+          '#d14a61',
+          '#5470c6',
+          '#91cc75',
+          '#fac858',
+          '#ee6666',
+          '#73c0de',
+          '#3ba272',
+          '#fc8452',
+          '#9a60b4',
+          '#ea7ccc',
+        ],
+        series: [
+          {
+            type: 'bar',
+            name: 'Unemployment Rate (%)',
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            legendHoverLink: true,
+            data: [8, 4.5, 3.2, 2.8, 1.9],
+            realtimeSort: false,
+            showBackground: false,
+            stackStrategy: 'samesign',
+            cursor: 'pointer',
+            barMinHeight: 0,
+            barCategoryGap: '20%',
+            barGap: '30%',
+            large: false,
+            largeThreshold: 400,
+            seriesLayoutBy: 'column',
+            datasetIndex: 0,
+            clip: true,
+            zlevel: 0,
+            z: 2,
+            label: {
+              show: true,
+              margin: 8,
+              valueAnimation: false,
             },
-            "data": [
-                {
-                    "name": "Export High-Skill Ratio",
-                    "value": 55
-                },
-                {
-                    "name": "Import High-Skill Ratio",
-                    "value": 43
-                }
-            ],
-            "radius": [
-                "30%",
-                "50%"
-            ],
-            "center": [
-                "75%",
-                "50%"
-            ],
-            "label": {
-                "show": true,
-                "margin": 8,
-                "formatter": "{b}: {d}%",
-                "valueAnimation": false
+          },
+          {
+            type: 'bar',
+            name: 'Underemployment Rate (%)',
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            legendHoverLink: true,
+            data: [45, 17.9, 28, 25, 22],
+            realtimeSort: false,
+            showBackground: false,
+            stackStrategy: 'samesign',
+            cursor: 'pointer',
+            barMinHeight: 0,
+            barCategoryGap: '20%',
+            barGap: '30%',
+            large: false,
+            largeThreshold: 400,
+            seriesLayoutBy: 'column',
+            datasetIndex: 0,
+            clip: true,
+            zlevel: 0,
+            z: 2,
+            label: {
+              show: true,
+              margin: 8,
+              valueAnimation: false,
             },
-            "labelLine": {
-                "show": true,
-                "showAbove": false,
-                "length": 15,
-                "length2": 15,
-                "smooth": false,
-                "minTurnAngle": 90,
-                "maxSurfaceAngle": 90
+          },
+          {
+            type: 'pie',
+            colorBy: 'data',
+            legendHoverLink: true,
+            selectedMode: false,
+            selectedOffset: 10,
+            clockwise: true,
+            startAngle: 90,
+            minAngle: 0,
+            minShowLabelAngle: 0,
+            avoidLabelOverlap: true,
+            stillShowZeroSum: true,
+            percentPrecision: 2,
+            showEmptyCircle: true,
+            emptyCircleStyle: {
+              color: 'lightgray',
+              borderColor: '#000',
+              borderWidth: 0,
+              borderType: 'solid',
+              borderDashOffset: 0,
+              borderCap: 'butt',
+              borderJoin: 'bevel',
+              borderMiterLimit: 10,
+              opacity: 1,
             },
-            "xAxisIndex": 1,
-            "yAxisIndex": 1
-        }
-    ],
-    "legend": [
-        {
-            "data": [
-                "Unemployment Rate (%)",
-                "Underemployment Rate (%)"
+            data: [
+              {
+                name: 'Export High-Skill Ratio',
+                value: 55,
+              },
+              {
+                name: 'Import High-Skill Ratio',
+                value: 43,
+              },
             ],
-            "selected": {},
-            "show": false,
-            "padding": 5,
-            "itemGap": 10,
-            "itemWidth": 25,
-            "itemHeight": 14,
-            "backgroundColor": "transparent",
-            "borderColor": "#ccc",
-            "borderRadius": 0,
-            "pageButtonItemGap": 5,
-            "pageButtonPosition": "end",
-            "pageFormatter": "{current}/{total}",
-            "pageIconColor": "#2f4554",
-            "pageIconInactiveColor": "#aaa",
-            "pageIconSize": 15,
-            "animationDurationUpdate": 800,
-            "selector": false,
-            "selectorPosition": "auto",
-            "selectorItemGap": 7,
-            "selectorButtonGap": 10
+            radius: ['30%', '50%'],
+            center: ['75%', '50%'],
+            label: {
+              show: true,
+              margin: 8,
+              formatter: '{b}: {d}%',
+              valueAnimation: false,
+            },
+            labelLine: {
+              show: true,
+              showAbove: false,
+              length: 15,
+              length2: 15,
+              smooth: false,
+              minTurnAngle: 90,
+              maxSurfaceAngle: 90,
+            },
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+          },
+        ],
+        legend: [
+          {
+            data: ['Unemployment Rate (%)', 'Underemployment Rate (%)'],
+            selected: {},
+            show: false,
+            padding: 5,
+            itemGap: 10,
+            itemWidth: 25,
+            itemHeight: 14,
+            backgroundColor: 'transparent',
+            borderColor: '#ccc',
+            borderRadius: 0,
+            pageButtonItemGap: 5,
+            pageButtonPosition: 'end',
+            pageFormatter: '{current}/{total}',
+            pageIconColor: '#2f4554',
+            pageIconInactiveColor: '#aaa',
+            pageIconSize: 15,
+            animationDurationUpdate: 800,
+            selector: false,
+            selectorPosition: 'auto',
+            selectorItemGap: 7,
+            selectorButtonGap: 10,
+          },
+          {
+            data: ['Export High-Skill Ratio', 'Import High-Skill Ratio'],
+            selected: {},
+            show: false,
+            padding: 5,
+            itemGap: 10,
+            itemWidth: 25,
+            itemHeight: 14,
+            backgroundColor: 'transparent',
+            borderColor: '#ccc',
+            borderRadius: 0,
+            pageButtonItemGap: 5,
+            pageButtonPosition: 'end',
+            pageFormatter: '{current}/{total}',
+            pageIconColor: '#2f4554',
+            pageIconInactiveColor: '#aaa',
+            pageIconSize: 15,
+            animationDurationUpdate: 800,
+            selector: false,
+            selectorPosition: 'auto',
+            selectorItemGap: 7,
+            selectorButtonGap: 10,
+          },
+        ],
+        tooltip: {
+          show: true,
+          trigger: 'axis',
+          triggerOn: 'mousemove|click',
+          axisPointer: {
+            type: 'shadow',
+          },
+          showContent: true,
+          alwaysShowContent: false,
+          showDelay: 0,
+          hideDelay: 100,
+          enterable: false,
+          confine: false,
+          appendToBody: false,
+          transitionDuration: 0.4,
+          textStyle: {
+            fontSize: 14,
+          },
+          borderWidth: 0,
+          padding: 5,
+          order: 'seriesAsc',
         },
-        {
-            "data": [
-                "Export High-Skill Ratio",
-                "Import High-Skill Ratio"
+        xAxis: [
+          {
+            show: true,
+            scale: false,
+            nameLocation: 'end',
+            nameGap: 15,
+            gridIndex: 0,
+            axisLabel: {
+              show: true,
+              rotate: 30,
+              margin: 8,
+              valueAnimation: false,
+            },
+            inverse: false,
+            offset: 0,
+            splitNumber: 5,
+            minInterval: 0,
+            splitLine: {
+              show: true,
+              lineStyle: {
+                show: true,
+                width: 1,
+                opacity: 1,
+                curveness: 0,
+                type: 'solid',
+              },
+            },
+            animation: true,
+            animationThreshold: 2000,
+            animationDuration: 1000,
+            animationEasing: 'cubicOut',
+            animationDelay: 0,
+            animationDurationUpdate: 300,
+            animationEasingUpdate: 'cubicOut',
+            animationDelayUpdate: 0,
+            data: [
+              '\u827a\u672f\u53f2',
+              '\u822a\u7a7a\u822a\u5929\u5de5\u7a0b',
+              '\u5de5\u5b66',
+              '\u533b\u5b66',
+              '\u6559\u80b2\u5b66',
             ],
-            "selected": {},
-            "show": false,
-            "padding": 5,
-            "itemGap": 10,
-            "itemWidth": 25,
-            "itemHeight": 14,
-            "backgroundColor": "transparent",
-            "borderColor": "#ccc",
-            "borderRadius": 0,
-            "pageButtonItemGap": 5,
-            "pageButtonPosition": "end",
-            "pageFormatter": "{current}/{total}",
-            "pageIconColor": "#2f4554",
-            "pageIconInactiveColor": "#aaa",
-            "pageIconSize": 15,
-            "animationDurationUpdate": 800,
-            "selector": false,
-            "selectorPosition": "auto",
-            "selectorItemGap": 7,
-            "selectorButtonGap": 10
-        }
-    ],
-    "tooltip": {
-        "show": true,
-        "trigger": "axis",
-        "triggerOn": "mousemove|click",
-        "axisPointer": {
-            "type": "shadow"
-        },
-        "showContent": true,
-        "alwaysShowContent": false,
-        "showDelay": 0,
-        "hideDelay": 100,
-        "enterable": false,
-        "confine": false,
-        "appendToBody": false,
-        "transitionDuration": 0.4,
-        "textStyle": {
-            "fontSize": 14
-        },
-        "borderWidth": 0,
-        "padding": 5,
-        "order": "seriesAsc"
-    },
-    "xAxis": [
-        {
-            "show": true,
-            "scale": false,
-            "nameLocation": "end",
-            "nameGap": 15,
-            "gridIndex": 0,
-            "axisLabel": {
-                "show": true,
-                "rotate": 30,
-                "margin": 8,
-                "valueAnimation": false
+          },
+        ],
+        yAxis: [
+          {
+            name: '\u767e\u5206\u6bd4(%)',
+            show: true,
+            scale: false,
+            nameLocation: 'end',
+            nameGap: 15,
+            gridIndex: 0,
+            inverse: false,
+            offset: 0,
+            splitNumber: 5,
+            minInterval: 0,
+            splitLine: {
+              show: true,
+              lineStyle: {
+                show: true,
+                width: 1,
+                opacity: 1,
+                curveness: 0,
+                type: 'solid',
+              },
             },
-            "inverse": false,
-            "offset": 0,
-            "splitNumber": 5,
-            "minInterval": 0,
-            "splitLine": {
-                "show": true,
-                "lineStyle": {
-                    "show": true,
-                    "width": 1,
-                    "opacity": 1,
-                    "curveness": 0,
-                    "type": "solid"
-                }
-            },
-            "animation": true,
-            "animationThreshold": 2000,
-            "animationDuration": 1000,
-            "animationEasing": "cubicOut",
-            "animationDelay": 0,
-            "animationDurationUpdate": 300,
-            "animationEasingUpdate": "cubicOut",
-            "animationDelayUpdate": 0,
-            "data": [
-                "\u827a\u672f\u53f2",
-                "\u822a\u7a7a\u822a\u5929\u5de5\u7a0b",
-                "\u5de5\u5b66",
-                "\u533b\u5b66",
-                "\u6559\u80b2\u5b66"
-            ]
-        }
-    ],
-    "yAxis": [
-        {
-            "name": "\u767e\u5206\u6bd4(%)",
-            "show": true,
-            "scale": false,
-            "nameLocation": "end",
-            "nameGap": 15,
-            "gridIndex": 0,
-            "inverse": false,
-            "offset": 0,
-            "splitNumber": 5,
-            "minInterval": 0,
-            "splitLine": {
-                "show": true,
-                "lineStyle": {
-                    "show": true,
-                    "width": 1,
-                    "opacity": 1,
-                    "curveness": 0,
-                    "type": "solid"
-                }
-            },
-            "animation": true,
-            "animationThreshold": 2000,
-            "animationDuration": 1000,
-            "animationEasing": "cubicOut",
-            "animationDelay": 0,
-            "animationDurationUpdate": 300,
-            "animationEasingUpdate": "cubicOut",
-            "animationDelayUpdate": 0
-        }
-    ],
-    "title": [
-        {
-            "show": true,
-            "text": "\u4e0d\u540c\u4e13\u4e1a\u5c31\u4e1a\u60c5\u51b5",
-            "target": "blank",
-            "subtarget": "blank",
-            "left": "25%",
-            "top": "0%",
-            "padding": 5,
-            "itemGap": 10,
-            "textAlign": "auto",
-            "textVerticalAlign": "auto",
-            "triggerEvent": false
-        },
-        {
-            "show": true,
-            "text": "\u9ad8\u6280\u80fd\u52b3\u52a8\u8fdb\u51fa\u53e3\u5360\u6bd4",
-            "target": "blank",
-            "subtarget": "blank",
-            "left": "75%",
-            "top": "0%",
-            "padding": 5,
-            "itemGap": 10,
-            "textAlign": "auto",
-            "textVerticalAlign": "auto",
-            "triggerEvent": false
-        }
-    ],
-    "grid": [
-        {
-            "show": false,
-            "zlevel": 0,
-            "z": 2,
-            "left": "5%",
-            "right": "55%",
-            "containLabel": false,
-            "backgroundColor": "transparent",
-            "borderColor": "#ccc",
-            "borderWidth": 1,
-            "shadowOffsetX": 0,
-            "shadowOffsetY": 0
-        },
-        {
-            "show": false,
-            "zlevel": 0,
-            "z": 2,
-            "left": "60%",
-            "containLabel": false,
-            "backgroundColor": "transparent",
-            "borderColor": "#ccc",
-            "borderWidth": 1,
-            "shadowOffsetX": 0,
-            "shadowOffsetY": 0
-        }
-    ]
-};
-        chart_6fd7d4726c0a4894b5174616b79b204c.setOption(option_6fd7d4726c0a4894b5174616b79b204c);
-            window.addEventListener('resize', function(){
-                chart_6fd7d4726c0a4894b5174616b79b204c.resize();
-            })
+            animation: true,
+            animationThreshold: 2000,
+            animationDuration: 1000,
+            animationEasing: 'cubicOut',
+            animationDelay: 0,
+            animationDurationUpdate: 300,
+            animationEasingUpdate: 'cubicOut',
+            animationDelayUpdate: 0,
+          },
+        ],
+        title: [
+          {
+            show: true,
+            text: '\u4e0d\u540c\u4e13\u4e1a\u5c31\u4e1a\u60c5\u51b5',
+            target: 'blank',
+            subtarget: 'blank',
+            left: '25%',
+            top: '0%',
+            padding: 5,
+            itemGap: 10,
+            textAlign: 'auto',
+            textVerticalAlign: 'auto',
+            triggerEvent: false,
+          },
+          {
+            show: true,
+            text: '\u9ad8\u6280\u80fd\u52b3\u52a8\u8fdb\u51fa\u53e3\u5360\u6bd4',
+            target: 'blank',
+            subtarget: 'blank',
+            left: '75%',
+            top: '0%',
+            padding: 5,
+            itemGap: 10,
+            textAlign: 'auto',
+            textVerticalAlign: 'auto',
+            triggerEvent: false,
+          },
+        ],
+        grid: [
+          {
+            show: false,
+            zlevel: 0,
+            z: 2,
+            left: '5%',
+            right: '55%',
+            containLabel: false,
+            backgroundColor: 'transparent',
+            borderColor: '#ccc',
+            borderWidth: 1,
+            shadowOffsetX: 0,
+            shadowOffsetY: 0,
+          },
+          {
+            show: false,
+            zlevel: 0,
+            z: 2,
+            left: '60%',
+            containLabel: false,
+            backgroundColor: 'transparent',
+            borderColor: '#ccc',
+            borderWidth: 1,
+            shadowOffsetX: 0,
+            shadowOffsetY: 0,
+          },
+        ],
+      };
+      chart_6fd7d4726c0a4894b5174616b79b204c.setOption(option_6fd7d4726c0a4894b5174616b79b204c);
+      window.addEventListener('resize', function () {
+        chart_6fd7d4726c0a4894b5174616b79b204c.resize();
+      });
     </script>
-</body>
+  </body>
 </html>

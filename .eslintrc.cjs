@@ -7,25 +7,17 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    '@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:astro/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json',
-    extraFileExtensions: ['.astro'],
   },
-  plugins: [
-    '@typescript-eslint',
-    'astro',
-    'jsx-a11y',
-    'react-hooks',
-  ],
+  plugins: ['@typescript-eslint', 'astro', 'jsx-a11y', 'react-hooks'],
   rules: {
     // TypeScript规则
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
@@ -61,10 +53,20 @@ module.exports = {
     'no-trailing-spaces': 'error',
     'eol-last': 'error',
     'comma-dangle': ['error', 'always-multiline'],
-    'semi': ['error', 'always'],
-    'quotes': ['error', 'single', { avoidEscape: true }],
+    semi: ['error', 'always'],
+    quotes: ['error', 'single', { avoidEscape: true }],
   },
   overrides: [
+    {
+      // TypeScript文件特殊配置
+      files: ['*.ts', '*.tsx', 'src/**/*.ts', 'src/**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: './tsconfig.json',
+      },
+    },
     {
       // Astro文件特殊配置
       files: ['*.astro'],
@@ -117,5 +119,9 @@ module.exports = {
     'public',
     '*.min.js',
     'bundle.js',
+    '*.d.ts',
+    '*.backup',
+    '*.bak',
+    '*.old',
   ],
 };

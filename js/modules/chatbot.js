@@ -4,68 +4,69 @@
  */
 
 class ChatbotModule {
-    constructor() {
-        this.isInitialized = false;
-        this.isOpen = false;
-        this.messages = [];
-        this.isTyping = false;
-        this.chatHistory = [];
+  constructor() {
+    this.isInitialized = false;
+    this.isOpen = false;
+    this.messages = [];
+    this.isTyping = false;
+    this.chatHistory = [];
 
-        // UI Elements
-        this.chatButton = null;
-        this.chatWindow = null;
-        this.messageInput = null;
-        this.sendButton = null;
-        this.closeButton = null;
+    // UI Elements
+    this.chatButton = null;
+    this.chatWindow = null;
+    this.messageInput = null;
+    this.sendButton = null;
+    this.closeButton = null;
 
-        console.log('💬 Chatbot module loaded');
+    console.log('💬 Chatbot module loaded');
+  }
+
+  /**
+   * Initialize chatbot
+   */
+  async initialize() {
+    if (this.isInitialized) return;
+
+    try {
+      await this.createChatInterface();
+      this.loadChatHistory();
+      this.setupEventListeners();
+
+      this.isInitialized = true;
+      console.log('✅ Chatbot initialized');
+
+      // Emit initialization event
+      window.dispatchEvent(
+        new CustomEvent('chatbot:ready', {
+          detail: { module: 'chatbot' },
+        }),
+      );
+    } catch (error) {
+      console.error('❌ Failed to initialize chatbot:', error);
     }
+  }
 
-    /**
-     * Initialize chatbot
-     */
-    async initialize() {
-        if (this.isInitialized) return;
-
-        try {
-            await this.createChatInterface();
-            this.loadChatHistory();
-            this.setupEventListeners();
-
-            this.isInitialized = true;
-            console.log('✅ Chatbot initialized');
-
-            // Emit initialization event
-            window.dispatchEvent(new CustomEvent('chatbot:ready', {
-                detail: { module: 'chatbot' }
-            }));
-
-        } catch (error) {
-            console.error('❌ Failed to initialize chatbot:', error);
-        }
-    }
-
-    /**
-     * Create chat interface
-     */
-    async createChatInterface() {
-        // Create chat button
-        this.chatButton = document.createElement('button');
-        this.chatButton.id = 'chatbot-button';
-        this.chatButton.className = 'chatbot-button';
-        this.chatButton.innerHTML = `
+  /**
+   * Create chat interface
+   */
+  async createChatInterface() {
+    // Create chat button
+    this.chatButton = document.createElement('button');
+    this.chatButton.id = 'chatbot-button';
+    this.chatButton.className = 'chatbot-button';
+    this.chatButton.innerHTML = `
             <svg class="chat-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
             <span class="chat-badge">AI</span>
         `;
-        this.chatButton.setAttribute('aria-label', 'Open AI Chat Assistant');
+    this.chatButton.setAttribute('aria-label', 'Open AI Chat Assistant');
 
-        // Create chat window
-        this.chatWindow = document.createElement('div');
-        this.chatWindow.id = 'chatbot-window';
-        this.chatWindow.className = 'chatbot-window hidden';
-        this.chatWindow.innerHTML = `
+    // Create chat window
+    this.chatWindow = document.createElement('div');
+    this.chatWindow.id = 'chatbot-window';
+    this.chatWindow.className = 'chatbot-window hidden';
+    this.chatWindow.innerHTML = `
             <div class="chatbot-header">
                 <h3>AI Career Assistant</h3>
                 <button class="chatbot-close" aria-label="Close chat">×</button>
@@ -101,29 +102,29 @@ class ChatbotModule {
             </div>
         `;
 
-        // Add to page
-        document.body.appendChild(this.chatButton);
-        document.body.appendChild(this.chatWindow);
+    // Add to page
+    document.body.appendChild(this.chatButton);
+    document.body.appendChild(this.chatWindow);
 
-        // Cache elements
-        this.messageInput = this.chatWindow.querySelector('textarea');
-        this.sendButton = this.chatWindow.querySelector('.send-button');
-        this.closeButton = this.chatWindow.querySelector('.chatbot-close');
+    // Cache elements
+    this.messageInput = this.chatWindow.querySelector('textarea');
+    this.sendButton = this.chatWindow.querySelector('.send-button');
+    this.closeButton = this.chatWindow.querySelector('.chatbot-close');
 
-        // Add CSS styles
-        this.addChatStyles();
-    }
+    // Add CSS styles
+    this.addChatStyles();
+  }
 
-    /**
-     * Add chatbot CSS styles
-     */
-    addChatStyles() {
-        const styleId = 'chatbot-styles';
-        if (document.getElementById(styleId)) return;
+  /**
+   * Add chatbot CSS styles
+   */
+  addChatStyles() {
+    const styleId = 'chatbot-styles';
+    if (document.getElementById(styleId)) return;
 
-        const style = document.createElement('style');
-        style.id = styleId;
-        style.textContent = `
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
             .chatbot-button {
                 position: fixed;
                 bottom: 20px;
@@ -416,205 +417,211 @@ class ChatbotModule {
                 }
             }
         `;
-        document.head.appendChild(style);
+    document.head.appendChild(style);
+  }
+
+  /**
+   * Setup event listeners
+   */
+  setupEventListeners() {
+    // Chat button click
+    this.chatButton.addEventListener('click', () => this.openChat());
+
+    // Close button click
+    this.closeButton.addEventListener('click', () => this.closeChat());
+
+    // Send button click
+    this.sendButton.addEventListener('click', () => this.sendMessage());
+
+    // Enter key to send message
+    this.messageInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        this.sendMessage();
+      }
+    });
+
+    // Auto-resize textarea
+    this.messageInput.addEventListener('input', () => {
+      this.messageInput.style.height = 'auto';
+      this.messageInput.style.height = Math.min(this.messageInput.scrollHeight, 100) + 'px';
+    });
+
+    // Suggestion buttons
+    this.chatWindow.querySelectorAll('.suggestion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const suggestion = btn.dataset.suggestion;
+        this.messageInput.value = suggestion;
+        this.sendMessage();
+      });
+    });
+
+    // Click outside to close
+    document.addEventListener('click', event => {
+      if (
+        this.isOpen &&
+        !this.chatWindow.contains(event.target) &&
+        !this.chatButton.contains(event.target)
+      ) {
+        this.closeChat();
+      }
+    });
+
+    // Track interactions
+    this.trackChatEvents();
+  }
+
+  /**
+   * Open chat window
+   */
+  openChat() {
+    if (!this.isInitialized) {
+      this.initialize();
     }
 
-    /**
-     * Setup event listeners
-     */
-    setupEventListeners() {
-        // Chat button click
-        this.chatButton.addEventListener('click', () => this.openChat());
+    this.isOpen = true;
+    this.chatWindow.classList.remove('hidden');
+    setTimeout(() => {
+      this.chatWindow.classList.add('visible');
+    }, 10);
 
-        // Close button click
-        this.closeButton.addEventListener('click', () => this.closeChat());
+    this.messageInput.focus();
 
-        // Send button click
-        this.sendButton.addEventListener('click', () => this.sendMessage());
+    // Emit open event
+    window.dispatchEvent(
+      new CustomEvent('chatbot:opened', {
+        detail: { module: 'chatbot' },
+      }),
+    );
+  }
 
-        // Enter key to send message
-        this.messageInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                this.sendMessage();
-            }
-        });
+  /**
+   * Close chat window
+   */
+  closeChat() {
+    this.isOpen = false;
+    this.chatWindow.classList.remove('visible');
 
-        // Auto-resize textarea
-        this.messageInput.addEventListener('input', () => {
-            this.messageInput.style.height = 'auto';
-            this.messageInput.style.height = Math.min(this.messageInput.scrollHeight, 100) + 'px';
-        });
+    setTimeout(() => {
+      this.chatWindow.classList.add('hidden');
+    }, 300);
 
-        // Suggestion buttons
-        this.chatWindow.querySelectorAll('.suggestion-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const suggestion = btn.dataset.suggestion;
-                this.messageInput.value = suggestion;
-                this.sendMessage();
-            });
-        });
+    // Emit close event
+    window.dispatchEvent(
+      new CustomEvent('chatbot:closed', {
+        detail: { module: 'chatbot' },
+      }),
+    );
+  }
 
-        // Click outside to close
-        document.addEventListener('click', (event) => {
-            if (this.isOpen &&
-                !this.chatWindow.contains(event.target) &&
-                !this.chatButton.contains(event.target)) {
-                this.closeChat();
-            }
-        });
+  /**
+   * Send message
+   */
+  async sendMessage() {
+    const message = this.messageInput.value.trim();
+    if (!message || this.isTyping) return;
 
-        // Track interactions
-        this.trackChatEvents();
+    // Add user message
+    this.addMessage(message, 'user');
+    this.messageInput.value = '';
+    this.messageInput.style.height = 'auto';
+
+    // Show typing indicator
+    this.showTypingIndicator();
+
+    // Generate bot response
+    const response = await this.generateResponse(message);
+
+    // Hide typing indicator
+    this.hideTypingIndicator();
+
+    // Add bot response
+    this.addMessage(response, 'bot');
+
+    // Save to history
+    this.saveChatHistory();
+  }
+
+  /**
+   * Add message to chat
+   */
+  addMessage(content, sender) {
+    const messagesContainer = this.chatWindow.querySelector('.chatbot-messages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message ${sender}-message`;
+
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.textContent = sender === 'bot' ? '🤖' : '👤';
+
+    const messageContent = document.createElement('div');
+    messageContent.className = 'message-content';
+
+    // Process markdown-like formatting
+    messageContent.innerHTML = this.formatMessage(content);
+
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(messageContent);
+    messagesContainer.appendChild(messageDiv);
+
+    // Scroll to bottom
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    // Store message
+    this.messages.push({
+      content,
+      sender,
+      timestamp: Date.now(),
+    });
+  }
+
+  /**
+   * Format message with basic markdown
+   */
+  formatMessage(content) {
+    return content
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\n/g, '<br>');
+  }
+
+  /**
+   * Show typing indicator
+   */
+  showTypingIndicator() {
+    this.isTyping = true;
+    const messagesContainer = this.chatWindow.querySelector('.chatbot-messages');
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'typing-indicator';
+    typingDiv.innerHTML = '<span></span><span></span><span></span>';
+    messagesContainer.appendChild(typingDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  /**
+   * Hide typing indicator
+   */
+  hideTypingIndicator() {
+    this.isTyping = false;
+    const typingIndicator = this.chatWindow.querySelector('.typing-indicator');
+    if (typingIndicator) {
+      typingIndicator.remove();
     }
+  }
 
-    /**
-     * Open chat window
-     */
-    openChat() {
-        if (!this.isInitialized) {
-            this.initialize();
-        }
+  /**
+   * Generate AI response
+   */
+  async generateResponse(userMessage) {
+    // Simulate AI processing delay
+    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
 
-        this.isOpen = true;
-        this.chatWindow.classList.remove('hidden');
-        setTimeout(() => {
-            this.chatWindow.classList.add('visible');
-        }, 10);
+    const message = userMessage.toLowerCase();
 
-        this.messageInput.focus();
-
-        // Emit open event
-        window.dispatchEvent(new CustomEvent('chatbot:opened', {
-            detail: { module: 'chatbot' }
-        }));
-    }
-
-    /**
-     * Close chat window
-     */
-    closeChat() {
-        this.isOpen = false;
-        this.chatWindow.classList.remove('visible');
-
-        setTimeout(() => {
-            this.chatWindow.classList.add('hidden');
-        }, 300);
-
-        // Emit close event
-        window.dispatchEvent(new CustomEvent('chatbot:closed', {
-            detail: { module: 'chatbot' }
-        }));
-    }
-
-    /**
-     * Send message
-     */
-    async sendMessage() {
-        const message = this.messageInput.value.trim();
-        if (!message || this.isTyping) return;
-
-        // Add user message
-        this.addMessage(message, 'user');
-        this.messageInput.value = '';
-        this.messageInput.style.height = 'auto';
-
-        // Show typing indicator
-        this.showTypingIndicator();
-
-        // Generate bot response
-        const response = await this.generateResponse(message);
-
-        // Hide typing indicator
-        this.hideTypingIndicator();
-
-        // Add bot response
-        this.addMessage(response, 'bot');
-
-        // Save to history
-        this.saveChatHistory();
-    }
-
-    /**
-     * Add message to chat
-     */
-    addMessage(content, sender) {
-        const messagesContainer = this.chatWindow.querySelector('.chatbot-messages');
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `chat-message ${sender}-message`;
-
-        const avatar = document.createElement('div');
-        avatar.className = 'message-avatar';
-        avatar.textContent = sender === 'bot' ? '🤖' : '👤';
-
-        const messageContent = document.createElement('div');
-        messageContent.className = 'message-content';
-
-        // Process markdown-like formatting
-        messageContent.innerHTML = this.formatMessage(content);
-
-        messageDiv.appendChild(avatar);
-        messageDiv.appendChild(messageContent);
-        messagesContainer.appendChild(messageDiv);
-
-        // Scroll to bottom
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-        // Store message
-        this.messages.push({
-            content,
-            sender,
-            timestamp: Date.now()
-        });
-    }
-
-    /**
-     * Format message with basic markdown
-     */
-    formatMessage(content) {
-        return content
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/`([^`]+)`/g, '<code>$1</code>')
-            .replace(/\n/g, '<br>');
-    }
-
-    /**
-     * Show typing indicator
-     */
-    showTypingIndicator() {
-        this.isTyping = true;
-        const messagesContainer = this.chatWindow.querySelector('.chatbot-messages');
-        const typingDiv = document.createElement('div');
-        typingDiv.className = 'typing-indicator';
-        typingDiv.innerHTML = '<span></span><span></span><span></span>';
-        messagesContainer.appendChild(typingDiv);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }
-
-    /**
-     * Hide typing indicator
-     */
-    hideTypingIndicator() {
-        this.isTyping = false;
-        const typingIndicator = this.chatWindow.querySelector('.typing-indicator');
-        if (typingIndicator) {
-            typingIndicator.remove();
-        }
-    }
-
-    /**
-     * Generate AI response
-     */
-    async generateResponse(userMessage) {
-        // Simulate AI processing delay
-        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
-
-        const message = userMessage.toLowerCase();
-
-        // Simple rule-based responses
-        if (message.includes('career') || message.includes('job')) {
-            return `Based on current market trends, here are some high-demand career paths:
+    // Simple rule-based responses
+    if (message.includes('career') || message.includes('job')) {
+      return `Based on current market trends, here are some high-demand career paths:
 
 **Technology Sector:**
 • Software Development (15% growth projected)
@@ -629,10 +636,10 @@ class ChatbotModule {
 4. Consider internships or entry-level positions
 
 Would you like specific guidance for any of these career paths?`;
-        }
+    }
 
-        if (message.includes('tech') || message.includes('switch')) {
-            return `Switching to tech is absolutely achievable! Here's a roadmap:
+    if (message.includes('tech') || message.includes('switch')) {
+      return `Switching to tech is absolutely achievable! Here's a roadmap:
 
 **Step 1: Foundation Building (2-3 months)**
 - Learn programming fundamentals (Python/JavaScript)
@@ -656,10 +663,10 @@ Would you like specific guidance for any of these career paths?`;
 • Continuous learning mindset
 
 What area of tech interests you most?`;
-        }
+    }
 
-        if (message.includes('skill') || message.includes('learn')) {
-            return `**Essential Skills for Software Engineering:**
+    if (message.includes('skill') || message.includes('learn')) {
+      return `**Essential Skills for Software Engineering:**
 
 **Technical Skills:**
 - Programming: Python, JavaScript, Java, or C#
@@ -686,10 +693,10 @@ What area of tech interests you most?`;
 - Professional level: 1-2 years
 
 Which skill area would you like to focus on first?`;
-        }
+    }
 
-        // Default response
-        return `I'm here to help with your career questions! I can provide guidance on:
+    // Default response
+    return `I'm here to help with your career questions! I can provide guidance on:
 
 🎯 **Career Planning**
 - Industry trends and outlook
@@ -712,118 +719,122 @@ Which skill area would you like to focus on first?`;
 - Work-life balance considerations
 
 What specific area would you like to explore? Feel free to ask about any career-related topic!`;
-    }
+  }
 
-    /**
-     * Load chat history
-     */
-    loadChatHistory() {
-        try {
-            const history = localStorage.getItem('chatbot_history');
-            if (history) {
-                this.chatHistory = JSON.parse(history);
-                // Only load recent messages to prevent clutter
-                const recentMessages = this.chatHistory.slice(-10);
-                recentMessages.forEach(msg => {
-                    if (msg.sender !== 'bot' || msg.content !== 'Hello! I\'m your AI career assistant...') {
-                        this.addMessage(msg.content, msg.sender);
-                    }
-                });
-            }
-        } catch (error) {
-            console.warn('Failed to load chat history:', error);
-        }
-    }
-
-    /**
-     * Save chat history
-     */
-    saveChatHistory() {
-        try {
-            // Keep only last 50 messages
-            this.chatHistory = [...this.chatHistory, ...this.messages].slice(-50);
-            localStorage.setItem('chatbot_history', JSON.stringify(this.chatHistory));
-        } catch (error) {
-            console.warn('Failed to save chat history:', error);
-        }
-    }
-
-    /**
-     * Track chat events for analytics
-     */
-    trackChatEvents() {
-        // Track chat opens
-        window.addEventListener('chatbot:opened', () => {
-            if (window.analyticsModule) {
-                window.analyticsModule.trackInteraction('chatOpen', this.chatButton);
-            }
+  /**
+   * Load chat history
+   */
+  loadChatHistory() {
+    try {
+      const history = localStorage.getItem('chatbot_history');
+      if (history) {
+        this.chatHistory = JSON.parse(history);
+        // Only load recent messages to prevent clutter
+        const recentMessages = this.chatHistory.slice(-10);
+        recentMessages.forEach(msg => {
+          if (msg.sender !== 'bot' || msg.content !== "Hello! I'm your AI career assistant...") {
+            this.addMessage(msg.content, msg.sender);
+          }
         });
-
-        // Track message sends
-        const originalSendMessage = this.sendMessage.bind(this);
-        this.sendMessage = async () => {
-            if (window.analyticsModule && this.messageInput.value.trim()) {
-                window.analyticsModule.trackInteraction('chatMessage', this.messageInput, {
-                    messageLength: this.messageInput.value.length
-                });
-            }
-            return originalSendMessage();
-        };
+      }
+    } catch (error) {
+      console.warn('Failed to load chat history:', error);
     }
+  }
 
-    /**
-     * Get chat statistics
-     */
-    getStats() {
-        return {
-            totalMessages: this.messages.length,
-            isInitialized: this.isInitialized,
-            isOpen: this.isOpen,
-            historySize: this.chatHistory.length
-        };
+  /**
+   * Save chat history
+   */
+  saveChatHistory() {
+    try {
+      // Keep only last 50 messages
+      this.chatHistory = [...this.chatHistory, ...this.messages].slice(-50);
+      localStorage.setItem('chatbot_history', JSON.stringify(this.chatHistory));
+    } catch (error) {
+      console.warn('Failed to save chat history:', error);
     }
+  }
 
-    /**
-     * Clear chat history
-     */
-    clearHistory() {
-        this.messages = [];
-        this.chatHistory = [];
-        localStorage.removeItem('chatbot_history');
+  /**
+   * Track chat events for analytics
+   */
+  trackChatEvents() {
+    // Track chat opens
+    window.addEventListener('chatbot:opened', () => {
+      if (window.analyticsModule) {
+        window.analyticsModule.trackInteraction('chatOpen', this.chatButton);
+      }
+    });
 
-        // Clear messages from UI except welcome message
-        const messagesContainer = this.chatWindow.querySelector('.chatbot-messages');
-        messagesContainer.innerHTML = messagesContainer.querySelector('.chat-message.bot-message').outerHTML;
+    // Track message sends
+    const originalSendMessage = this.sendMessage.bind(this);
+    this.sendMessage = async () => {
+      if (window.analyticsModule && this.messageInput.value.trim()) {
+        window.analyticsModule.trackInteraction('chatMessage', this.messageInput, {
+          messageLength: this.messageInput.value.length,
+        });
+      }
+      return originalSendMessage();
+    };
+  }
 
-        console.log('🗑️ Chat history cleared');
-    }
+  /**
+   * Get chat statistics
+   */
+  getStats() {
+    return {
+      totalMessages: this.messages.length,
+      isInitialized: this.isInitialized,
+      isOpen: this.isOpen,
+      historySize: this.chatHistory.length,
+    };
+  }
 
-    /**
-     * Destroy chatbot module
-     */
-    destroy() {
-        // Remove UI elements
-        if (this.chatButton) this.chatButton.remove();
-        if (this.chatWindow) this.chatWindow.remove();
+  /**
+   * Clear chat history
+   */
+  clearHistory() {
+    this.messages = [];
+    this.chatHistory = [];
+    localStorage.removeItem('chatbot_history');
 
-        // Remove styles
-        const styles = document.getElementById('chatbot-styles');
-        if (styles) styles.remove();
+    // Clear messages from UI except welcome message
+    const messagesContainer = this.chatWindow.querySelector('.chatbot-messages');
+    messagesContainer.innerHTML = messagesContainer.querySelector(
+      '.chat-message.bot-message',
+    ).outerHTML;
 
-        // Clear data
-        this.messages = [];
-        this.chatHistory = [];
+    console.log('🗑️ Chat history cleared');
+  }
 
-        this.isInitialized = false;
-        this.isOpen = false;
+  /**
+   * Destroy chatbot module
+   */
+  destroy() {
+    // Remove UI elements
+    if (this.chatButton) this.chatButton.remove();
+    if (this.chatWindow) this.chatWindow.remove();
 
-        // Emit destroy event
-        window.dispatchEvent(new CustomEvent('chatbot:destroyed', {
-            detail: { module: 'chatbot' }
-        }));
+    // Remove styles
+    const styles = document.getElementById('chatbot-styles');
+    if (styles) styles.remove();
 
-        console.log('💀 Chatbot module destroyed');
-    }
+    // Clear data
+    this.messages = [];
+    this.chatHistory = [];
+
+    this.isInitialized = false;
+    this.isOpen = false;
+
+    // Emit destroy event
+    window.dispatchEvent(
+      new CustomEvent('chatbot:destroyed', {
+        detail: { module: 'chatbot' },
+      }),
+    );
+
+    console.log('💀 Chatbot module destroyed');
+  }
 }
 
 // Create and export singleton instance

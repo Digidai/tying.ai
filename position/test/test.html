@@ -1,291 +1,300 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Position List Test</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f5f5f5;
-        }
-        .test-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .test-section {
-            margin-bottom: 2rem;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-        }
-        .test-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-        .test-result {
-            padding: 0.5rem;
-            border-radius: 4px;
-            margin: 0.5rem 0;
-        }
-        .test-pass {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .test-fail {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        .test-info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-        .performance-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .metric-card {
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 6px;
-            border: 1px solid #dee2e6;
-        }
-        .metric-label {
-            font-size: 0.875rem;
-            color: #6c757d;
-            margin-bottom: 0.25rem;
-        }
-        .metric-value {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #495057;
-        }
-        .btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 0.25rem;
-        }
-        .btn:hover {
-            background: #0056b3;
-        }
-        .feature-list {
-            list-style: none;
-            padding: 0;
-        }
-        .feature-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        .feature-list li:before {
-            content: "✓";
-            color: #28a745;
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .test-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .test-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+      }
+      .test-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+      .test-result {
+        padding: 0.5rem;
+        border-radius: 4px;
+        margin: 0.5rem 0;
+      }
+      .test-pass {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .test-fail {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .test-info {
+        background: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+      }
+      .performance-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .metric-card {
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+      }
+      .metric-label {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-bottom: 0.25rem;
+      }
+      .metric-value {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #495057;
+      }
+      .btn {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0.25rem;
+      }
+      .btn:hover {
+        background: #0056b3;
+      }
+      .feature-list {
+        list-style: none;
+        padding: 0;
+      }
+      .feature-list li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+      }
+      .feature-list li:before {
+        content: '✓';
+        color: #28a745;
+        font-weight: bold;
+        margin-right: 0.5rem;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="test-container">
-        <h1>岗位列表优化测试</h1>
-        <p>此页面用于测试岗位列表功能的优化效果</p>
+      <h1>岗位列表优化测试</h1>
+      <p>此页面用于测试岗位列表功能的优化效果</p>
 
-        <!-- 功能特性测试 -->
-        <div class="test-section">
-            <h2 class="test-title">功能特性</h2>
-            <ul class="feature-list">
-                <li>岗位数据管理系统 - 统一管理所有岗位信息</li>
-                <li>智能搜索功能 - 支持实时搜索、搜索建议、历史记录</li>
-                <li>多维度筛选 - 分类、工作类型、经验要求、薪资范围</li>
-                <li>高性能列表渲染 - 虚拟滚动、懒加载、动画优化</li>
-                <li>响应式设计 - 支持桌面端和移动端</li>
-                <li>用户交互 - 收藏功能、分页、排序</li>
-                <li>性能优化 - 懒加载、防抖搜索、缓存机制</li>
-            </ul>
+      <!-- 功能特性测试 -->
+      <div class="test-section">
+        <h2 class="test-title">功能特性</h2>
+        <ul class="feature-list">
+          <li>岗位数据管理系统 - 统一管理所有岗位信息</li>
+          <li>智能搜索功能 - 支持实时搜索、搜索建议、历史记录</li>
+          <li>多维度筛选 - 分类、工作类型、经验要求、薪资范围</li>
+          <li>高性能列表渲染 - 虚拟滚动、懒加载、动画优化</li>
+          <li>响应式设计 - 支持桌面端和移动端</li>
+          <li>用户交互 - 收藏功能、分页、排序</li>
+          <li>性能优化 - 懒加载、防抖搜索、缓存机制</li>
+        </ul>
+      </div>
+
+      <!-- 性能测试 -->
+      <div class="test-section">
+        <h2 class="test-title">性能测试</h2>
+        <button class="btn" onclick="runPerformanceTest()">运行性能测试</button>
+        <button class="btn" onclick="testSearchPerformance()">测试搜索性能</button>
+        <button class="btn" onclick="testFilterPerformance()">测试筛选性能</button>
+
+        <div class="performance-metrics" id="performance-metrics">
+          <div class="metric-card">
+            <div class="metric-label">页面加载时间</div>
+            <div class="metric-value" id="load-time">-</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">搜索响应时间</div>
+            <div class="metric-value" id="search-time">-</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">筛选响应时间</div>
+            <div class="metric-value" id="filter-time">-</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">内存使用</div>
+            <div class="metric-value" id="memory-usage">-</div>
+          </div>
         </div>
+      </div>
 
-        <!-- 性能测试 -->
-        <div class="test-section">
-            <h2 class="test-title">性能测试</h2>
-            <button class="btn" onclick="runPerformanceTest()">运行性能测试</button>
-            <button class="btn" onclick="testSearchPerformance()">测试搜索性能</button>
-            <button class="btn" onclick="testFilterPerformance()">测试筛选性能</button>
+      <!-- 组件测试 -->
+      <div class="test-section">
+        <h2 class="test-title">组件测试</h2>
+        <button class="btn" onclick="testComponents()">测试所有组件</button>
+        <div id="component-results"></div>
+      </div>
 
-            <div class="performance-metrics" id="performance-metrics">
-                <div class="metric-card">
-                    <div class="metric-label">页面加载时间</div>
-                    <div class="metric-value" id="load-time">-</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">搜索响应时间</div>
-                    <div class="metric-value" id="search-time">-</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">筛选响应时间</div>
-                    <div class="metric-value" id="filter-time">-</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">内存使用</div>
-                    <div class="metric-value" id="memory-usage">-</div>
-                </div>
-            </div>
-        </div>
+      <!-- 兼容性测试 -->
+      <div class="test-section">
+        <h2 class="test-title">浏览器兼容性</h2>
+        <div id="compatibility-results"></div>
+      </div>
 
-        <!-- 组件测试 -->
-        <div class="test-section">
-            <h2 class="test-title">组件测试</h2>
-            <button class="btn" onclick="testComponents()">测试所有组件</button>
-            <div id="component-results"></div>
-        </div>
-
-        <!-- 兼容性测试 -->
-        <div class="test-section">
-            <h2 class="test-title">浏览器兼容性</h2>
-            <div id="compatibility-results"></div>
-        </div>
-
-        <!-- 实际预览 -->
-        <div class="test-section">
-            <h2 class="test-title">功能预览</h2>
-            <button class="btn" onclick="window.open('../index.html', '_blank')">打开优化后的岗位列表</button>
-            <p class="test-info">点击上方按钮在新标签页中打开优化后的岗位列表页面进行实际测试</p>
-        </div>
+      <!-- 实际预览 -->
+      <div class="test-section">
+        <h2 class="test-title">功能预览</h2>
+        <button class="btn" onclick="window.open('../index.html', '_blank')">
+          打开优化后的岗位列表
+        </button>
+        <p class="test-info">点击上方按钮在新标签页中打开优化后的岗位列表页面进行实际测试</p>
+      </div>
     </div>
 
     <script>
-        // 模拟导入组件进行测试
-        console.log('开始岗位列表优化测试...');
+      // 模拟导入组件进行测试
+      console.log('开始岗位列表优化测试...');
 
-        // 性能测试
-        function runPerformanceTest() {
-            console.log('运行性能测试...');
+      // 性能测试
+      function runPerformanceTest() {
+        console.log('运行性能测试...');
 
-            const startTime = performance.now();
+        const startTime = performance.now();
 
-            // 模拟页面加载
-            setTimeout(() => {
-                const loadTime = (performance.now() - startTime).toFixed(2);
-                document.getElementById('load-time').textContent = loadTime + 'ms';
+        // 模拟页面加载
+        setTimeout(() => {
+          const loadTime = (performance.now() - startTime).toFixed(2);
+          document.getElementById('load-time').textContent = loadTime + 'ms';
 
-                // 内存使用情况
-                if (performance.memory) {
-                    const memoryMB = (performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
-                    document.getElementById('memory-usage').textContent = memoryMB + 'MB';
-                } else {
-                    document.getElementById('memory-usage').textContent = 'N/A';
-                }
+          // 内存使用情况
+          if (performance.memory) {
+            const memoryMB = (performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(2);
+            document.getElementById('memory-usage').textContent = memoryMB + 'MB';
+          } else {
+            document.getElementById('memory-usage').textContent = 'N/A';
+          }
 
-                addTestResult('performance-metrics', '性能测试完成', 'pass');
-            }, 100);
-        }
+          addTestResult('performance-metrics', '性能测试完成', 'pass');
+        }, 100);
+      }
 
-        function testSearchPerformance() {
-            console.log('测试搜索性能...');
+      function testSearchPerformance() {
+        console.log('测试搜索性能...');
 
-            const startTime = performance.now();
+        const startTime = performance.now();
 
-            // 模拟搜索操作
-            setTimeout(() => {
-                const searchTime = (performance.now() - startTime).toFixed(2);
-                document.getElementById('search-time').textContent = searchTime + 'ms';
-                addTestResult('search-performance', '搜索性能测试通过', 'pass');
-            }, 50);
-        }
+        // 模拟搜索操作
+        setTimeout(() => {
+          const searchTime = (performance.now() - startTime).toFixed(2);
+          document.getElementById('search-time').textContent = searchTime + 'ms';
+          addTestResult('search-performance', '搜索性能测试通过', 'pass');
+        }, 50);
+      }
 
-        function testFilterPerformance() {
-            console.log('测试筛选性能...');
+      function testFilterPerformance() {
+        console.log('测试筛选性能...');
 
-            const startTime = performance.now();
+        const startTime = performance.now();
 
-            // 模拟筛选操作
-            setTimeout(() => {
-                const filterTime = (performance.now() - startTime).toFixed(2);
-                document.getElementById('filter-time').textContent = filterTime + 'ms';
-                addTestResult('filter-performance', '筛选性能测试通过', 'pass');
-            }, 30);
-        }
+        // 模拟筛选操作
+        setTimeout(() => {
+          const filterTime = (performance.now() - startTime).toFixed(2);
+          document.getElementById('filter-time').textContent = filterTime + 'ms';
+          addTestResult('filter-performance', '筛选性能测试通过', 'pass');
+        }, 30);
+      }
 
-        function testComponents() {
-            console.log('测试组件...');
-            const results = document.getElementById('component-results');
-            results.innerHTML = '';
+      function testComponents() {
+        console.log('测试组件...');
+        const results = document.getElementById('component-results');
+        results.innerHTML = '';
 
-            // 测试各个组件
-            const components = [
-                { name: '岗位数据管理器', status: 'pass', message: '数据结构正确，支持增删改查' },
-                { name: '搜索组件', status: 'pass', message: '支持实时搜索、搜索建议、历史记录' },
-                { name: '筛选组件', status: 'pass', message: '多维度筛选，响应式设计' },
-                { name: '列表组件', status: 'pass', message: '虚拟滚动、懒加载、分页功能' },
-                { name: '应用主控制器', status: 'pass', message: '组件间通信正常，状态管理完善' }
-            ];
+        // 测试各个组件
+        const components = [
+          { name: '岗位数据管理器', status: 'pass', message: '数据结构正确，支持增删改查' },
+          { name: '搜索组件', status: 'pass', message: '支持实时搜索、搜索建议、历史记录' },
+          { name: '筛选组件', status: 'pass', message: '多维度筛选，响应式设计' },
+          { name: '列表组件', status: 'pass', message: '虚拟滚动、懒加载、分页功能' },
+          { name: '应用主控制器', status: 'pass', message: '组件间通信正常，状态管理完善' },
+        ];
 
-            components.forEach(component => {
-                addTestResult('component-results', `${component.name}: ${component.message}`, component.status);
-            });
-        }
-
-        function testCompatibility() {
-            console.log('测试浏览器兼容性...');
-            const results = document.getElementById('compatibility-results');
-            results.innerHTML = '';
-
-            const features = [
-                { name: 'ES6 Classes', supported: typeof class {} === 'function' },
-                { name: 'Fetch API', supported: typeof fetch !== 'undefined' },
-                { name: 'Intersection Observer', supported: 'IntersectionObserver' in window },
-                { name: 'LocalStorage', supported: typeof Storage !== 'undefined' },
-                { name: 'Custom Events', supported: typeof CustomEvent !== 'undefined' },
-                { name: 'RequestAnimationFrame', supported: typeof requestAnimationFrame !== 'undefined' }
-            ];
-
-            features.forEach(feature => {
-                const status = feature.supported ? 'pass' : 'fail';
-                const message = `${feature.name}: ${feature.supported ? '支持' : '不支持'}`;
-                addTestResult('compatibility-results', message, status);
-            });
-        }
-
-        function addTestResult(containerId, message, status) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-
-            const result = document.createElement('div');
-            result.className = `test-result test-${status}`;
-            result.textContent = message;
-            container.appendChild(result);
-        }
-
-        // 页面加载完成后自动运行测试
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('页面加载完成，开始自动测试...');
-
-            setTimeout(() => {
-                runPerformanceTest();
-                testSearchPerformance();
-                testFilterPerformance();
-                testComponents();
-                testCompatibility();
-            }, 500);
+        components.forEach(component => {
+          addTestResult(
+            'component-results',
+            `${component.name}: ${component.message}`,
+            component.status,
+          );
         });
+      }
 
-        // 显示优化总结
-        console.log(`
+      function testCompatibility() {
+        console.log('测试浏览器兼容性...');
+        const results = document.getElementById('compatibility-results');
+        results.innerHTML = '';
+
+        const features = [
+          { name: 'ES6 Classes', supported: typeof class {} === 'function' },
+          { name: 'Fetch API', supported: typeof fetch !== 'undefined' },
+          { name: 'Intersection Observer', supported: 'IntersectionObserver' in window },
+          { name: 'LocalStorage', supported: typeof Storage !== 'undefined' },
+          { name: 'Custom Events', supported: typeof CustomEvent !== 'undefined' },
+          {
+            name: 'RequestAnimationFrame',
+            supported: typeof requestAnimationFrame !== 'undefined',
+          },
+        ];
+
+        features.forEach(feature => {
+          const status = feature.supported ? 'pass' : 'fail';
+          const message = `${feature.name}: ${feature.supported ? '支持' : '不支持'}`;
+          addTestResult('compatibility-results', message, status);
+        });
+      }
+
+      function addTestResult(containerId, message, status) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        const result = document.createElement('div');
+        result.className = `test-result test-${status}`;
+        result.textContent = message;
+        container.appendChild(result);
+      }
+
+      // 页面加载完成后自动运行测试
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('页面加载完成，开始自动测试...');
+
+        setTimeout(() => {
+          runPerformanceTest();
+          testSearchPerformance();
+          testFilterPerformance();
+          testComponents();
+          testCompatibility();
+        }, 500);
+      });
+
+      // 显示优化总结
+      console.log(`
 ========================================
 岗位列表优化总结
 ========================================
@@ -345,5 +354,5 @@
 ========================================
         `);
     </script>
-</body>
+  </body>
 </html>
