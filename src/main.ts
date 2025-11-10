@@ -115,8 +115,8 @@ export class MainApp {
     this.showErrorMessage('Application initialization failed. Please refresh the page.');
 
     // Report to error tracking service if available
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'exception', {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'exception', {
         description: error.message,
         fatal: true
       });
@@ -130,8 +130,8 @@ export class MainApp {
    */
   private handleGlobalError(error: Error): void {
     // Report non-critical errors
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'exception', {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'exception', {
         description: error.message,
         fatal: false
       });
@@ -147,8 +147,8 @@ export class MainApp {
     console.warn('Unhandled promise rejection:', reason);
 
     // Report promise rejections
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'promise_rejection', {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'promise_rejection', {
         description: String(reason)
       });
     }
@@ -267,10 +267,10 @@ export class MainApp {
       initialized: this.initialized,
       performanceMode: this.getPerformanceMode(),
       modules: {
-        performanceOptimizer: this.performanceOptimizer.isInitialized?.() ?? false,
-        animationManager: this.animationManager.isInitialized?.() ?? false,
-        navigationController: this.navigationController.isInitialized?.() ?? false,
-        interactionHandler: this.interactionHandler.isInitialized?.() ?? false
+        performanceOptimizer: this.performanceOptimizer.isInitialized ?? false,
+        animationManager: this.animationManager.isInitialized ?? false,
+        navigationController: this.navigationController.isInitialized ?? false,
+        interactionHandler: this.interactionHandler.isInitialized ?? false
       }
     };
   }
@@ -280,7 +280,7 @@ export class MainApp {
 const app = new MainApp();
 
 // Make app globally available
-window.TyingAI = { app };
+(window as any).TyingAI = { app };
 
 // Auto-initialize
 if (document.readyState === 'loading') {

@@ -13,6 +13,7 @@ export class PositionSearchManager {
   private pageSize = 20;
   private currentFilters: SearchFilters = {};
   private isLoading = false;
+  private debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(formId: string = 'search-form') {
     this.form = document.getElementById(formId) as HTMLFormElement;
@@ -71,7 +72,9 @@ export class PositionSearchManager {
    */
   private handleFilterChange(): void {
     // 防抖处理
-    clearTimeout(this.debounceTimer);
+    if (this.debounceTimer) {
+      clearTimeout(this.debounceTimer);
+    }
     this.debounceTimer = setTimeout(() => {
       this.handleSearch();
     }, 300);
@@ -413,8 +416,6 @@ export class PositionSearchManager {
     if (diffDays <= 365) return `${Math.floor(diffDays / 30)}个月前发布`;
     return `${Math.floor(diffDays / 365)}年前发布`;
   }
-
-  private debounceTimer: number | null = null;
 }
 
 // 全局搜索管理器实例
