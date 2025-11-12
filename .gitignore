@@ -92,6 +92,8 @@ node_modules/.cache/
 * 2.*
 * 2/
 archive/
+wiki_backup_*/
+*_backup_*/
 
 # Local configuration
 .vscode/settings.json
@@ -103,3 +105,6 @@ archive/
 *.spec.js
 debug.log
 .cache/
+
+# Shell performance tips and temporary docs
+.zsh-performance-tips.md
