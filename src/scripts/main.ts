@@ -56,7 +56,9 @@ function initSmoothScroll() {
   links.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const targetId = link.getAttribute('href').slice(1);
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const targetId = href.slice(1);
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
@@ -85,4 +87,4 @@ function initFormHandling() {
 }
 
 // 导出基础功能
-export { initBasicFunctionity };
+export { initBasicFunctionality };

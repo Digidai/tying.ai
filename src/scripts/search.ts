@@ -71,10 +71,12 @@ export class PositionSearchManager {
    */
   private handleFilterChange(): void {
     // 防抖处理
-    clearTimeout(this.debounceTimer);
+    if (this.debounceTimer !== null) {
+      clearTimeout(this.debounceTimer);
+    }
     this.debounceTimer = setTimeout(() => {
       this.handleSearch();
-    }, 300);
+    }, 300) as any;
   }
 
   /**
@@ -414,7 +416,7 @@ export class PositionSearchManager {
     return `${Math.floor(diffDays / 365)}年前发布`;
   }
 
-  private debounceTimer: number | null = null;
+  private debounceTimer: ReturnType<typeof setTimeout> | null = null;
 }
 
 // 全局搜索管理器实例

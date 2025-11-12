@@ -3,6 +3,8 @@
  * Handles performance detection, monitoring, and optimization
  */
 
+declare const gtag: (...args: any[]) => void;
+
 export interface PerformanceMetrics {
   pageLoadTime: number | null;
   firstPaint: number | null;
@@ -74,7 +76,7 @@ export class PerformanceOptimizer {
    */
   private detectPerformanceCapabilities(): void {
     // Check network connection
-    this.connectionInfo = this.getConnectionInfo();
+    this.connectionInfo = this.detectConnectionInfo();
 
     // Check hardware capabilities
     const isLowEndDevice = this.isLowEndDevice();
@@ -157,9 +159,9 @@ export class PerformanceOptimizer {
   }
 
   /**
-   * Get connection information
+   * Detect connection information
    */
-  private getConnectionInfo(): ConnectionInfo | null {
+  private detectConnectionInfo(): ConnectionInfo | null {
     const connection = (navigator as any).connection ||
                      (navigator as any).mozConnection ||
                      (navigator as any).webkitConnection;
@@ -325,8 +327,9 @@ export class PerformanceOptimizer {
     // Reduce visual effects
     const glassElements = document.querySelectorAll('.glass-card, .feature-card, .content-card');
     glassElements.forEach((element: Element) => {
-      (element as HTMLElement).style.backdropFilter = 'none';
-      (element as HTMLElement).style.webkitBackdropFilter = 'none';
+      const htmlElement = element as HTMLElement;
+      htmlElement.style.backdropFilter = 'none';
+      (htmlElement.style as any).webkitBackdropFilter = 'none';
     });
 
     console.log('🔋 Performance optimizations applied');
@@ -419,8 +422,12 @@ export class PerformanceOptimizer {
    */
   private setupEventListeners(): void {
     // Connection changes
-    if (this.connectionInfo) {
-      this.connectionInfo.addEventListener('change', this.handleConnectionChange);
+    const connection = (navigator as any).connection ||
+                     (navigator as any).mozConnection ||
+                     (navigator as any).webkitConnection;
+
+    if (connection && 'addEventListener' in connection) {
+      connection.addEventListener('change', this.handleConnectionChange);
     }
 
     // Page visibility changes
@@ -555,7 +562,7 @@ export class PerformanceOptimizer {
   /**
    * Check if optimizer is initialized
    */
-  get isInitialized(): boolean {
+  isInitialized(): boolean {
     return this.initialized;
   }
 
@@ -576,8 +583,12 @@ export class PerformanceOptimizer {
     this.performanceObservers = [];
 
     // Remove event listeners
-    if (this.connectionInfo) {
-      this.connectionInfo.removeEventListener('change', this.handleConnectionChange);
+    const connection = (navigator as any).connection ||
+                     (navigator as any).mozConnection ||
+                     (navigator as any).webkitConnection;
+
+    if (connection && 'removeEventListener' in connection) {
+      connection.removeEventListener('change', this.handleConnectionChange);
     }
     document.removeEventListener('visibilitychange', this.handleVisibilityChange);
 

@@ -3,6 +3,8 @@
  * Tying.ai - AI Career Guidance Platform
  */
 
+declare const gtag: (...args: any[]) => void;
+
 import { PerformanceOptimizer } from './modules/performance-optimizer';
 import { AnimationManager } from './modules/animation-manager';
 import { NavigationController } from './modules/navigation-controller';
@@ -267,10 +269,10 @@ export class MainApp {
       initialized: this.initialized,
       performanceMode: this.getPerformanceMode(),
       modules: {
-        performanceOptimizer: this.performanceOptimizer.isInitialized?.() ?? false,
-        animationManager: this.animationManager.isInitialized?.() ?? false,
-        navigationController: this.navigationController.isInitialized?.() ?? false,
-        interactionHandler: this.interactionHandler.isInitialized?.() ?? false
+        performanceOptimizer: this.performanceOptimizer.isInitialized(),
+        animationManager: this.animationManager.isInitialized(),
+        navigationController: this.navigationController.isInitialized(),
+        interactionHandler: this.interactionHandler.isInitialized()
       }
     };
   }
@@ -280,7 +282,7 @@ export class MainApp {
 const app = new MainApp();
 
 // Make app globally available
-window.TyingAI = { app };
+(window as any).TyingAI = { app };
 
 // Auto-initialize
 if (document.readyState === 'loading') {
