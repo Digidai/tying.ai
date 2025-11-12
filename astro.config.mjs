@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,14 +9,13 @@ export default defineConfig({
   // 静态站点生成 - 保持SEO优势
   output: 'static',
 
-  // 集成配置 - 暂时移除有问题的集成
+  // 集成配置
   integrations: [
-    // TODO: 后续添加集成
-    // tailwind({
-    //   config: {
-    //     applyBaseStyles: false, // 我们将使用自定义CSS
-    //   }
-    // }),
+    tailwind({
+      config: {
+        applyBaseStyles: false, // 我们将使用自定义CSS
+      }
+    }),
   ],
 
   // 构建优化配置

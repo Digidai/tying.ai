@@ -36,6 +36,7 @@
     "postinstall": "echo '🚀 Tying.ai development environment ready!' && npm run status"
   },
   "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
     "alpinejs": "^3.12.3",
     "astro": "^5.15.5",
     "date-fns": "^2.30.0",
