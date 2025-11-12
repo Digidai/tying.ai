@@ -77,10 +77,12 @@ next-env.d.ts
 
 # Astro
 .astro/
+*.astro.html
 
 # Vite
 node_modules/.vite/
 node_modules/.cache/
+.vite/
 
 # Backup and duplicate files
 *.backup
@@ -89,7 +91,15 @@ node_modules/.cache/
 *~
 * 2.*
 * 2/
+archive/
 
 # Local configuration
 .vscode/settings.json
 .idea/workspace.xml
+.claude/settings.local.json
+
+# Test and debug
+*.test.js
+*.spec.js
+debug.log
+.cache/
