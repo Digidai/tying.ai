@@ -663,6 +663,125 @@ const reportData: Record<string, any> = {
 
 ---
 
+### ⚠️ 重要：添加内容后的 SEO 更新（必须手动）
+
+添加新的 Wiki 或 Report 内容后，**必须手动更新**以下 SEO 文件以保持网站优化：
+
+#### 1. 更新 `public/llms.txt`（必须）
+
+这个文件帮助大型语言模型（如 ChatGPT、Claude）理解和索引网站内容。
+
+**添加新 Wiki 页面时：**
+```txt
+# Career Wiki Pages
+> Comprehensive career guides for different positions
+
+- Software Engineer Career Guide: https://tying.ai/wiki/software-engineer
+  Description: Complete guide to software engineering career paths...
+
+- Product Manager Career Guide: https://tying.ai/wiki/product-manager
+  Description: In-depth guide to product management roles...
+
+- 【新增】Your New Position Career Guide: https://tying.ai/wiki/your-new-slug
+  Description: 简短描述这个职位指南的内容（1-2句话）
+  Topics: 相关话题标签1, 相关话题标签2, 相关话题标签3
+```
+
+**添加新 Report 时：**
+```txt
+# Industry Reports
+> Deep-dive analysis of industry trends and market insights
+
+- US Recruitment Market Analysis: https://tying.ai/report/us-recruitment-market
+  Description: Comprehensive analysis of the US recruitment industry...
+  Topics: Recruitment Industry, Market Analysis, Industry Trends
+
+- 【新增】Your New Report: https://tying.ai/report/your-new-slug
+  Description: 简短描述这个报告的内容和价值（1-2句话）
+  Topics: 主要话题1, 主要话题2, 主要话题3, 主要话题4
+```
+
+#### 2. 更新 `public/humans.txt`（建议）
+
+更新最后修改日期：
+
+```txt
+# SITE
+    Last update: 2025-11-14  ← 改为当前日期
+    Standards: HTML5, CSS3, ES2022
+    Components: Responsive, Accessible, SEO-optimized
+    Design: Notion-inspired minimalism
+```
+
+#### 3. 自动更新的部分（无需手动）✅
+
+以下内容会在构建时或访问时自动生成，**无需手动更新**：
+
+- **Sitemap (`sitemap-index.xml`)**: 运行 `npm run build` 时自动重新生成
+- **结构化数据（JSON-LD）**: BaseLayout 模板根据页面内容自动生成
+- **Meta 标签**: BaseLayout 模板自动生成 Open Graph、Twitter Card 等
+- **Breadcrumbs**: NotionLayout 根据 URL 路径自动生成
+
+#### 完整更新流程示例
+
+假设你要添加 "UX Designer" Wiki 页面：
+
+**步骤 1**: 更新动态路由和列表页（代码部分）
+```typescript
+// src/pages/wiki/[slug].astro
+const positions = ['software-engineer', 'product-manager', 'ux-designer'];
+
+// src/pages/wiki.astro - 添加卡片
+```
+
+**步骤 2**: 更新 SEO 文件
+```bash
+# 编辑 public/llms.txt
+- UX Designer Career Guide: https://tying.ai/wiki/ux-designer
+  Description: Complete guide to UX design career paths, essential skills, portfolio building, and industry insights
+  Topics: UX Design, User Experience, Design Career, Product Design
+
+# 编辑 public/humans.txt
+Last update: 2025-11-14
+```
+
+**步骤 3**: 构建和测试
+```bash
+npm run build    # 自动重新生成 sitemap
+npm run preview  # 测试构建结果
+```
+
+**步骤 4**: 部署
+```bash
+git add .
+git commit -m "feat: 添加 UX Designer 职业指南"
+git push origin main  # 自动部署到 Cloudflare Pages
+```
+
+#### 为什么需要手动更新？
+
+- **llms.txt**: 不是标准的自动生成文件，需要人工编写高质量的描述和话题标签
+- **humans.txt**: 人类可读的文档，通常包含人工策划的信息
+- **Sitemap**: 可以自动生成（Astro 集成已配置）✅
+
+#### 检查清单 ✓
+
+添加新内容后，确保完成以下检查：
+
+- [ ] 动态路由文件已更新（添加 slug、标题映射、内容）
+- [ ] 列表页已添加新卡片
+- [ ] `public/llms.txt` 已添加新页面条目（包含描述和话题）
+- [ ] `public/humans.txt` 已更新日期
+- [ ] 本地构建测试通过 (`npm run build`)
+- [ ] 本地预览测试通过 (`npm run preview`)
+- [ ] Git 提交并推送到 GitHub
+- [ ] Cloudflare Pages 部署成功
+- [ ] 访问生产环境 URL 验证新内容
+
+> 💡 **提示**: 详细的步骤说明请查看项目根目录的 `CONTENT_UPDATE_CHECKLIST.md` 文件。
+
+---
+
 ## 样式规范
 
 ### Notion 风格排版 (prose-notion)
