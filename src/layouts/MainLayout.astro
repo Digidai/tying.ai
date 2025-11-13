@@ -1,0 +1,80 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  image = "https://placehold.co/1200x630/png?text=Tying.ai",
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={image}>
+  <!-- Notion 风格导航栏 - 简洁无装饰 -->
+  <header class="border-b border-notion-border bg-white" id="navigation">
+    <nav class="max-w-notion-wide mx-auto px-8 py-4">
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center space-x-2">
+          <span class="text-lg font-semibold text-notion-text">Tying.ai</span>
+        </a>
+
+        <!-- 桌面导航 -->
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="/" class="text-notion-text hover:no-underline">Home</a>
+          <a href="/wiki" class="text-notion-text hover:no-underline">Career Wiki</a>
+          <a href="/report" class="text-notion-text hover:no-underline">Industry Reports</a>
+        </div>
+
+        <!-- 移动端菜单按钮 -->
+        <button class="md:hidden p-2" id="mobile-menu-button" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 移动端菜单 -->
+      <div class="hidden md:hidden mt-4 pt-4 border-t border-notion-border" id="mobile-menu">
+        <div class="flex flex-col space-y-3">
+          <a href="/" class="text-notion-text">Home</a>
+          <a href="/wiki" class="text-notion-text">Career Wiki</a>
+          <a href="/report" class="text-notion-text">Industry Reports</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 主要内容 -->
+  <main class="min-h-screen" id="main-content">
+    <slot />
+  </main>
+
+  <!-- Notion 风格页脚 - 极简版 -->
+  <footer class="border-t border-notion-border bg-white">
+    <div class="max-w-notion-wide mx-auto px-8 py-6">
+      <p class="text-sm text-notion-text-light text-center">
+        &copy; 2024 <a href="/" class="text-notion-text hover:underline">Tying.ai</a>. Career Guidance Platform.
+      </p>
+    </div>
+  </footer>
+</BaseLayout>
+
+<script>
+  // 移动端菜单切换
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  });
+</script>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Position Guide - Detailed Job Guides & Career Paths | Tying.ai</title>
+    <meta name="description" content="Explore detailed position guides and career paths across technology, engineering, and business fields. Get comprehensive insights into job requirements, skills, and career trajectories.">
+    <meta name="keywords" content="position guide, job guide, career path, software engineer, product manager, AI engineer, job requirements, career development">
+    <meta name="author" content="Tying.ai">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://tying.ai/position/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tying.ai/position/">
+    <meta property="og:title" content="Position Guide - Detailed Job Guides & Career Paths | Tying.ai">
+    <meta property="og:description" content="Explore detailed position guides and career paths across technology, engineering, and business fields.">
+    <meta property="og:image" content="https://tying.ai/favicon.ico">
+    <meta property="og:site_name" content="Tying.ai">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tying.ai/position/">
+    <meta property="twitter:title" content="Position Guide - Detailed Job Guides & Career Paths">
+    <meta property="twitter:description" content="Explore detailed position guides and career paths across technology, engineering, and business fields.">
+    <meta property="twitter:image" content="https://tying.ai/favicon.ico">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+        
+    <!-- Styles -->
+    <link rel="stylesheet" href="/layout.css">
+    <link rel="stylesheet" href="/components.css">
+    <link rel="stylesheet" href="/utilities.css">
+    <link rel="stylesheet" href="styles/position.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero-section" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-logo">
+                        <span class="hero-logo-emoji" role="img" aria-label="Position Guide">💼</span>
+                    </div>
+                    <h1 id="hero-title" class="hero-title">
+                        Position Guide
+                    </h1>
+                    <p class="hero-subtitle">
+                        Detailed job guides and career paths across technology, engineering, and business fields
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#positions" class="btn btn-primary">
+                            Explore Positions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Positions Section -->
+        <section class="positions-section" id="positions" aria-labelledby="positions-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="positions-title" class="section-title">岗位指南</h2>
+                    <p class="section-subtitle">探索技术、工程和商业领域的详细岗位指导和职业路径</p>
+                </div>
+
+                <!-- 搜索组件 -->
+                <div id="position-search"></div>
+
+                <!-- 筛选组件 -->
+                <div id="position-filter"></div>
+
+                <!-- 岗位列表组件 -->
+                <div id="position-list"></div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 id="cta-title">Need More Career Guidance?</h2>
+                    <p>Explore our comprehensive career wiki with hundreds of job profiles and detailed industry reports.</p>
+                    <div class="cta-buttons">
+                        <a href="../wiki/table-of-contents.html" class="btn btn-primary">
+                            Browse Career Wiki
+                        </a>
+                        <a href="../report/" class="btn btn-secondary">
+                            Read Industry Reports
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="site-footer"></div>
+
+    <!-- JavaScript -->
+    <script src="/site.js" defer></script>
+    <script src="/scripts/layout.js" defer></script>
+
+    <!-- 岗位列表组件脚本 -->
+    <script src="data/positions.js" defer></script>
+    <script src="components/search.js" defer></script>
+    <script src="components/filter.js" defer></script>
+    <script src="components/position-list.js" defer></script>
+    <script src="scripts/position-app.js" defer></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

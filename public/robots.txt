@@ -1,0 +1,35 @@
+# robots.txt for https://tying.ai
+# Generated: 2025-11-13
+# Updated: 2025-11-13
+
+# Allow all search engines
+User-agent: *
+Allow: /
+Disallow: /archive/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemaps
+Sitemap: https://tying.ai/sitemap-index.xml
+
+# Host (preferred domain)
+Host: https://tying.ai

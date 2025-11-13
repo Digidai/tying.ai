@@ -1,0 +1,453 @@
+[
+  {
+    "id": "pos_1",
+    "title": "Senior Frontend Developer",
+    "company": "TechCorp",
+    "location": "San Francisco, CA",
+    "type": "full-time",
+    "category": {
+      "id": "eng",
+      "name": "Engineering",
+      "description": "Software development and engineering roles",
+      "icon": "💻"
+    },
+    "experience": "senior",
+    "salary": {
+      "min": 120000,
+      "max": 180000,
+      "currency": "USD",
+      "period": "yearly"
+    },
+    "description": "We are looking for an experienced frontend developer to join our team and help build next-generation web applications using React, TypeScript, and modern web technologies.",
+    "requirements": [
+      "5+ years of frontend development experience",
+      "Strong proficiency in React and TypeScript",
+      "Experience with modern CSS and responsive design",
+      "Understanding of web performance optimization",
+      "Experience with testing frameworks"
+    ],
+    "responsibilities": [
+      "Develop new features for our flagship product",
+      "Participate in code reviews and mentor junior developers",
+      "Collaborate with designers and product managers",
+      "Optimize application performance and user experience",
+      "Contribute to technical architecture decisions"
+    ],
+    "benefits": [
+      "Comprehensive health insurance",
+      "401(k) with company match",
+      "Remote work options",
+      "Professional development budget",
+      "Flexible work hours"
+    ],
+    "skills": [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "CSS",
+      "HTML",
+      "Next.js",
+      "Node.js",
+      "GraphQL"
+    ],
+    "postedAt": "2024-01-15T10:00:00Z",
+    "isActive": true,
+    "remote": "hybrid",
+    "visa": "yes",
+    "tags": ["frontend", "react", "typescript", "senior", "hybrid"]
+  },
+  {
+    "id": "pos_2",
+    "title": "Product Manager",
+    "company": "StartupXYZ",
+    "location": "New York, NY",
+    "type": "full-time",
+    "category": {
+      "id": "pm",
+      "name": "Product Management",
+      "description": "Product strategy and management roles",
+      "icon": "📊"
+    },
+    "experience": "mid",
+    "salary": {
+      "min": 100000,
+      "max": 150000,
+      "currency": "USD",
+      "period": "yearly"
+    },
+    "description": "Join our product team to help shape the future of our platform. We're looking for someone who can drive product strategy and work closely with engineering and design teams.",
+    "requirements": [
+      "3+ years product management experience",
+      "Strong analytical and problem-solving skills",
+      "Excellent communication and presentation skills",
+      "Experience with agile development methodologies",
+      "Technical background or ability to work closely with engineers"
+    ],
+    "responsibilities": [
+      "Define product roadmap and strategy",
+      "Write detailed product requirements documents",
+      "Work with engineering teams to ensure timely delivery",
+      "Conduct user research and market analysis",
+      "Manage product launches and go-to-market strategies"
+    ],
+    "benefits": [
+      "Equity options",
+      "Flexible work hours",
+      "Professional development budget",
+      "Health and wellness stipend",
+      "Unlimited PTO"
+    ],
+    "skills": [
+      "Product Strategy",
+      "Analytics",
+      "Communication",
+      "Leadership",
+      "User Research",
+      "Agile",
+      "Data Analysis"
+    ],
+    "postedAt": "2024-01-10T14:30:00Z",
+    "isActive": true,
+    "remote": "remote",
+    "visa": "potential",
+    "tags": ["product", "strategy", "analytics", "remote", "mid-level"]
+  },
+  {
+    "id": "pos_3",
+    "title": "UX Designer",
+    "company": "DesignHub",
+    "location": "Austin, TX",
+    "type": "full-time",
+    "category": {
+      "id": "design",
+      "name": "Design",
+      "description": "UI/UX and design roles",
+      "icon": "🎨"
+    },
+    "experience": "mid",
+    "salary": {
+      "min": 85000,
+      "max": 120000,
+      "currency": "USD",
+      "period": "yearly"
+    },
+    "description": "Creative UX designer needed for innovative product design. We're looking for someone passionate about user experience and creating intuitive, beautiful interfaces.",
+    "requirements": [
+      "Portfolio demonstrating UX design work",
+      "3+ years of UX design experience",
+      "Proficiency in Figma, Sketch, or Adobe XD",
+      "Understanding of user-centered design principles",
+      "Experience with user research and usability testing"
+    ],
+    "responsibilities": [
+      "Conduct user research and create user personas",
+      "Design wireframes, prototypes, and high-fidelity mockups",
+      "Develop and maintain design systems",
+      "Collaborate with developers to ensure design implementation",
+      "Conduct usability testing and iterate based on feedback"
+    ],
+    "benefits": [
+      "Creative work environment",
+      "Latest design tools and software",
+      "Conference and training budget",
+      "Flexible schedule",
+      "Health insurance"
+    ],
+    "skills": [
+      "Figma",
+      "Sketch",
+      "Adobe XD",
+      "User Research",
+      "Prototyping",
+      "Design Systems",
+      "Usability Testing"
+    ],
+    "postedAt": "2024-01-08T09:15:00Z",
+    "isActive": true,
+    "remote": "flexible",
+    "visa": "yes",
+    "tags": ["ux", "design", "figma", "research", "flexible"]
+  },
+  {
+    "id": "pos_4",
+    "title": "Backend Engineer",
+    "company": "CloudTech",
+    "location": "Seattle, WA",
+    "type": "full-time",
+    "category": {
+      "id": "eng",
+      "name": "Engineering",
+      "description": "Software development and engineering roles",
+      "icon": "💻"
+    },
+    "experience": "senior",
+    "salary": {
+      "min": 130000,
+      "max": 190000,
+      "currency": "USD",
+      "period": "yearly"
+    },
+    "description": "We're seeking a senior backend engineer to help build scalable cloud infrastructure and APIs that power millions of user experiences.",
+    "requirements": [
+      "5+ years of backend development experience",
+      "Strong proficiency in Python, Go, or Java",
+      "Experience with cloud platforms (AWS, GCP, Azure)",
+      "Understanding of microservices architecture",
+      "Experience with databases and data modeling"
+    ],
+    "responsibilities": [
+      "Design and implement scalable backend services",
+      "Develop RESTful APIs and GraphQL endpoints",
+      "Optimize database performance and design",
+      "Ensure system reliability and monitoring",
+      "Mentor junior engineers and conduct code reviews"
+    ],
+    "benefits": [
+      "Top-tier health insurance",
+      "401(k) with generous match",
+      "Stock options",
+      "Remote work flexibility",
+      "Annual learning stipend"
+    ],
+    "skills": [
+      "Python",
+      "Go",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "PostgreSQL",
+      "Redis",
+      "Microservices"
+    ],
+    "postedAt": "2024-01-12T16:45:00Z",
+    "isActive": true,
+    "remote": "remote",
+    "visa": "yes",
+    "tags": ["backend", "python", "cloud", "senior", "remote"]
+  },
+  {
+    "id": "pos_5",
+    "title": "Data Analyst",
+    "company": "DataInsights",
+    "location": "Chicago, IL",
+    "type": "full-time",
+    "category": {
+      "id": "data",
+      "name": "Data & Analytics",
+      "description": "Data analysis and data science roles",
+      "icon": "📈"
+    },
+    "experience": "junior",
+    "salary": {
+      "min": 65000,
+      "max": 85000,
+      "currency": "USD",
+      "period": "yearly"
+    },
+    "description": "Join our data team to help drive business decisions through data analysis and visualization. Great opportunity for someone looking to grow their data career.",
+    "requirements": [
+      "1-2 years of data analysis experience",
+      "Proficiency in SQL and Excel",
+      "Experience with data visualization tools",
+      "Basic understanding of statistics",
+      "Strong analytical and problem-solving skills"
+    ],
+    "responsibilities": [
+      "Analyze business data and generate insights",
+      "Create dashboards and reports for stakeholders",
+      "Collaborate with business teams to understand data needs",
+      "Identify trends and patterns in data",
+      "Present findings to non-technical audiences"
+    ],
+    "benefits": [
+      "Health insurance",
+      "401(k) plan",
+      "Professional development opportunities",
+      "Casual work environment",
+      "Flexible hours"
+    ],
+    "skills": [
+      "SQL",
+      "Excel",
+      "Tableau",
+      "Python",
+      "Statistics",
+      "Data Visualization",
+      "Business Analysis"
+    ],
+    "postedAt": "2024-01-14T11:20:00Z",
+    "isActive": true,
+    "remote": "hybrid",
+    "visa": "no",
+    "tags": ["data", "sql", "analytics", "junior", "hybrid"]
+  },
+  {
+    "id": "pos_6",
+    "title": "DevOps Engineer",
+    "company": "InfraSystems",
+    "location": "Denver, CO",
+    "type": "full-time",
+    "category": {
+      "id": "devops",
+      "name": "DevOps & Infrastructure",
+      "description": "DevOps and infrastructure engineering roles",
+      "icon": "⚙️"
+    },
+    "experience": "mid",
+    "salary": {
+      "min": 105000,
+      "max": 145000,
+      "currency": "USD",
+      "period": "yearly"
+    },
+    "description": "We're looking for a DevOps engineer to help build and maintain our cloud infrastructure and CI/CD pipelines.",
+    "requirements": [
+      "3+ years of DevOps or infrastructure experience",
+      "Experience with containerization and orchestration",
+      "Knowledge of CI/CD tools and practices",
+      "Understanding of cloud security best practices",
+      "Scripting and automation skills"
+    ],
+    "responsibilities": [
+      "Build and maintain CI/CD pipelines",
+      "Manage cloud infrastructure and deployments",
+      "Implement monitoring and alerting systems",
+      "Automate manual processes and improve efficiency",
+      "Collaborate with development teams on deployment strategies"
+    ],
+    "benefits": [
+      "Comprehensive benefits package",
+      "Remote work options",
+      "Training and certification budget",
+      "Modern tooling and infrastructure",
+      "Collaborative team environment"
+    ],
+    "skills": [
+      "Docker",
+      "Kubernetes",
+      "Jenkins",
+      "Terraform",
+      "AWS",
+      "Linux",
+      "Bash",
+      "Monitoring"
+    ],
+    "postedAt": "2024-01-11T13:00:00Z",
+    "isActive": true,
+    "remote": "remote",
+    "visa": "potential",
+    "tags": ["devops", "kubernetes", "aws", "mid-level", "remote"]
+  },
+  {
+    "id": "pos_7",
+    "title": "Mobile Developer",
+    "company": "AppWorks",
+    "location": "Los Angeles, CA",
+    "type": "full-time",
+    "category": {
+      "id": "mobile",
+      "name": "Mobile Development",
+      "description": "iOS and Android development roles",
+      "icon": "📱"
+    },
+    "experience": "mid",
+    "salary": {
+      "min": 95000,
+      "max": 135000,
+      "currency": "USD",
+      "period": "yearly"
+    },
+    "description": "Mobile developer needed to create amazing user experiences on iOS and Android platforms using React Native or native technologies.",
+    "requirements": [
+      "3+ years of mobile development experience",
+      "Proficiency in React Native or native iOS/Android development",
+      "Understanding of mobile UI/UX principles",
+      "Experience with mobile app deployment",
+      "Knowledge of mobile performance optimization"
+    ],
+    "responsibilities": [
+      "Develop and maintain mobile applications",
+      "Collaborate with design team on UI implementation",
+      "Optimize app performance and user experience",
+      "Debug and fix mobile-specific issues",
+      "Participate in app store releases and updates"
+    ],
+    "benefits": [
+      "Competitive salary and equity",
+      "Flexible work arrangements",
+      "Latest development tools",
+      "Conference attendance budget",
+      "Health and wellness benefits"
+    ],
+    "skills": [
+      "React Native",
+      "iOS",
+      "Android",
+      "JavaScript",
+      "TypeScript",
+      "Mobile UI",
+      "App Store"
+    ],
+    "postedAt": "2024-01-13T15:30:00Z",
+    "isActive": true,
+    "remote": "flexible",
+    "visa": "yes",
+    "tags": ["mobile", "react-native", "ios", "android", "flexible"]
+  },
+  {
+    "id": "pos_8",
+    "title": "Marketing Manager",
+    "company": "GrowthCo",
+    "location": "Boston, MA",
+    "type": "full-time",
+    "category": {
+      "id": "marketing",
+      "name": "Marketing & Growth",
+      "description": "Marketing and growth roles",
+      "icon": "📢"
+    },
+    "experience": "mid",
+    "salary": {
+      "min": 80000,
+      "max": 110000,
+      "currency": "USD",
+      "period": "yearly"
+    },
+    "description": "Marketing manager needed to drive growth and brand awareness through digital marketing campaigns and content strategy.",
+    "requirements": [
+      "3+ years of marketing experience",
+      "Experience with digital marketing channels",
+      "Strong writing and communication skills",
+      "Understanding of SEO and content marketing",
+      "Data-driven approach to marketing"
+    ],
+    "responsibilities": [
+      "Develop and execute marketing campaigns",
+      "Manage content creation and distribution",
+      "Analyze marketing performance and ROI",
+      "Collaborate with sales team on lead generation",
+      "Manage marketing budget and vendors"
+    ],
+    "benefits": [
+      "Health insurance",
+      "401(k) with match",
+      "Professional development budget",
+      "Flexible work hours",
+      "Team building activities"
+    ],
+    "skills": [
+      "Digital Marketing",
+      "SEO",
+      "Content Marketing",
+      "Analytics",
+      "Social Media",
+      "Email Marketing",
+      "Campaign Management"
+    ],
+    "postedAt": "2024-01-09T10:45:00Z",
+    "isActive": true,
+    "remote": "hybrid",
+    "visa": "no",
+    "tags": ["marketing", "digital", "content", "mid-level", "hybrid"]
+  }
+]

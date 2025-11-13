@@ -1,0 +1,286 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: string;
+  locale?: string;
+  url?: string;
+  noIndex?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  description = "Tying.ai - Career guidance and position information platform. Explore comprehensive career guides and industry reports.",
+  image = "https://tying.ai/og-image.png",
+  type = "website",
+  locale = "en",
+  url = new URL(Astro.url.pathname, Astro.site).href,
+  noIndex = false,
+  class: className = "",
+} = Astro.props;
+
+// 网站配置
+const siteConfig = {
+  name: "Tying.ai",
+  url: "https://tying.ai",
+  author: "Tying.ai Team",
+  twitterHandle: "@tying_ai",
+  foundingDate: "2024",
+  keywords: "career guidance, job search, industry reports, career planning, professional development",
+};
+
+// 增强的结构化数据
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": type === "article" ? "Article" : "WebSite",
+  "name": title,
+  "description": description,
+  "url": url,
+  "image": image,
+  "publisher": {
+    "@type": "Organization",
+    "name": siteConfig.name,
+    "url": siteConfig.url,
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tying.ai/logo.png"
+    },
+    "foundingDate": siteConfig.foundingDate,
+  },
+  ...(type === "article" && {
+    "author": {
+      "@type": "Person",
+      "name": siteConfig.author,
+    },
+    "datePublished": new Date().toISOString(),
+    "dateModified": new Date().toISOString(),
+    "headline": title,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    },
+  }),
+  ...(type === "website" && {
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://tying.ai/wiki?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  })
+};
+
+// 面包屑结构化数据 (如果是详情页)
+const breadcrumbSchema = Astro.url.pathname !== "/" ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tying.ai"
+    },
+    ...(Astro.url.pathname.startsWith("/wiki") ? [{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Career Wiki",
+      "item": "https://tying.ai/wiki"
+    }] : []),
+    ...(Astro.url.pathname.startsWith("/report") ? [{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Industry Reports",
+      "item": "https://tying.ai/report"
+    }] : []),
+  ]
+} : null;
+---
+
+<!DOCTYPE html>
+<html lang={locale} class={className}>
+<head>
+  <!-- Meta标签 -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- 基础SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content={siteConfig.author} />
+  <meta name="keywords" content={siteConfig.keywords} />
+
+  <!-- Robots & Indexing -->
+  {noIndex ? (
+    <meta name="robots" content="noindex, nofollow" />
+  ) : (
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  )}
+  <meta name="googlebot" content="index, follow" />
+  <meta name="bingbot" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href={url} />
+
+  <!-- Language Alternatives (if needed) -->
+  <link rel="alternate" hreflang="en" href={url} />
+  <link rel="alternate" hreflang="x-default" href={url} />
+
+  <!-- Humans.txt & LLMs.txt -->
+  <link rel="author" href="/humans.txt" />
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site information" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content={type} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:url" content={url} />
+  <meta property="og:site_name" content={siteConfig.name} />
+  <meta property="og:locale" content={locale} />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={image} />
+  <meta property="twitter:url" content={url} />
+  <meta property="twitter:site" content={siteConfig.twitterHandle} />
+  <meta property="twitter:creator" content={siteConfig.twitterHandle} />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='%233b82f6'/%3E%3Ctext x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='140' fill='white' font-family='Arial'%3ET%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#3b82f6" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- 样式文件 -->
+  <style>
+    @import '../styles/design-tokens.css';
+    @import '../styles/global.css';
+    @import '../styles/components.css';
+  </style>
+
+  <!-- 预加载关键资源 -->
+
+  <!-- DNS预解析 -->
+  <link rel="dns-prefetch" href="//www.google-analytics.com" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+
+  <!-- 结构化数据 -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+
+  <!-- 面包屑结构化数据 -->
+  {breadcrumbSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+  )}
+
+  <!-- 安全性 Headers -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+</head>
+
+<body>
+  <!-- 页面内容 -->
+  <div id="app" class="min-h-screen flex flex-col">
+    <slot />
+  </div>
+
+  <!-- 脚本文件 -->
+  <script type="module" src="/src/scripts/main.ts"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WER9NL409R"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WER9NL409R', {
+      page_title: document.title,
+      page_location: window.location.href,
+    });
+  </script>
+
+  <!-- 性能监控 -->
+  <script type="module">
+    // 简单的性能监控
+    if ('PerformanceObserver' in window) {
+      const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.entryType === 'navigation') {
+            console.log('Page load time:', entry.loadEventEnd - entry.fetchStart, 'ms');
+          }
+        }
+      });
+      observer.observe({ entryTypes: ['navigation'] });
+    }
+  </script>
+</body>
+</html>
+
+<style>
+  /* 布局特定样式 */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* 焦点样式增强 */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  /* 减少动画模式 */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* 打印样式 */
+  @media print {
+    body {
+      font-size: 12pt;
+      line-height: 1.4;
+    }
+
+    #app {
+      display: block;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+  }
+</style>

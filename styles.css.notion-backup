@@ -1,0 +1,1264 @@
+/* Notion-Style Design System for Tying.ai */
+:root {
+    /* Notion Color Palette - Complete Soft Grays Scale */
+    --notion-gray-95: #1F1F1F;
+    --notion-gray-90: #37352F;
+    --notion-gray-80: #5A5A5A;
+    --notion-gray-70: #787774;
+    --notion-gray-60: #8B8A88;
+    --notion-gray-50: #9B9A97;
+    --notion-gray-40: #AEADAB;
+    --notion-gray-30: #E9E9E7;
+    --notion-gray-20: #EFEEEB;
+    --notion-gray-10: #F7F6F3;
+    --notion-gray-05: #FBFBFA;
+    --notion-gray-02: #FDFDFC;
+
+    /* Primary Color - Soft Blue for Actions (More Subtle) */
+    --primary-color: #0F7BCC;
+    --primary-hover: #0B5FA4;
+    --primary-light: #3D96D8;
+
+    /* Text Colors - Notion's Hierarchy */
+    --text-primary: #37352F;
+    --text-secondary: #787774;
+    --text-tertiary: #9B9A97;
+    --text-light: #B8B7B4;
+    --text-muted: #C7C6C4;
+
+    /* Background Colors - Warm Neutrals */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F7F6F3;
+    --bg-tertiary: #FBFBFA;
+    --bg-hover: #F1F0EE;
+
+    /* Accent Colors - For Tags, Badges, Highlights */
+    --accent-color: #EDF2F7;
+    --accent-hover: #E2E8F0;
+
+    /* Border Colors - Subtle */
+    --border-color: #E9E9E7;
+    --border-hover: #DFDFDD;
+    --border-focus: #2383E2;
+
+    /* Notion-Style Shadows - Very Subtle */
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.06);
+    --shadow-modal: 0 8px 16px rgba(0, 0, 0, 0.08);
+    --shadow-nav: 0 1px 0 rgba(0, 0, 0, 0.06);
+
+    /* Border Radius - Notion Standards */
+    --radius-sm: 3px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+
+    /* Spacing - More Generous (Enhanced for Notion) */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 12px;
+    --space-lg: 20px;  /* Increased from 16px */
+    --space-xl: 28px;  /* Increased from 24px */
+    --space-2xl: 40px;  /* Increased from 32px */
+    --space-3xl: 64px;  /* Increased from 48px - section spacing */
+    --space-4xl: 80px;  /* Increased from 64px - large section spacing */
+    --space-5xl: 120px;  /* New - extra large spacing */
+
+    /* Typography - Notion's Readable Sizes (Enhanced) */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;  /* Increased from 15px for better readability */
+    --font-size-lg: 18px;  /* Increased from 16px */
+    --font-size-xl: 20px;  /* Increased from 18px */
+    --font-size-2xl: 28px;  /* Increased from 24px */
+    --font-size-3xl: 36px;  /* Increased from 32px */
+    --font-size-4xl: 44px;  /* Increased from 40px */
+    --font-size-5xl: 56px;  /* Increased from 48px - Notion hero standard */
+
+    /* Line Heights - Enhanced Readability */
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.65;  /* Increased from 1.6 */
+    --line-height-relaxed: 1.85;  /* Increased from 1.8 */
+
+    /* Transitions - Quick and Subtle */
+    --transition-fast: 150ms ease;
+    --transition-normal: 200ms ease;
+
+    /* Header & Footer */
+    --header-height: 56px;
+    --header-bg: rgba(255, 255, 255, 0.98);
+    --footer-bg: #F7F6F3;
+
+    /* Max Widths - Notion Standards */
+    --max-width-narrow: 720px;
+    --max-width-medium: 900px;
+    --max-width-wide: 900px;  /* Notion standard content width */
+}
+
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    overflow-x: hidden;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-variant-numeric: tabular-nums;
+}
+
+/* Notion-Style Typography - Softer Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-lg);
+}
+
+h1 { font-size: var(--font-size-3xl); margin-bottom: var(--space-xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+h5 { font-size: var(--font-size-base); }
+h6 { font-size: var(--font-size-sm); font-weight: 500; }
+
+p {
+    margin-bottom: var(--space-lg);
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-fast), opacity var(--transition-fast);
+    position: relative;
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* Notion-style subtle underline on hover for text links */
+p a:hover,
+li a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 2px;
+    opacity: 0.9;
+}
+
+/* Notion-Style Focus - Only for Keyboard Navigation */
+*:focus {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Container - Notion Standard Width */
+.container {
+    max-width: var(--max-width-wide);  /* 900px - Notion standard */
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+}
+
+/* Notion-Style Header - Clean & Minimal */
+.main-header {
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: box-shadow var(--transition-fast);
+}
+
+.main-header.is-hidden {
+    transform: translateY(-100%);
+}
+
+.main-header.scrolled {
+    box-shadow: var(--shadow-nav);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    height: var(--header-height);
+}
+
+.site-branding {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: var(--space-sm) 0;
+}
+
+.logo-link:hover .site-title {
+    color: var(--primary-color);
+}
+
+.site-logo-emoji {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.site-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    background: var(--notion-gray-10);
+}
+
+.nav-link.active {
+    color: var(--text-primary);
+    background: var(--notion-gray-10);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast);
+}
+
+.mobile-menu-toggle:hover {
+    background: var(--notion-gray-10);
+}
+
+.mobile-menu-toggle span {
+    width: 18px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+    border-radius: 1px;
+}
+
+/* Notion-Style Hero Section - Simple & Clean */
+.hero-section {
+    padding: var(--space-4xl) 0;
+    text-align: center;
+    background: var(--bg-primary);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero-logo {
+    margin-bottom: var(--space-xl);
+}
+
+.hero-logo-emoji {
+    font-size: 4rem;
+    line-height: 1;
+}
+
+.hero-title {
+    font-size: var(--font-size-5xl);
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2xl);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Notion-Style Buttons - Simple & Effective */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+    border: 1px solid transparent;
+    cursor: pointer;
+    min-height: 40px;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
+}
+
+.btn-secondary:active {
+    transform: scale(0.98);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+.btn-outline:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+}
+
+.btn-outline:active {
+    transform: scale(0.98);
+}
+
+/* Enhanced Section Styles */
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+}
+
+.section-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+}
+
+.section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Enhanced Features Section */
+.features-section {
+    padding: var(--space-3xl) 0;
+    background: var(--bg-secondary);
+    position: relative;
+}
+
+.features-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
+    position: relative;
+    z-index: 1;
+}
+
+.feature-card {
+    background: var(--bg-tertiary);
+    padding: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-card);
+    transition: background-color var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+    border: 1px solid var(--border-color);
+}
+
+.feature-card:hover {
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-hover);
+}
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-lg);
+    color: var(--text-secondary);
+    font-size: 24px;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.feature-card:hover .feature-icon {
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.feature-card h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    line-height: var(--line-height-relaxed);
+}
+
+.feature-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.feature-link:hover {
+    color: var(--primary-hover);
+}
+
+.feature-link::after {
+    content: '→';
+}
+
+.feature-link:hover::after {
+    transform: translateX(4px);
+}
+
+/* Enhanced Content Section */
+.latest-content-section {
+    padding: var(--space-3xl) 0;
+    background: var(--bg-primary);
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-xl);
+}
+
+.content-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+    box-shadow: var(--shadow-card);
+}
+
+.content-card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-hover);
+}
+
+.card-content {
+    padding: var(--space-2xl);
+}
+
+.card-category {
+    display: inline-block;
+    background: var(--notion-gray-10);
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    margin-bottom: var(--space-md);
+}
+
+.card-content h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    line-height: var(--line-height-tight);
+}
+
+.card-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    line-height: var(--line-height-relaxed);
+}
+
+.card-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.card-link:hover {
+    color: var(--primary-hover);
+    gap: var(--space-sm);
+}
+
+.card-link::after {
+    content: '→';
+    transition: transform var(--transition-fast);
+}
+
+.card-link:hover::after {
+    transform: translateX(4px);
+}
+
+/* Tag list */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Notion-Style Tags/Badges - Soft Pills */
+.tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--accent-color);
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    letter-spacing: 0;
+    white-space: nowrap;
+    transition: background-color var(--transition-fast);
+}
+
+.tag:hover {
+    background: var(--accent-hover);
+}
+
+.tag.is-muted {
+    background: var(--notion-gray-10);
+    color: var(--text-tertiary);
+}
+
+.feature-card.is-disabled {
+    opacity: 0.6;
+}
+
+.feature-card.is-disabled .feature-link {
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+/* Notion-Style CTA Section - Simple & Clean */
+.cta-section {
+    padding: var(--space-3xl) 0;
+    background: var(--bg-secondary);
+    text-align: center;
+}
+
+.cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+}
+
+.cta-content p {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2xl);
+    line-height: 1.6;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Notion-Style Footer - Simple & Clean */
+.main-footer {
+    background: var(--footer-bg);
+    color: var(--text-secondary);
+    padding: var(--space-4xl) 0 var(--space-2xl);
+    border-top: 1px solid var(--border-color);
+    margin-top: var(--space-4xl);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3xl);
+    margin-bottom: var(--space-3xl);
+}
+
+.footer-branding {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.footer-logo-emoji {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.footer-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.footer-description {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-sm);
+}
+
+.footer-section h4 {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: var(--space-sm);
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    font-size: var(--font-size-sm);
+}
+
+.footer-links a:hover {
+    color: var(--text-primary);
+}
+
+.social-links {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    font-size: 18px;
+    transition: color var(--transition-fast);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    background: var(--notion-gray-10);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-tertiary);
+    font-size: var(--font-size-xs);
+}
+
+.footer-bottom p {
+    margin-bottom: var(--space-xs);
+}
+
+.footer-bottom p:last-child {
+    margin-bottom: 0;
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 768px) {
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        border-top: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+        z-index: 50;
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+    
+    .main-nav.active {
+        display: block;
+        animation: slideDown 0.3s ease-out;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        padding: var(--space-lg) 0;
+        gap: 0;
+    }
+    
+    .main-nav li {
+        padding: var(--space-sm) var(--space-xl);
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    .hero-section {
+        padding: var(--space-2xl) 0;
+        min-height: 70vh;
+    }
+    
+    .hero-logo-emoji {
+        font-size: 4rem;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-size-lg);
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .features-grid,
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .cta-content h2 {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .features-section,
+    .latest-content-section,
+    .cta-section {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+    
+    .hero-logo-emoji {
+        font-size: 3.5rem;
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-size-base);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .cta-content h2 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .feature-card,
+    .card-content {
+        padding: var(--space-lg);
+    }
+    
+    .hero-section {
+        padding: var(--space-xl) 0;
+        min-height: 60vh;
+    }
+    
+    .features-section,
+    .latest-content-section,
+    .cta-section {
+        padding: var(--space-xl) 0;
+    }
+    
+    .btn {
+        padding: var(--space-md) var(--space-lg);
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .hero-logo-emoji {
+        animation: none;
+    }
+    
+    .hero-section::before {
+        animation: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #0000ff;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --border-color: #000000;
+    }
+    
+    .btn-primary {
+        background: #0000ff;
+        color: #ffffff;
+        border: 2px solid #000000;
+    }
+    
+    .feature-card,
+    .content-card {
+        border: 2px solid #000000;
+    }
+}
+
+/* Enhanced Accessibility Styles */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* Skip to content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    z-index: 1000;
+    transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* Enhanced focus styles */
+.btn:focus-visible,
+.nav-link:focus-visible,
+.feature-link:focus-visible,
+.card-link:focus-visible,
+.logo-link:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+/* High contrast mode improvements */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #0000ff;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --border-color: #000000;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f0f0f0;
+    }
+    
+    .btn-primary {
+        background: #0000ff;
+        color: #ffffff;
+        border: 2px solid #000000;
+    }
+    
+    .feature-card,
+    .content-card {
+        border: 2px solid #000000;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        background: #0000ff;
+        color: #ffffff;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .hero-logo-emoji {
+        animation: none;
+    }
+    
+    .hero-section::before {
+        animation: none;
+    }
+    
+    .feature-card:hover,
+    .content-card:hover {
+        transform: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-tertiary: #334155;
+        --border-color: #475569;
+        --border-hover: #64748b;
+        --header-bg: rgba(15, 23, 42, 0.95);
+        --accent-color: #1e293b;
+        --accent-hover: #334155;
+    }
+    
+    .hero-title {
+        background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .feature-card,
+    .content-card {
+        background: var(--bg-primary);
+        border-color: var(--border-color);
+    }
+    
+    .btn-secondary {
+        background: var(--bg-primary);
+        border-color: var(--border-color);
+        color: var(--text-primary);
+    }
+    
+    .btn-secondary:hover {
+        background: var(--bg-secondary);
+        border-color: var(--primary-color);
+    }
+}
+
+/* Print styles */
+@media print {
+    .main-header,
+    .main-footer,
+    .hero-buttons,
+    .cta-buttons,
+    .mobile-menu-toggle {
+        display: none;
+    }
+    
+    .hero-section {
+        padding: 2rem 0;
+        min-height: auto;
+    }
+    
+    .hero-title {
+        background: none;
+        -webkit-text-fill-color: initial;
+        color: #000000;
+    }
+    
+    .feature-card,
+    .content-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #000000;
+    }
+    
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+    
+    a[href^="#"]:after {
+        content: "";
+    }
+}
+
+/* ===== Notion-Style Enhancement Classes ===== */
+
+/* Content-first narrow container for articles */
+.content-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+/* Enhanced Hero title size */
+.hero-title-large {
+    font-size: var(--font-size-5xl);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+/* Notion-style card with hover lift */
+.notion-card {
+    background: #FAFAFA;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+    box-shadow: var(--shadow-card);
+}
+
+.notion-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-hover);
+}
+
+/* Minimal button without icons */
+.btn-minimal {
+    padding: 14px 28px;
+    font-size: var(--font-size-base);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+}
+
+.btn-minimal:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
+}
+
+/* Large section spacing */
+.section-lg {
+    padding: var(--space-4xl) 0;
+}
+
+.section-xl {
+    padding: var(--space-5xl) 0;
+}
+
+/* Enhanced paragraph spacing */
+.content-text p {
+    margin-bottom: var(--space-xl);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+}
+
+/* Simplified feature grid */
+.feature-grid-lg {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-2xl);
+    margin-top: var(--space-3xl);
+}

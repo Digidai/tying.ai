@@ -1,0 +1,101 @@
+/**
+ * Notion 风格设计令牌
+ * 极简主义 - 仅保留核心设计变量
+ */
+
+/* =============================================
+   色彩系统 - Notion 黑白灰
+   ============================================= */
+
+:root {
+  /* Notion 核心色彩 */
+  --color-black: #000000;          /* 纯黑 */
+  --color-text: #37352F;           /* Notion 文字灰 */
+  --color-text-light: #787774;     /* 次要文字 */
+  --color-white: #FFFFFF;          /* 纯白 */
+  --color-border: #E9E9E7;         /* 边框灰 */
+  --color-bg-subtle: #F7F6F3;      /* 极浅背景 */
+
+  /* 文本色彩 */
+  --text-primary: var(--color-text);
+  --text-secondary: var(--color-text-light);
+  --text-inverse: var(--color-white);
+
+  /* 背景色彩 */
+  --bg-primary: var(--color-white);
+  --bg-secondary: var(--color-bg-subtle);
+
+  /* 边框色彩 */
+  --border-primary: var(--color-border);
+}
+
+/* =============================================
+   字体系统
+   ============================================= */
+
+:root {
+  /* 字体族 */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+
+  /* 字体大小 - 简化为 4 级 */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 2rem;       /* 32px */
+
+  /* 行高 - Notion 风格较大行高 */
+  --line-height-tight: 1.4;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.8;
+
+  /* 字重 */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* =============================================
+   间距系统 - 8px 倍数
+   ============================================= */
+
+:root {
+  --space-0: 0;
+  --space-1: 0.5rem;    /* 8px */
+  --space-2: 1rem;      /* 16px */
+  --space-3: 1.5rem;    /* 24px */
+  --space-4: 2rem;      /* 32px */
+  --space-6: 3rem;      /* 48px */
+  --space-8: 4rem;      /* 64px */
+  --space-12: 6rem;     /* 96px */
+}
+
+/* =============================================
+   圆角系统 - 极简圆角
+   ============================================= */
+
+:root {
+  --radius-none: 0;
+  --radius-sm: 0.125rem;  /* 2px */
+  --radius-base: 0.25rem; /* 4px */
+}
+
+/* =============================================
+   布局系统
+   ============================================= */
+
+:root {
+  /* Notion 窄栏布局 */
+  --container-narrow: 900px;
+  --container-wide: 1200px;
+}
+
+/* =============================================
+   Z-index 层级
+   ============================================= */
+
+:root {
+  --z-sticky: 100;
+  --z-modal: 200;
+}
