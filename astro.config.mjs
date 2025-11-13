@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
         applyBaseStyles: false, // 我们将使用自定义CSS
       }
     }),
+    sitemap(), // 自动生成 sitemap.xml
   ],
 
   // 构建优化配置

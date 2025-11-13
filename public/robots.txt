@@ -1,0 +1,15 @@
+# robots.txt for https://tying.ai
+# Generated: 2025-11-13
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://tying.ai/sitemap-index.xml
+
+# Crawl-delay (optional, prevents aggressive crawling)
+# Crawl-delay: 1
+
+# Disallow specific paths if needed
+# Disallow: /api/
+# Disallow: /admin/
