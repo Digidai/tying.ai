@@ -57,43 +57,12 @@ const {
     <slot />
   </main>
 
-  <!-- Notion 风格页脚 -->
+  <!-- Notion 风格页脚 - 极简版 -->
   <footer class="border-t border-notion-border bg-white">
-    <div class="max-w-notion-wide mx-auto px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- 公司信息 -->
-        <div>
-          <div class="text-lg font-semibold text-notion-text mb-4">Tying.ai</div>
-          <p class="text-notion-text-light text-sm mb-4 max-w-md">
-            Your comprehensive career guidance platform, providing professional insights and position information.
-          </p>
-        </div>
-
-        <!-- 链接 -->
-        <div class="grid grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-sm font-semibold text-notion-text mb-3">Quick Links</h3>
-            <ul class="space-y-2 text-sm">
-              <li><a href="/wiki" class="text-notion-text-light hover:text-notion-text">Career Wiki</a></li>
-              <li><a href="/position" class="text-notion-text-light hover:text-notion-text">Position Guide</a></li>
-              <li><a href="/report" class="text-notion-text-light hover:text-notion-text">Industry Reports</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-sm font-semibold text-notion-text mb-3">Support</h3>
-            <ul class="space-y-2 text-sm">
-              <li><a href="#" class="text-notion-text-light hover:text-notion-text">Help Center</a></li>
-              <li><a href="#" class="text-notion-text-light hover:text-notion-text">Contact Us</a></li>
-              <li><a href="#" class="text-notion-text-light hover:text-notion-text">Privacy Policy</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- 底部信息 -->
-      <div class="border-t border-notion-border mt-8 pt-8 text-center">
-        <p class="text-sm text-notion-text-light">&copy; 2024 Tying.ai. All rights reserved.</p>
-      </div>
+    <div class="max-w-notion-wide mx-auto px-8 py-6">
+      <p class="text-sm text-notion-text-light text-center">
+        &copy; 2024 <a href="/" class="text-notion-text hover:underline">Tying.ai</a>. Career Guidance Platform.
+      </p>
     </div>
   </footer>
 </BaseLayout>
