@@ -1,0 +1,50 @@
+# Cloudflare Pages Headers
+# https://developers.cloudflare.com/pages/platform/headers/
+
+# Apply to all pages
+/*
+  # Security Headers
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+  # Content Security Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-ancestors 'none';
+
+  # Cache Control
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages - shorter cache
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Root HTML
+/index.html
+  Cache-Control: public, max-age=1800, must-revalidate
+
+# Static assets - long cache
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts - long cache
+*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Images - medium cache
+*.jpg
+  Cache-Control: public, max-age=86400, immutable
+*.png
+  Cache-Control: public, max-age=86400, immutable
+*.webp
+  Cache-Control: public, max-age=86400, immutable
+*.svg
+  Cache-Control: public, max-age=86400, immutable
+
+# CSS and JS - medium cache
+*.css
+  Cache-Control: public, max-age=86400, must-revalidate
+*.js
+  Cache-Control: public, max-age=86400, must-revalidate

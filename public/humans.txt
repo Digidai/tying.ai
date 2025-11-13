@@ -1,0 +1,30 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Developer: Tying.ai Team
+    Site: https://tying.ai
+    Location: Global
+
+# THANKS
+
+    Astro Community
+    Tailwind CSS Team
+    Cloudflare Pages
+
+# TECHNOLOGY COLOPHON
+
+    Framework: Astro 5.15.5
+    CSS: Tailwind CSS + CSS Variables
+    Fonts: Inter, JetBrains Mono (Google Fonts)
+    Hosting: Cloudflare Pages
+    Version Control: Git / GitHub
+    SEO: Structured Data (JSON-LD), Sitemap, robots.txt
+
+# SITE
+
+    Last update: 2025-11-13
+    Standards: HTML5, CSS3, ES2022
+    Components: Responsive, Accessible, SEO-optimized
+    Design: Notion-inspired minimalism

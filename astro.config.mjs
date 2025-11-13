@@ -17,7 +17,30 @@ export default defineConfig({
         applyBaseStyles: false, // 我们将使用自定义CSS
       }
     }),
-    sitemap(), // 自动生成 sitemap.xml
+    sitemap({
+      // Sitemap 配置
+      filter: (page) => {
+        // 排除不需要索引的页面
+        return !page.includes('/simple') &&
+               !page.includes('/404');
+      },
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+      // 自定义 URL
+      customPages: [
+        'https://tying.ai/',
+        'https://tying.ai/wiki',
+        'https://tying.ai/report',
+      ],
+      // i18n (如果需要多语言)
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en-US',
+        },
+      },
+    }),
   ],
 
   // 构建优化配置
