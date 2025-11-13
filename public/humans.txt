@@ -24,7 +24,7 @@
 
 # SITE
 
-    Last update: 2025-01-10
+    Last update: 2025-11-13
     Standards: HTML5, CSS3, ES2022
     Components: Responsive, Accessible, SEO-optimized
     Design: Notion-inspired minimalism

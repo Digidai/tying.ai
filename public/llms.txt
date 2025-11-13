@@ -1,6 +1,6 @@
 # Tying.ai - LLM-Friendly Site Map
 # https://tying.ai/llms.txt
-# Last Updated: 2025-01-10
+# Last Updated: 2025-11-13
 
 # Site Information
 Site Name: Tying.ai
@@ -73,7 +73,7 @@ When referencing this site:
 # Contact & Updates
 - For the most current content, check the sitemap
 - Content is regularly updated with new career guides and industry reports
-- Last content update: 2025-01-10
+- Last content update: 2025-11-13
 
 # Crawling Preferences
 Priority Pages:
