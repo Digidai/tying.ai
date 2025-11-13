@@ -1,0 +1,622 @@
+---
+import NotionLayout from '@/layouts/NotionLayout.astro';
+
+export async function getStaticPaths() {
+  const reports = [
+    'us-recruitment-market',
+    'agentic-ai-vs-ai-agent',
+    'greenhouse-ats-2025',
+  ];
+
+  return reports.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+// Report metadata
+const reportData: Record<string, any> = {
+  'us-recruitment-market': {
+    title: 'US Recruitment Market Analysis',
+    subtitle: '2024-2025 Market Trends, Challenges, and Opportunities',
+    date: 'June 1, 2024',
+    category: 'Recruitment',
+  },
+  'agentic-ai-vs-ai-agent': {
+    title: 'Agentic AI vs AI Agent: Understanding the Difference',
+    subtitle: 'Architectural Distinctions in Modern AI Systems',
+    date: 'November 2, 2024',
+    category: 'AI & Technology',
+  },
+  'greenhouse-ats-2025': {
+    title: 'Greenhouse ATS Platform Overview',
+    subtitle: 'Comprehensive Guide to Features and Capabilities',
+    date: 'October 24, 2025',
+    category: 'HR Tech',
+  },
+};
+
+const report = reportData[slug];
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Industry Reports', href: '/report' },
+];
+---
+
+<NotionLayout
+  title={`${report.title} | Tying.ai`}
+  description={report.subtitle}
+  breadcrumbs={breadcrumbs}
+>
+  <!-- Report Header -->
+  <div class="mb-8 pb-6 border-b border-notion-border">
+    <div class="text-sm text-notion-text-light mb-2">{report.category} • {report.date}</div>
+    <p class="text-lg text-notion-text-light mt-2">{report.subtitle}</p>
+  </div>
+
+  {slug === 'us-recruitment-market' && (
+    <>
+      <!-- Executive Summary -->
+      <h2>Executive Summary</h2>
+      <p>
+        The US recruitment market in 2024-2025 demonstrates significant resilience despite inflationary pressures.
+        With an unemployment rate stabilizing around 4.1% and consistent monthly job growth exceeding 235,000,
+        the labor market remains robust while experiencing structural transformations across industries and demographics.
+      </p>
+
+      <!-- Market Overview -->
+      <h2>Market Overview</h2>
+      <p>Key indicators reflect the current state of the US labor market:</p>
+      <ul>
+        <li><strong>Unemployment Rate:</strong> 4.1% (stable and historically low)</li>
+        <li><strong>Monthly Job Growth:</strong> 235,000 average new jobs</li>
+        <li><strong>Wage Growth:</strong> 4.0% year-over-year</li>
+        <li><strong>Labor Participation Rate:</strong> 62.5%</li>
+      </ul>
+
+      <!-- Macroeconomic Analysis -->
+      <h2>Macroeconomic Analysis</h2>
+      <p>
+        Since 2023, the economy has demonstrated unexpected strength. The unemployment rate stabilized near 4%,
+        with nonfarm payrolls consistently adding jobs. Projections indicate 2025 unemployment may reach 4.2-4.5%,
+        remaining historically low despite anticipated economic slowdown.
+      </p>
+
+      <h3>Labor Market Resilience</h3>
+      <p>
+        The labor market continues to show resilience with consistent job creation across multiple sectors.
+        Despite Federal Reserve interest rate adjustments, hiring momentum has remained strong,
+        particularly in service-oriented industries.
+      </p>
+
+      <!-- Industry Divergence -->
+      <h2>Industry Employment Divergence</h2>
+
+      <h3>High-Growth Industries</h3>
+      <ul>
+        <li><strong>Healthcare:</strong> 7.2% projected growth for 2025, leading all sectors</li>
+        <li><strong>Government:</strong> Steady expansion in public sector employment</li>
+        <li><strong>Leisure & Hospitality:</strong> Continued recovery post-pandemic</li>
+        <li><strong>Technology:</strong> Strong demand for digital skills and AI expertise</li>
+      </ul>
+
+      <h3>Industries Facing Challenges</h3>
+      <ul>
+        <li><strong>Manufacturing:</strong> 0.8% decline projected due to automation and global competition</li>
+        <li><strong>Mining:</strong> Structural shifts impacting traditional energy sectors</li>
+        <li><strong>Retail Trade:</strong> E-commerce transformation reducing physical store staffing</li>
+        <li><strong>Financial Services:</strong> Technology-driven efficiency gains reducing headcount needs</li>
+      </ul>
+
+      <h3>Service Sector Dominance</h3>
+      <p>
+        The service sector added 1.67 million jobs in 2024, demonstrating the continued shift toward
+        knowledge work and customer-facing roles. Wage premiums significantly favor tech roles,
+        with business analysts earning $95,290 and computer managers $164,070 on average.
+      </p>
+
+      <!-- Technology Impact -->
+      <h2>Technology Impact on Recruitment</h2>
+
+      <h3>AI and Automation's Dual Effect</h3>
+      <p>
+        AI and automation are expected to impact 78 million jobs by 2030. While some roles face displacement,
+        new opportunities emerge in AI development, data science, and digital transformation consulting.
+      </p>
+
+      <h3>Digital Transformation of Recruitment</h3>
+      <p>
+        Digital recruitment methods now dominate the hiring landscape. Remote interviewing,
+        AI-powered candidate screening, and skills-based assessments have become standard practice,
+        accelerating time-to-hire and expanding talent pools geographically.
+      </p>
+
+      <h3>Remote Work Continuation</h3>
+      <p>
+        Remote and hybrid work arrangements remain prevalent, fundamentally reshaping recruitment strategies.
+        Companies increasingly compete for talent on a national or global scale rather than local markets.
+      </p>
+
+      <h3>Rapid Skill Demand Changes</h3>
+      <p>
+        Technical skill requirements evolve rapidly, with shorter skill relevance cycles.
+        Continuous learning and adaptability have become essential for career sustainability.
+      </p>
+
+      <!-- Demographic Differences -->
+      <h2>Differential Performance in Job Seeking Markets</h2>
+
+      <h3>Education Background Differences</h3>
+      <p>
+        College graduates experience 3.6% unemployment but face a concerning 39.5% underemployment rate,
+        indicating many work in positions below their qualification level. This underemployment phenomenon
+        highlights structural misalignment between education outcomes and labor market needs.
+      </p>
+
+      <h3>Age and Skill Level Differences</h3>
+      <p>
+        Young workers aged 16-24 face 16.1% unemployment, significantly higher than the national average.
+        Entry-level position scarcity and experience requirements create barriers for career starters.
+      </p>
+
+      <h3>Special Groups and Long-Term Unemployment</h3>
+      <p>
+        Immigrants encounter approximately 11% unemployment rates, reflecting credential recognition challenges
+        and language barriers. Long-term unemployment persists despite overall market strength,
+        with extended joblessness creating additional reemployment obstacles.
+      </p>
+
+      <!-- Future Outlook -->
+      <h2>Future Trends and Policy Impact</h2>
+
+      <h3>2024-2026 Employment Market Forecast</h3>
+      <p>
+        Forecasts project slower but positive growth, with 100,000-150,000 monthly job additions expected in 2025.
+        This represents a moderation from 2024 levels but remains sufficient to absorb labor force growth.
+      </p>
+
+      <h3>Enterprise Recruitment Strategy Recommendations</h3>
+      <ul>
+        <li><strong>Embrace Flexibility:</strong> Offer remote and hybrid options to access broader talent pools</li>
+        <li><strong>Skills-Based Hiring:</strong> Focus on demonstrated capabilities rather than traditional credentials</li>
+        <li><strong>Continuous Training Investment:</strong> Develop internal talent to address skill gaps</li>
+        <li><strong>Diversity Initiatives:</strong> Proactively recruit from underrepresented demographics</li>
+        <li><strong>Technology Adoption:</strong> Leverage AI tools while maintaining human judgment in final decisions</li>
+      </ul>
+
+      <h3>Job Seeker Response Guide</h3>
+      <ul>
+        <li>Update digital competencies regularly, particularly in AI and data literacy</li>
+        <li>Target high-growth sectors such as healthcare, technology, and green energy</li>
+        <li>Develop portable skills applicable across industries</li>
+        <li>Build professional networks through online and in-person engagement</li>
+        <li>Consider credential stackability and micro-certifications</li>
+        <li>Remain geographically flexible to access remote opportunities</li>
+      </ul>
+
+      <!-- Conclusion -->
+      <h2>Conclusion</h2>
+      <p>
+        The US recruitment market demonstrates resilience and structural transformation.
+        While aggregate indicators remain positive, significant variation exists across industries,
+        demographics, and skill levels. Success requires adaptability, continuous learning,
+        and strategic positioning within high-growth sectors and emerging skill domains.
+      </p>
+    </>
+  )}
+
+  {slug === 'agentic-ai-vs-ai-agent' && (
+    <>
+      <!-- Introduction -->
+      <h2>Introduction</h2>
+      <p>
+        Despite differing by just one letter, "AI Agent" and "Agentic AI" represent fundamentally
+        different architectural paradigms in artificial intelligence systems. Understanding this distinction
+        is crucial for practitioners implementing production AI solutions.
+      </p>
+
+      <!-- What is an AI Agent -->
+      <h2>What is an AI Agent?</h2>
+      <p>
+        An AI Agent is a monolithic system designed to perform single, repeatable tasks autonomously.
+        Think of it as "ChatGPT + calling external tools" - a unified model that can interact with APIs,
+        databases, and external services to accomplish specific objectives.
+      </p>
+
+      <h3>Characteristics</h3>
+      <ul>
+        <li><strong>Single-purpose design:</strong> Optimized for specific, well-defined tasks</li>
+        <li><strong>Tool integration:</strong> Ability to call external functions and services</li>
+        <li><strong>Stateless or limited state:</strong> Minimal memory between interactions</li>
+        <li><strong>Reactive behavior:</strong> Responds to inputs without autonomous initiative</li>
+      </ul>
+
+      <h3>Common Use Cases</h3>
+      <ul>
+        <li>Email classification and routing</li>
+        <li>Customer service chatbots</li>
+        <li>Data extraction and form filling</li>
+        <li>Simple automation workflows</li>
+        <li>FAQ answering systems</li>
+      </ul>
+
+      <!-- What is Agentic AI -->
+      <h2>What is Agentic AI?</h2>
+      <p>
+        Agentic AI represents a multi-agent collaborative framework where multiple specialized AI agents
+        work together with shared memory, division of labor, and autonomous task scheduling.
+        It's an "AI team" rather than an individual assistant, capable of handling complex,
+        multi-step projects requiring sustained autonomy.
+      </p>
+
+      <h3>Characteristics</h3>
+      <ul>
+        <li><strong>Multi-agent architecture:</strong> Specialized agents collaborating on complex tasks</li>
+        <li><strong>Persistent memory:</strong> Long-term context retention across interactions</li>
+        <li><strong>Task decomposition:</strong> Automatic breaking down of complex objectives</li>
+        <li><strong>Autonomous coordination:</strong> Self-organizing workflow management</li>
+        <li><strong>Proactive behavior:</strong> Anticipates needs and initiates actions</li>
+      </ul>
+
+      <h3>Common Use Cases</h3>
+      <ul>
+        <li>Software development assistance (planning, coding, testing, deployment)</li>
+        <li>Research synthesis across multiple sources</li>
+        <li>Complex business process automation</li>
+        <li>Strategic analysis and recommendation generation</li>
+        <li>Multi-stakeholder coordination and scheduling</li>
+      </ul>
+
+      <!-- Challenges -->
+      <h2>Challenges and Limitations</h2>
+
+      <h3>AI Agent Challenges</h3>
+      <ul>
+        <li><strong>Reasoning limitations:</strong> Struggles with complex, multi-step logic</li>
+        <li><strong>Hallucinations:</strong> May generate plausible but incorrect information</li>
+        <li><strong>Lack of proactivity:</strong> Requires explicit instructions for every action</li>
+        <li><strong>Weak long-chain planning:</strong> Difficulty maintaining coherence across extended tasks</li>
+      </ul>
+
+      <h3>Agentic AI Challenges</h3>
+      <ul>
+        <li><strong>System instability:</strong> Multi-agent coordination can introduce fragility</li>
+        <li><strong>Error cascading:</strong> Mistakes in one agent propagate to others</li>
+        <li><strong>Opacity:</strong> Complex interactions make debugging difficult</li>
+        <li><strong>Scalability issues:</strong> Resource-intensive with increasing agent count</li>
+        <li><strong>Security vulnerabilities:</strong> Larger attack surface across multiple agents</li>
+      </ul>
+
+      <!-- Solutions -->
+      <h2>Key Solutions and Best Practices</h2>
+
+      <h3>For AI Agents</h3>
+      <ul>
+        <li><strong>RAG + Function Calling:</strong> Combine retrieval-augmented generation with tool use</li>
+        <li><strong>Prompt Engineering:</strong> Carefully designed prompts to guide behavior</li>
+        <li><strong>Output Validation:</strong> Systematic checking of generated responses</li>
+        <li><strong>Feedback Loops:</strong> Incorporate human review for critical decisions</li>
+      </ul>
+
+      <h3>For Agentic AI</h3>
+      <ul>
+        <li><strong>Agent Loops:</strong> Iterative refinement with reflection and critique cycles</li>
+        <li><strong>Multi-agent Orchestration:</strong> Clear role definition and coordination protocols</li>
+        <li><strong>Memory Structures:</strong> Shared context stores for inter-agent communication</li>
+        <li><strong>Reflection Mechanisms:</strong> Self-evaluation and error correction capabilities</li>
+        <li><strong>Explainability:</strong> Logging and visualization of agent decision-making</li>
+        <li><strong>Governance Design:</strong> Access controls and safety constraints</li>
+        <li><strong>Causal Modeling:</strong> Understanding dependencies and intervention points</li>
+      </ul>
+
+      <!-- Future Development -->
+      <h2>Future Development Paths</h2>
+
+      <h3>AI Agent Evolution</h3>
+      <p>
+        Single agents will become more proactive and capable of continuous learning.
+        Expect improvements in reasoning depth, reduced hallucinations through better grounding,
+        and enhanced long-term planning capabilities.
+      </p>
+
+      <h3>Agentic AI Evolution</h3>
+      <p>
+        Multi-agent systems will focus on scalability, explainability, and security.
+        Standardized protocols for agent communication, better debugging tools,
+        and more robust failure handling will mature the ecosystem.
+      </p>
+
+      <!-- Summary -->
+      <h2>Summary</h2>
+      <p>
+        The distinction between AI Agents and Agentic AI is architectural, not superficial.
+        AI Agents excel at focused, repeatable tasks - think of them as specialized tools.
+        Agentic AI systems coordinate multiple agents for complex, multi-phase work -
+        think of them as AI teams.
+      </p>
+      <p>
+        The future of AI breakthroughs lies not in prompt refinement alone, but in advancing
+        these architectural fundamentals: better coordination protocols, robust memory systems,
+        effective governance frameworks, and scalable multi-agent orchestration.
+      </p>
+      <p>
+        Choose AI Agents for well-defined, single-purpose automation.
+        Choose Agentic AI for complex, multi-step projects requiring sustained autonomy and collaboration.
+      </p>
+    </>
+  )}
+
+  {slug === 'greenhouse-ats-2025' && (
+    <>
+      <!-- Executive Summary -->
+      <h2>Executive Summary</h2>
+      <p>
+        Greenhouse stands as the leading applicant tracking system (ATS) in 2025,
+        serving over 7,000 global clients with a 98% customer satisfaction rating.
+        Organizations typically achieve ROI within 6-12 months, experiencing 20-30% improvements
+        in time-to-hire and significant enhancements in hiring quality through structured methodologies.
+      </p>
+
+      <!-- Market Context -->
+      <h2>Market Context & Industry Landscape</h2>
+      <p>
+        The global ATS market is projected to reach $3.2 billion by 2026, growing at a 6.7% CAGR.
+        Key drivers include AI integration, cloud dominance (78% market share),
+        and normalization of remote recruiting practices.
+      </p>
+
+      <h3>Competitive Landscape</h3>
+      <p>
+        The ATS space includes legacy enterprise solutions (Workday, Oracle Taleo)
+        and modern cloud-native platforms (Greenhouse, Lever, Ashby).
+        Greenhouse differentiates through structured hiring methodology and extensive integration ecosystem.
+      </p>
+
+      <!-- Product Overview -->
+      <h2>Product Overview & Core Philosophy</h2>
+      <p>
+        Greenhouse emphasizes "structured hiring" - a systematic approach to reduce bias,
+        improve consistency, and enhance hiring quality through standardized processes.
+      </p>
+
+      <h3>Product Tiers</h3>
+      <ul>
+        <li><strong>Essential:</strong> Core ATS functionality for small to mid-sized teams</li>
+        <li><strong>Advanced:</strong> Enhanced analytics and customization capabilities</li>
+        <li><strong>Expert:</strong> Enterprise features with advanced integrations and support</li>
+      </ul>
+
+      <!-- Core Features -->
+      <h2>Core Features & Capabilities</h2>
+
+      <h3>Applicant Tracking</h3>
+      <ul>
+        <li>Comprehensive candidate profile management</li>
+        <li>Resume parsing and automated data extraction</li>
+        <li>Collaborative candidate evaluation</li>
+        <li>Pipeline visualization and stage management</li>
+      </ul>
+
+      <h3>Structured Hiring Framework</h3>
+      <ul>
+        <li>Interview plan templates and guides</li>
+        <li>Standardized scorecards for objective evaluation</li>
+        <li>Competency-based question libraries</li>
+        <li>Hiring team collaboration tools</li>
+      </ul>
+
+      <h3>Analytics & Reporting</h3>
+      <ul>
+        <li>40+ pre-built report templates</li>
+        <li>Custom report builder with drag-and-drop interface</li>
+        <li>Diversity and inclusion metrics tracking</li>
+        <li>Source effectiveness analysis</li>
+        <li>Time-to-hire and funnel conversion tracking</li>
+      </ul>
+
+      <!-- AI Features -->
+      <h2>AI & Machine Learning Features</h2>
+
+      <h3>Job Description Builder</h3>
+      <p>
+        AI-powered suggestions for bias-free language, optimal job requirements,
+        and compelling descriptions that attract diverse candidate pools.
+      </p>
+
+      <h3>Interview Intelligence</h3>
+      <ul>
+        <li>Automated interview question generation</li>
+        <li>Interview transcript summarization</li>
+        <li>Sentiment analysis of candidate interactions</li>
+        <li>Consistency checking across evaluations</li>
+      </ul>
+
+      <h3>Predictive Analytics</h3>
+      <ul>
+        <li>Offer acceptance likelihood forecasting</li>
+        <li>Time-to-fill predictions</li>
+        <li>Source quality scoring</li>
+        <li>Candidate success probability modeling</li>
+      </ul>
+
+      <h3>Natural Language Search</h3>
+      <p>
+        Search candidate database using conversational queries rather than Boolean filters,
+        improving recruiter efficiency and candidate discovery.
+      </p>
+
+      <!-- Technical Architecture -->
+      <h2>Technical Architecture & Integrations</h2>
+
+      <h3>API Ecosystem</h3>
+      <p>
+        Greenhouse provides five specialized APIs:
+      </p>
+      <ul>
+        <li><strong>Harvest API:</strong> Retrieve candidate and job data</li>
+        <li><strong>Assessment API:</strong> Integrate third-party skills assessments</li>
+        <li><strong>Ingestion API:</strong> Import candidate data from external sources</li>
+        <li><strong>Onboarding API:</strong> Sync hired candidate data with HRIS</li>
+        <li><strong>Job Board API:</strong> Automated job posting distribution</li>
+      </ul>
+
+      <h3>Integration Partners</h3>
+      <p>
+        530+ pre-built integrations connecting to:
+      </p>
+      <ul>
+        <li><strong>Job Boards:</strong> 1,000+ boards including LinkedIn, Indeed, Glassdoor</li>
+        <li><strong>HRIS:</strong> Workday, BambooHR, ADP, Rippling</li>
+        <li><strong>Background Checks:</strong> Checkr, Sterling, HireRight</li>
+        <li><strong>Assessments:</strong> Codility, HackerRank, Criteria Corp</li>
+        <li><strong>Communication:</strong> Slack, Microsoft Teams, Gmail</li>
+      </ul>
+
+      <!-- Market Position -->
+      <h2>Market Position & Competitive Analysis</h2>
+
+      <h3>G2 Rankings</h3>
+      <p>
+        Ranked #1 in G2's Winter 2025 reports across multiple categories including
+        Applicant Tracking Systems, Recruiting Software, and Talent Management Systems.
+      </p>
+
+      <h3>Key Differentiators</h3>
+      <ul>
+        <li><strong>Structured Hiring:</strong> Unique methodology reducing bias and improving quality</li>
+        <li><strong>Integration Breadth:</strong> Industry-leading 530+ pre-built connections</li>
+        <li><strong>Analytics Depth:</strong> Advanced reporting capabilities exceeding competitors</li>
+        <li><strong>Customer Support:</strong> 98% satisfaction rating with dedicated success managers</li>
+      </ul>
+
+      <!-- Pricing & ROI -->
+      <h2>Pricing, ROI & Business Value</h2>
+
+      <h3>Pricing Structure</h3>
+      <ul>
+        <li><strong>Small Teams (10-50 employees):</strong> $6,000 - $10,000 annually</li>
+        <li><strong>Mid-Market (50-500 employees):</strong> $15,000 - $30,000 annually</li>
+        <li><strong>Enterprise (500+ employees):</strong> $30,000+ annually (custom pricing)</li>
+      </ul>
+      <p>Approximate cost: $7-10 per employee monthly</p>
+
+      <h3>ROI Calculation Example</h3>
+      <p><strong>Mid-sized company (200 employees, 50 annual hires):</strong></p>
+      <ul>
+        <li>Annual platform cost: $18,000</li>
+        <li>Time-to-hire reduction: 30% (15 days to 10.5 days)</li>
+        <li>Recruiter time savings: 500 hours annually</li>
+        <li>Cost savings from efficiency: $43,000</li>
+        <li><strong>Net annual benefit: $25,000</strong></li>
+      </ul>
+
+      <!-- Customer Success -->
+      <h2>Customer Success Stories</h2>
+
+      <h3>Okta</h3>
+      <p>
+        Achieved 227% ROI increase through structured interview processes and
+        standardized evaluation scorecards, improving hiring consistency across global teams.
+      </p>
+
+      <h3>Navan</h3>
+      <p>
+        Saved 1,000+ annual hours through custom integration with internal tools,
+        automating candidate data synchronization and reducing manual administrative work.
+      </p>
+
+      <h3>CarGurus</h3>
+      <p>
+        Managed 2.5x application volume increase without proportional headcount growth,
+        leveraging automation and structured workflows to maintain hiring quality.
+      </p>
+
+      <h3>Bandai Namco</h3>
+      <p>
+        Reduced time-to-hire by 30% through optimized interview scheduling and
+        collaborative evaluation tools, accelerating critical creative role fills.
+      </p>
+
+      <!-- Strengths & Limitations -->
+      <h2>Strengths & Limitations</h2>
+
+      <h3>Key Strengths</h3>
+      <ul>
+        <li>Industry-leading structured hiring methodology</li>
+        <li>Extensive 530+ integration ecosystem</li>
+        <li>Advanced analytics and custom reporting</li>
+        <li>98% customer support satisfaction</li>
+        <li>Strong focus on reducing hiring bias</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <ul>
+        <li><strong>Learning Curve:</strong> Structured approach requires team training</li>
+        <li><strong>Price Point:</strong> Higher cost compared to basic alternatives</li>
+        <li><strong>AI Capabilities:</strong> Lag behind newer AI-native platforms</li>
+        <li><strong>Implementation Time:</strong> 4-8 weeks for full deployment</li>
+        <li><strong>Customization Complexity:</strong> Advanced features require technical expertise</li>
+      </ul>
+
+      <!-- Future Outlook -->
+      <h2>Future Outlook & Industry Trends</h2>
+
+      <h3>AI Integration Acceleration</h3>
+      <p>
+        AI adoption in recruitment software expected to reach 25% by 2027,
+        with Greenhouse investing in enhanced generative AI capabilities for
+        candidate engagement and interview preparation.
+      </p>
+
+      <h3>Cloud Dominance</h3>
+      <p>
+        Cloud deployment now holds 78% market share, with on-premise solutions declining.
+        Greenhouse's cloud-native architecture positions it well for continued growth.
+      </p>
+
+      <h3>Skills-Based Hiring</h3>
+      <p>
+        Industry shift toward skills-based rather than credential-based hiring.
+        Greenhouse expanding skills assessment integrations and competency tracking features.
+      </p>
+
+      <h3>Competitive Threats</h3>
+      <p>
+        AI-native platforms like Paradox and HireVue pose challenges with
+        conversational AI and automated candidate engagement.
+        Greenhouse responds by enhancing AI features while maintaining structured hiring core.
+      </p>
+
+      <!-- Recommendation -->
+      <h2>Recommendation</h2>
+      <p><strong>Greenhouse is ideal for organizations that:</strong></p>
+      <ul>
+        <li>Make 50+ annual hires requiring consistent quality</li>
+        <li>Value structured methodologies to reduce hiring bias</li>
+        <li>Require extensive integrations with existing tech stack</li>
+        <li>Need robust analytics for hiring performance tracking</li>
+        <li>Can invest in training and adoption for full value realization</li>
+      </ul>
+
+      <p><strong>Consider alternatives if:</strong></p>
+      <ul>
+        <li>Making fewer than 25 annual hires (may be over-featured)</li>
+        <li>Prioritizing lowest-cost solution</li>
+        <li>Requiring cutting-edge generative AI capabilities immediately</li>
+        <li>Needing rapid deployment without customization (under 2 weeks)</li>
+      </ul>
+
+      <!-- Conclusion -->
+      <h2>Conclusion</h2>
+      <p>
+        Greenhouse ATS remains the market leader through its combination of
+        structured hiring methodology, extensive integration ecosystem,
+        and strong customer support. While newer AI-native competitors emerge,
+        Greenhouse's systematic approach to quality hiring and proven ROI
+        make it the preferred choice for organizations prioritizing hiring excellence
+        over cutting-edge technology experimentation.
+      </p>
+    </>
+  )}
+</NotionLayout>
