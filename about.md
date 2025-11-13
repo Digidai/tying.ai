@@ -1,33 +1,613 @@
-# Tying.ai 网站开发规范文档
+# Tying.ai 内容创建标准手册
 
+> **快速参考**: 创建新内容时的标准操作指南
 > 最后更新: 2025-11-13
 
-## 目录
+---
 
+## 📋 目录
+
+### 快速上手
+- [创建新 Report - 完整流程](#创建新-report---完整流程)
+- [创建新 Wiki 页面 - 完整流程](#创建新-wiki-页面---完整流程)
+- [常见问题速查](#常见问题速查)
+
+### 参考资料
 - [项目概述](#项目概述)
 - [技术栈](#技术栈)
 - [设计系统](#设计系统)
-- [布局组件](#布局组件)
-- [页面结构](#页面结构)
-- [添加新内容指南](#添加新内容指南)
-- [样式规范](#样式规范)
+- [文件结构](#文件结构)
 - [部署流程](#部署流程)
+
+---
+
+## 创建新 Report - 完整流程
+
+### ✅ 标准检查清单
+
+创建新 Report 需要更新 **4 个位置**：
+
+- [ ] **动态路由文件** `src/pages/report/[slug].astro`
+  - [ ] 添加 slug 到 `getStaticPaths()`
+  - [ ] 添加 metadata 到 `reportData`
+  - [ ] 添加内容块 `{slug === 'xxx' && (...)}`
+- [ ] **列表页** `src/pages/report.astro`
+  - [ ] 添加报告卡片到 Latest Reports 部分
+- [ ] **SEO 文件** `public/llms.txt`
+  - [ ] 在 Industry Reports 部分添加条目
+- [ ] **更新日期** `public/humans.txt`
+  - [ ] 更新 Last update 日期
+
+---
+
+### 📝 详细步骤
+
+#### 步骤 1: 更新动态路由 `src/pages/report/[slug].astro`
+
+**1.1 添加 slug**
+```typescript
+export async function getStaticPaths() {
+  const reports = [
+    'us-recruitment-market',
+    'agentic-ai-vs-ai-agent',
+    'ai-recruitment',
+    'your-new-report',  // ← 新增这里
+  ];
+  return reports.map((slug) => ({ params: { slug } }));
+}
+```
+
+**1.2 添加 metadata**
+```typescript
+const reportData: Record<string, any> = {
+  'your-new-report': {
+    title: 'Report Title',                    // 报告标题
+    subtitle: 'Report Subtitle',              // 副标题
+    date: 'Month Day, Year',                  // 发布日期（如：November 13, 2025）
+    category: 'Category Name',                // 分类（如：AI & Technology）
+  },
+};
+```
+
+**1.3 添加内容块（在文件末尾）**
+```astro
+{slug === 'your-new-report' && (
+  <>
+    <h2>Executive Summary</h2>
+    <p>报告摘要...</p>
+
+    <h2>Section 1: Main Topic</h2>
+    <p>内容...</p>
+
+    <h3>Subsection 1.1</h3>
+    <p>子章节内容...</p>
+    <ul>
+      <li><strong>Key Point 1:</strong> 描述</li>
+      <li><strong>Key Point 2:</strong> 描述</li>
+    </ul>
+
+    <h2>Section 2: Analysis</h2>
+    <p>分析内容...</p>
+
+    <h2>Conclusion</h2>
+    <p>结论...</p>
+  </>
+)}
+```
+
+---
+
+#### 步骤 2: 更新列表页 `src/pages/report.astro`
+
+**⚠️ 重要**: 这一步经常被遗漏！动态路由和列表页是独立的文件。
+
+在 `<div class="space-y-6">` 内添加新卡片（建议放在最上方作为最新报告）：
+
+```astro
+<div class="pb-6 border-b border-notion-border">
+  <div class="text-sm text-notion-text-light mb-2">
+    Category • Month Year
+  </div>
+  <h3 class="text-lg font-semibold text-notion-text mb-2">
+    Report Title
+  </h3>
+  <p class="text-notion-text-light mb-2">
+    Brief description of the report (1-2 sentences).
+  </p>
+  <a href="/report/your-new-report/" class="text-notion-text underline">
+    Read report →
+  </a>
+</div>
+```
+
+---
+
+#### 步骤 3: 更新 SEO 文件
+
+**3.1 更新 `public/llms.txt`**
+
+在 `# Industry Reports` 部分添加：
+
+```txt
+- Report Title: https://tying.ai/report/your-new-report
+  Description: Comprehensive analysis of [topic], including [key aspects]
+  Topics: Topic1, Topic2, Topic3, Topic4
+```
+
+**示例**:
+```txt
+- AI in Recruitment: Transforming Talent Acquisition: https://tying.ai/report/ai-recruitment
+  Description: Comprehensive analysis of AI-powered recruitment technologies, implementation strategies, bias mitigation, ROI analysis, and future trends in hiring automation
+  Topics: AI Recruitment, HR Technology, Talent Acquisition, AI Ethics, Recruitment Automation
+```
+
+**3.2 更新 `public/humans.txt`**
+
+更新日期为当前日期：
+```txt
+# SITE
+    Last update: 2025-11-13  ← 改为当前日期
+```
+
+---
+
+#### 步骤 4: 本地测试
+
+```bash
+# 开发预览
+npm run dev
+# 访问 http://localhost:4321/report/your-new-report
+
+# 构建测试
+npm run build
+npm run preview
+```
+
+---
+
+#### 步骤 5: 提交和部署
+
+```bash
+# 查看更改
+git status
+git diff
+
+# 提交
+git add .
+git commit -m "feat: 添加 [Report Title] 研究报告
+
+- 深度分析 [主题]
+- [关键内容1]
+- [关键内容2]
+- 更新 SEO 文件
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>"
+
+# 推送到 GitHub（自动部署）
+git push origin main
+```
+
+---
+
+### 📊 Report 内容结构模板
+
+```astro
+{slug === 'your-report' && (
+  <>
+    {/* 1. Executive Summary - 必需 */}
+    <h2>Executive Summary</h2>
+    <p>
+      简明扼要的报告总结，包含：
+      - 研究目的和范围
+      - 主要发现（3-5个关键点）
+      - 结论和建议
+    </p>
+
+    {/* 2. 市场/行业概览 */}
+    <h2>Market Overview / Industry Landscape</h2>
+    <ul>
+      <li><strong>Market Size:</strong> 市场规模数据</li>
+      <li><strong>Growth Rate:</strong> 增长率</li>
+      <li><strong>Key Players:</strong> 主要参与者</li>
+      <li><strong>Trends:</strong> 主要趋势</li>
+    </ul>
+
+    {/* 3. 详细分析章节（可多个） */}
+    <h2>Section: Analysis Deep Dive</h2>
+
+    <h3>Subsection: Specific Topic</h3>
+    <p>详细分析内容...</p>
+
+    <h4>Sub-subsection (如需要)</h4>
+    <ul>
+      <li><strong>Point 1:</strong> 说明</li>
+      <li><strong>Point 2:</strong> 说明</li>
+    </ul>
+
+    {/* 4. 数据表格（如适用） */}
+    <h3>Comparative Data</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Metric 1</th>
+          <th>Metric 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Item 1</td>
+          <td>Value 1</td>
+          <td>Value 2</td>
+        </tr>
+      </tbody>
+    </table>
+
+    {/* 5. 未来展望 */}
+    <h2>Future Outlook</h2>
+    <p>
+      对未来3-5年的预测和趋势分析...
+    </p>
+
+    {/* 6. 结论和建议 */}
+    <h2>Conclusion</h2>
+    <p>总结性陈述...</p>
+
+    <h3>Key Recommendations</h3>
+    <ol>
+      <li>建议 1</li>
+      <li>建议 2</li>
+      <li>建议 3</li>
+    </ol>
+
+    {/* 7. 参考资料（可选） */}
+    <h2>References</h2>
+    <ul class="text-sm">
+      <li>来源 1</li>
+      <li>来源 2</li>
+    </ul>
+  </>
+)}
+```
+
+---
+
+## 创建新 Wiki 页面 - 完整流程
+
+### ✅ 标准检查清单
+
+创建新 Wiki 页面需要更新 **4 个位置**：
+
+- [ ] **动态路由文件** `src/pages/wiki/[slug].astro`
+  - [ ] 添加 slug 到 `getStaticPaths()`
+  - [ ] 添加标题到 `titleMap`
+  - [ ] 添加内容块 `{slug === 'xxx' && (...)}`
+- [ ] **列表页** `src/pages/wiki.astro`
+  - [ ] 添加职位卡片
+- [ ] **SEO 文件** `public/llms.txt`
+  - [ ] 在 Career Wiki Pages 部分添加条目
+- [ ] **更新日期** `public/humans.txt`
+  - [ ] 更新 Last update 日期
+
+---
+
+### 📝 详细步骤
+
+#### 步骤 1: 更新动态路由 `src/pages/wiki/[slug].astro`
+
+**1.1 添加 slug**
+```typescript
+export async function getStaticPaths() {
+  const positions = [
+    'software-engineer',
+    'product-manager',
+    'data-scientist',
+    'your-new-position',  // ← 新增这里
+  ];
+  return positions.map((slug) => ({ params: { slug } }));
+}
+```
+
+**1.2 添加标题映射**
+```typescript
+const titleMap: Record<string, string> = {
+  'software-engineer': 'Software Engineer Career Guide',
+  'product-manager': 'Product Manager Career Guide',
+  'your-new-position': 'Your Position Title Career Guide',  // ← 新增这里
+};
+```
+
+**1.3 添加内容块（在文件末尾）**
+```astro
+{slug === 'your-new-position' && (
+  <div class="notion-page">
+    {/* 内容参考下面的模板 */}
+  </div>
+)}
+```
+
+---
+
+#### 步骤 2: 更新列表页 `src/pages/wiki.astro`
+
+在适当的位置添加新卡片：
+
+```astro
+<div class="card group">
+  <div class="card-content">
+    <h3 class="card-title">Position Title</h3>
+    <p class="card-description">
+      Brief description of this career path (2-3 sentences).
+    </p>
+    <a href="/wiki/your-new-position" class="card-link">
+      Read guide
+      <svg class="w-4 h-4 transition-transform group-hover:translate-x-1"
+           fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</div>
+```
+
+---
+
+#### 步骤 3: 更新 SEO 文件
+
+**3.1 更新 `public/llms.txt`**
+
+在 `# Career Wiki Pages` 部分添加：
+
+```txt
+- Position Title Career Guide: https://tying.ai/wiki/your-new-position
+  Description: Complete guide to [position] career paths, essential skills, responsibilities, and industry insights
+  Topics: Position Type, Industry, Career Development, Skills
+```
+
+**3.2 更新 `public/humans.txt`**
+```txt
+Last update: 2025-11-13  ← 改为当前日期
+```
+
+---
+
+### 📊 Wiki 页面内容结构模板
+
+```astro
+{slug === 'your-position' && (
+  <>
+    {/* 1. Overview - 必需 */}
+    <h2>Overview</h2>
+    <div class="callout callout-info">
+      <strong>职位概要:</strong> 用 2-3 句话简明扼要地描述这个职位的核心定位和价值。
+    </div>
+    <p>详细的职位介绍，包括：</p>
+    <ul>
+      <li>职位在组织中的位置</li>
+      <li>主要工作目标</li>
+      <li>与其他角色的关系</li>
+    </ul>
+
+    {/* 2. Core Responsibilities - 必需 */}
+    <h2>Core Responsibilities</h2>
+    <ul>
+      <li><strong>责任领域 1:</strong> 详细说明</li>
+      <li><strong>责任领域 2:</strong> 详细说明</li>
+      <li><strong>责任领域 3:</strong> 详细说明</li>
+      <li><strong>责任领域 4:</strong> 详细说明</li>
+      <li><strong>责任领域 5:</strong> 详细说明</li>
+    </ul>
+
+    {/* 3. Required Skills - 必需 */}
+    <h2>Required Skills</h2>
+
+    <h3>Technical Skills</h3>
+    <ul>
+      <li><strong>技能类别 1:</strong> 具体技能列表</li>
+      <li><strong>技能类别 2:</strong> 具体技能列表</li>
+      <li><strong>技能类别 3:</strong> 具体技能列表</li>
+    </ul>
+
+    <h3>Soft Skills</h3>
+    <ul>
+      <li><strong>沟通能力:</strong> 说明</li>
+      <li><strong>团队协作:</strong> 说明</li>
+      <li><strong>问题解决:</strong> 说明</li>
+      <li><strong>领导力:</strong> 说明</li>
+    </ul>
+
+    {/* 4. Career Path - 必需 */}
+    <h2>Career Path</h2>
+
+    <h3>Entry Level (0-2 years)</h3>
+    <p><strong>典型职位:</strong> Junior/Associate Position</p>
+    <p><strong>主要职责:</strong> 入门级工作描述</p>
+    <p><strong>技能要求:</strong> 基础技能列表</p>
+
+    <h3>Mid Level (2-5 years)</h3>
+    <p><strong>典型职位:</strong> Position / Senior Associate</p>
+    <p><strong>主要职责:</strong> 中级工作描述</p>
+    <p><strong>技能要求:</strong> 进阶技能列表</p>
+
+    <h3>Senior Level (5-8 years)</h3>
+    <p><strong>典型职位:</strong> Senior Position / Lead</p>
+    <p><strong>主要职责:</strong> 高级工作描述</p>
+    <p><strong>技能要求:</strong> 专家级技能列表</p>
+
+    <h3>Leadership (8+ years)</h3>
+    <p><strong>典型职位:</strong> Manager / Director / VP</p>
+    <p><strong>主要职责:</strong> 领导级工作描述</p>
+    <p><strong>技能要求:</strong> 战略级技能列表</p>
+
+    {/* 5. Salary Range - 必需 */}
+    <h2>Salary Range</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Level</th>
+          <th>United States</th>
+          <th>Europe</th>
+          <th>Asia-Pacific</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Entry (0-2 years)</td>
+          <td>$XX,XXX - $XX,XXX</td>
+          <td>€XX,XXX - €XX,XXX</td>
+          <td>$XX,XXX - $XX,XXX</td>
+        </tr>
+        <tr>
+          <td>Mid (2-5 years)</td>
+          <td>$XX,XXX - $XX,XXX</td>
+          <td>€XX,XXX - €XX,XXX</td>
+          <td>$XX,XXX - $XX,XXX</td>
+        </tr>
+        <tr>
+          <td>Senior (5-8 years)</td>
+          <td>$XX,XXX - $XX,XXX</td>
+          <td>€XX,XXX - €XX,XXX</td>
+          <td>$XX,XXX - $XX,XXX</td>
+        </tr>
+        <tr>
+          <td>Lead/Manager (8+ years)</td>
+          <td>$XX,XXX - $XX,XXX</td>
+          <td>€XX,XXX - €XX,XXX</td>
+          <td>$XX,XXX - $XX,XXX</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-sm text-notion-text-light mt-2">
+      *Salary ranges vary by company size, location, and industry. Data based on 2024-2025 market research.
+    </p>
+
+    {/* 6. Education & Qualifications */}
+    <h2>Education & Qualifications</h2>
+    <h3>Educational Background</h3>
+    <ul>
+      <li><strong>最低学历:</strong> 说明</li>
+      <li><strong>推荐学历:</strong> 说明</li>
+      <li><strong>相关专业:</strong> 专业列表</li>
+    </ul>
+
+    <h3>Certifications & Training</h3>
+    <ul>
+      <li><strong>行业认证:</strong> 证书列表</li>
+      <li><strong>推荐课程:</strong> 课程建议</li>
+      <li><strong>在线资源:</strong> 学习资源</li>
+    </ul>
+
+    {/* 7. Industry Outlook */}
+    <h2>Industry Outlook</h2>
+    <p><strong>就业前景:</strong> 行业增长趋势和就业机会分析</p>
+    <p><strong>市场需求:</strong> 当前和未来需求分析</p>
+    <p><strong>技术趋势:</strong> 影响该职位的技术变革</p>
+
+    {/* 8. Getting Started */}
+    <h2>Getting Started</h2>
+    <h3>For Students & Recent Graduates</h3>
+    <ol>
+      <li>步骤 1: 详细说明</li>
+      <li>步骤 2: 详细说明</li>
+      <li>步骤 3: 详细说明</li>
+    </ol>
+
+    <h3>For Career Switchers</h3>
+    <ol>
+      <li>步骤 1: 详细说明</li>
+      <li>步骤 2: 详细说明</li>
+      <li>步骤 3: 详细说明</li>
+    </ol>
+
+    {/* 9. Resources (可选) */}
+    <h2>Additional Resources</h2>
+    <ul>
+      <li><strong>Industry Associations:</strong> 行业组织</li>
+      <li><strong>Online Communities:</strong> 在线社区</li>
+      <li><strong>Recommended Reading:</strong> 推荐书籍/文章</li>
+    </ul>
+  </>
+)}
+```
+
+---
+
+## 常见问题速查
+
+### ❌ 问题: 添加新 Report 后在列表页看不到
+
+**原因**: 只更新了动态路由，忘记更新列表页
+
+**解决方案**:
+1. 检查 `src/pages/report/[slug].astro` - slug、metadata、内容 ✓
+2. **检查 `src/pages/report.astro`** - 是否添加了卡片？
+3. 清除浏览器缓存重新访问
+
+**记住**: 动态路由（详情页）和列表页是两个独立文件，必须分别更新！
+
+---
+
+### ❌ 问题: 页面构建失败或 404 错误
+
+**原因**: slug 不一致或路径错误
+
+**检查清单**:
+- [ ] `getStaticPaths()` 中的 slug 拼写是否正确
+- [ ] 列表页链接的 URL 是否匹配 slug
+- [ ] 内容块的条件判断 `{slug === 'xxx'}` 是否正确
+
+---
+
+### ❌ 问题: SEO 不生效或 LLM 找不到页面
+
+**原因**: 忘记更新 `public/llms.txt`
+
+**解决方案**:
+1. 打开 `public/llms.txt`
+2. 在对应部分添加新页面条目
+3. 包含: 标题、URL、描述、话题标签
+4. 重新构建和部署
+
+---
+
+### ❌ 问题: 样式显示不正确
+
+**原因**: 使用了错误的布局或 CSS 类
+
+**检查**:
+- Report/Wiki 详情页应使用 `NotionLayout`
+- 列表页应使用 `MainLayout`
+- 使用 Notion 风格的 CSS 类: `text-notion-text`, `border-notion-border` 等
 
 ---
 
 ## 项目概述
 
-Tying.ai 是一个职业指导和行业报告平台,采用 Notion 风格的极简设计。网站包含三个主要部分:
+### 核心信息
 
-- **Home** (`/`): 首页
-- **Career Wiki** (`/wiki`): 职业百科
-- **Industry Reports** (`/report`): 行业报告
+**网站**: https://tying.ai
+**类型**: 职业指导和行业分析平台
+**设计风格**: Notion 风格极简主义
+**部署**: Cloudflare Pages (自动部署)
+
+### 主要板块
+
+1. **Home** (`/`) - 首页
+2. **Career Wiki** (`/wiki`) - 职业百科
+   - 列表页: `/wiki`
+   - 详情页: `/wiki/[slug]`
+3. **Industry Reports** (`/report`) - 行业报告
+   - 列表页: `/report`
+   - 详情页: `/report/[slug]`
 
 ### 设计理念
 
-- **极简主义**: Notion 风格的黑白灰配色
-- **内容优先**: 无装饰,突出文字和信息
-- **一致性**: 所有页面使用统一的布局和排版
+- **极简主义**: 黑白灰配色，无装饰
+- **内容优先**: 突出文字和信息
+- **一致性**: 统一的布局和排版
 - **响应式**: 移动端和桌面端自适应
 
 ---
@@ -45,9 +625,9 @@ Tying.ai 是一个职业指导和行业报告平台,采用 Notion 风格的极�
 ```
 
 ### 关键依赖
-- `@astrojs/tailwind`: Tailwind CSS 集成
-- `@astrojs/sitemap`: 自动生成 sitemap.xml
-- `tailwindcss`: 实用工具类 CSS 框架
+- `@astrojs/tailwind` - Tailwind CSS 集成
+- `@astrojs/sitemap` - 自动生成 sitemap.xml
+- `tailwindcss` - 实用工具类 CSS 框架
 
 ### 构建配置
 ```javascript
@@ -63,9 +643,7 @@ export default defineConfig({
 
 ## 设计系统
 
-### 颜色系统 (Design Tokens)
-
-位置: `src/styles/design-tokens.css`
+### 颜色系统
 
 ```css
 :root {
@@ -81,45 +659,14 @@ export default defineConfig({
 
   /* 边框颜色 */
   --border-primary: #E9E9E7;    /* 主边框 - 浅灰 */
-
-  /* 间距 */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 1rem;      /* 16px */
-  --space-4: 1.5rem;    /* 24px */
-  --space-6: 2.5rem;    /* 40px */
-  --space-8: 4rem;      /* 64px */
-
-  /* 字体 */
-  --font-family-base: 'Inter', -apple-system, sans-serif;
-  --font-family-mono: 'JetBrains Mono', 'Courier New', monospace;
-
-  /* 字号 */
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.25rem;    /* 20px */
-  --font-size-xl: 1.5rem;     /* 24px */
-
-  /* 行高 */
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.625;
-
-  /* 圆角 */
-  --radius-sm: 3px;
-  --radius-base: 6px;
-  --radius-lg: 12px;
 }
 ```
 
 ### Tailwind 配置
 
-位置: `tailwind.config.mjs`
-
 ```javascript
+// tailwind.config.mjs
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -130,719 +677,15 @@ export default {
         'notion-bg-secondary': '#F7F6F3',
       },
       maxWidth: {
-        'notion-narrow': '700px',  // 文章内容宽度
-        'notion-wide': '1200px',   // 列表页面宽度
+        'notion-narrow': '700px',   // 文章内容宽度
+        'notion-wide': '1200px',    // 列表页面宽度
       },
     },
   },
 };
 ```
 
----
-
-## 布局组件
-
-### 1. BaseLayout
-
-**用途**: 最基础的布局,包含 HTML 结构、meta 标签、SEO 配置
-
-**位置**: `src/layouts/BaseLayout.astro`
-
-**Props**:
-```typescript
-interface Props {
-  title: string;           // 页面标题
-  description?: string;    // 页面描述
-  image?: string;          // OG 图片
-  type?: string;           // OG 类型 (website/article)
-  locale?: string;         // 语言 (默认 en)
-  url?: string;            // Canonical URL
-  noIndex?: boolean;       // 是否禁止索引
-  class?: string;          // 额外 class
-}
-```
-
-**特性**:
-- 自动生成 SEO meta 标签
-- 结构化数据 (JSON-LD)
-- Open Graph 和 Twitter Card
-- Google Fonts 预加载
-- Sitemap 集成
-
----
-
-### 2. MainLayout
-
-**用途**: 主要页面布局,包含导航栏和页脚,用于列表页面
-
-**位置**: `src/layouts/MainLayout.astro`
-
-**Props**:
-```typescript
-interface Props {
-  title: string;
-  description?: string;
-  image?: string;
-}
-```
-
-**特性**:
-- 顶部导航栏 (Home, Career Wiki, Industry Reports)
-- 响应式移动端菜单
-- 简洁页脚
-- 基于 BaseLayout 扩展
-
-**使用示例**:
-```astro
----
-import MainLayout from '@/layouts/MainLayout.astro';
----
-
-<MainLayout title="Page Title" description="Page description">
-  <div class="max-w-notion-wide mx-auto px-8 py-12">
-    <!-- 页面内容 -->
-  </div>
-</MainLayout>
-```
-
----
-
-### 3. NotionLayout
-
-**用途**: Notion 风格的文章阅读布局,用于详情页面 (wiki 和 report)
-
-**位置**: `src/layouts/NotionLayout.astro`
-
-**Props**:
-```typescript
-interface Props {
-  title: string;
-  description?: string;
-  image?: string;
-  breadcrumbs?: Array<{
-    label: string;
-    href: string;
-  }>;
-}
-```
-
-**特性**:
-- 窄栏内容区 (max-w-notion-narrow, 700px)
-- 面包屑导航
-- Notion 风格排版
-- 粘性顶部导航栏
-
-**使用示例**:
-```astro
----
-import NotionLayout from '@/layouts/NotionLayout.astro';
-
-const breadcrumbs = [
-  { label: 'Home', href: '/' },
-  { label: 'Career Wiki', href: '/wiki' },
-];
----
-
-<NotionLayout
-  title="Software Engineer"
-  description="Career guide"
-  breadcrumbs={breadcrumbs}
->
-  <h2>Section Title</h2>
-  <p>Content goes here...</p>
-</NotionLayout>
-```
-
----
-
-## 页面结构
-
-### 1. 首页 (`/`)
-
-**文件**: `src/pages/index.astro`
-
-**结构**:
-```astro
-<MainLayout title="..." description="...">
-  <div class="max-w-notion-wide mx-auto px-8 py-24">
-    <!-- 主标题 -->
-    <div class="mb-16 text-center">
-      <h1 class="text-5xl font-bold">...</h1>
-      <p class="text-xl">...</p>
-    </div>
-
-    <!-- 功能介绍 -->
-    <div class="mb-20">
-      <h2>What We Offer</h2>
-      <div class="space-y-6">...</div>
-    </div>
-
-    <!-- 热门内容 -->
-    <div>
-      <h2>Popular Career Paths</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">...</div>
-    </div>
-  </div>
-</MainLayout>
-```
-
----
-
-### 2. Career Wiki 列表页 (`/wiki`)
-
-**文件**: `src/pages/wiki.astro`
-
-**特点**:
-- 使用 MainLayout
-- 分类展示职位
-- 网格布局
-
----
-
-### 3. Career Wiki 详情页 (`/wiki/[slug]`)
-
-**文件**: `src/pages/wiki/[slug].astro`
-
-**动态路由实现**:
-```astro
----
-import NotionLayout from '@/layouts/NotionLayout.astro';
-
-export async function getStaticPaths() {
-  const positions = [
-    'software-engineer',
-    'data-scientist',
-    'product-manager',
-    // ... 更多职位
-  ];
-
-  return positions.map((slug) => ({
-    params: { slug },
-  }));
-}
-
-const { slug } = Astro.params;
-
-// 标题映射
-const titleMap: Record<string, string> = {
-  'software-engineer': 'Software Engineer',
-  'data-scientist': 'Data Scientist',
-  // ...
-};
-
-const title = titleMap[slug];
-const breadcrumbs = [
-  { label: 'Home', href: '/' },
-  { label: 'Career Wiki', href: '/wiki' },
-];
----
-
-<NotionLayout
-  title={`${title} | Career Wiki`}
-  description="..."
-  breadcrumbs={breadcrumbs}
->
-  <!-- 内容结构 -->
-  <h2>Overview</h2>
-  <p>...</p>
-
-  <h2>Core Responsibilities</h2>
-  <ul>
-    <li>...</li>
-  </ul>
-
-  <h2>Required Skills</h2>
-  <h3>Technical Skills</h3>
-  <ul>...</ul>
-
-  <h3>Soft Skills</h3>
-  <ul>...</ul>
-
-  <h2>Career Path</h2>
-  <h3>Entry Level (0-2 years)</h3>
-  <p>...</p>
-
-  <h2>Salary Range</h2>
-  <table>...</table>
-</NotionLayout>
-```
-
----
-
-### 4. Industry Reports 列表页 (`/report`)
-
-**文件**: `src/pages/report.astro`
-
-**结构**:
-```astro
-<MainLayout title="Industry Reports" description="...">
-  <div class="max-w-notion-wide mx-auto px-8 py-12">
-    <!-- 页面标题 -->
-    <div class="mb-12">
-      <h1>Industry Reports</h1>
-      <p>...</p>
-    </div>
-
-    <!-- Latest Reports -->
-    <div class="mb-16">
-      <h2>Latest Reports</h2>
-      <div class="space-y-6">
-        <div class="pb-6 border-b border-notion-border">
-          <div class="text-sm text-notion-text-light mb-2">
-            Category • Year
-          </div>
-          <h3>Report Title</h3>
-          <p>Description</p>
-          <a href="/report/slug/">Read report →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</MainLayout>
-```
-
----
-
-### 5. Industry Reports 详情页 (`/report/[slug]`)
-
-**文件**: `src/pages/report/[slug].astro`
-
-**动态路由实现**:
-```astro
----
-import NotionLayout from '@/layouts/NotionLayout.astro';
-
-export async function getStaticPaths() {
-  const reports = [
-    'us-recruitment-market',
-    'agentic-ai-vs-ai-agent',
-  ];
-
-  return reports.map((slug) => ({
-    params: { slug },
-  }));
-}
-
-const { slug } = Astro.params;
-
-// Report metadata
-const reportData: Record<string, any> = {
-  'us-recruitment-market': {
-    title: 'US Recruitment Market Analysis',
-    subtitle: '2024-2025 Market Trends',
-    date: 'June 1, 2024',
-    category: 'Recruitment',
-  },
-  'agentic-ai-vs-ai-agent': {
-    title: 'Agentic AI vs AI Agent',
-    subtitle: 'Understanding the Difference',
-    date: 'November 2, 2024',
-    category: 'AI & Technology',
-  },
-};
-
-const report = reportData[slug];
-const breadcrumbs = [
-  { label: 'Home', href: '/' },
-  { label: 'Industry Reports', href: '/report' },
-];
----
-
-<NotionLayout
-  title={`${report.title} | Tying.ai`}
-  description={report.subtitle}
-  breadcrumbs={breadcrumbs}
->
-  <!-- Report Header -->
-  <div class="mb-8 pb-6 border-b border-notion-border">
-    <div class="text-sm text-notion-text-light mb-2">
-      {report.category} • {report.date}
-    </div>
-    <p class="text-lg text-notion-text-light mt-2">
-      {report.subtitle}
-    </p>
-  </div>
-
-  <!-- Report Content -->
-  {slug === 'us-recruitment-market' && (
-    <>
-      <h2>Executive Summary</h2>
-      <p>...</p>
-
-      <h2>Market Overview</h2>
-      <ul>
-        <li><strong>Key Metric:</strong> Value</li>
-      </ul>
-
-      <h2>Section Title</h2>
-      <h3>Subsection</h3>
-      <p>...</p>
-    </>
-  )}
-
-  {slug === 'agentic-ai-vs-ai-agent' && (
-    <>
-      <h2>Introduction</h2>
-      <p>...</p>
-      <!-- ... -->
-    </>
-  )}
-</NotionLayout>
-```
-
----
-
-## 添加新内容指南
-
-### 添加新的 Career Wiki 页面
-
-1. **在 `getStaticPaths()` 中添加新 slug**:
-```typescript
-const positions = [
-  'software-engineer',
-  'your-new-position', // 添加这里
-];
-```
-
-2. **在 `titleMap` 中添加标题**:
-```typescript
-const titleMap: Record<string, string> = {
-  'your-new-position': 'Your Position Title',
-};
-```
-
-3. **添加内容模板** (使用现有结构):
-```astro
-<h2>Overview</h2>
-<p>职位概述...</p>
-
-<h2>Core Responsibilities</h2>
-<ul>
-  <li>核心职责 1</li>
-  <li>核心职责 2</li>
-</ul>
-
-<h2>Required Skills</h2>
-<h3>Technical Skills</h3>
-<ul>
-  <li>技术技能 1</li>
-</ul>
-
-<h3>Soft Skills</h3>
-<ul>
-  <li>软技能 1</li>
-</ul>
-
-<h2>Career Path</h2>
-<h3>Entry Level (0-2 years)</h3>
-<p>入门级描述...</p>
-
-<h3>Mid Level (2-5 years)</h3>
-<p>中级描述...</p>
-
-<h3>Senior Level (5-8 years)</h3>
-<p>高级描述...</p>
-
-<h3>Leadership (8+ years)</h3>
-<p>领导级描述...</p>
-
-<h2>Salary Range</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Level</th>
-      <th>United States</th>
-      <th>Europe</th>
-      <th>Asia</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Entry (0-2 years)</td>
-      <td>$XX,XXX - $XX,XXX</td>
-      <td>€XX,XXX - €XX,XXX</td>
-      <td>$XX,XXX - $XX,XXX</td>
-    </tr>
-    <!-- 更多级别 -->
-  </tbody>
-</table>
-
-<h2>Education & Qualifications</h2>
-<ul>
-  <li>学历要求</li>
-  <li>证书要求</li>
-</ul>
-
-<h2>Industry Outlook</h2>
-<p>行业展望...</p>
-
-<h2>Getting Started</h2>
-<ul>
-  <li>如何入门步骤 1</li>
-  <li>如何入门步骤 2</li>
-</ul>
-```
-
-4. **在 `/wiki` 列表页添加链接** (可选):
-```astro
-<a href="/wiki/your-new-position" class="...">
-  <h3>Your Position Title</h3>
-  <p>Brief description</p>
-</a>
-```
-
----
-
-### 添加新的 Industry Report
-
-1. **在 `getStaticPaths()` 中添加新 slug**:
-```typescript
-const reports = [
-  'us-recruitment-market',
-  'agentic-ai-vs-ai-agent',
-  'your-new-report', // 添加这里
-];
-```
-
-2. **在 `reportData` 中添加元数据**:
-```typescript
-const reportData: Record<string, any> = {
-  'your-new-report': {
-    title: 'Report Title',
-    subtitle: 'Report Subtitle',
-    date: 'Month Day, Year',
-    category: 'Category Name',
-  },
-};
-```
-
-3. **添加报告内容**:
-```astro
-{slug === 'your-new-report' && (
-  <>
-    <!-- Report Header 自动生成 -->
-
-    <h2>Executive Summary</h2>
-    <p>报告摘要...</p>
-
-    <h2>Main Section 1</h2>
-    <p>内容...</p>
-
-    <h3>Subsection 1.1</h3>
-    <p>子章节内容...</p>
-
-    <h2>Main Section 2</h2>
-    <ul>
-      <li><strong>要点 1:</strong> 描述</li>
-      <li><strong>要点 2:</strong> 描述</li>
-    </ul>
-
-    <h2>Conclusion</h2>
-    <p>结论...</p>
-  </>
-)}
-```
-
-4. **在 `/report` 列表页添加卡片**:
-```astro
-<div class="pb-6 border-b border-notion-border">
-  <div class="text-sm text-notion-text-light mb-2">
-    Category • Year
-  </div>
-  <h3 class="text-lg font-semibold text-notion-text mb-2">
-    Report Title
-  </h3>
-  <p class="text-notion-text-light mb-2">
-    Brief description of the report.
-  </p>
-  <a href="/report/your-new-report/" class="text-notion-text underline">
-    Read report →
-  </a>
-</div>
-```
-
----
-
-### ⚠️ 重要：添加内容后的 SEO 更新（必须手动）
-
-添加新的 Wiki 或 Report 内容后，**必须手动更新**以下 SEO 文件以保持网站优化：
-
-#### 1. 更新 `public/llms.txt`（必须）
-
-这个文件帮助大型语言模型（如 ChatGPT、Claude）理解和索引网站内容。
-
-**添加新 Wiki 页面时：**
-```txt
-# Career Wiki Pages
-> Comprehensive career guides for different positions
-
-- Software Engineer Career Guide: https://tying.ai/wiki/software-engineer
-  Description: Complete guide to software engineering career paths...
-
-- Product Manager Career Guide: https://tying.ai/wiki/product-manager
-  Description: In-depth guide to product management roles...
-
-- 【新增】Your New Position Career Guide: https://tying.ai/wiki/your-new-slug
-  Description: 简短描述这个职位指南的内容（1-2句话）
-  Topics: 相关话题标签1, 相关话题标签2, 相关话题标签3
-```
-
-**添加新 Report 时：**
-```txt
-# Industry Reports
-> Deep-dive analysis of industry trends and market insights
-
-- US Recruitment Market Analysis: https://tying.ai/report/us-recruitment-market
-  Description: Comprehensive analysis of the US recruitment industry...
-  Topics: Recruitment Industry, Market Analysis, Industry Trends
-
-- 【新增】Your New Report: https://tying.ai/report/your-new-slug
-  Description: 简短描述这个报告的内容和价值（1-2句话）
-  Topics: 主要话题1, 主要话题2, 主要话题3, 主要话题4
-```
-
-#### 2. 更新 `public/humans.txt`（建议）
-
-更新最后修改日期：
-
-```txt
-# SITE
-    Last update: 2025-11-14  ← 改为当前日期
-    Standards: HTML5, CSS3, ES2022
-    Components: Responsive, Accessible, SEO-optimized
-    Design: Notion-inspired minimalism
-```
-
-#### 3. 自动更新的部分（无需手动）✅
-
-以下内容会在构建时或访问时自动生成，**无需手动更新**：
-
-- **Sitemap (`sitemap-index.xml`)**: 运行 `npm run build` 时自动重新生成
-- **结构化数据（JSON-LD）**: BaseLayout 模板根据页面内容自动生成
-- **Meta 标签**: BaseLayout 模板自动生成 Open Graph、Twitter Card 等
-- **Breadcrumbs**: NotionLayout 根据 URL 路径自动生成
-
-#### 完整更新流程示例
-
-假设你要添加 "UX Designer" Wiki 页面：
-
-**步骤 1**: 更新动态路由和列表页（代码部分）
-```typescript
-// src/pages/wiki/[slug].astro
-const positions = ['software-engineer', 'product-manager', 'ux-designer'];
-
-// src/pages/wiki.astro - 添加卡片
-```
-
-**步骤 2**: 更新 SEO 文件
-```bash
-# 编辑 public/llms.txt
-- UX Designer Career Guide: https://tying.ai/wiki/ux-designer
-  Description: Complete guide to UX design career paths, essential skills, portfolio building, and industry insights
-  Topics: UX Design, User Experience, Design Career, Product Design
-
-# 编辑 public/humans.txt
-Last update: 2025-11-14
-```
-
-**步骤 3**: 构建和测试
-```bash
-npm run build    # 自动重新生成 sitemap
-npm run preview  # 测试构建结果
-```
-
-**步骤 4**: 部署
-```bash
-git add .
-git commit -m "feat: 添加 UX Designer 职业指南"
-git push origin main  # 自动部署到 Cloudflare Pages
-```
-
-#### 为什么需要手动更新？
-
-- **llms.txt**: 不是标准的自动生成文件，需要人工编写高质量的描述和话题标签
-- **humans.txt**: 人类可读的文档，通常包含人工策划的信息
-- **Sitemap**: 可以自动生成（Astro 集成已配置）✅
-
-#### 检查清单 ✓
-
-添加新内容后，确保完成以下检查：
-
-- [ ] 动态路由文件已更新（添加 slug、标题映射、内容）
-- [ ] 列表页已添加新卡片
-- [ ] `public/llms.txt` 已添加新页面条目（包含描述和话题）
-- [ ] `public/humans.txt` 已更新日期
-- [ ] 本地构建测试通过 (`npm run build`)
-- [ ] 本地预览测试通过 (`npm run preview`)
-- [ ] Git 提交并推送到 GitHub
-- [ ] Cloudflare Pages 部署成功
-- [ ] 访问生产环境 URL 验证新内容
-
-> 💡 **提示**: 详细的步骤说明请查看项目根目录的 `CONTENT_UPDATE_CHECKLIST.md` 文件。
-
----
-
-## 样式规范
-
-### Notion 风格排版 (prose-notion)
-
-NotionLayout 自动应用 `.prose-notion` 类,包含以下样式:
-
-```css
-.prose-notion {
-  color: var(--text-primary);
-  line-height: var(--line-height-relaxed);
-}
-
-.prose-notion h2 {
-  margin-top: var(--space-6);      /* 40px */
-  margin-bottom: var(--space-3);    /* 16px */
-  font-size: var(--font-size-lg);   /* 20px */
-  font-weight: var(--font-weight-bold);
-}
-
-.prose-notion h3 {
-  margin-top: var(--space-4);      /* 24px */
-  margin-bottom: var(--space-2);    /* 8px */
-  font-size: var(--font-size-base); /* 16px */
-  font-weight: var(--font-weight-semibold);
-}
-
-.prose-notion p {
-  margin-bottom: var(--space-3);    /* 16px */
-}
-
-.prose-notion ul,
-.prose-notion ol {
-  margin-bottom: var(--space-3);
-  padding-left: var(--space-3);
-}
-
-.prose-notion li {
-  margin-bottom: var(--space-1);    /* 4px */
-  list-style-position: outside;
-}
-
-.prose-notion table {
-  width: 100%;
-  border: 1px solid var(--border-primary);
-  margin: var(--space-3) 0;
-}
-
-.prose-notion th,
-.prose-notion td {
-  padding: var(--space-1) var(--space-2);
-  border-bottom: 1px solid var(--border-primary);
-  text-align: left;
-}
-
-.prose-notion th {
-  background-color: var(--bg-secondary);
-  font-weight: var(--font-weight-semibold);
-}
-```
-
-### 常用 Tailwind 类组合
+### 常用样式组合
 
 **卡片样式**:
 ```html
@@ -851,7 +694,7 @@ NotionLayout 自动应用 `.prose-notion` 类,包含以下样式:
 </div>
 ```
 
-**列表分隔线**:
+**分隔线**:
 ```html
 <div class="pb-6 border-b border-notion-border">
   <!-- 内容 -->
@@ -868,24 +711,25 @@ NotionLayout 自动应用 `.prose-notion` 类,包含以下样式:
 **链接样式**:
 ```html
 <a href="..." class="text-notion-text underline">链接文字</a>
-<a href="..." class="text-notion-text hover:no-underline">悬停去掉下划线</a>
 ```
 
-**间距容器**:
+**容器宽度**:
 ```html
+<!-- 列表页面，最大宽度 1200px -->
 <div class="max-w-notion-wide mx-auto px-8 py-12">
-  <!-- 列表页面内容,最大宽度 1200px -->
+  <!-- 内容 -->
 </div>
 
+<!-- 文章内容，最大宽度 700px -->
 <div class="max-w-notion-narrow mx-auto px-8 py-12">
-  <!-- 文章内容,最大宽度 700px -->
+  <!-- 内容 -->
 </div>
 ```
 
 **网格布局**:
 ```html
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-  <!-- 移动端单列,桌面端双列 -->
+  <!-- 移动端单列，桌面端双列 -->
 </div>
 ```
 
@@ -900,15 +744,69 @@ NotionLayout 自动应用 `.prose-notion` 类,包含以下样式:
 
 ---
 
+## 文件结构
+
+```
+tying.ai/
+├── src/
+│   ├── layouts/
+│   │   ├── BaseLayout.astro      # 基础布局（SEO、meta）
+│   │   ├── MainLayout.astro      # 列表页布局（带导航栏）
+│   │   └── NotionLayout.astro    # 详情页布局（文章阅读）
+│   ├── pages/
+│   │   ├── index.astro            # 首页
+│   │   ├── wiki.astro             # Wiki 列表页
+│   │   ├── wiki/
+│   │   │   └── [slug].astro       # Wiki 详情页（动态路由）
+│   │   ├── report.astro           # Report 列表页
+│   │   └── report/
+│   │       └── [slug].astro       # Report 详情页（动态路由）
+│   └── styles/
+│       ├── design-tokens.css      # 设计系统变量
+│       ├── global.css             # 全局样式
+│       └── components.css         # 组件样式
+├── public/
+│   ├── robots.txt                 # 搜索引擎配置
+│   ├── humans.txt                 # 人类可读信息
+│   ├── llms.txt                   # LLM 索引文件
+│   └── _headers                   # Cloudflare 头部配置
+├── astro.config.mjs               # Astro 配置
+├── tailwind.config.mjs            # Tailwind 配置
+├── .node-version                  # Node 版本（20.18.1）
+├── CONTENT_UPDATE_CHECKLIST.md   # 内容更新检查清单
+└── about.md                       # 本文档
+```
+
+---
+
+## 布局组件详解
+
+### BaseLayout
+- **用途**: 最基础的 HTML 结构
+- **特性**: SEO meta 标签、结构化数据、Open Graph
+- **位置**: `src/layouts/BaseLayout.astro`
+
+### MainLayout
+- **用途**: 列表页布局
+- **特性**: 顶部导航栏、页脚、响应式
+- **使用**: `/wiki`, `/report`, `/`
+- **位置**: `src/layouts/MainLayout.astro`
+
+### NotionLayout
+- **用途**: 详情页/文章布局
+- **特性**: 窄栏内容区（700px）、面包屑导航、Notion 风格排版
+- **使用**: `/wiki/[slug]`, `/report/[slug]`
+- **位置**: `src/layouts/NotionLayout.astro`
+
+---
+
 ## 部署流程
 
 ### 自动部署
 
-项目使用 Cloudflare Pages 自动部署:
-
 1. **推送到 GitHub**:
 ```bash
-git add -A
+git add .
 git commit -m "feat: 添加新内容"
 git push origin main
 ```
@@ -920,23 +818,22 @@ git push origin main
    - 通常需要 2-5 分钟
 
 3. **验证部署**:
-   - 访问 https://tying.ai 查看更新
-   - CDN 缓存可能需要 5-15 分钟完全更新
+   - 访问 https://tying.ai
+   - CDN 缓存可能需要 5-15 分钟
 
-### 构建配置
+### Cloudflare Pages 配置
 
-**Cloudflare Pages 设置**:
 ```
 Framework preset: Astro
 Build command: npm run build
 Build output directory: /dist
-Node.js version: 20.18.1 (通过 .node-version 指定)
+Node.js version: 20.18.1
 ```
 
-### 本地测试
+### 本地测试命令
 
 ```bash
-# 开发服务器 (带热重载)
+# 开发服务器（带热重载）
 npm run dev
 
 # 本地构建测试
@@ -946,193 +843,80 @@ npm run preview
 
 ---
 
-## 文件结构
-
-```
-tying.ai/
-├── src/
-│   ├── layouts/
-│   │   ├── BaseLayout.astro      # 基础布局
-│   │   ├── MainLayout.astro      # 主页面布局
-│   │   └── NotionLayout.astro    # Notion 风格布局
-│   ├── pages/
-│   │   ├── index.astro            # 首页
-│   │   ├── wiki.astro             # Wiki 列表页
-│   │   ├── wiki/
-│   │   │   └── [slug].astro       # Wiki 详情页 (动态路由)
-│   │   ├── report.astro           # Report 列表页
-│   │   └── report/
-│   │       └── [slug].astro       # Report 详情页 (动态路由)
-│   └── styles/
-│       ├── design-tokens.css      # 设计系统变量
-│       ├── global.css             # 全局样式
-│       └── components.css         # 组件样式
-├── public/
-│   ├── robots.txt                 # SEO 配置
-│   └── (其他静态资源)
-├── archive/                       # 归档文件
-├── astro.config.mjs               # Astro 配置
-├── tailwind.config.mjs            # Tailwind 配置
-├── .node-version                  # Node 版本锁定
-├── about.md                       # 本文档
-└── package.json
-```
-
----
-
-## 常见问题
-
-### Q: 添加新 Report 后在列表页看不到怎么办？
-
-A: 添加新 Report 需要更新**两个文件**：
-
-**问题原因**: 只更新了动态路由文件 `src/pages/report/[slug].astro`（添加 slug、metadata、内容），但忘记更新列表页 `src/pages/report.astro`。
-
-**完整步骤**:
-
-1. **更新动态路由** `src/pages/report/[slug].astro`:
-   ```typescript
-   // 步骤 1: 添加 slug
-   export async function getStaticPaths() {
-     const reports = [
-       'us-recruitment-market',
-       'agentic-ai-vs-ai-agent',
-       'your-new-report',  // ← 新增
-     ];
-     return reports.map((slug) => ({ params: { slug } }));
-   }
-
-   // 步骤 2: 添加 metadata
-   const reportData: Record<string, any> = {
-     'your-new-report': {
-       title: 'Report Title',
-       subtitle: 'Report Subtitle',
-       date: 'Month Day, Year',
-       category: 'Category Name',
-     },
-   };
-
-   // 步骤 3: 添加内容块
-   {slug === 'your-new-report' && (
-     <>
-       <h2>Executive Summary</h2>
-       <p>...</p>
-     </>
-   )}
-   ```
-
-2. **⚠️ 必须更新列表页** `src/pages/report.astro`:
-   ```astro
-   <div class="pb-6 border-b border-notion-border">
-     <div class="text-sm text-notion-text-light mb-2">
-       Category • Month Year
-     </div>
-     <h3 class="text-lg font-semibold text-notion-text mb-2">
-       Report Title
-     </h3>
-     <p class="text-notion-text-light mb-2">
-       Brief description of the report.
-     </p>
-     <a href="/report/your-new-report/" class="text-notion-text underline">
-       Read report →
-     </a>
-   </div>
-   ```
-
-3. **更新 SEO 文件** (参见"添加内容后的 SEO 更新"部分):
-   - `public/llms.txt`: 添加报告条目
-   - `public/humans.txt`: 更新日期
-
-**检查清单**:
-- [ ] `src/pages/report/[slug].astro` - slug、metadata、内容 ✓
-- [ ] `src/pages/report.astro` - 列表页卡片 ✓
-- [ ] `public/llms.txt` - SEO 条目 ✓
-- [ ] `public/humans.txt` - 更新日期 ✓
-- [ ] 测试本地构建和预览 ✓
-- [ ] Git 提交推送 ✓
-
-> 💡 **经验总结**: 动态路由只负责详情页渲染，列表页需要手动添加卡片。两者是独立的文件，必须分别更新。
-
----
-
-### Q: 如何修改导航栏链接?
-
-A: 编辑以下文件的导航部分:
-- `src/layouts/MainLayout.astro` (列表页导航)
-- `src/layouts/NotionLayout.astro` (详情页导航)
-
-### Q: 如何修改颜色?
-
-A: 编辑 `src/styles/design-tokens.css` 中的 CSS 变量,或修改 `tailwind.config.mjs` 中的 Tailwind 配置。
-
-### Q: 如何添加新的布局?
-
-A: 在 `src/layouts/` 创建新文件,继承自 `BaseLayout.astro`,参考 `MainLayout.astro` 的实现方式。
-
-### Q: 页面没有更新?
-
-A: 检查:
-1. 是否已推送到 GitHub
-2. Cloudflare Pages 构建是否成功
-3. 清除浏览器缓存或使用无痕模式
-4. CDN 缓存通常需要 5-15 分钟更新
-
-### Q: 如何测试响应式设计?
-
-A:
-1. 本地开发: 使用浏览器开发者工具的设备模拟器
-2. Tailwind 断点: `md:` (768px), `lg:` (1024px)
-3. 确保使用 `grid-cols-1 md:grid-cols-2` 等响应式类
-
----
-
 ## 最佳实践
 
-### 内容编写
+### 内容编写规范
 
-1. **标题层级**:
-   - 页面只有一个 `<h1>`
+1. **标题层级**
+   - 页面只有一个 `<h1>`（由布局自动生成）
    - 主要章节使用 `<h2>`
    - 子章节使用 `<h3>`
-   - 避免跳级 (h2 → h4)
+   - 避免跳级（h2 → h4）
 
-2. **列表使用**:
+2. **列表使用**
    - 步骤或顺序使用 `<ol>`
    - 要点或特性使用 `<ul>`
    - 重要内容使用 `<strong>` 加粗
 
-3. **链接规范**:
-   - 内部链接使用相对路径
+3. **链接规范**
+   - 内部链接使用相对路径（`/wiki/software-engineer`）
    - 外部链接添加适当的 rel 属性
-   - 所有链接提供清晰的文字说明
+   - 提供清晰的链接文字说明
 
-4. **语义化 HTML**:
+4. **语义化 HTML**
    - 使用正确的语义标签
+   - 确保可访问性
    - 避免过度使用 `<div>`
-   - 确保可访问性 (ARIA labels)
 
-### 性能优化
+### Git 提交规范
 
-1. **图片**: 使用 WebP 格式,指定宽高
+使用语义化提交信息：
+
+```bash
+feat: 添加新功能
+fix: 修复问题
+docs: 文档更新
+refactor: 代码重构
+style: 样式调整
+chore: 构建/工具更新
+```
+
+### 性能优化建议
+
+1. **图片**: 使用 WebP 格式，指定宽高
 2. **字体**: 已配置 Google Fonts 预连接
-3. **CSS**: 使用 CSS 变量,避免内联样式
+3. **CSS**: 使用 CSS 变量，避免内联样式
 4. **JS**: 最小化 JavaScript 使用
-
-### 代码规范
-
-1. **缩进**: 2 空格
-2. **命名**: kebab-case 用于文件名和 slug
-3. **注释**: 为复杂逻辑添加注释
-4. **提交信息**: 使用语义化提交 (feat:, fix:, refactor:)
 
 ---
 
-## 支持和联系
+## 维护和更新
+
+### 定期检查项
+
+- [ ] 检查所有链接是否有效
+- [ ] 更新过时的数据和统计信息
+- [ ] 验证薪资范围是否符合当前市场
+- [ ] 测试响应式设计在不同设备上的表现
+- [ ] 检查 Lighthouse 性能分数
+
+### 内容更新周期
+
+- **Career Wiki**: 每季度审查，每半年更新
+- **Industry Reports**: 根据行业变化及时更新
+- **薪资数据**: 每年更新一次
+- **技术栈**: 根据技术发展持续更新
+
+---
+
+## 支持和资源
 
 - **网站**: https://tying.ai
 - **GitHub**: https://github.com/Digidai/tying.ai
 - **部署**: Cloudflare Pages
+- **文档**: 本文件 (about.md)
+- **检查清单**: CONTENT_UPDATE_CHECKLIST.md
 
 ---
 
-*本文档随项目更新而持续维护*
+*本文档持续更新 - 最后更新: 2025-11-13*
