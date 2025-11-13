@@ -1,0 +1,95 @@
+{
+  "compilerOptions": {
+    // Basic Options
+    "target": "ES2022",                    // 编译目标版本
+    "module": "ESNext",                    // 模块系统
+    "moduleResolution": "bundler",         // 模块解析策略 - 适配Astro
+    "lib": ["ES2022", "DOM", "DOM.Iterable"], // 包含的库文件
+    "allowJs": true,                       // 允许编译JS文件
+    "checkJs": false,                      // 检查JS文件中的错误
+    "jsx": "react-jsx",                    // JSX处理方式 - 适配Astro
+    "jsxImportSource": "react",            // JSX导入源
+
+    // Strict Type-Checking Options
+    "strict": true,                        // 启用所有严格类型检查
+    "noImplicitAny": true,                 // 禁止隐式any类型
+    "strictNullChecks": true,              // 严格的null检查
+    "strictFunctionTypes": true,           // 严格的函数类型
+    "strictBindCallApply": true,           // 严格的bind/call/apply检查
+    "strictPropertyInitialization": true,  // 严格的属性初始化检查
+    "noImplicitThis": true,               // 禁止this隐式类型
+    "noImplicitReturns": true,             // 函数必须有返回值
+    "noFallthroughCasesInSwitch": true,    // switch语句必须有break
+
+    // Module Resolution Options
+    "baseUrl": ".",                        // 基础路径
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/layouts/*": ["src/layouts/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/scripts/*": ["src/scripts/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/types/*": ["src/types/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/data/*": ["src/data/*"]
+    },
+    "rootDirs": ["src", "types", "tests"],          // 根目录
+    "typeRoots": ["./node_modules/@types", "./src/types", "./types"], // 类型定义文件目录
+
+    // Additional Options
+    "outDir": "./dist",                    // 输出目录 - Astro使用
+    "rootDir": "./src",                    // 源文件根目录
+    "removeComments": false,               // 保留注释用于调试
+    "noEmit": true,                        // 不生成输出文件 - Astro处理
+    "importHelpers": true,                 // 从tslib导入辅助函数
+    "downlevelIteration": true,            // 降级迭代器实现
+
+    // Source Map Options
+    "sourceMap": true,                     // 生成source map
+    "inlineSourceMap": false,              // 内联source map
+    "declaration": false,                  // 不生成声明文件 (noEmit: true时无需生成)
+    "declarationMap": false,               // 不生成声明文件source map
+
+    // Experimental Options
+    "experimentalDecorators": true,       // 启用装饰器
+    "emitDecoratorMetadata": true,        // 生成装饰器元数据
+
+    // Advanced Options
+    "skipLibCheck": true,                  // 跳过库文件类型检查
+    "forceConsistentCasingInFileNames": true, // 强制文件名大小写一致
+    "resolveJsonModule": true,             // 支持导入JSON文件
+    "isolatedModules": true,               // 隔离模块
+    "allowSyntheticDefaultImports": true,  // 允许合成默认导入
+    "esModuleInterop": true,               // ES模块互操作
+    "preserveSymlinks": true,              // 保留符号链接
+
+    // Performance Options
+    "incremental": true,                   // 增量编译
+    "tsBuildInfoFile": "./.tsbuildinfo"   // 构建信息文件位置
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.astro",
+    "scripts/**/*.ts",
+    "tests/**/*.ts",
+    "types/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".astro",
+    "public",
+    "**/*.js",
+    "**/*.d.ts",
+    "js/**/*",                             // 排除现有js目录避免冲突
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
+}
