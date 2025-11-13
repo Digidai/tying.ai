@@ -200,17 +200,15 @@ const breadcrumbSchema = Astro.url.pathname !== "/" ? {
   <script type="module" src="/src/scripts/main.ts"></script>
 
   <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WER9NL409R"></script>
   <script is:inline>
-    (function() {
-      // Google Analytics 4 配置将在实际部署时添加
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID', {
-        page_title: document.title,
-        page_location: window.location.href,
-      });
-    })();
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WER9NL409R', {
+      page_title: document.title,
+      page_location: window.location.href,
+    });
   </script>
 
   <!-- 性能监控 -->
