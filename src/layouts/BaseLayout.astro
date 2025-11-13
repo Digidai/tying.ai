@@ -131,8 +131,9 @@ const breadcrumbSchema = Astro.url.pathname !== "/" ? {
   <link rel="alternate" hreflang="en" href={url} />
   <link rel="alternate" hreflang="x-default" href={url} />
 
-  <!-- Humans.txt -->
+  <!-- Humans.txt & LLMs.txt -->
   <link rel="author" href="/humans.txt" />
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site information" />
 
   <!-- Open Graph -->
   <meta property="og:type" content={type} />
