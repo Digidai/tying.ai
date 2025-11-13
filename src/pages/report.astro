@@ -1,358 +1,113 @@
 ---
-import MainLayout from '@/layouts/BaseLayout.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
 
-const pageTitle = "Industry Reports - Market Analysis & Career Insights | Tying.ai";
-const pageDescription = "Access comprehensive industry reports and market analysis covering recruitment trends, AI development, and career insights across various sectors.";
+const pageTitle = "Industry Reports | Tying.ai";
+const pageDescription = "Data-driven insights and market trends to help you make informed career decisions.";
 ---
 
 <MainLayout title={pageTitle} description={pageDescription}>
-  <main class="min-h-screen bg-gradient-to-br from-neutral-50 to-white">
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-primary-600 text-white">
-      <div class="absolute inset-0 bg-black opacity-20"></div>
-      <div class="relative container mx-auto px-4 py-24">
-        <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-5xl md:text-6xl font-bold mb-6">
-            Industry Reports
-          </h1>
-          <p class="text-xl md:text-2xl mb-8 opacity-90">
-            In-depth market analysis and career insights to help you navigate the modern job market
+  <div class="max-w-notion-wide mx-auto px-8 py-12">
+    <!-- 页面标题 -->
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold text-notion-text mb-4">Industry Reports</h1>
+      <p class="text-lg text-notion-text-light">
+        Data-driven insights and market trends for career planning.
+      </p>
+    </div>
+
+    <!-- Latest Reports -->
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold text-notion-text mb-8">Latest Reports</h2>
+      <div class="space-y-6">
+        <div class="pb-6 border-b border-notion-border">
+          <div class="text-sm text-notion-text-light mb-2">Technology • Q4 2024</div>
+          <h3 class="text-lg font-semibold text-notion-text mb-2">Software Engineering Career Trends 2024</h3>
+          <p class="text-notion-text-light mb-2">
+            Analysis of hiring trends, salary data, and in-demand skills for software engineers.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#reports" class="px-8 py-3 bg-white text-primary-600 rounded-lg font-semibold hover:bg-neutral-100 transition-colors">
-              Browse Reports
-            </a>
-            <a href="/report/us-recruitment-market/" class="px-8 py-3 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-colors">
-              Latest Analysis
-            </a>
-          </div>
+          <a href="#" class="text-notion-text underline">Read report →</a>
+        </div>
+
+        <div class="pb-6 border-b border-notion-border">
+          <div class="text-sm text-notion-text-light mb-2">Business • Q3 2024</div>
+          <h3 class="text-lg font-semibold text-notion-text mb-2">Product Management Market Analysis</h3>
+          <p class="text-notion-text-light mb-2">
+            Comprehensive overview of product management roles, compensation, and career paths.
+          </p>
+          <a href="#" class="text-notion-text underline">Read report →</a>
+        </div>
+
+        <div class="pb-6 border-b border-notion-border">
+          <div class="text-sm text-notion-text-light mb-2">Data & AI • Q3 2024</div>
+          <h3 class="text-lg font-semibold text-notion-text mb-2">Data Science and AI Careers Report</h3>
+          <p class="text-notion-text-light mb-2">
+            Insights into the rapidly evolving field of data science and artificial intelligence.
+          </p>
+          <a href="#" class="text-notion-text underline">Read report →</a>
         </div>
       </div>
-      <div class="absolute bottom-0 left-0 right-0">
-        <svg class="w-full h-12 fill-neutral-50" viewBox="0 0 1440 120" preserveAspectRatio="none">
-          <path d="M0,96L48,90.7C96,85,192,75,288,72C384,69,480,75,576,80C672,85,768,91,864,90.7C960,91,1056,85,1152,80C1248,75,1344,69,1392,66.7L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
-        </svg>
-      </div>
-    </section>
-
-    <!-- Featured Reports -->
-    <section id="reports" class="py-20">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-neutral-900 mb-4">
-              Featured Reports
-            </h2>
-            <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
-              Comprehensive analysis of current market trends and future projections
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            <!-- US Recruitment Market Report -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-white">
-                <div class="flex items-center mb-4">
-                  <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                  </svg>
-                  <span class="text-sm font-medium uppercase tracking-wider">Market Analysis</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-2">US Recruitment Market 2025</h3>
-                <p class="opacity-90">Comprehensive analysis of the current job market trends</p>
-              </div>
-              <div class="p-6">
-                <div class="space-y-4 mb-6">
-                  <div class="flex items-center text-neutral-600">
-                    <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Employment gap analysis and demographic shifts
-                  </div>
-                  <div class="flex items-center text-neutral-600">
-                    <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Industry growth projections and emerging sectors
-                  </div>
-                  <div class="flex items-center text-neutral-600">
-                    <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Technology adoption and digital transformation trends
-                  </div>
-                </div>
-                <div class="flex items-center justify-between mb-4">
-                  <div>
-                    <div class="text-sm text-neutral-500">Published</div>
-                    <div class="font-semibold">January 2025</div>
-                  </div>
-                  <div>
-                    <div class="text-sm text-neutral-500">Pages</div>
-                    <div class="font-semibold">50+</div>
-                  </div>
-                </div>
-                <a href="/report/us-recruitment-market/" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700">
-                  Read Full Report
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Agentic AI vs AI Agent Report -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 text-white">
-                <div class="flex items-center mb-4">
-                  <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                  </svg>
-                  <span class="text-sm font-medium uppercase tracking-wider">AI Technology</span>
-                </div>
-                <h3 class="text-2xl font-bold mb-2">Agentic AI vs AI Agents</h3>
-                <p class="opacity-90">Comparative analysis of modern AI architectures</p>
-              </div>
-              <div class="p-6">
-                <div class="space-y-4 mb-6">
-                  <div class="flex items-center text-neutral-600">
-                    <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Technical architecture comparison and use cases
-                  </div>
-                  <div class="flex items-center text-neutral-600">
-                    <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Implementation strategies and best practices
-                  </div>
-                  <div class="flex items-center text-neutral-600">
-                    <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Future roadmap and development trends
-                  </div>
-                </div>
-                <div class="flex items-center justify-between mb-4">
-                  <div>
-                    <div class="text-sm text-neutral-500">Published</div>
-                    <div class="font-semibold">December 2024</div>
-                  </div>
-                  <div>
-                    <div class="text-sm text-neutral-500">Pages</div>
-                    <div class="font-semibold">25</div>
-                  </div>
-                </div>
-                <a href="/report/agentic-ai-vs-ai-agent/" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700">
-                  Read Full Report
-                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Greenhouse ATS Report -->
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-            <div class="bg-gradient-to-br from-green-500 to-green-600 p-6 text-white">
-              <div class="flex items-center mb-4">
-                <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                </svg>
-                <span class="text-sm font-medium uppercase tracking-wider">HR Technology</span>
-              </div>
-              <h3 class="text-2xl font-bold mb-2">Greenhouse ATS 2025</h3>
-              <p class="opacity-90">Recruitment technology platform analysis and insights</p>
-            </div>
-            <div class="p-6">
-              <div class="space-y-4 mb-6">
-                <div class="flex items-center text-neutral-600">
-                  <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                  </svg>
-                  Platform features and capabilities analysis
-                </div>
-                <div class="flex items-center text-neutral-600">
-                  <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                  </svg>
-                  Market position and competitive landscape
-                </div>
-                <div class="flex items-center text-neutral-600">
-                  <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                  </svg>
-                  Implementation strategies and ROI analysis
-                </div>
-              </div>
-              <div class="flex items-center justify-between mb-4">
-                <div>
-                  <div class="text-sm text-neutral-500">Published</div>
-                  <div class="font-semibold">November 2024</div>
-                </div>
-                <div>
-                  <div class="text-sm text-neutral-500">Pages</div>
-                  <div class="font-semibold">15</div>
-                </div>
-              </div>
-              <a href="/report/greenhouse-ats-2025/" class="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700">
-                Read Full Report
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
 
     <!-- Report Categories -->
-    <section class="py-20 bg-neutral-50">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-neutral-900 mb-4">
-              Report Categories
-            </h2>
-            <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
-              Explore our reports organized by industry and topic area
-            </p>
-          </div>
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold text-notion-text mb-8">Browse by Category</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="#" class="block p-4 border border-notion-border hover:border-notion-text">
+          <h3 class="font-semibold text-notion-text mb-1">Technology Trends</h3>
+          <p class="text-sm text-notion-text-light">12 reports</p>
+        </a>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Market Analysis -->
-            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-neutral-900 mb-2">Market Analysis</h3>
-              <p class="text-neutral-600 text-sm mb-4">
-                Labor market trends, employment statistics, and economic indicators
-              </p>
-              <a href="/report/us-recruitment-market/" class="text-primary-600 text-sm font-medium hover:text-primary-700">
-                3 Reports →
-              </a>
-            </div>
+        <a href="#" class="block p-4 border border-notion-border hover:border-notion-text">
+          <h3 class="font-semibold text-notion-text mb-1">Salary & Compensation</h3>
+          <p class="text-sm text-notion-text-light">8 reports</p>
+        </a>
 
-            <!-- Technology Reports -->
-            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-neutral-900 mb-2">Technology</h3>
-              <p class="text-neutral-600 text-sm mb-4">
-                AI developments, digital transformation, and tech industry insights
-              </p>
-              <a href="/report/agentic-ai-vs-ai-agent/" class="text-primary-600 text-sm font-medium hover:text-primary-700">
-                2 Reports →
-              </a>
-            </div>
+        <a href="#" class="block p-4 border border-notion-border hover:border-notion-text">
+          <h3 class="font-semibold text-notion-text mb-1">Skills & Education</h3>
+          <p class="text-sm text-notion-text-light">10 reports</p>
+        </a>
 
-            <!-- HR & Recruitment -->
-            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-neutral-900 mb-2">HR & Recruitment</h3>
-              <p class="text-neutral-600 text-sm mb-4">
-                Talent acquisition, HR technology, and workplace trends
-              </p>
-              <a href="/report/greenhouse-ats-2025/" class="text-primary-600 text-sm font-medium hover:text-primary-700">
-                1 Report →
-              </a>
-            </div>
-
-            <!-- Industry Insights -->
-            <div class="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-              <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-neutral-900 mb-2">Industry Insights</h3>
-              <p class="text-neutral-600 text-sm mb-4">
-                Sector-specific analysis and emerging industry trends
-              </p>
-              <a href="/report/us-recruitment-market/" class="text-primary-600 text-sm font-medium hover:text-primary-700">
-                Coming Soon →
-              </a>
-            </div>
-          </div>
-        </div>
+        <a href="#" class="block p-4 border border-notion-border hover:border-notion-text">
+          <h3 class="font-semibold text-notion-text mb-1">Industry Insights</h3>
+          <p class="text-sm text-notion-text-light">15 reports</p>
+        </a>
       </div>
-    </section>
+    </div>
 
     <!-- Research Methodology -->
-    <section class="py-20 container mx-auto px-4">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-neutral-900 mb-4">
-            Our Research Methodology
-          </h2>
-          <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
-            Rigorous analysis and data-driven insights for reliable market intelligence
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-neutral-900 mb-3">Data Collection</h3>
-            <p class="text-neutral-600">
-              Comprehensive data gathering from multiple reliable sources and real-time market indicators
-            </p>
-          </div>
-
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-neutral-900 mb-3">Statistical Analysis</h3>
-            <p class="text-neutral-600">
-              Advanced statistical methods and trend analysis to identify patterns and insights
-            </p>
-          </div>
-
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-neutral-900 mb-3">Expert Review</h3>
-            <p class="text-neutral-600">
-              Validation by industry experts and practitioners to ensure accuracy and relevance
-            </p>
-          </div>
-
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold text-neutral-900 mb-3">Continuous Updates</h3>
-            <p class="text-neutral-600">
-              Regular updates and revisions to reflect the latest market developments
-            </p>
-          </div>
-        </div>
+    <div>
+      <h2 class="text-2xl font-bold text-notion-text mb-8">Our Research Methodology</h2>
+      <div class="prose-notion">
+        <p>
+          Our reports are based on comprehensive data analysis, industry surveys, and expert interviews.
+          We analyze thousands of job postings, salary data points, and career trajectories to provide
+          actionable insights for career planning.
+        </p>
+        <ul>
+          <li>Survey data from 10,000+ professionals</li>
+          <li>Analysis of 100,000+ job postings annually</li>
+          <li>Expert interviews with industry leaders</li>
+          <li>Market trend analysis and forecasting</li>
+        </ul>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
 </MainLayout>
+
+<style>
+  .prose-notion {
+    color: var(--text-primary);
+    line-height: var(--line-height-relaxed);
+  }
+  .prose-notion p {
+    margin-bottom: var(--space-2);
+  }
+  .prose-notion ul {
+    margin-top: var(--space-2);
+    padding-left: var(--space-3);
+  }
+  .prose-notion li {
+    margin-bottom: var(--space-1);
+    list-style-type: disc;
+  }
+</style>

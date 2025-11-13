@@ -1,67 +1,36 @@
 ---
-import MainLayout from '@/layouts/BaseLayout.astro';
-import PositionSearch from '@/components/search/PositionSearch.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
 
-const pageTitle = "Tying.ai - 职位搜索";
-const pageDescription = "在Tying.ai搜索理想的职业机会，使用智能筛选功能找到最适合你的职位";
+const pageTitle = "Search Positions | Tying.ai";
+const pageDescription = "Search and find your ideal career opportunity.";
 ---
 
 <MainLayout title={pageTitle} description={pageDescription}>
-  <main class="container mx-auto px-4 py-8">
+  <div class="max-w-notion-wide mx-auto px-8 py-12">
     <!-- 页面标题 -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-neutral-900 mb-4">
-        寻找理想的职业机会
-      </h1>
-      <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
-        使用我们的智能搜索和筛选功能，找到最适合你的职位。我们每天更新来自各大公司的最新职位信息。
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold text-notion-text mb-4">Search Positions</h1>
+      <p class="text-lg text-notion-text-light">
+        Find your ideal career opportunity with our comprehensive position guides.
       </p>
     </div>
 
-    <!-- 搜索组件 -->
-    <PositionSearch showAdvanced={true} />
+    <!-- 搜索框 -->
+    <div class="mb-16">
+      <input
+        type="search"
+        placeholder="Search positions, skills, or companies..."
+        class="w-full px-4 py-3 border border-notion-border text-notion-text placeholder:text-notion-text-light focus:outline-none focus:border-notion-text"
+      />
+    </div>
 
-    <!-- 统计信息 -->
-    <section class="mt-16 py-12 bg-neutral-50 rounded-xl">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-2xl font-bold text-neutral-900 mb-8">为什么选择 Tying.ai？</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600 mb-2">1000+</div>
-            <div class="text-neutral-600">活跃职位</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600 mb-2">500+</div>
-            <div class="text-neutral-600">合作公司</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600 mb-2">50+</div>
-            <div class="text-neutral-600">覆盖城市</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 热门搜索 -->
-    <section class="mt-16">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-2xl font-bold text-neutral-900 mb-6">热门搜索</h2>
-        <div class="flex flex-wrap gap-2">
-          {[
-            '前端开发', 'React', 'TypeScript', '产品经理',
-            'UX设计', '数据分析师', 'Python', 'Java',
-            '远程工作', '高薪职位', '科技公司', '初创公司'
-          ].map(tag => (
-            <button class="px-4 py-2 bg-neutral-100 text-neutral-700 rounded-full hover:bg-neutral-200 transition-colors">
-              {tag}
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- 包含搜索脚本 -->
-  <script type="module" src="/src/scripts/search.ts"></script>
+    <!-- 快速链接 -->
+    <div>
+      <h2 class="text-2xl font-bold text-notion-text mb-8">Browse All Positions</h2>
+      <p class="text-notion-text-light mb-4">
+        Explore our complete career wiki with detailed guides for 100+ positions across 8 industries.
+      </p>
+      <a href="/wiki" class="text-notion-text underline">View all positions →</a>
+    </div>
+  </div>
 </MainLayout>
