@@ -14,7 +14,7 @@ mkdir -p dist
 
 # Copy directory structure
 echo "📁 Copying directory structure..."
-cp -r report position wiki components scripts assets js dist/ 2>/dev/null || true
+cp -r report company wiki components scripts assets js dist/ 2>/dev/null || true
 
 # Copy static files (XML, TXT, JSON, etc.)
 echo "📄 Copying static files..."
@@ -78,7 +78,7 @@ for file in *.html; do
 done
 
 # Minify HTML files in subdirectories
-for dir in dist/report dist/position dist/wiki dist/components; do
+for dir in dist/report dist/company dist/wiki dist/components; do
   if [ -d "$dir" ]; then
     find "$dir" -name "*.html" -type f | while read file; do
       npx html-minifier \

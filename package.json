@@ -11,7 +11,7 @@
     "dev:watch": "npm run build:simple && serve -s dist -l 3000 --watch",
     "build": "astro build",
     "build:legacy": "bash build.sh",
-    "build:simple": "rm -rf dist && mkdir -p dist && cp -r report position wiki components scripts assets js dist/ && cp ./*.html ./*.xml ./*.txt ./*.json ./*.ico ./*.css ./*.js dist/ 2>/dev/null || true",
+    "build:simple": "rm -rf dist && mkdir -p dist && cp -r report company wiki components scripts dist/ 2>/dev/null || true && cp ./*.html ./*.xml ./*.txt ./*.json ./*.ico ./*.css ./*.js dist/ 2>/dev/null || true",
     "build:dev": "npm run build:simple && npm run start",
     "build:ts": "npx tsc --project tsconfig.json",
     "build:ts:watch": "npx tsc --project tsconfig.json --watch",
