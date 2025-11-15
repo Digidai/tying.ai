@@ -53,28 +53,26 @@
     <link rel="stylesheet" href="/utilities.css">
 
     <style>
-        /* Notion-style Company Table */
-        .company-table-section {
-            padding: var(--space-3xl) 0;
-        }
-
+        /* Company Table Styles - Notion Design System */
         .filter-section {
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-xl);
         }
 
         .filter-section input {
             width: 100%;
             max-width: 600px;
-            padding: var(--space-sm) var(--space-md);
+            padding: 12px 16px;
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            font-size: var(--text-base);
+            font-size: 14px;
             font-family: var(--font-body);
+            transition: border-color 0.2s ease;
         }
 
         .filter-section input:focus {
             outline: none;
             border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .table-container {
@@ -183,13 +181,24 @@
                     <p class="hero-subtitle">
                         Track the latest funding rounds, investments, and startup news
                     </p>
+
+                    <div class="hero-buttons">
+                        <a href="#companies" class="btn btn-primary">
+                            Browse Companies
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Company Table Section -->
-        <section class="company-table-section" aria-labelledby="companies-title">
+        <section class="latest-content-section" id="companies" aria-labelledby="companies-title">
             <div class="container">
+                <div class="section-header">
+                    <h2 id="companies-title" class="section-title">Latest Funding Rounds</h2>
+                    <p class="section-subtitle">Browse 88 companies with recent funding rounds and investment information</p>
+                </div>
+
                 <div class="filter-section">
                     <input type="text" id="searchInput" placeholder="Search companies, investors, or rounds..." aria-label="Search companies">
                 </div>
