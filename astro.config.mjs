@@ -31,6 +31,7 @@ export default defineConfig({
       customPages: [
         'https://tying.ai/',
         'https://tying.ai/wiki',
+        'https://tying.ai/company/',
         'https://tying.ai/report',
       ],
       // i18n (如果需要多语言)
