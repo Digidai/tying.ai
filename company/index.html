@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Company Funding Database - Latest Funding Rounds | Tying.ai</title>
+    <meta name="description" content="Browse the latest company funding rounds, investments, and startup news. Track Series A, B, C rounds and seed funding across tech companies.">
+    <meta name="keywords" content="company funding, startup funding, venture capital, series A, series B, seed funding, tech investments">
+    <meta name="author" content="Tying.ai">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://tying.ai/company/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tying.ai/company/">
+    <meta property="og:title" content="Company Funding Database - Latest Funding Rounds | Tying.ai">
+    <meta property="og:description" content="Browse the latest company funding rounds, investments, and startup news.">
+    <meta property="og:image" content="https://tying.ai/favicon.ico">
+    <meta property="og:site_name" content="Tying.ai">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tying.ai/company/">
+    <meta property="twitter:title" content="Company Funding Database - Latest Funding Rounds">
+    <meta property="twitter:description" content="Browse the latest company funding rounds, investments, and startup news.">
+    <meta property="twitter:image" content="https://tying.ai/favicon.ico">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/layout.css">
+    <link rel="stylesheet" href="/components.css">
+    <link rel="stylesheet" href="/utilities.css">
+
+    <style>
+        /* Company Table Styles */
+        .company-table-section {
+            padding: var(--spacing-8) 0;
+            background: var(--bg-primary);
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: var(--spacing-6);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 0.875rem;
+        }
+
+        .company-table thead {
+            background: var(--bg-secondary);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .company-table th {
+            padding: var(--spacing-4);
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .company-table tbody tr {
+            border-bottom: 1px solid var(--border-light);
+            transition: background-color 0.2s ease;
+        }
+
+        .company-table tbody tr:hover {
+            background: var(--bg-hover);
+        }
+
+        .company-table td {
+            padding: var(--spacing-3) var(--spacing-4);
+            color: var(--text-secondary);
+            vertical-align: middle;
+        }
+
+        .company-table td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .company-table a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .company-table a:hover {
+            color: var(--color-primary-dark);
+            text-decoration: underline;
+        }
+
+        .funding-round {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: var(--bg-tag);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .investor-name {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .company-table {
+                font-size: 0.75rem;
+            }
+
+            .company-table th,
+            .company-table td {
+                padding: var(--spacing-2) var(--spacing-3);
+            }
+        }
+
+        /* Search and Filter Section */
+        .filter-section {
+            margin-top: var(--spacing-6);
+            padding: var(--spacing-4);
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-section input {
+            width: 100%;
+            padding: var(--spacing-3);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+        }
+
+        .filter-section input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero-section" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-logo">
+                        <span class="hero-logo-emoji" role="img" aria-label="Company Funding">💼</span>
+                    </div>
+                    <h1 id="hero-title" class="hero-title">
+                        Company Funding Database
+                    </h1>
+                    <p class="hero-subtitle">
+                        Track the latest funding rounds, investments, and startup news
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Table Section -->
+        <section class="company-table-section" aria-labelledby="companies-title">
+            <div class="container">
+                <div class="filter-section">
+                    <input type="text" id="searchInput" placeholder="Search companies, investors, or rounds..." aria-label="Search companies">
+                </div>
+
+                <div class="table-container">
+                    <table class="company-table" id="companyTable">
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Round</th>
+                                <th>Date</th>
+                                <th>Lead Investor</th>
+                                <th>Homepage</th>
+                                <th>Jobs Page</th>
+                                <th>News</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="company-name">Vulcan Technologies</td>
+                                <td><span class="funding-round">$10.9M · Seed</span></td>
+                                <td>9-Oct-25</td>
+                                <td class="investor-name">General Catalyst</td>
+                                <td><a href="https://vulcan-tech.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://vulcan-tech.com/jobs" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.generalcatalyst.com/stories/seeding-the-future-with-vulcan-technologies" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Kernel</td>
+                                <td><span class="funding-round">$22M · Series A</span></td>
+                                <td>9-Oct-25</td>
+                                <td class="investor-name">Accel</td>
+                                <td><a href="https://www.onkernel.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.onkernel.com/docs/careers/intro" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://blog.onkernel.com/series-a-announcement/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Datacurve</td>
+                                <td><span class="funding-round">$15M · Series A</span></td>
+                                <td>9-Oct-25</td>
+                                <td class="investor-name">Y Combinator</td>
+                                <td><a href="https://www.datacurve.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/datacurve" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.ycombinator.com/blog/announcing-the-yc-winter-2025-batch" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Spellbook</td>
+                                <td><span class="funding-round">$50M · Series B</span></td>
+                                <td>9-Oct-25</td>
+                                <td class="investor-name">Khosla Ventures</td>
+                                <td><a href="https://www.spellbook.legal/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.spellbook.legal/careers#open-roles" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.spellbook.legal/blog/series-b" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">n8n</td>
+                                <td><span class="funding-round">$180M · Series C</span></td>
+                                <td>9-Oct-25</td>
+                                <td class="investor-name">Accel, Meritech, and Deutsche Telekom's venture capital arm</td>
+                                <td><a href="https://n8n.io/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://n8n.io/careers/#job-board" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techfundingnews.com/n8n-raises-180m-series-c-2-5-billion-valuation-automation-ai/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">MeritFirst</td>
+                                <td><span class="funding-round">$6M · Seed</span></td>
+                                <td>8-Oct-25</td>
+                                <td class="investor-name">8VC</td>
+                                <td><a href="https://www.meritfirst.us/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/8vc" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://startups.gallery/news/meritfirst-raises-6m-seed-from-8vc-slow-ventures" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Mastra</td>
+                                <td><span class="funding-round">$13M · Seed</span></td>
+                                <td>8-Oct-25</td>
+                                <td class="investor-name">Y Combinator</td>
+                                <td><a href="https://mastra.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://mastra.ai/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://mastra.ai/blog/seed-round" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Relace</td>
+                                <td><span class="funding-round">$23M · Series A</span></td>
+                                <td>8-Oct-25</td>
+                                <td class="investor-name">Andreessen Horowitz</td>
+                                <td><a href="https://www.relace.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/relace" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.relace.ai/blog/series-a-announcement" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Monk</td>
+                                <td><span class="funding-round">$4M · Seed</span></td>
+                                <td>8-Oct-25</td>
+                                <td class="investor-name">Better Tomorrow Ventures</td>
+                                <td><a href="https://monk.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://monk.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.linkedin.com/posts/anthony-danon-3409099b_excited-that-monk-is-announcing-their-4m-activity-7381792733549563904-FFaU" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">David AI</td>
+                                <td><span class="funding-round">$50M · Series B</span></td>
+                                <td>8-Oct-25</td>
+                                <td class="investor-name">Meritech Capital</td>
+                                <td><a href="https://www.withdavid.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.withdavid.ai/jobs" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.bloomberg.com/news/articles/2025-10-08/david-ai-raises-50-million-to-bring-audio-data-to-ai-models" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Stoke</td>
+                                <td><span class="funding-round">$510M · Series D</span></td>
+                                <td>8-Oct-25</td>
+                                <td class="investor-name">Thomas Tull's US Innovative Technology Fund (USIT)</td>
+                                <td><a href="https://www.stokespace.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.stokespace.com/careers/" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.stokespace.com/stoke-space-technologies-raises-510-million-to-scale-manufacturing-of-fully-reusable-nova-launch-vehicle/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Crosby</td>
+                                <td><span class="funding-round">$20M · Series A</span></td>
+                                <td>8-Oct-25</td>
+                                <td class="investor-name">Index Ventures</td>
+                                <td><a href="https://crosby.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://crosby.ai/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://crosby.ai/post/series-a-and-faster-agreements" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Base</td>
+                                <td><span class="funding-round">$1B · Series C</span></td>
+                                <td>8-Oct-25</td>
+                                <td class="investor-name">Base10 Partners</td>
+                                <td><a href="https://www.themobilefirstcompany.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/mobilefirst" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://x.com/mobilefirstco/status/1983893005712158973" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Quilter</td>
+                                <td><span class="funding-round">$25M · Series B</span></td>
+                                <td>7-Oct-25</td>
+                                <td class="investor-name">Index Ventures</td>
+                                <td><a href="https://quilter.app/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://quilter.app/jobs" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.indexventures.com/perspectives/a-new-era-for-electronics-design-our-investment-in-quilter/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">FurtherAI</td>
+                                <td><span class="funding-round">$25M · Series A</span></td>
+                                <td>7-Oct-25</td>
+                                <td class="investor-name">Andreessen Horowitz</td>
+                                <td><a href="https://www.furtherai.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/furtherai" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.furtherai.com/blog/%20furtherai-announces-25m-series-a-from-andreessen-horowitz-to-transform-insurance-workflows-with-ai-automating-busywork" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Supermemory</td>
+                                <td><span class="funding-round">$3M · Pre-Seed</span></td>
+                                <td>6-Oct-25</td>
+                                <td class="investor-name">Susa Ventures</td>
+                                <td><a href="https://supermemory.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://supermemory.ai/about" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/06/a-19-year-old-nabs-backing-from-google-execs-for-his-ai-memory-startup-supermemory/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Filigran</td>
+                                <td><span class="funding-round">$58M · Series C</span></td>
+                                <td>6-Oct-25</td>
+                                <td class="investor-name">Eurazeo</td>
+                                <td><a href="https://filigran.io/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.welcometothejungle.com/en/companies/filigran/jobs" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.thesaasnews.com/news/filigran-secures-58-million-in-series-c" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Heidi Health</td>
+                                <td><span class="funding-round">$65M · Series B</span></td>
+                                <td>6-Oct-25</td>
+                                <td class="investor-name">Point72 Ventures</td>
+                                <td><a href="https://www.heidihealth.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.heidihealth.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/05/heidi-health-raises-65m-series-b-led-by-steve-cohens-point72/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Supabase</td>
+                                <td><span class="funding-round">$100M · Series E</span></td>
+                                <td>5-Oct-25</td>
+                                <td class="investor-name">Accel</td>
+                                <td><a href="https://supabase.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://supabase.com/careers#positions" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.finsmes.com/2025/10/supabase-raises-100m-in-series-e-at-5b-valuation.html" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Goodword</td>
+                                <td><span class="funding-round">$4M · Seed</span></td>
+                                <td>30-Oct-25</td>
+                                <td class="investor-name">Human Ventures</td>
+                                <td><a href="https://www.goodword.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://teamgoodword.notion.site/Open-Roles-5f4eb406739340f6afdbfb9f840f8c39" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.linkedin.com/posts/caroline-dell_goodword-is-live-every-door-that-opened-activity-7389662616455131136-r20r?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAVW6K4BmlBkZifhsLVjLJJRFyrJJsrdIAc" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">The Mobile-First Company</td>
+                                <td><span class="funding-round">$12M · Seed</span></td>
+                                <td>30-Oct-25</td>
+                                <td class="investor-name">Base10 Partners and Lightspeed Venture Partners</td>
+                                <td><a href="https://www.themobilefirstcompany.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/mobilefirst" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://x.com/mobilefirstco/status/1983893005712158973" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Bevel</td>
+                                <td><span class="funding-round">$10M · Series A</span></td>
+                                <td>30-Oct-25</td>
+                                <td class="investor-name">General Catalyst</td>
+                                <td><a href="https://www.bevel.health/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/bevel" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/30/bevel-raises-10m-series-a-from-general-catalyst-for-its-ai-health-companion/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Kaizen</td>
+                                <td><span class="funding-round">$21M · Series A</span></td>
+                                <td>30-Oct-25</td>
+                                <td class="investor-name">NEA (New Enterprise Associates)</td>
+                                <td><a href="https://www.kaizenlabs.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/kaizenlabs" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.axios.com/pro/enterprise-software-deals/2025/10/30/govtech-kaizen-commcere-21-million-series-a" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Legora</td>
+                                <td><span class="funding-round">$150M · Series C</span></td>
+                                <td>30-Oct-25</td>
+                                <td class="investor-name">Bessemer Venture Partners</td>
+                                <td><a href="https://legora.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://legora.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.businesswire.com/news/home/20251030974157/en/Legora-Raises-%24150-Million-Series-C-to-Accelerate-Global-Rollout-of-Its-AI-Platform-for-Legal-Professionals" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Synthesia</td>
+                                <td><span class="funding-round">$200M · Venture</span></td>
+                                <td>29-Oct-25</td>
+                                <td class="investor-name">Google Ventures</td>
+                                <td><a href="https://www.synthesia.io/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.synthesia.io/careers#open-positions" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.siliconrepublic.com/start-ups/synthesia-forbes-200m-4bn-raise-uk-start-up-ai-video-generation" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Harvey</td>
+                                <td><span class="funding-round">$150M · Venture</span></td>
+                                <td>29-Oct-25</td>
+                                <td class="investor-name">Andreessen Horowitz</td>
+                                <td><a href="https://www.harvey.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.harvey.ai/company#company-careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.forbes.com/sites/iainmartin/2025/10/29/legal-ai-startup-harvey-raises-150-million-at-8-billion-valuation/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">VoidZero</td>
+                                <td><span class="funding-round">$12.5M · Series A</span></td>
+                                <td>29-Oct-25</td>
+                                <td class="investor-name">Accel</td>
+                                <td><a href="https://voidzero.dev/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://voidzero.dev/team" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://voidzero.dev/posts/announcing-series-a" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Arya Health</td>
+                                <td><span class="funding-round">$18.2M · Series A</span></td>
+                                <td>29-Oct-25</td>
+                                <td class="investor-name">ACME</td>
+                                <td><a href="https://www.aryahealth.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.aryahealth.ai/careers#position" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.axios.com/pro/health-tech-deals/2025/10/29/arya-health-raises-18m-for-ai-agents" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Applied Compute</td>
+                                <td><span class="funding-round">$80M · Venture</span></td>
+                                <td>29-Oct-25</td>
+                                <td class="investor-name">Benchmark</td>
+                                <td><a href="https://appliedcompute.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/Applied%20Compute" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://x.com/appliedcompute/status/1983574375933866502" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Board</td>
+                                <td><span class="funding-round">$15M · Seed</span></td>
+                                <td>29-Oct-25</td>
+                                <td class="investor-name">Lerer Hippeau</td>
+                                <td><a href="https://board.fun/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.linkedin.com/company/boardisfun" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/28/mirrors-founder-is-back-with-a-new-connected-screen-startup-a-gaming-device-called-board/?utm_campaign=social&utm_source=X&utm_medium=organic" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Vizcom</td>
+                                <td><span class="funding-round">$27M · Series B</span></td>
+                                <td>29-Oct-25</td>
+                                <td class="investor-name">Radical Ventures</td>
+                                <td><a href="https://www.vizcom.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/vizcom" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.linkedin.com/posts/jordan-taylor-4490797a_im-excited-to-share-that-weve-raised-a-activity-7389318451552657408-pGL1?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAVW6K4BmlBkZifhsLVjLJJRFyrJJsrdIAc" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Subtrate</td>
+                                <td><span class="funding-round">$100M · Seed</span></td>
+                                <td>28-Oct-25</td>
+                                <td class="investor-name">Founders Fund</td>
+                                <td><a href="https://www.subtrate.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.subtrate.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.wsj.com/tech/peter-thiel-backed-startup-secures-100-million-to-make-chips-in-u-s-baff93ac" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Mem0</td>
+                                <td><span class="funding-round">$24M · Series A</span></td>
+                                <td>28-Oct-25</td>
+                                <td class="investor-name">Basis Set Ventures</td>
+                                <td><a href="https://mem0.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/mem0" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://mem0.ai/series-a" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Cartesia</td>
+                                <td><span class="funding-round">$100M · Series B</span></td>
+                                <td>28-Oct-25</td>
+                                <td class="investor-name">Kleiner Perkins</td>
+                                <td><a href="https://cartesia.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/cartesia" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://traded.co/vc/deal/cartesia-secures-100-million-investment-from-kleiner-perkins-index-ventures-lightspeed-and-nvidia/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Vesence</td>
+                                <td><span class="funding-round">$9M · Seed</span></td>
+                                <td>28-Oct-25</td>
+                                <td class="investor-name">Emergence</td>
+                                <td><a href="https://www.vesence.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.vesence.com/" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.vesence.com/blog/seed-round-announcement" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Mercor</td>
+                                <td><span class="funding-round">$350M · Series C</span></td>
+                                <td>27-Oct-25</td>
+                                <td class="investor-name">Felicis</td>
+                                <td><a href="https://www.mercor.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.mercor.com/careers/" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.mercor.com/blog/series-c/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">WellTheory</td>
+                                <td><span class="funding-round">$14M · Series A</span></td>
+                                <td>24-Oct-25</td>
+                                <td class="investor-name">General Catalyst</td>
+                                <td><a href="https://www.welltheory.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://welltheory.notion.site/Work-at-WellTheory-f4e6aad0b3a9444aa96082023236d23e" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.welltheory.com/resources/we-just-raised-a-14m-series-a-led-by-general-catalyst-heres-whats-next-for-autoimmune-care" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Catalyx Space</td>
+                                <td><span class="funding-round">$5.4M · Seed</span></td>
+                                <td>24-Oct-25</td>
+                                <td class="investor-name">Outlander VC</td>
+                                <td><a href="https://www.catalyx.space/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.catalyx.space/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.finsmes.com/2025/10/catalyx-space-raises-5-4m-in-seed-funding.html" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Valthos</td>
+                                <td><span class="funding-round">$30M · Seed</span></td>
+                                <td>24-Oct-25</td>
+                                <td class="investor-name">OpenAI Startup Fund</td>
+                                <td><a href="https://valthos.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/valthos" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.geo.tv/amp/630288-openai-funds-biosecurity-startup-valthos-to-stop-ai-engineered-pandemics" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Tensormesh</td>
+                                <td><span class="funding-round">$4.5M · Seed</span></td>
+                                <td>23-Oct-25</td>
+                                <td class="investor-name">Laude Ventures</td>
+                                <td><a href="https://www.tensormesh.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.tensormesh.ai/about" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/23/tensormesh-raises-4-5m-to-squeeze-more-inference-out-of-ai-server-loads/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Natural</td>
+                                <td><span class="funding-round">$9.8M · Seed</span></td>
+                                <td>23-Oct-25</td>
+                                <td class="investor-name">Abstract Ventures</td>
+                                <td><a href="https://www.natural.co/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.natural.co/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.natural.co/blog/natural-seed-round" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Wonder Studios</td>
+                                <td><span class="funding-round">$12M · Seed</span></td>
+                                <td>23-Oct-25</td>
+                                <td class="investor-name">Atomico</td>
+                                <td><a href="https://wonderstudios.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://job-boards.eu.greenhouse.io/wonderstudios" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/23/openai-backed-wonder-studios-raised-12m-to-bring-ai-content-to-hollywood/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Chainguard</td>
+                                <td><span class="funding-round">$280M · Venture</span></td>
+                                <td>23-Oct-25</td>
+                                <td class="investor-name">General Catalyst</td>
+                                <td><a href="https://www.chainguard.dev/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.chainguard.dev/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.finsmes.com/2025/10/chainguard-raises-280m-in-growth-financing.html" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Generation Lab</td>
+                                <td><span class="funding-round">$11M · Seed</span></td>
+                                <td>22-Oct-25</td>
+                                <td class="investor-name">Accel</td>
+                                <td><a href="https://www.generationlab.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.generationlab.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.accel.com/noteworthies/accel-seed-investment-in-generation-lab-future-of-longevity-care#all" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">ShopMy</td>
+                                <td><span class="funding-round">$70M · Venture</span></td>
+                                <td>22-Oct-25</td>
+                                <td class="investor-name">Avenir</td>
+                                <td><a href="https://shopmy.us/home" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://job-boards.greenhouse.io/shopmy" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.prnewswire.com/news-releases/shopmy-raises-70m-at-1-5-billion-valuation-to-scale-the-curated-commerce-infrastructure-for-premium-brands-tastemakers-and-shoppers-302590802.html" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Augment Market</td>
+                                <td><span class="funding-round">$12M · Series A</span></td>
+                                <td>22-Oct-25</td>
+                                <td class="investor-name">Builders VC</td>
+                                <td><a href="https://www.augment.market/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.augment.market/" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.linkedin.com/posts/augmentmarkets_were-thrilled-to-announce-that-augment-has-activity-7386820336593494016-i5Q6/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Starbridge</td>
+                                <td><span class="funding-round">$42M · Series A</span></td>
+                                <td>22-Oct-25</td>
+                                <td class="investor-name">Craft Ventures</td>
+                                <td><a href="https://starbridge.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/starbridge" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/22/david-sacks-craft-leads-42-million-series-a-in-govtech-startup-starbridge/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Seneca</td>
+                                <td><span class="funding-round">$60M · Series A</span></td>
+                                <td>21-Oct-25</td>
+                                <td class="investor-name">Caffeinated Capital</td>
+                                <td><a href="https://seneca.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/seneca" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.prnewswire.com/news-releases/seneca-launches-with-60-million-to-equip-firefighters-utilities-and-communities-with-advanced-wildfire-defense-technology-302589441.html" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Bronto</td>
+                                <td><span class="funding-round">$14M · Seed</span></td>
+                                <td>21-Oct-25</td>
+                                <td class="investor-name">Cercano Management</td>
+                                <td><a href="https://www.bronto.io/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.bronto.io/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.bronto.io/announcing-our-14m-seed-fundraising" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">fal</td>
+                                <td><span class="funding-round">$250M · Venture</span></td>
+                                <td>21-Oct-25</td>
+                                <td class="investor-name">Kleiner Perkins and Sequoia</td>
+                                <td><a href="https://fal.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://fal.ai/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/21/sources-multimodal-ai-startup-fal-ai-already-raised-at-4b-valuation/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Arbor Energy</td>
+                                <td><span class="funding-round">$55M · Series A</span></td>
+                                <td>21-Oct-25</td>
+                                <td class="investor-name">Lowercarbon Capital</td>
+                                <td><a href="https://arbor.co/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://arbor.co/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.businesswire.com/news/home/20251021233233/en/Arbor-Energy-Raises-%2455-Million-Series-A-to-Scale-Abundant-Clean-Power-for-the-AI-Economy" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Anrok</td>
+                                <td><span class="funding-round">$55M · Series C</span></td>
+                                <td>21-Oct-25</td>
+                                <td class="investor-name">Spark Capital</td>
+                                <td><a href="https://www.anrok.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/anrok" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.finsmes.com/2025/10/anrok-raises-55m-series-c-funding.html" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Sesame AI</td>
+                                <td><span class="funding-round">$250M · Series B</span></td>
+                                <td>21-Oct-25</td>
+                                <td class="investor-name">Sequoia</td>
+                                <td><a href="https://www.sesame.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/sesame" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/21/sesame-the-conversational-ai-startup-from-oculus-founders-raises-250m-and-launches-beta/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Keycard</td>
+                                <td><span class="funding-round">$38M · Venture</span></td>
+                                <td>21-Oct-25</td>
+                                <td class="investor-name">Andreessen Horowitz, Acrew Capital, and Boldstart Ventures</td>
+                                <td><a href="https://www.keycard.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.keycard.ai/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.keycard.ai/announcement" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">LangChain</td>
+                                <td><span class="funding-round">$125M · Series B</span></td>
+                                <td>20-Oct-25</td>
+                                <td class="investor-name">IVP</td>
+                                <td><a href="https://www.langchain.com/?ref=startups.gallery" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.langchain.com/careers?ref=startups.gallery" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://blog.langchain.com/series-b/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">OpenEvidence</td>
+                                <td><span class="funding-round">$200M · Venture</span></td>
+                                <td>20-Oct-25</td>
+                                <td class="investor-name">Google Ventures (GV)</td>
+                                <td><a href="https://www.openevidence.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.openevidence.com/about" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/20/openevidence-the-chatgpt-for-doctors-raises-200m-at-6b-valuation/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">DualEntry</td>
+                                <td><span class="funding-round">$90M · Series A</span></td>
+                                <td>2-Oct-25</td>
+                                <td class="investor-name">Lightspeed Venture Partners</td>
+                                <td><a href="https://www.dualentry.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://careers.dualentry.com/open-positions" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.dualentry.com/funding-announcement" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Dash0</td>
+                                <td><span class="funding-round">$35M · Series A</span></td>
+                                <td>2-Oct-25</td>
+                                <td class="investor-name">Accel and Cherry Ventures (Co-led)</td>
+                                <td><a href="https://www.dash0.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/dash0" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://sifted.eu/articles/cherry-ventures-accel-35m-dash0" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Tempo</td>
+                                <td><span class="funding-round">$500M · Series A</span></td>
+                                <td>18-Oct-25</td>
+                                <td class="investor-name">Thrive Capital and Greenoaks</td>
+                                <td><a href="https://tempo.xyz/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/tempo-xyz" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://fortune.com/crypto/2025/10/17/stripe-paradigm-tempo-series-a-5-billion-thrive-capital-greenoaks-joshua-kushner/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Strella</td>
+                                <td><span class="funding-round">$14M · Series A</span></td>
+                                <td>16-Oct-25</td>
+                                <td class="investor-name">Bessemer Venture Partners</td>
+                                <td><a href="https://www.strella.io/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.strella.io/" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.strella.io/blog/series-a" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Daylight</td>
+                                <td><span class="funding-round">$75M · Venture</span></td>
+                                <td>16-Oct-25</td>
+                                <td class="investor-name">Framework Ventures</td>
+                                <td><a href="https://godaylight.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://job-boards.greenhouse.io/daylight" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://blog.godaylight.com/daylight-fundraise" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">General Intuition</td>
+                                <td><span class="funding-round">$133.7M · Seed</span></td>
+                                <td>16-Oct-25</td>
+                                <td class="investor-name">Khosla Ventures and General Catalyst</td>
+                                <td><a href="https://www.generalintuition.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/medal" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/16/general-intuition-lands-134m-seed-to-teach-agents-spatial-reasoning-using-video-game-clips/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Osmosis</td>
+                                <td><span class="funding-round">$6.3M · Seed</span></td>
+                                <td>15-Oct-25</td>
+                                <td class="investor-name">CRV and Audacious Ventures</td>
+                                <td><a href="https://osmosis.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.osmosisai.co/careers/" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://x.com/_WEEXIAO/status/1978498474065662007" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Good Start Labs</td>
+                                <td><span class="funding-round">$3.6M · Seed</span></td>
+                                <td>15-Oct-25</td>
+                                <td class="investor-name">Inovia Capital and General Catalyst</td>
+                                <td><a href="https://goodstartlabs.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://goodstartlabs.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://every.to/on-every/our-new-incubation-raised-3-6-million-to-teach-ais-to-play-games" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Dedalus Labs</td>
+                                <td><span class="funding-round">$11M · Seed</span></td>
+                                <td>15-Oct-25</td>
+                                <td class="investor-name">Kindred Ventures</td>
+                                <td><a href="https://www.dedaluslabs.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.dedaluslabs.ai/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://kindredventures.com/announcement/dedalus-labs-redefining-non-linear-agentic-workflows/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Campfire</td>
+                                <td><span class="funding-round">$65M · Series B</span></td>
+                                <td>15-Oct-25</td>
+                                <td class="investor-name">Accel and Ribbit</td>
+                                <td><a href="https://campfire.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/campfire" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.fintechfutures.com/venture-capital-funding/erp-platform-campfire-fuels-up-with-65m-series-b" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Clerk</td>
+                                <td><span class="funding-round">$50M · Series C</span></td>
+                                <td>15-Oct-25</td>
+                                <td class="investor-name">Menlo and Anthropic's Anthology Fund</td>
+                                <td><a href="https://clerk.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://clerk.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://clerk.com/blog/series-c" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Marble Health</td>
+                                <td><span class="funding-round">$15.5M · Series A</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">Costanoa</td>
+                                <td><a href="https://www.marblehealth.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.marblehealth.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.prnewswire.com/news-releases/marble-raises-15-5m-series-a-to-scale-access-to-youth-mental-health-care-302583202.html" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Finch (Legal)</td>
+                                <td><span class="funding-round">$20M · Series A</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">Redpoint Ventures</td>
+                                <td><a href="https://www.finchlegal.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.finchlegal.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.law360.com/pulse/articles/2391560/prelitigation-ops-startup-finch-raises-20m-series-a" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Flint</td>
+                                <td><span class="funding-round">$5M · Seed</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">Basis Set Ventures and Patron</td>
+                                <td><a href="https://flintk12.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://flintk12.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.theolympian.com/press-releases/article312807882.html" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">ClarityCare</td>
+                                <td><span class="funding-round">$3.5M · Seed</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">Maverick Capital</td>
+                                <td><a href="https://www.claritycare.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://claritycareai.notion.site/ClarityCare-AI-Job-Posting-f78cdecf978e46c3b2e9e5e44b2adb48" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://joinef.substack.com/p/portfolio-news-october-2025" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Inference</td>
+                                <td><span class="funding-round">$11.8M · Seed</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">Multicoin Capital</td>
+                                <td><a href="https://inference.net/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/inference" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://inference.net/blog/seed-round" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Flow</td>
+                                <td><span class="funding-round">$23M · Series A</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">Sequoia</td>
+                                <td><a href="https://flowengineering.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://flowengineering.com/careers/" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.sequoiacap.com/article/partnering-with-flow-the-agile-hardware-future/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Reducto</td>
+                                <td><span class="funding-round">$75M · Series B</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">Andreessen Horowitz</td>
+                                <td><a href="https://reducto.ai/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://reducto.ai/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.prnewswire.com/news-releases/reducto-raises-75m-series-b-to-define-the-future-of-ai-document-intelligence-302581462.html" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Airbound</td>
+                                <td><span class="funding-round">$8.6M · Seed</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">Lachy Groom</td>
+                                <td><a href="https://www.airbound.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.airbound.com/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/14/indias-airbound-led-by-20-year-old-bags-8-65m-to-work-toward-one-cent-drone-deliveries-at-scale/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Strawberry</td>
+                                <td><span class="funding-round">$6M · Seed</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">General Catalyst</td>
+                                <td><a href="https://strawberrybrowser.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://joinfika.ai/jobs/398d2688-fa57-48a2-9849-0362fce58a2d" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://x.com/charles_maddock/status/1977997685585060048" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Clove</td>
+                                <td><span class="funding-round">$14M · Pre-Seed</span></td>
+                                <td>14-Oct-25</td>
+                                <td class="investor-name">Accel</td>
+                                <td><a href="https://www.clove.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/clove" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.clove.com/blog/fundraise" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Alleviate Health</td>
+                                <td><span class="funding-round">$4.3M · Seed</span></td>
+                                <td>13-Oct-25</td>
+                                <td class="investor-name">Andreessen Horowitz (a16z)</td>
+                                <td><a href="https://alleviatehealth.care/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/alleviatehealth" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.businesswire.com/news/home/20251013052326/en/Alleviate-Health-Backed-by-Andreessen-Horowitz-Launches-to-Accelerate-Patient-Recruitment-at-Scale" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Reflection</td>
+                                <td><span class="funding-round">$2B · Series B</span></td>
+                                <td>10-Oct-25</td>
+                                <td class="investor-name">Nvidia and Lightspeed Venture Partners</td>
+                                <td><a href="https://reflection.ai" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://reflection.ai/careers" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://pulse2.com/reflection-ai-secures-2-billion-series-b-for-building-autonomous-coding-agents-and-frontier-models/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Einride</td>
+                                <td><span class="funding-round">$100M · Venture</span></td>
+                                <td>1-Oct-25</td>
+                                <td class="investor-name">EQT Ventures</td>
+                                <td><a href="https://www.einride.tech/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://careers.einride.tech/" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://techcrunch.com/2025/10/01/self-driving-trucks-startup-einride-raises-100m/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Summation</td>
+                                <td><span class="funding-round">$21M · Series A</span></td>
+                                <td>1-Oct-25</td>
+                                <td class="investor-name">Kleiner Perkins</td>
+                                <td><a href="https://www.summation.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://www.summation.com/careers#jobs" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.geekwire.com/2025/opendoor-co-founder-brings-seattle-area-startup-summation-out-of-stealth-with-35m-in-funding/" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                            <tr>
+                                <td class="company-name">Moonlake</td>
+                                <td><span class="funding-round">$28M · Seed</span></td>
+                                <td>1-Oct-25</td>
+                                <td class="investor-name">Threshold Ventures</td>
+                                <td><a href="https://www.moonlakeai.com/" target="_blank" rel="noopener">Website</a></td>
+                                <td><a href="https://jobs.ashbyhq.com/Moonlake" target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href="https://www.webwire.com/ViewPressRel.asp?aId=344520" target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 id="cta-title">Explore Career Opportunities</h2>
+                    <p>Discover your next career move with our comprehensive career database and industry insights.</p>
+                    <div class="cta-buttons">
+                        <a href="/wiki/table-of-contents.html" class="btn btn-primary">
+                            Browse Career Wiki
+                        </a>
+                        <a href="/report/" class="btn btn-secondary">
+                            View Industry Reports
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="site-footer"></div>
+
+    <!-- JavaScript -->
+    <script src="/site.js" defer></script>
+    <script src="/scripts/layout.js" defer></script>
+
+    <!-- Search functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const table = document.getElementById('companyTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+            searchInput.addEventListener('keyup', function() {
+                const searchTerm = this.value.toLowerCase();
+
+                Array.from(rows).forEach(function(row) {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchTerm) ? '' : 'none';
+                });
+            });
+        });
+    </script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -71,7 +71,7 @@ tying.ai/
 - **Homepage** (`/`): Main landing page with features and content
 - **Career Wiki** (`/wiki/`): Comprehensive career database with 180+ job profiles
 - **Industry Reports** (`/report/`): Market analysis and career insights
-- **Position Guide** (`/position/`): Detailed job guides for Software Engineer, Product Manager, AI PM
+- **Company Funding** (`/company/`): Latest funding rounds, investments, and startup news database
 - **Profile** (`/genedai.html`): Personal profile page with minimalist design
 
 ## Optimization Features

@@ -47,31 +47,15 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-    
-    <!-- Position Guide -->
+
+    <!-- Company Funding Database -->
     <url>
-        <loc>https://tying.ai/position/</loc>
+        <loc>https://tying.ai/company/</loc>
         <lastmod>2025-01-27T00:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
-    
-    <!-- Software Engineer Position -->
-    <url>
-        <loc>https://tying.ai/position/software-engineer/</loc>
-        <lastmod>2025-01-27T00:00:00+00:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- Product Manager Position -->
-    <url>
-        <loc>https://tying.ai/position/product-manager/</loc>
-        <lastmod>2025-01-27T00:00:00+00:00</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
+
     <!-- Career Wiki Pages -->
   <url>
     <loc>https://tying.ai/wiki/1-1-aerospace-engineering-and-operations-technologists-and-technicians.html</loc>
