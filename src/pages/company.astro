@@ -1,0 +1,226 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import companies from '../data/companies.json';
+
+const pageTitle = "Company Funding Database - Latest Funding Rounds | Tying.ai";
+const pageDescription = "Browse the latest company funding rounds, investments, and startup news. Track Series A, B, C rounds and seed funding across tech companies.";
+---
+
+<MainLayout title={pageTitle} description={pageDescription}>
+    <!-- Hero Section -->
+    <section class="hero-section" aria-labelledby="hero-title">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <span class="hero-logo-emoji" role="img" aria-label="Company Funding">💼</span>
+                </div>
+                <h1 id="hero-title" class="hero-title">
+                    Company Funding Database
+                </h1>
+                <p class="hero-subtitle">
+                    Track the latest funding rounds, investments, and startup news
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#companies" class="btn btn-primary">
+                        Browse Companies
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Table Section -->
+    <section class="latest-content-section" id="companies" aria-labelledby="companies-title">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="companies-title" class="section-title">Latest Funding Rounds</h2>
+                <p class="section-subtitle">Browse {companies.length} companies with recent funding rounds and investment information</p>
+            </div>
+
+            <!-- Search/Filter -->
+            <div class="filter-section">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search companies, investors, or rounds..." aria-label="Search companies">
+            </div>
+
+            <div class="table-container">
+                <table class="company-table" id="companyTable">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Round</th>
+                            <th>Date</th>
+                            <th>Lead Investor</th>
+                            <th>Homepage</th>
+                            <th>Jobs Page</th>
+                            <th>News</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {companies.map(company => (
+                            <tr>
+                                <td class="company-name">{company.name}</td>
+                                <td><span class="funding-round">{company.round}</span></td>
+                                <td>{company.date}</td>
+                                <td class="investor-name">{company.investor}</td>
+                                <td><a href={company.homepage} target="_blank" rel="noopener">Website</a></td>
+                                <td><a href={company.jobs} target="_blank" rel="noopener">Jobs</a></td>
+                                <td><a href={company.news} target="_blank" rel="noopener">News</a></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" aria-labelledby="cta-title">
+        <div class="container">
+            <div class="cta-content">
+                <h2 id="cta-title">Explore More Resources</h2>
+                <p>Discover career paths and industry insights with our comprehensive career wiki and market analysis reports.</p>
+                <div class="cta-buttons">
+                    <a href="/wiki" class="btn btn-primary">
+                        Browse Career Wiki
+                    </a>
+                    <a href="/report" class="btn btn-secondary">
+                        View Industry Reports
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</MainLayout>
+
+<style>
+    /* Company Table Styles - Notion Design System */
+    .filter-section {
+        margin-bottom: var(--space-xl);
+    }
+
+    .filter-section input {
+        width: 100%;
+        max-width: 600px;
+        padding: 12px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        font-family: var(--font-body);
+        transition: border-color 0.2s ease;
+    }
+
+    .filter-section input:focus {
+        outline: none;
+        border-color: var(--border-focus);
+        box-shadow: 0 0 0 3px rgba(35, 131, 226, 0.1);
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        background: var(--bg-primary);
+    }
+
+    .company-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    .company-table thead {
+        background: var(--bg-secondary);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .company-table th {
+        padding: 12px 16px;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-primary);
+        white-space: nowrap;
+    }
+
+    .company-table tbody tr {
+        border-bottom: 1px solid var(--border-light);
+        transition: background-color 0.1s ease;
+    }
+
+    .company-table tbody tr:hover {
+        background: var(--bg-hover);
+    }
+
+    .company-table tbody tr:last-child {
+        border-bottom: none;
+    }
+
+    .company-table td {
+        padding: 12px 16px;
+        color: var(--text-secondary);
+        vertical-align: middle;
+    }
+
+    .company-name {
+        font-weight: 500;
+        color: var(--text-primary);
+        white-space: nowrap;
+    }
+
+    .funding-round {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 8px;
+        background: var(--bg-tag);
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    .investor-name {
+        color: var(--text-secondary);
+    }
+
+    .company-table a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    .company-table a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .company-table {
+            font-size: 12px;
+        }
+
+        .company-table th,
+        .company-table td {
+            padding: 8px 12px;
+        }
+    }
+</style>
+
+<script>
+    // Search functionality
+    document.addEventListener('astro:page-load', () => {
+        const searchInput = document.getElementById('searchInput');
+        const table = document.getElementById('companyTable');
+
+        if (!searchInput || !table) return;
+
+        const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        searchInput.addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+
+            Array.from(rows).forEach(function(row) {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+    });
+</script>
