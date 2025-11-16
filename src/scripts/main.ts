@@ -3,16 +3,18 @@
  * 基础功能初始化
  */
 
-console.log('🚀 Tying.ai v2.0 - Initializing...');
+import { logger } from '@/utils/logger';
+
+logger.log('🚀 Tying.ai v2.0 - Initializing...');
 
 // 简单的DOM加载完成后初始化
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('✅ DOM loaded, initializing basic functionality');
+  logger.log('✅ DOM loaded, initializing basic functionality');
 
   // 初始化基础功能
   initBasicFunctionality();
 
-  console.log('✅ App initialized successfully');
+  logger.log('✅ App initialized successfully');
 });
 
 /**
@@ -28,7 +30,7 @@ function initBasicFunctionality() {
   // 表单处理
   initFormHandling();
 
-  console.log('✅ Basic functionality initialized');
+  logger.log('✅ Basic functionality initialized');
 }
 
 /**
@@ -79,9 +81,9 @@ function initFormHandling() {
   const forms = document.querySelectorAll('form');
 
   forms.forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', (_e) => {
       // 这里可以添加通用的表单处理逻辑
-      console.log('Form submitted:', form.id || 'unnamed form');
+      logger.log('Form submitted:', form.id || 'unnamed form');
     });
   });
 }

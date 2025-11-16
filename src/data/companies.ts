@@ -1,7 +1,7 @@
 // 公司融资数据
 // Auto-generated from extract-companies.js
 
-import { safeValidateCompanies, type Company as ZodCompany } from '@/schemas/company.schema';
+import { safeValidateCompanies } from '@/schemas/company.schema';
 
 export interface Company {
   name: string;

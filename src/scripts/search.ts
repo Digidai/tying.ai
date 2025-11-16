@@ -1,5 +1,5 @@
 import { dataService } from '@/services/dataService';
-import type { SearchFilters, SearchResult, Position } from '@/types';
+import type { SearchFilters, SearchResult, Position, PositionType, ExperienceLevel, RemoteType, SalaryRange } from '@/types';
 
 /**
  * 搜索功能类 - 处理前端的职位搜索逻辑
@@ -13,6 +13,7 @@ export class PositionSearchManager {
   private pageSize = 20;
   private currentFilters: SearchFilters = {};
   private isLoading = false;
+  private debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(formId: string = 'search-form') {
     this.form = document.getElementById(formId) as HTMLFormElement;
@@ -76,7 +77,7 @@ export class PositionSearchManager {
     }
     this.debounceTimer = setTimeout(() => {
       this.handleSearch();
-    }, 300) as any;
+    }, 300);
   }
 
   /**
@@ -101,19 +102,19 @@ export class PositionSearchManager {
     // 职位类型
     const types = formData.getAll('type') as string[];
     if (types.length > 0) {
-      this.currentFilters.type = types as any[];
+      this.currentFilters.type = types as PositionType[];
     }
 
     // 经验级别
     const experiences = formData.getAll('experience') as string[];
     if (experiences.length > 0) {
-      this.currentFilters.experience = experiences as any[];
+      this.currentFilters.experience = experiences as ExperienceLevel[];
     }
 
     // 远程类型
     const remotes = formData.getAll('remote') as string[];
     if (remotes.length > 0) {
-      this.currentFilters.remote = remotes as any[];
+      this.currentFilters.remote = remotes as RemoteType[];
     }
 
     // 薪资范围
@@ -387,7 +388,7 @@ export class PositionSearchManager {
     return labels[remote as keyof typeof labels] || remote;
   }
 
-  private formatSalary(salary?: any): string {
+  private formatSalary(salary?: SalaryRange): string {
     if (!salary) return '薪资面议';
     const { min, max, currency, period } = salary;
     const formatter = new Intl.NumberFormat('en-US', {
@@ -415,8 +416,6 @@ export class PositionSearchManager {
     if (diffDays <= 365) return `${Math.floor(diffDays / 30)}个月前发布`;
     return `${Math.floor(diffDays / 365)}年前发布`;
   }
-
-  private debounceTimer: ReturnType<typeof setTimeout> | null = null;
 }
 
 // 全局搜索管理器实例

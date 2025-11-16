@@ -1,4 +1,5 @@
-import type { Position, SearchFilters, SearchResult, CategoryFacet, CompanyFacet, LocationFacet, SkillFacet } from '@/types';
+import type { Position, SearchFilters, SearchResult } from '@/types';
+import { logger } from '@/utils/logger';
 
 /**
  * 数据服务类 - 管理职位数据的搜索、筛选和管理
@@ -30,9 +31,9 @@ export class DataService {
       // 从本地存储或API加载数据
       this.positions = await this.loadPositions();
       this.initialized = true;
-      console.log('Data service initialized with', this.positions.length, 'positions');
+      logger.log('Data service initialized with', this.positions.length, 'positions');
     } catch (error) {
-      console.error('Failed to initialize data service:', error);
+      logger.error('Failed to initialize data service:', error);
       throw error;
     }
   }
