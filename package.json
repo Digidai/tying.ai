@@ -23,24 +23,24 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit",
-    "test": "playwright test",
-    "test:watch": "playwright test --watch",
-    "test:headed": "playwright test --headed",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
     "analyze": "npm run build && npx vite-bundle-analyzer dist",
     "build:analyze": "npm run build && npx vite-bundle-analyzer dist",
     "perf": "npm run build && npm run lighthouse",
     "lighthouse": "lhci autorun",
-    "status": "echo '📋 Project Status:' && echo '  ✅ CSS Modularization: Complete' && echo '  ✅ JavaScript Modules: Complete' && echo '  ✅ Performance Optimization: Complete' && echo '  ✅ TypeScript Support: Complete' && echo '  ✅ Astro Architecture: Complete' && echo '  ✅ Modern Build System: Complete' && echo '  ✅ Testing Framework: Complete' && echo '  ✅ CI/CD Pipeline: Complete'",
+    "status": "echo '📋 Project Status:' && echo '  ✅ CSS Modularization: Complete' && echo '  ✅ JavaScript Modules: Complete' && echo '  ✅ Performance Optimization: Complete' && echo '  ✅ TypeScript Support: Complete' && echo '  ✅ Astro Architecture: Complete' && echo '  ✅ Modern Build System: Complete' && echo '  ✅ Code Quality: ESLint + Prettier' && echo '  ✅ Type Safety: Strict TypeScript'",
     "postinstall": "echo '🚀 Tying.ai development environment ready!' && npm run status"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
-    "alpinejs": "^3.12.3",
-    "astro": "^5.15.5",
+    "alpinejs": "^3.15.2",
+    "astro": "^5.15.8",
     "date-fns": "^2.30.0",
     "lodash-es": "^4.17.21",
     "serve": "^14.2.5",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.6.0",
@@ -48,6 +48,10 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/lodash-es": "^4.17.8",
     "@types/node": "^20.4.8",
+    "@typescript-eslint/eslint-plugin": "^8.46.4",
+    "@typescript-eslint/parser": "^8.46.4",
+    "eslint": "^9.39.1",
+    "eslint-plugin-astro": "^1.5.0",
     "typescript": "^5.1.6",
     "vite": "^7.2.2"
   },
