@@ -7,30 +7,34 @@ const pageDescription = "Browse the latest company funding rounds, investments, 
 ---
 
 <MainLayout title={pageTitle} description={pageDescription}>
-  <div class="max-w-notion-wide mx-auto px-8 py-24">
-    <!-- 页面标题 -->
-    <div class="mb-8">
-      <h1 class="text-4xl font-bold text-notion-text mb-4">
-        Company Funding Database
-      </h1>
-      <p class="text-lg text-notion-text-light">
-        Browse the latest company funding rounds, investments, and startup news. Track {companies.length}+ companies with detailed funding information.
-      </p>
+  <div class="py-24">
+    <!-- 页面标题和搜索框 - 保持 900px 居中 -->
+    <div class="max-w-notion-wide mx-auto px-8 mb-12">
+      <!-- 页面标题 -->
+      <div class="mb-8">
+        <h1 class="text-4xl font-bold text-notion-text mb-4">
+          Company Funding Database
+        </h1>
+        <p class="text-lg text-notion-text-light">
+          Browse the latest company funding rounds, investments, and startup news. Track {companies.length}+ companies with detailed funding information.
+        </p>
+      </div>
+
+      <!-- 搜索框 -->
+      <div>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search companies, investors, or rounds..."
+          class="w-full px-4 py-3 border border-notion-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          aria-label="Search companies"
+        />
+      </div>
     </div>
 
-    <!-- 搜索框 -->
-    <div class="mb-8">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Search companies, investors, or rounds..."
-        class="w-full px-4 py-3 border border-notion-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        aria-label="Search companies"
-      />
-    </div>
-
-    <!-- 公司表格 -->
-    <div class="overflow-x-auto rounded-lg shadow-sm border border-notion-border">
+    <!-- 公司表格 - 使用更宽的容器 -->
+    <div class="max-w-[1400px] mx-auto px-8">
+      <div class="overflow-x-auto rounded-lg shadow-sm border border-notion-border">
       <table class="w-full border-collapse bg-white text-sm" id="companyTable">
         <thead class="bg-notion-gray-10 sticky top-0 z-10">
           <tr>
@@ -88,6 +92,7 @@ const pageDescription = "Browse the latest company funding rounds, investments, 
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 </MainLayout>
