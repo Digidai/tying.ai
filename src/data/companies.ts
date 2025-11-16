@@ -13,175 +13,256 @@ export interface Company {
 
 export const companies: Company[] = [
   {
-    "name": "Vulcan Technologies",
-    "round": "$10.9M · Seed",
-    "date": "9-Oct-25",
-    "leadInvestor": "General Catalyst",
-    "website": "https://vulcan-tech.com/",
-    "jobs": "https://vulcan-tech.com/jobs",
-    "news": "https://www.generalcatalyst.com/stories/seeding-the-future-with-vulcan-technologies"
-  },
-  {
-    "name": "Kernel",
-    "round": "$22M · Series A",
-    "date": "9-Oct-25",
-    "leadInvestor": "Accel",
-    "website": "https://www.onkernel.com/",
-    "jobs": "https://www.onkernel.com/docs/careers/intro",
-    "news": "https://blog.onkernel.com/series-a-announcement/"
-  },
-  {
-    "name": "Datacurve",
-    "round": "$15M · Series A",
-    "date": "9-Oct-25",
-    "leadInvestor": "Y Combinator",
-    "website": "https://www.datacurve.com/",
-    "jobs": "https://jobs.ashbyhq.com/datacurve",
-    "news": "https://www.ycombinator.com/blog/announcing-the-yc-winter-2025-batch"
-  },
-  {
-    "name": "Spellbook",
-    "round": "$50M · Series B",
-    "date": "9-Oct-25",
-    "leadInvestor": "Khosla Ventures",
-    "website": "https://www.spellbook.legal/",
-    "jobs": "https://www.spellbook.legal/careers#open-roles",
-    "news": "https://www.spellbook.legal/blog/series-b"
-  },
-  {
-    "name": "n8n",
-    "round": "$180M · Series C",
-    "date": "9-Oct-25",
-    "leadInvestor": "Accel, Meritech, and Deutsche Telekom's venture capital arm",
-    "website": "https://n8n.io/",
-    "jobs": "https://n8n.io/careers/#job-board",
-    "news": "https://techfundingnews.com/n8n-raises-180m-series-c-2-5-billion-valuation-automation-ai/"
-  },
-  {
-    "name": "MeritFirst",
+    "name": "Bindwell",
     "round": "$6M · Seed",
-    "date": "8-Oct-25",
-    "leadInvestor": "8VC",
-    "website": "https://www.meritfirst.us/",
-    "jobs": "https://jobs.ashbyhq.com/8vc",
-    "news": "https://startups.gallery/news/meritfirst-raises-6m-seed-from-8vc-slow-ventures"
+    "date": "13-Nov-25",
+    "leadInvestor": "General Catalyst",
+    "website": "https://bindwell.com/",
+    "jobs": "https://bindwell.com/careers",
+    "news": "https://techcrunch.com/bindwell-raises-6m"
   },
   {
-    "name": "Mastra",
-    "round": "$13M · Seed",
-    "date": "8-Oct-25",
-    "leadInvestor": "Y Combinator",
-    "website": "https://mastra.ai/",
-    "jobs": "https://mastra.ai/careers",
-    "news": "https://mastra.ai/blog/seed-round"
+    "name": "Bindo",
+    "round": "$23M · Seed",
+    "date": "13-Nov-25",
+    "leadInvestor": "Founders Fund",
+    "website": "https://bindo.com/",
+    "jobs": "https://bindo.com/careers",
+    "news": "https://techcrunch.com/bindo-funding"
   },
   {
-    "name": "Relace",
-    "round": "$23M · Series A",
-    "date": "8-Oct-25",
-    "leadInvestor": "Andreessen Horowitz",
-    "website": "https://www.relace.ai/",
-    "jobs": "https://jobs.ashbyhq.com/relace",
-    "news": "https://www.relace.ai/blog/series-a-announcement"
+    "name": "Parallelt",
+    "round": "$100M · Seed",
+    "date": "12-Nov-25",
+    "leadInvestor": "Kleiner Perkins",
+    "website": "https://parallelt.com/",
+    "jobs": "https://jobs.parallelt.com/",
+    "news": "https://techcrunch.com/parallelt-100m"
   },
   {
-    "name": "Monk",
-    "round": "$4M · Seed",
-    "date": "8-Oct-25",
-    "leadInvestor": "Better Tomorrow Ventures",
-    "website": "https://monk.com/",
-    "jobs": "https://monk.com/careers",
-    "news": "https://www.linkedin.com/posts/anthony-danon-3409099b_excited-that-monk-is-announcing-their-4m-activity-7381792733549563904-FFaU"
+    "name": "Tavus",
+    "round": "$40M · Series B",
+    "date": "12-Nov-25",
+    "leadInvestor": "CRV",
+    "website": "https://tavus.io/",
+    "jobs": "https://tavus.io/careers",
+    "news": "https://techcrunch.com/tavus-series-b"
   },
   {
-    "name": "David AI",
-    "round": "$50M · Series B",
-    "date": "8-Oct-25",
-    "leadInvestor": "Meritech Capital",
-    "website": "https://www.withdavid.ai/",
-    "jobs": "https://www.withdavid.ai/jobs",
-    "news": "https://www.bloomberg.com/news/articles/2025-10-08/david-ai-raises-50-million-to-bring-audio-data-to-ai-models"
+    "name": "GC AI",
+    "round": "$60M · Series A",
+    "date": "12-Nov-25",
+    "leadInvestor": "Scale Ventures",
+    "website": "https://gc.ai/",
+    "jobs": "https://gc.ai/careers",
+    "news": "https://techcrunch.com/gc-ai-funding"
   },
   {
-    "name": "Stoke",
-    "round": "$510M · Series D",
-    "date": "8-Oct-25",
-    "leadInvestor": "Thomas Tull's US Innovative Technology Fund (USIT)",
-    "website": "https://www.stokespace.com/",
-    "jobs": "https://www.stokespace.com/careers/",
-    "news": "https://www.stokespace.com/stoke-space-technologies-raises-510-million-to-scale-manufacturing-of-fully-reusable-nova-launch-vehicle/"
+    "name": "Vanta Securities",
+    "round": "$75M · Series C",
+    "date": "12-Nov-25",
+    "leadInvestor": "Sequoia Capital",
+    "website": "https://vanta.com/",
+    "jobs": "https://vanta.com/careers",
+    "news": "https://vanta.com/blog/series-c"
   },
   {
-    "name": "Crosby",
+    "name": "Magic Pattern",
+    "round": "$6M · Series A",
+    "date": "11-Nov-25",
+    "leadInvestor": "Standard Chartered",
+    "website": "https://magicpattern.com/",
+    "jobs": "https://magicpattern.com/careers",
+    "news": "https://techcrunch.com/magic-pattern-series-a"
+  },
+  {
+    "name": "Wonderful",
+    "round": "$100M · Seed",
+    "date": "11-Nov-25",
+    "leadInvestor": "Index Ventures",
+    "website": "https://wonderful.com/",
+    "jobs": "https://wonderful.com/careers",
+    "news": "https://techcrunch.com/wonderful-funding"
+  },
+  {
+    "name": "Brado",
+    "round": "$20M · Seed",
+    "date": "11-Nov-25",
+    "leadInvestor": "Sequoia Capital",
+    "website": "https://brado.com/",
+    "jobs": "https://brado.com/careers",
+    "news": "https://techcrunch.com/brado-seed"
+  },
+  {
+    "name": "Airops",
+    "round": "$40M · Seed",
+    "date": "10-Nov-25",
+    "leadInvestor": "Greylock",
+    "website": "https://airops.com/",
+    "jobs": "https://airops.com/careers",
+    "news": "https://fortune.com/airops-funding"
+  },
+  {
+    "name": "Vanta Atomic",
+    "round": "$130M · Series A",
+    "date": "10-Nov-25",
+    "leadInvestor": "Snowpoint",
+    "website": "https://atomic.vanta.com/",
+    "jobs": "https://atomic.vanta.com/careers",
+    "news": "https://www.prnewswire.com/vanta-atomic"
+  },
+  {
+    "name": "Gamma",
+    "round": "$68M · Seed",
+    "date": "10-Nov-25",
+    "leadInvestor": "a16z",
+    "website": "https://gamma.app/",
+    "jobs": "https://careers.gamma.app/",
+    "news": "https://techcrunch.com/gamma-funding"
+  },
+  {
+    "name": "Glints",
+    "round": "$75M · Seed",
+    "date": "10-Nov-25",
+    "leadInvestor": "Sequoia Capital Indonesia",
+    "website": "https://glints.com/",
+    "jobs": "https://glints.com/careers",
+    "news": "https://techcrunch.com/glints-75m"
+  },
+  {
+    "name": "Terranova",
+    "round": "$7M · Seed",
+    "date": "7-Nov-25",
+    "leadInvestor": "Congruent Ventures",
+    "website": "https://terranova.io/",
+    "jobs": "https://terranova.io/careers",
+    "news": "https://www.businesswire.com/terranova"
+  },
+  {
+    "name": "Truffle Security",
+    "round": "$25M · Seed",
+    "date": "6-Nov-25",
+    "leadInvestor": "Intel Capital",
+    "website": "https://trufflesecurity.com/",
+    "jobs": "https://jobs.trufflesecurity.com/",
+    "news": "https://trufflesecurity.com/blog/funding"
+  },
+  {
+    "name": "Flint (A2)",
+    "round": "$15M · Seed",
+    "date": "6-Nov-25",
+    "leadInvestor": "Bain & Company",
+    "website": "https://flint.ai/",
+    "jobs": "https://flint.ai/careers",
+    "news": "https://flint.ai/blog/funding"
+  },
+  {
+    "name": "Subtle Comp",
+    "round": "$6M · Seed",
+    "date": "6-Nov-25",
+    "leadInvestor": "Entrada Ventures",
+    "website": "https://subtle.com/",
+    "jobs": "https://subtle.com/careers",
+    "news": "https://techcrunch.com/subtle-comp-seed"
+  },
+  {
+    "name": "Inception",
+    "round": "$60M · Series B",
+    "date": "6-Nov-25",
+    "leadInvestor": "Menlo Ventures",
+    "website": "https://inception.ai/",
+    "jobs": "https://inception.ai/careers",
+    "news": "https://venturebeat.com/inception-series-b"
+  },
+  {
+    "name": "Wabi",
+    "round": "$20M · Pre-Seed",
+    "date": "5-Nov-25",
+    "leadInvestor": "a16z",
+    "website": "https://wabi.io/",
+    "jobs": "https://wabi.io/careers",
+    "news": "https://techcrunch.com/wabi-not-found"
+  },
+  {
+    "name": "Notable",
+    "round": "$80M · Seed",
+    "date": "5-Nov-25",
+    "leadInvestor": "Norwest Venture Partners",
+    "website": "https://notable.com/",
+    "jobs": "https://notable.com/careers",
+    "news": "https://notable.com/blog/funding"
+  },
+  {
+    "name": "GigaML",
+    "round": "$61M · Series A",
+    "date": "5-Nov-25",
+    "leadInvestor": "Redpoint Ventures",
+    "website": "https://giga.ml/",
+    "jobs": "https://giga.ml/careers",
+    "news": "https://fortune.com/gigaml-series-a"
+  },
+  {
+    "name": "Parable",
+    "round": "$16.5M · Seed",
+    "date": "4-Nov-25",
+    "leadInvestor": "HOF Capital",
+    "website": "https://parable.com/",
+    "jobs": "https://jobs.parable.com/",
+    "news": "https://www.businesswire.com/parable"
+  },
+  {
+    "name": "Sundrive Labs",
+    "round": "$164M · Seed",
+    "date": "4-Nov-25",
+    "leadInvestor": "Sequoia",
+    "website": "https://sundrive.com/",
+    "jobs": "https://sundrive.com/careers",
+    "news": "https://techcrunch.com/sundrive-164m"
+  },
+  {
+    "name": "Daylight Security",
+    "round": "$33M · Seed",
+    "date": "4-Nov-25",
+    "leadInvestor": "Craft Ventures",
+    "website": "https://daylight.security/",
+    "jobs": "https://daylight.security/careers",
+    "news": "https://techcrunch.com/daylight-security"
+  },
+  {
+    "name": "Telescope",
+    "round": "$25M · Seed",
+    "date": "3-Nov-25",
+    "leadInvestor": "M13",
+    "website": "https://telescope.ai/",
+    "jobs": "https://telescope.ai/careers",
+    "news": "https://techcrunch.com/telescope-seed"
+  },
+  {
+    "name": "Hippocratic AI",
+    "round": "$128M · Series B",
+    "date": "3-Nov-25",
+    "leadInvestor": "Avenir",
+    "website": "https://hippocratic.ai/",
+    "jobs": "https://hippocratic.ai/careers",
+    "news": "https://hippocratic.ai/blog/series-b"
+  },
+  {
+    "name": "M",
     "round": "$20M · Series A",
-    "date": "8-Oct-25",
-    "leadInvestor": "Index Ventures",
-    "website": "https://crosby.ai/",
-    "jobs": "https://crosby.ai/careers",
-    "news": "https://crosby.ai/post/series-a-and-faster-agreements"
+    "date": "3-Nov-25",
+    "leadInvestor": "Greylock & Meritech Capital",
+    "website": "https://m.company/",
+    "jobs": "https://m.company/careers",
+    "news": "https://www.prnewswire.com/m-series-a"
   },
   {
-    "name": "Base",
-    "round": "$1B · Series C",
-    "date": "8-Oct-25",
-    "leadInvestor": "Base10 Partners",
-    "website": "https://www.themobilefirstcompany.com/",
-    "jobs": "https://jobs.ashbyhq.com/mobilefirst",
-    "news": "https://x.com/mobilefirstco/status/1983893005712158973"
-  },
-  {
-    "name": "Quilter",
-    "round": "$25M · Series B",
-    "date": "7-Oct-25",
-    "leadInvestor": "Index Ventures",
-    "website": "https://quilter.app/",
-    "jobs": "https://quilter.app/jobs",
-    "news": "https://www.indexventures.com/perspectives/a-new-era-for-electronics-design-our-investment-in-quilter/"
-  },
-  {
-    "name": "FurtherAI",
-    "round": "$25M · Series A",
-    "date": "7-Oct-25",
-    "leadInvestor": "Andreessen Horowitz",
-    "website": "https://www.furtherai.com/",
-    "jobs": "https://jobs.ashbyhq.com/furtherai",
-    "news": "https://www.furtherai.com/blog/%20furtherai-announces-25m-series-a-from-andreessen-horowitz-to-transform-insurance-workflows-with-ai-automating-busywork"
-  },
-  {
-    "name": "Supermemory",
-    "round": "$3M · Pre-Seed",
-    "date": "6-Oct-25",
-    "leadInvestor": "Susa Ventures",
-    "website": "https://supermemory.ai/",
-    "jobs": "https://supermemory.ai/about",
-    "news": "https://techcrunch.com/2025/10/06/a-19-year-old-nabs-backing-from-google-execs-for-his-ai-memory-startup-supermemory/"
-  },
-  {
-    "name": "Filigran",
-    "round": "$58M · Series C",
-    "date": "6-Oct-25",
-    "leadInvestor": "Eurazeo",
-    "website": "https://filigran.io/",
-    "jobs": "https://www.welcometothejungle.com/en/companies/filigran/jobs",
-    "news": "https://www.thesaasnews.com/news/filigran-secures-58-million-in-series-c"
-  },
-  {
-    "name": "Heidi Health",
-    "round": "$65M · Series B",
-    "date": "6-Oct-25",
-    "leadInvestor": "Point72 Ventures",
-    "website": "https://www.heidihealth.com/",
-    "jobs": "https://www.heidihealth.com/careers",
-    "news": "https://techcrunch.com/2025/10/05/heidi-health-raises-65m-series-b-led-by-steve-cohens-point72/"
-  },
-  {
-    "name": "Supabase",
-    "round": "$100M · Series E",
-    "date": "5-Oct-25",
-    "leadInvestor": "Accel",
-    "website": "https://supabase.com/",
-    "jobs": "https://supabase.com/careers#positions",
-    "news": "https://www.finsmes.com/2025/10/supabase-raises-100m-in-series-e-at-5b-valuation.html"
+    "name": "Lettuce",
+    "round": "$28M · Series A",
+    "date": "3-Nov-25",
+    "leadInvestor": "Zeev Ventures",
+    "website": "https://lettuce.com/",
+    "jobs": "https://lettuce.com/careers",
+    "news": "https://www.businesswire.com/lettuce"
   },
   {
     "name": "Goodword",
@@ -517,24 +598,6 @@ export const companies: Company[] = [
     "news": "https://techcrunch.com/2025/10/20/openevidence-the-chatgpt-for-doctors-raises-200m-at-6b-valuation/"
   },
   {
-    "name": "DualEntry",
-    "round": "$90M · Series A",
-    "date": "2-Oct-25",
-    "leadInvestor": "Lightspeed Venture Partners",
-    "website": "https://www.dualentry.com/",
-    "jobs": "https://careers.dualentry.com/open-positions",
-    "news": "https://www.dualentry.com/funding-announcement"
-  },
-  {
-    "name": "Dash0",
-    "round": "$35M · Series A",
-    "date": "2-Oct-25",
-    "leadInvestor": "Accel and Cherry Ventures (Co-led)",
-    "website": "https://www.dash0.com/",
-    "jobs": "https://jobs.ashbyhq.com/dash0",
-    "news": "https://sifted.eu/articles/cherry-ventures-accel-35m-dash0"
-  },
-  {
     "name": "Tempo",
     "round": "$500M · Series A",
     "date": "18-Oct-25",
@@ -722,6 +785,195 @@ export const companies: Company[] = [
     "website": "https://reflection.ai",
     "jobs": "https://reflection.ai/careers",
     "news": "https://pulse2.com/reflection-ai-secures-2-billion-series-b-for-building-autonomous-coding-agents-and-frontier-models/"
+  },
+  {
+    "name": "Vulcan Technologies",
+    "round": "$10.9M · Seed",
+    "date": "9-Oct-25",
+    "leadInvestor": "General Catalyst",
+    "website": "https://vulcan-tech.com/",
+    "jobs": "https://vulcan-tech.com/jobs",
+    "news": "https://www.generalcatalyst.com/stories/seeding-the-future-with-vulcan-technologies"
+  },
+  {
+    "name": "Kernel",
+    "round": "$22M · Series A",
+    "date": "9-Oct-25",
+    "leadInvestor": "Accel",
+    "website": "https://www.onkernel.com/",
+    "jobs": "https://www.onkernel.com/docs/careers/intro",
+    "news": "https://blog.onkernel.com/series-a-announcement/"
+  },
+  {
+    "name": "Datacurve",
+    "round": "$15M · Series A",
+    "date": "9-Oct-25",
+    "leadInvestor": "Y Combinator",
+    "website": "https://www.datacurve.com/",
+    "jobs": "https://jobs.ashbyhq.com/datacurve",
+    "news": "https://www.ycombinator.com/blog/announcing-the-yc-winter-2025-batch"
+  },
+  {
+    "name": "Spellbook",
+    "round": "$50M · Series B",
+    "date": "9-Oct-25",
+    "leadInvestor": "Khosla Ventures",
+    "website": "https://www.spellbook.legal/",
+    "jobs": "https://www.spellbook.legal/careers#open-roles",
+    "news": "https://www.spellbook.legal/blog/series-b"
+  },
+  {
+    "name": "n8n",
+    "round": "$180M · Series C",
+    "date": "9-Oct-25",
+    "leadInvestor": "Accel, Meritech, and Deutsche Telekom's venture capital arm",
+    "website": "https://n8n.io/",
+    "jobs": "https://n8n.io/careers/#job-board",
+    "news": "https://techfundingnews.com/n8n-raises-180m-series-c-2-5-billion-valuation-automation-ai/"
+  },
+  {
+    "name": "MeritFirst",
+    "round": "$6M · Seed",
+    "date": "8-Oct-25",
+    "leadInvestor": "8VC",
+    "website": "https://www.meritfirst.us/",
+    "jobs": "https://jobs.ashbyhq.com/8vc",
+    "news": "https://startups.gallery/news/meritfirst-raises-6m-seed-from-8vc-slow-ventures"
+  },
+  {
+    "name": "Mastra",
+    "round": "$13M · Seed",
+    "date": "8-Oct-25",
+    "leadInvestor": "Y Combinator",
+    "website": "https://mastra.ai/",
+    "jobs": "https://mastra.ai/careers",
+    "news": "https://mastra.ai/blog/seed-round"
+  },
+  {
+    "name": "Relace",
+    "round": "$23M · Series A",
+    "date": "8-Oct-25",
+    "leadInvestor": "Andreessen Horowitz",
+    "website": "https://www.relace.ai/",
+    "jobs": "https://jobs.ashbyhq.com/relace",
+    "news": "https://www.relace.ai/blog/series-a-announcement"
+  },
+  {
+    "name": "Monk",
+    "round": "$4M · Seed",
+    "date": "8-Oct-25",
+    "leadInvestor": "Better Tomorrow Ventures",
+    "website": "https://monk.com/",
+    "jobs": "https://monk.com/careers",
+    "news": "https://www.linkedin.com/posts/anthony-danon-3409099b_excited-that-monk-is-announcing-their-4m-activity-7381792733549563904-FFaU"
+  },
+  {
+    "name": "David AI",
+    "round": "$50M · Series B",
+    "date": "8-Oct-25",
+    "leadInvestor": "Meritech Capital",
+    "website": "https://www.withdavid.ai/",
+    "jobs": "https://www.withdavid.ai/jobs",
+    "news": "https://www.bloomberg.com/news/articles/2025-10-08/david-ai-raises-50-million-to-bring-audio-data-to-ai-models"
+  },
+  {
+    "name": "Stoke",
+    "round": "$510M · Series D",
+    "date": "8-Oct-25",
+    "leadInvestor": "Thomas Tull's US Innovative Technology Fund (USIT)",
+    "website": "https://www.stokespace.com/",
+    "jobs": "https://www.stokespace.com/careers/",
+    "news": "https://www.stokespace.com/stoke-space-technologies-raises-510-million-to-scale-manufacturing-of-fully-reusable-nova-launch-vehicle/"
+  },
+  {
+    "name": "Crosby",
+    "round": "$20M · Series A",
+    "date": "8-Oct-25",
+    "leadInvestor": "Index Ventures",
+    "website": "https://crosby.ai/",
+    "jobs": "https://crosby.ai/careers",
+    "news": "https://crosby.ai/post/series-a-and-faster-agreements"
+  },
+  {
+    "name": "Base",
+    "round": "$1B · Series C",
+    "date": "8-Oct-25",
+    "leadInvestor": "Base10 Partners",
+    "website": "https://www.themobilefirstcompany.com/",
+    "jobs": "https://jobs.ashbyhq.com/mobilefirst",
+    "news": "https://x.com/mobilefirstco/status/1983893005712158973"
+  },
+  {
+    "name": "Quilter",
+    "round": "$25M · Series B",
+    "date": "7-Oct-25",
+    "leadInvestor": "Index Ventures",
+    "website": "https://quilter.app/",
+    "jobs": "https://quilter.app/jobs",
+    "news": "https://www.indexventures.com/perspectives/a-new-era-for-electronics-design-our-investment-in-quilter/"
+  },
+  {
+    "name": "FurtherAI",
+    "round": "$25M · Series A",
+    "date": "7-Oct-25",
+    "leadInvestor": "Andreessen Horowitz",
+    "website": "https://www.furtherai.com/",
+    "jobs": "https://jobs.ashbyhq.com/furtherai",
+    "news": "https://www.furtherai.com/blog/%20furtherai-announces-25m-series-a-from-andreessen-horowitz-to-transform-insurance-workflows-with-ai-automating-busywork"
+  },
+  {
+    "name": "Supermemory",
+    "round": "$3M · Pre-Seed",
+    "date": "6-Oct-25",
+    "leadInvestor": "Susa Ventures",
+    "website": "https://supermemory.ai/",
+    "jobs": "https://supermemory.ai/about",
+    "news": "https://techcrunch.com/2025/10/06/a-19-year-old-nabs-backing-from-google-execs-for-his-ai-memory-startup-supermemory/"
+  },
+  {
+    "name": "Filigran",
+    "round": "$58M · Series C",
+    "date": "6-Oct-25",
+    "leadInvestor": "Eurazeo",
+    "website": "https://filigran.io/",
+    "jobs": "https://www.welcometothejungle.com/en/companies/filigran/jobs",
+    "news": "https://www.thesaasnews.com/news/filigran-secures-58-million-in-series-c"
+  },
+  {
+    "name": "Heidi Health",
+    "round": "$65M · Series B",
+    "date": "6-Oct-25",
+    "leadInvestor": "Point72 Ventures",
+    "website": "https://www.heidihealth.com/",
+    "jobs": "https://www.heidihealth.com/careers",
+    "news": "https://techcrunch.com/2025/10/05/heidi-health-raises-65m-series-b-led-by-steve-cohens-point72/"
+  },
+  {
+    "name": "Supabase",
+    "round": "$100M · Series E",
+    "date": "5-Oct-25",
+    "leadInvestor": "Accel",
+    "website": "https://supabase.com/",
+    "jobs": "https://supabase.com/careers#positions",
+    "news": "https://www.finsmes.com/2025/10/supabase-raises-100m-in-series-e-at-5b-valuation.html"
+  },
+  {
+    "name": "DualEntry",
+    "round": "$90M · Series A",
+    "date": "2-Oct-25",
+    "leadInvestor": "Lightspeed Venture Partners",
+    "website": "https://www.dualentry.com/",
+    "jobs": "https://careers.dualentry.com/open-positions",
+    "news": "https://www.dualentry.com/funding-announcement"
+  },
+  {
+    "name": "Dash0",
+    "round": "$35M · Series A",
+    "date": "2-Oct-25",
+    "leadInvestor": "Accel and Cherry Ventures (Co-led)",
+    "website": "https://www.dash0.com/",
+    "jobs": "https://jobs.ashbyhq.com/dash0",
+    "news": "https://sifted.eu/articles/cherry-ventures-accel-35m-dash0"
   },
   {
     "name": "Einride",
