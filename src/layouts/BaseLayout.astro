@@ -79,35 +79,55 @@ const structuredData = {
 };
 
 // 面包屑结构化数据 (如果是详情页)
-const breadcrumbSchema = Astro.url.pathname !== "/" ? {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
+const breadcrumbItems = [];
+let position = 1;
+
+if (Astro.url.pathname !== "/") {
+  // Always add Home
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    "position": position++,
+    "name": "Home",
+    "item": "https://tying.ai"
+  });
+
+  // Add section-level breadcrumb
+  if (Astro.url.pathname.startsWith("/wiki") && Astro.url.pathname !== "/wiki") {
+    breadcrumbItems.push({
       "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://tying.ai"
-    },
-    ...(Astro.url.pathname.startsWith("/wiki") ? [{
-      "@type": "ListItem",
-      "position": 2,
+      "position": position++,
       "name": "Career Wiki",
       "item": "https://tying.ai/wiki"
-    }] : []),
-    ...(Astro.url.pathname.startsWith("/report") ? [{
+    });
+  } else if (Astro.url.pathname.startsWith("/report") && Astro.url.pathname !== "/report") {
+    breadcrumbItems.push({
       "@type": "ListItem",
-      "position": 2,
+      "position": position++,
       "name": "Industry Reports",
       "item": "https://tying.ai/report"
-    }] : []),
-    ...(Astro.url.pathname.startsWith("/company") ? [{
+    });
+  } else if (Astro.url.pathname.startsWith("/company") && Astro.url.pathname !== "/company") {
+    breadcrumbItems.push({
       "@type": "ListItem",
-      "position": 2,
+      "position": position++,
       "name": "Company Funding Database",
       "item": "https://tying.ai/company"
-    }] : []),
-  ]
+    });
+  }
+
+  // Add current page as final breadcrumb
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    "position": position,
+    "name": title,
+    "item": url
+  });
+}
+
+const breadcrumbSchema = breadcrumbItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems
 } : null;
 ---
 
