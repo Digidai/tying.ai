@@ -47,14 +47,14 @@ const pageDescription = "Browse the latest company funding rounds, investments, 
           {companies.map((company) => (
             <tr class="border-b border-notion-border hover:bg-notion-gray-10 transition-colors">
               <td class="px-4 py-3 font-semibold text-notion-text whitespace-nowrap">{company.name}</td>
-              <td class="px-4 py-3">
+              <td class="px-4 py-3 whitespace-nowrap">
                 <span class="inline-block px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs font-medium whitespace-nowrap">
                   {company.round}
                 </span>
               </td>
-              <td class="px-4 py-3 text-notion-text-light">{company.date}</td>
-              <td class="px-4 py-3 text-notion-text-light">{company.leadInvestor}</td>
-              <td class="px-4 py-3">
+              <td class="px-4 py-3 text-notion-text-light whitespace-nowrap">{company.date}</td>
+              <td class="px-4 py-3 text-notion-text-light text-sm">{company.leadInvestor}</td>
+              <td class="px-4 py-3 whitespace-nowrap">
                 <a
                   href={company.website}
                   target="_blank"
@@ -64,7 +64,7 @@ const pageDescription = "Browse the latest company funding rounds, investments, 
                   Website
                 </a>
               </td>
-              <td class="px-4 py-3">
+              <td class="px-4 py-3 whitespace-nowrap">
                 <a
                   href={company.jobs}
                   target="_blank"
@@ -74,7 +74,7 @@ const pageDescription = "Browse the latest company funding rounds, investments, 
                   Jobs
                 </a>
               </td>
-              <td class="px-4 py-3">
+              <td class="px-4 py-3 whitespace-nowrap">
                 <a
                   href={company.news}
                   target="_blank"
