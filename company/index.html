@@ -48,156 +48,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/layout.css">
-    <link rel="stylesheet" href="/components.css">
-    <link rel="stylesheet" href="/utilities.css">
+    <link rel="stylesheet" href="/layout.css?v=8">
+    <link rel="stylesheet" href="/components.css?v=8">
+    <link rel="stylesheet" href="/utilities.css?v=8">
 
     <style>
-        /* Company Table Styles */
-        .company-table-section {
-            padding: var(--spacing-8) 0;
-            background: var(--bg-primary);
-        }
+    /* Tailwind-like utilities for navigation */
+    .border-b { border-bottom: 1px solid #E9E9E7; }
+    .bg-white { background-color: white; }
+    .max-w-notion-wide { max-width: 900px; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .px-8 { padding-left: 2rem; padding-right: 2rem; }
+    .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+    .flex { display: flex; }
+    .hidden { display: none; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .space-x-2 > * + * { margin-left: 0.5rem; }
+    .space-x-6 > * + * { margin-left: 1.5rem; }
+    .space-y-3 > * + * { margin-top: 0.75rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .font-semibold { font-weight: 600; }
+    .text-notion-text { color: #37352F; }
+    .hover\:no-underline:hover { text-decoration: none; }
+    .p-2 { padding: 0.5rem; }
+    .w-6 { width: 1.5rem; }
+    .h-6 { height: 1.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .pt-4 { padding-top: 1rem; }
+    .border-t { border-top-width: 1px; }
+    .flex-col { flex-direction: column; }
 
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            margin-top: var(--spacing-6);
-            border-radius: var(--radius-lg);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .company-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            font-size: 0.875rem;
-        }
-
-        .company-table thead {
-            background: var(--bg-secondary);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .company-table th {
-            padding: var(--spacing-4);
-            text-align: left;
-            font-weight: 600;
-            color: var(--text-primary);
-            border-bottom: 2px solid var(--border-color);
-            white-space: nowrap;
-        }
-
-        .company-table tbody tr {
-            border-bottom: 1px solid var(--border-light);
-            transition: background-color 0.2s ease;
-        }
-
-        .company-table tbody tr:hover {
-            background: var(--bg-hover);
-        }
-
-        .company-table td {
-            padding: var(--spacing-3) var(--spacing-4);
-            color: var(--text-secondary);
-            vertical-align: middle;
-        }
-
-        .company-table td:first-child {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .company-table a {
-            color: var(--color-primary);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .company-table a:hover {
-            color: var(--color-primary-dark);
-            text-decoration: underline;
-        }
-
-        .funding-round {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            background: var(--bg-tag);
-            border-radius: var(--radius-sm);
-            font-size: 0.75rem;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        .company-name {
-            font-weight: 600;
-            color: var(--text-primary);
-            white-space: nowrap;
-        }
-
-        .investor-name {
-            color: var(--text-secondary);
-        }
-
-        @media (max-width: 768px) {
-            .company-table {
-                font-size: 0.75rem;
-            }
-
-            .company-table th,
-            .company-table td {
-                padding: var(--spacing-2) var(--spacing-3);
-            }
-        }
-
-        /* Search and Filter Section */
-        .filter-section {
-            margin-top: var(--spacing-6);
-            padding: var(--spacing-4);
-            background: white;
-            border-radius: var(--radius-lg);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .filter-section input {
-            width: 100%;
-            padding: var(--spacing-3);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            font-size: 0.875rem;
-        }
-
-        .filter-section input:focus {
-            outline: none;
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
+    @media (min-width: 768px) {
+      .md\:flex { display: flex; }
+      .md\:hidden { display: none; }
+    }
     </style>
 </head>
 <body>
-    <div id="site-header"></div>
+    <!-- Navigation (same as homepage) -->
+    <header class="border-b bg-white" id="navigation">
+      <nav class="max-w-notion-wide mx-auto px-8 py-4">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <a href="/" class="flex items-center space-x-2">
+            <span class="text-lg font-semibold text-notion-text">Tying.ai</span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-6">
+            <a href="/" class="text-notion-text hover:no-underline">Home</a>
+            <a href="/wiki" class="text-notion-text hover:no-underline">Career Wiki</a>
+            <a href="/company/" class="text-notion-text hover:no-underline">Company</a>
+            <a href="/report" class="text-notion-text hover:no-underline">Industry Reports</a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden p-2" id="mobile-menu-button" aria-label="Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden mt-4 pt-4 border-t" id="mobile-menu">
+          <div class="flex flex-col space-y-3">
+            <a href="/" class="text-notion-text">Home</a>
+            <a href="/wiki" class="text-notion-text">Career Wiki</a>
+            <a href="/company/" class="text-notion-text">Company</a>
+            <a href="/report" class="text-notion-text">Industry Reports</a>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <!-- Main Content -->
     <main id="main-content" role="main">
-        <!-- Hero Section -->
-        <section class="hero-section" aria-labelledby="hero-title">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-logo">
-                        <span class="hero-logo-emoji" role="img" aria-label="Company Funding">💼</span>
-                    </div>
-                    <h1 id="hero-title" class="hero-title">
-                        Company Funding Database
-                    </h1>
-                    <p class="hero-subtitle">
-                        Track the latest funding rounds, investments, and startup news
-                    </p>
-                </div>
-            </div>
-        </section>
-
         <!-- Company Table Section -->
         <section class="company-table-section" aria-labelledby="companies-title">
             <div class="container">
@@ -962,30 +889,31 @@
                 </div>
             </div>
         </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section" aria-labelledby="cta-title">
-            <div class="container">
-                <div class="cta-content">
-                    <h2 id="cta-title">Explore Career Opportunities</h2>
-                    <p>Discover your next career move with our comprehensive career database and industry insights.</p>
-                    <div class="cta-buttons">
-                        <a href="/wiki/table-of-contents.html" class="btn btn-primary">
-                            Browse Career Wiki
-                        </a>
-                        <a href="/report/" class="btn btn-secondary">
-                            View Industry Reports
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
-    <div id="site-footer"></div>
+
+    <!-- Footer (same as homepage) -->
+    <footer class="border-t bg-white">
+        <div class="max-w-notion-wide mx-auto px-8 py-6">
+            <p class="text-sm text-notion-text-light text-center" style="font-size: 0.875rem; color: #787774; text-align: center; margin: 0;">
+                &copy; 2024 <a href="/" class="text-notion-text hover:underline" style="color: #37352F; text-decoration: none;">Tying.ai</a>. Career Guidance Platform.
+            </p>
+        </div>
+    </footer>
 
     <!-- JavaScript -->
-    <script src="/site.js" defer></script>
-    <script src="/scripts/layout.js" defer></script>
+    <!-- Mobile menu toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 
     <!-- Search functionality -->
     <script>
@@ -1003,21 +931,6 @@
                 });
             });
         });
-    </script>
-
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
     </script>
 </body>
 </html>
