@@ -4,9 +4,47 @@ import { companies } from '@/data/companies';
 
 const pageTitle = "Company Funding Database - Latest Funding Rounds | Tying.ai";
 const pageDescription = "Browse the latest company funding rounds, investments, and startup news. Track Series A, B, C rounds and seed funding across tech companies.";
+
+// SEO 优化配置
+const keywords = "startup funding, venture capital, series A, series B, series C, seed funding, company funding, investment rounds, VC funding, tech startups, funding news, investor database, funding rounds 2025";
+
+const ogImage = "https://placehold.co/1200x630/667eea/ffffff/png?text=Company+Funding+Database&font=inter";
+
+// 结构化数据 - ItemList schema 用于公司列表
+const customStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Company Funding Database",
+  "description": pageDescription,
+  "numberOfItems": companies.length,
+  "itemListElement": companies.slice(0, 10).map((company, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Organization",
+      "name": company.name,
+      "url": company.website,
+      "description": `${company.name} raised ${company.round} on ${company.date}`,
+      "funding": {
+        "@type": "MonetaryGrant",
+        "name": company.round,
+        "funder": {
+          "@type": "Organization",
+          "name": company.leadInvestor
+        }
+      }
+    }
+  }))
+};
 ---
 
-<MainLayout title={pageTitle} description={pageDescription}>
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords={keywords}
+  image={ogImage}
+  customStructuredData={customStructuredData}
+>
   <div class="py-24">
     <!-- 页面标题和搜索框 - 保持 900px 居中 -->
     <div class="max-w-notion-wide mx-auto px-8 mb-12">

@@ -8,6 +8,8 @@ export interface Props {
   url?: string;
   noIndex?: boolean;
   class?: string;
+  keywords?: string;
+  customStructuredData?: any;
 }
 
 const {
@@ -19,6 +21,8 @@ const {
   url = new URL(Astro.url.pathname, Astro.site).href,
   noIndex = false,
   class: className = "",
+  keywords,
+  customStructuredData,
 } = Astro.props;
 
 // 网站配置
@@ -28,7 +32,7 @@ const siteConfig = {
   author: "Tying.ai Team",
   twitterHandle: "@tying_ai",
   foundingDate: "2024",
-  keywords: "career guidance, job search, industry reports, career planning, professional development",
+  keywords: keywords || "career guidance, job search, industry reports, career planning, professional development",
 };
 
 // 增强的结构化数据
@@ -96,6 +100,12 @@ const breadcrumbSchema = Astro.url.pathname !== "/" ? {
       "position": 2,
       "name": "Industry Reports",
       "item": "https://tying.ai/report"
+    }] : []),
+    ...(Astro.url.pathname.startsWith("/company") ? [{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Company Funding Database",
+      "item": "https://tying.ai/company"
     }] : []),
   ]
 } : null;
@@ -178,7 +188,7 @@ const breadcrumbSchema = Astro.url.pathname !== "/" ? {
   <link rel="dns-prefetch" href="//fonts.googleapis.com" />
 
   <!-- 结构化数据 -->
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(customStructuredData || structuredData)}></script>
 
   <!-- 面包屑结构化数据 -->
   {breadcrumbSchema && (

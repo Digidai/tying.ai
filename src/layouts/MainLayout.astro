@@ -5,16 +5,26 @@ export interface Props {
   title: string;
   description?: string;
   image?: string;
+  keywords?: string;
+  customStructuredData?: any;
 }
 
 const {
   title,
   description,
   image = "https://placehold.co/1200x630/png?text=Tying.ai",
+  keywords,
+  customStructuredData,
 } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} image={image}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  keywords={keywords}
+  customStructuredData={customStructuredData}
+>
   <!-- Notion 风格导航栏 - 简洁无装饰 -->
   <header class="border-b border-notion-border bg-white" id="navigation">
     <nav class="max-w-notion-wide mx-auto px-8 py-4">
