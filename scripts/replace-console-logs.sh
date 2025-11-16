@@ -5,13 +5,8 @@
 
 FILES=(
   "src/layouts/BaseLayout.astro"
-  "src/main.ts"
-  "src/modules/performance-optimizer.ts"
-  "src/modules/interaction-handler.ts"
   "src/scripts/search.ts"
   "src/scripts/main.ts"
-  "src/modules/navigation-controller.ts"
-  "src/modules/animation-manager.ts"
   "src/services/dataService.ts"
   "src/scripts/utils/performance-monitor.ts"
 )

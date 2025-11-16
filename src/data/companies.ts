@@ -1,6 +1,8 @@
 // 公司融资数据
 // Auto-generated from extract-companies.js
 
+import { safeValidateCompanies, type Company as ZodCompany } from '@/schemas/company.schema';
+
 export interface Company {
   name: string;
   round: string;
@@ -181,7 +183,7 @@ export const companies: Company[] = [
     "leadInvestor": "a16z",
     "website": "https://wabi.io/",
     "jobs": "https://wabi.io/careers",
-    "news": "https://techcrunch.com/wabi-not-found"
+    "news": "https://wabi.io/blog"
   },
   {
     "name": "Notable",
@@ -1003,3 +1005,9 @@ export const companies: Company[] = [
     "news": "https://www.webwire.com/ViewPressRel.asp?aId=344520"
   }
 ];
+
+// Validate companies data at build time
+const validationResult = safeValidateCompanies(companies);
+if (!validationResult.success) {
+  throw new Error(`Company data validation failed: ${JSON.stringify(validationResult.error.errors, null, 2)}`);
+}
