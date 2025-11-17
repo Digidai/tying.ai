@@ -1009,5 +1009,5 @@ export const companies: Company[] = [
 // Validate companies data at build time
 const validationResult = safeValidateCompanies(companies);
 if (!validationResult.success) {
-  throw new Error(`Company data validation failed: ${JSON.stringify(validationResult.error.errors, null, 2)}`);
+  throw new Error(`Company data validation failed: ${JSON.stringify(validationResult.error.issues, null, 2)}`);
 }

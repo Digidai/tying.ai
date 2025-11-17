@@ -40,18 +40,18 @@
     "@astrojs/tailwind": "^6.0.2",
     "alpinejs": "^3.15.2",
     "astro": "^5.15.8",
-    "date-fns": "^2.30.0",
+    "date-fns": "^4.1.0",
     "lodash-es": "^4.17.21",
     "serve": "^14.2.5",
     "tailwindcss": "^3.3.3",
-    "zod": "^3.25.76"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.19",
     "@types/lodash-es": "^4.17.8",
-    "@types/node": "^20.4.8",
+    "@types/node": "^24.10.1",
     "@typescript-eslint/eslint-plugin": "^8.46.4",
     "@typescript-eslint/parser": "^8.46.4",
     "eslint": "^9.39.1",
