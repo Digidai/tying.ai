@@ -1,0 +1,139 @@
+---
+import NotionLayout from '@/layouts/NotionLayout.astro';
+import { loadPositions } from '@/utils/positions';
+
+export async function getStaticPaths() {
+  const positions = await loadPositions();
+
+  return positions.map((position) => ({
+    params: { id: position.id },
+  }));
+}
+
+const { id } = Astro.params;
+const positions = await loadPositions();
+const position = positions.find((item) => item.id === id);
+
+if (!position) {
+  return Astro.redirect('/search');
+}
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Search', href: '/search' },
+  { label: position.title, href: `/position/${position.id}` },
+];
+
+function formatSalary() {
+  if (!position.salary) return 'Salary information unavailable';
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: position.salary.currency,
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+  });
+
+  const min = formatter.format(position.salary.min);
+  const max = formatter.format(position.salary.max);
+  const period = position.salary.period === 'yearly' ? 'year' : 'month';
+
+  return min === max ? `${min} per ${period}` : `${min} - ${max} per ${period}`;
+}
+---
+
+<NotionLayout
+  title={`${position.title} at ${position.company}`}
+  description={position.description}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="space-y-6">
+    <div class="flex flex-wrap gap-4 text-sm text-notion-text-light">
+      <span>{position.company}</span>
+      <span>•</span>
+      <span>{position.location}</span>
+      {position.remote && (
+        <>
+          <span>•</span>
+          <span>{position.remote.replace('-', ' ')}</span>
+        </>
+      )}
+      <span>•</span>
+      <span>{position.type.replace('-', ' ')}</span>
+      <span>•</span>
+      <span>Experience: {position.experience}</span>
+    </div>
+
+    <div class="border border-notion-border rounded-lg p-4 bg-white">
+      <dl class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+        <div>
+          <dt class="text-notion-text-light mb-1">Salary Range</dt>
+          <dd class="text-notion-text font-semibold">{formatSalary()}</dd>
+        </div>
+        <div>
+          <dt class="text-notion-text-light mb-1">Posted</dt>
+          <dd>{position.postedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</dd>
+        </div>
+        <div>
+          <dt class="text-notion-text-light mb-1">Visa Support</dt>
+          <dd>{position.visa ?? 'Not specified'}</dd>
+        </div>
+        <div>
+          <dt class="text-notion-text-light mb-1">Work Mode</dt>
+          <dd>{position.remote ? position.remote.replace('-', ' ') : 'Not specified'}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <article class="space-y-6">
+      <section>
+        <h2>Description</h2>
+        <p>{position.description}</p>
+      </section>
+
+      {position.requirements.length > 0 && (
+        <section>
+          <h2>Requirements</h2>
+          <ul>
+            {position.requirements.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {position.responsibilities.length > 0 && (
+        <section>
+          <h2>Responsibilities</h2>
+          <ul>
+            {position.responsibilities.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {position.skills.length > 0 && (
+        <section>
+          <h2>Key Skills</h2>
+          <div class="flex flex-wrap gap-2">
+            {position.skills.map((skill) => (
+              <span class="px-3 py-1 border border-notion-border rounded-full text-sm">{skill}</span>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {position.benefits && position.benefits.length > 0 && (
+        <section>
+          <h2>Benefits</h2>
+          <ul>
+            {position.benefits.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </article>
+  </section>
+</NotionLayout>

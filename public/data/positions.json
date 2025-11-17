@@ -34,12 +34,22 @@
       "401k with employer match",
       "Monthly wellness stipend"
     ],
-    "skills": ["TypeScript", "Go", "Kubernetes", "PostgreSQL", "LLM Ops"],
+    "skills": [
+      "TypeScript",
+      "Go",
+      "Kubernetes",
+      "PostgreSQL",
+      "LLM Ops"
+    ],
     "postedAt": "2025-02-10T00:00:00.000Z",
     "isActive": true,
     "remote": "hybrid",
     "visa": "yes",
-    "tags": ["backend", "ai-platform", "lead"]
+    "tags": [
+      "backend",
+      "ai-platform",
+      "lead"
+    ]
   },
   {
     "id": "pos_pm_ny",
@@ -76,12 +86,21 @@
       "Learning & development allowance",
       "Hybrid work policy"
     ],
-    "skills": ["Product Discovery", "SQL", "Experiment Design", "Stakeholder Management"],
+    "skills": [
+      "Product Discovery",
+      "SQL",
+      "Experiment Design",
+      "Stakeholder Management"
+    ],
     "postedAt": "2025-02-05T00:00:00.000Z",
     "isActive": true,
     "remote": "hybrid",
     "visa": "potential",
-    "tags": ["product", "analytics", "enterprise"]
+    "tags": [
+      "product",
+      "analytics",
+      "enterprise"
+    ]
   },
   {
     "id": "pos_ds_remote",
@@ -118,12 +137,21 @@
       "Equity grants",
       "Annual learning stipend"
     ],
-    "skills": ["Python", "Spark", "Causal Inference", "MLOps"],
+    "skills": [
+      "Python",
+      "Spark",
+      "Causal Inference",
+      "MLOps"
+    ],
     "postedAt": "2025-02-12T00:00:00.000Z",
     "isActive": true,
     "remote": "remote",
     "visa": "potential",
-    "tags": ["data-science", "recommendations", "remote"]
+    "tags": [
+      "data-science",
+      "recommendations",
+      "remote"
+    ]
   },
   {
     "id": "pos_ux_ldn",
@@ -160,12 +188,20 @@
       "Private healthcare",
       "Wellness allowance"
     ],
-    "skills": ["Figma", "Design Systems", "User Research", "Workshop Facilitation"],
+    "skills": [
+      "Figma",
+      "Design Systems",
+      "User Research",
+      "Workshop Facilitation"
+    ],
     "postedAt": "2025-01-30T00:00:00.000Z",
     "isActive": true,
     "remote": "hybrid",
     "visa": "potential",
-    "tags": ["ux", "design-systems"]
+    "tags": [
+      "ux",
+      "design-systems"
+    ]
   },
   {
     "id": "pos_devrel",
@@ -202,12 +238,21 @@
       "Conference budget",
       "Employee stock options"
     ],
-    "skills": ["TypeScript", "Next.js", "Public Speaking", "Community Building"],
+    "skills": [
+      "TypeScript",
+      "Next.js",
+      "Public Speaking",
+      "Community Building"
+    ],
     "postedAt": "2025-02-03T00:00:00.000Z",
     "isActive": true,
     "remote": "flexible",
     "visa": "no",
-    "tags": ["devrel", "javascript", "advocacy"]
+    "tags": [
+      "devrel",
+      "javascript",
+      "advocacy"
+    ]
   },
   {
     "id": "pos_ops_sg",
@@ -244,11 +289,20 @@
       "Flexible work hours",
       "Commuter benefits"
     ],
-    "skills": ["Program Management", "Notion", "Airtable", "Process Design"],
+    "skills": [
+      "Program Management",
+      "Notion",
+      "Airtable",
+      "Process Design"
+    ],
     "postedAt": "2025-01-27T00:00:00.000Z",
     "isActive": true,
     "remote": "on-site",
     "visa": "potential",
-    "tags": ["operations", "apac", "partnerships"]
+    "tags": [
+      "operations",
+      "apac",
+      "partnerships"
+    ]
   }
 ]

@@ -218,71 +218,71 @@ export class PositionSearchManager {
       return;
     }
 
-    this.resultsContainer.innerHTML = result.positions.map(position =>
-      this.createPositionCard(position, template)
-    ).join('');
+    const fragment = document.createDocumentFragment();
+    result.positions.forEach(position => {
+      fragment.appendChild(this.createPositionCard(position, template));
+    });
+
+    this.resultsContainer.innerHTML = '';
+    this.resultsContainer.appendChild(fragment);
   }
 
   /**
    * 创建职位卡片
    */
-  private createPositionCard(position: Position, template: HTMLTemplateElement): string {
-    const card = template.content.cloneNode(true) as DocumentFragment;
+  private createPositionCard(position: Position, template: HTMLTemplateElement): HTMLElement {
+    const templateRoot = template.content.firstElementChild?.cloneNode(true) as HTMLElement | null;
+    const cardElement = templateRoot ?? document.createElement('article');
 
-    // 填充数据
-    const titleElement = card.querySelector('h3');
+    const titleElement = cardElement.querySelector('h3');
     if (titleElement) titleElement.textContent = position.title;
 
-    const companyElement = card.querySelector('.text-neutral-600.text-sm.mb-2');
+    const companyElement = cardElement.querySelector('.text-neutral-600.text-sm.mb-2');
     if (companyElement) companyElement.textContent = position.company;
 
-    const locationElement = card.querySelector('.location');
+    const locationElement = cardElement.querySelector('.location');
     if (locationElement) locationElement.textContent = position.location;
 
-    const typeElement = card.querySelector('.type');
+    const typeElement = cardElement.querySelector('.type');
     if (typeElement) {
       typeElement.textContent = this.getTypeLabel(position.type);
     }
 
-    const salaryElement = card.querySelector('.salary');
+    const salaryElement = cardElement.querySelector('.salary');
     if (salaryElement) {
       salaryElement.textContent = this.formatSalary(position.salary);
     }
 
-    const remoteElement = card.querySelector('.remote');
+    const remoteElement = cardElement.querySelector('.remote');
     if (remoteElement) {
       remoteElement.textContent = this.getRemoteLabel(position.remote);
     }
 
-    const descriptionElement = card.querySelector('.line-clamp-2');
+    const descriptionElement = cardElement.querySelector('.line-clamp-2');
     if (descriptionElement) descriptionElement.textContent = position.description;
 
-    const postedAtElement = card.querySelector('.posted-at');
+    const postedAtElement = cardElement.querySelector('.posted-at');
     if (postedAtElement) {
       postedAtElement.textContent = this.formatDate(position.postedAt);
     }
 
-    // 添加技能标签
-    const skillsContainer = card.querySelector('.flex.flex-wrap.gap-1');
+    const skillsContainer = cardElement.querySelector('.flex.flex-wrap.gap-1');
     if (skillsContainer) {
-      skillsContainer.innerHTML = position.skills.slice(0, 5).map(skill =>
-        `<span class="px-2 py-1 bg-neutral-100 text-neutral-700 text-xs rounded-full">${skill}</span>`
-      ).join('');
-    }
-
-    // 添加点击事件
-    const cardElement = card.querySelector('.bg-white.rounded-lg') as HTMLElement;
-    if (cardElement) {
-      cardElement.style.cursor = 'pointer';
-      cardElement.addEventListener('click', () => {
-        window.location.href = `/position/${position.id}`;
+      skillsContainer.innerHTML = '';
+      position.skills.slice(0, 5).forEach(skill => {
+        const pill = document.createElement('span');
+        pill.className = 'px-2 py-1 bg-neutral-100 text-neutral-700 text-xs rounded-full';
+        pill.textContent = skill;
+        skillsContainer.appendChild(pill);
       });
     }
 
-    // 将DocumentFragment转换为HTML字符串
-    const div = document.createElement('div');
-    div.appendChild(card);
-    return div.innerHTML;
+    cardElement.style.cursor = 'pointer';
+    cardElement.addEventListener('click', () => {
+      window.location.href = `/position/${position.id}`;
+    });
+
+    return cardElement;
   }
 
   /**

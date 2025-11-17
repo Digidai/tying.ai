@@ -1,4 +1,6 @@
 ---
+import mainScriptUrl from '../scripts/main.ts?url';
+
 export interface Props {
   title: string;
   description?: string;
@@ -12,10 +14,13 @@ export interface Props {
   customStructuredData?: any;
 }
 
+const defaultOgImage = "https://placehold.co/1200x630/png?text=Tying.ai";
+const logoUrl = new URL('/logo.svg', Astro.site).href;
+
 const {
   title,
   description = "Tying.ai - Career guidance and position information platform. Explore comprehensive career guides and industry reports.",
-  image = "https://tying.ai/og-image.png",
+  image = defaultOgImage,
   type = "website",
   locale = "en",
   url = new URL(Astro.url.pathname, Astro.site).href,
@@ -49,7 +54,7 @@ const structuredData = {
     "url": siteConfig.url,
     "logo": {
       "@type": "ImageObject",
-      "url": "https://tying.ai/logo.png"
+      "url": logoUrl
     },
     "foundingDate": siteConfig.foundingDate,
   },
@@ -228,7 +233,7 @@ const breadcrumbSchema = breadcrumbItems.length > 0 ? {
   </div>
 
   <!-- 脚本文件 -->
-  <script type="module" src="/src/scripts/main.ts"></script>
+  <script type="module" src={mainScriptUrl}></script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WER9NL409R"></script>

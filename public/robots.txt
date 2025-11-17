@@ -7,7 +7,7 @@ User-agent: *
 Allow: /
 Disallow: /archive/
 Disallow: /*.json$
-Disallow: /*.xml$
+Allow: /sitemap-*.xml
 
 # Specific bot rules
 User-agent: Googlebot

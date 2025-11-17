@@ -1,5 +1,6 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import searchScriptUrl from '../scripts/search.ts?url';
 
 const pageTitle = "Search Positions | Tying.ai";
 const pageDescription = "Search and find your ideal career opportunity.";
@@ -174,5 +175,5 @@ const pageDescription = "Search and find your ideal career opportunity.";
     </article>
   </template>
 
-  <script type="module" src="/src/scripts/search.ts"></script>
+  <script type="module" src={searchScriptUrl}></script>
 </MainLayout>
