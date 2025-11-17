@@ -3,33 +3,34 @@
  * Automatically stripped in production builds
  */
 
+/* eslint-disable no-console */
 const isDev = import.meta.env.DEV;
 
 export const logger = {
-  log: (...args: any[]) => {
+  log: (...args: unknown[]) => {
     if (isDev) {
       console.log(...args);
     }
   },
 
-  warn: (...args: any[]) => {
+  warn: (...args: unknown[]) => {
     if (isDev) {
       console.warn(...args);
     }
   },
 
-  error: (...args: any[]) => {
+  error: (...args: unknown[]) => {
     // Always log errors, even in production
     console.error(...args);
   },
 
-  info: (...args: any[]) => {
+  info: (...args: unknown[]) => {
     if (isDev) {
       console.info(...args);
     }
   },
 
-  debug: (...args: any[]) => {
+  debug: (...args: unknown[]) => {
     if (isDev) {
       console.debug(...args);
     }
@@ -38,7 +39,7 @@ export const logger = {
   /**
    * Performance logging - only in development
    */
-  perf: (label: string, ...args: any[]) => {
+  perf: (label: string, ...args: unknown[]) => {
     if (isDev) {
       console.log(`[PERF] ${label}:`, ...args);
     }
@@ -62,3 +63,4 @@ export const logger = {
 
 // Default export for convenience
 export default logger;
+/* eslint-enable no-console */

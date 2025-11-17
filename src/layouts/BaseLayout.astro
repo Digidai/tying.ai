@@ -249,6 +249,7 @@ const breadcrumbSchema = breadcrumbItems.length > 0 ? {
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
           if (entry.entryType === 'navigation') {
+            // eslint-disable-next-line no-console
             console.log('Page load time:', entry.loadEventEnd - entry.fetchStart, 'ms');
           }
         }

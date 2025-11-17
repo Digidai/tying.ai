@@ -6,31 +6,173 @@ const pageDescription = "Search and find your ideal career opportunity.";
 ---
 
 <MainLayout title={pageTitle} description={pageDescription}>
-  <div class="max-w-notion-wide mx-auto px-8 py-12">
-    <!-- 页面标题 -->
-    <div class="mb-12">
-      <h1 class="text-4xl font-bold text-notion-text mb-4">Search Positions</h1>
+  <div class="max-w-6xl mx-auto px-8 py-16">
+    <div class="mb-10">
       <p class="text-lg text-notion-text-light">
-        Find your ideal career opportunity with our comprehensive position guides.
+        Use filters to find the roles, skills, and locations that match your next career move.
       </p>
     </div>
 
-    <!-- 搜索框 -->
-    <div class="mb-16">
-      <input
-        type="search"
-        placeholder="Search positions, skills, or companies..."
-        class="w-full px-4 py-3 border border-notion-border text-notion-text placeholder:text-notion-text-light focus:outline-none focus:border-notion-text"
-      />
+    <form id="search-form" class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white border border-notion-border rounded-xl p-6 shadow-sm">
+      <label class="flex flex-col gap-2">
+        <span class="text-sm font-medium text-neutral-700">Keywords</span>
+        <input
+          type="search"
+          name="keywords"
+          placeholder="e.g. AI engineer, data platform"
+          class="px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </label>
+
+      <label class="flex flex-col gap-2">
+        <span class="text-sm font-medium text-neutral-700">Location</span>
+        <input
+          type="search"
+          name="location"
+          placeholder="San Francisco, Remote, Singapore..."
+          class="px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </label>
+
+      <fieldset class="md:col-span-2">
+        <legend class="text-sm font-medium text-neutral-700 mb-3">Position Type</legend>
+        <div class="flex flex-wrap gap-4">
+          {['full-time', 'part-time', 'contract', 'internship', 'freelance'].map((type) => (
+            <label class="inline-flex items-center gap-2 text-sm text-neutral-700">
+              <input type="checkbox" name="type" value={type} class="rounded border-neutral-300 text-blue-600 focus:ring-blue-500" />
+              {type.replace('-', ' ')}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend class="text-sm font-medium text-neutral-700 mb-3">Experience</legend>
+        <div class="space-y-2">
+          {['junior', 'mid', 'senior', 'lead', 'principal'].map((level) => (
+            <label class="flex items-center gap-2 text-sm text-neutral-700">
+              <input type="checkbox" name="experience" value={level} class="rounded border-neutral-300 text-blue-600 focus:ring-blue-500" />
+              {level.charAt(0).toUpperCase() + level.slice(1)}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend class="text-sm font-medium text-neutral-700 mb-3">Remote</legend>
+        <div class="space-y-2">
+          {['on-site', 'hybrid', 'remote', 'flexible'].map((remote) => (
+            <label class="flex items-center gap-2 text-sm text-neutral-700">
+              <input type="checkbox" name="remote" value={remote} class="rounded border-neutral-300 text-blue-600 focus:ring-blue-500" />
+              {remote.charAt(0).toUpperCase() + remote.slice(1)}
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div>
+        <label class="text-sm font-medium text-neutral-700 mb-3 block">Salary Range (USD)</label>
+        <div class="flex gap-4">
+          <input
+            type="number"
+            name="salaryMin"
+            min="0"
+            placeholder="Min"
+            class="w-full px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="number"
+            name="salaryMax"
+            min="0"
+            placeholder="Max"
+            class="w-full px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+      </div>
+
+      <label class="flex flex-col gap-2">
+        <span class="text-sm font-medium text-neutral-700">Required Skills</span>
+        <input
+          type="text"
+          name="skills"
+          placeholder="Comma separated skills"
+          class="px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </label>
+
+      <label class="flex flex-col gap-2">
+        <span class="text-sm font-medium text-neutral-700">Company</span>
+        <input
+          type="text"
+          name="company"
+          placeholder="Company name"
+          class="px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </label>
+
+      <label class="flex flex-col gap-2">
+        <span class="text-sm font-medium text-neutral-700">Visa Support</span>
+        <select name="visa" class="px-4 py-3 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="">Any</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="potential">Potential</option>
+        </select>
+      </label>
+
+      <div class="md:col-span-2 flex flex-wrap items-center gap-4 pt-4">
+        <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+          Search Positions
+        </button>
+        <button
+          type="reset"
+          class="px-6 py-3 border border-neutral-300 text-neutral-700 rounded-lg hover:bg-neutral-50 transition"
+        >
+          Clear Filters
+        </button>
+      </div>
+    </form>
+
+    <div class="mt-12 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <p id="results-count" class="text-sm text-neutral-600">Ready to search positions.</p>
+      <label class="flex items-center gap-3 text-sm text-neutral-700">
+        <span>Sort by</span>
+        <select id="sort-select" name="sort" class="px-3 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="newest">Newest</option>
+          <option value="salary-desc">Highest salary</option>
+          <option value="salary-asc">Lowest salary</option>
+        </select>
+      </label>
     </div>
 
-    <!-- 快速链接 -->
-    <div>
-      <h2 class="text-2xl font-bold text-notion-text mb-8">Browse All Positions</h2>
-      <p class="text-notion-text-light mb-4">
-        Explore our complete career wiki with detailed guides for 100+ positions across 8 industries.
-      </p>
-      <a href="/wiki" class="text-notion-text underline">View all positions →</a>
+    <div id="results-list" class="mt-6 grid grid-cols-1 gap-4">
+      <div class="text-center py-12 border border-dashed border-neutral-200 rounded-xl">
+        <p class="text-neutral-600">Use the filters above to discover open roles across industries.</p>
+      </div>
     </div>
+
+    <div id="pagination" class="mt-8 flex justify-center"></div>
   </div>
+
+  <template id="position-card-template">
+    <article class="bg-white rounded-lg border border-neutral-100 shadow-sm p-6 transition hover:shadow-md">
+      <div class="flex flex-col gap-2">
+        <div>
+          <h3 class="text-xl font-semibold text-neutral-900"></h3>
+          <p class="text-neutral-600 text-sm mb-2"></p>
+        </div>
+        <div class="text-sm text-neutral-500 flex flex-wrap gap-3">
+          <span class="location"></span>
+          <span class="type"></span>
+          <span class="remote"></span>
+        </div>
+        <div class="text-base font-medium text-neutral-900 salary"></div>
+        <p class="text-neutral-600 line-clamp-2"></p>
+        <div class="flex flex-wrap gap-1"></div>
+        <div class="text-sm text-neutral-500 posted-at"></div>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="/src/scripts/search.ts"></script>
 </MainLayout>

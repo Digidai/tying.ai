@@ -1,5 +1,14 @@
-import type { Position, SearchFilters, SearchResult } from '@/types';
+import type { Position, SearchFilters, SearchResult, SalaryRange } from '@/types';
 import { logger } from '@/utils/logger';
+
+type RawPosition = Partial<Position> & {
+  id?: string;
+  title: string;
+  company: string;
+  location: string;
+  category: Position['category'];
+  salary?: SalaryRange;
+};
 
 /**
  * 数据服务类 - 管理职位数据的搜索、筛选和管理
@@ -46,7 +55,7 @@ export class DataService {
       // 首先尝试从本地数据文件加载
       const response = await fetch('/data/positions.json');
       if (response.ok) {
-        const data = await response.json();
+        const data = (await response.json()) as RawPosition[];
         return data.map(this.transformPositionData);
       }
     } catch (error) {
@@ -60,7 +69,7 @@ export class DataService {
   /**
    * 转换职位数据格式
    */
-  private transformPositionData(data: any): Position {
+  private transformPositionData(data: RawPosition): Position {
     return {
       id: data.id || this.generateId(),
       title: data.title,
@@ -249,7 +258,7 @@ export class DataService {
   /**
    * 获取推荐职位
    */
-  async getRecommendedPositions(userPreferences?: any, limit = 10): Promise<Position[]> {
+  async getRecommendedPositions(userPreferences?: Partial<SearchFilters>, limit = 10): Promise<Position[]> {
     await this.initialize();
     // 简单的推荐算法 - 基于技能匹配和新鲜度
     return this.positions

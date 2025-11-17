@@ -11,18 +11,20 @@ interface ImportMetaEnv {
   readonly ASSETS_PREFIX?: string;
 }
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 // Global type declarations
 declare global {
   // Google Analytics gtag function
-  function gtag(...args: any[]): void;
+  function gtag(...args: unknown[]): void;
 
   interface Window {
-    gtag?: (...args: any[]) => void;
-    TyingAI?: any;
+    gtag?: (...args: unknown[]) => void;
+    TyingAI?: Record<string, unknown>;
   }
 }
 

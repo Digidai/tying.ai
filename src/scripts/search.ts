@@ -1,5 +1,15 @@
 import { dataService } from '@/services/dataService';
-import type { SearchFilters, SearchResult, Position, PositionType, ExperienceLevel, RemoteType, SalaryRange } from '@/types';
+import { logger } from '@/utils/logger';
+import type {
+  SearchFilters,
+  SearchResult,
+  Position,
+  PositionType,
+  ExperienceLevel,
+  RemoteType,
+  SalaryRange,
+  VisaSupport,
+} from '@/types';
 
 /**
  * 搜索功能类 - 处理前端的职位搜索逻辑
@@ -16,15 +26,20 @@ export class PositionSearchManager {
   private debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(formId: string = 'search-form') {
-    this.form = document.getElementById(formId) as HTMLFormElement;
-    this.resultsContainer = document.getElementById('results-list')!;
-    this.statsContainer = document.getElementById('results-count')!;
-    this.paginationContainer = document.getElementById('pagination')!;
+    const formElement = document.getElementById(formId);
+    const resultsElement = document.getElementById('results-list');
+    const statsElement = document.getElementById('results-count');
+    const paginationElement = document.getElementById('pagination');
 
-    if (!this.form || !this.resultsContainer) {
-      console.error('Search form or results container not found');
-      return;
+    if (!(formElement instanceof HTMLFormElement) || !resultsElement || !statsElement || !paginationElement) {
+      logger.error('Search form or related containers not found in DOM');
+      throw new Error('Search page missing required markup for PositionSearchManager');
     }
+
+    this.form = formElement;
+    this.resultsContainer = resultsElement;
+    this.statsContainer = statsElement;
+    this.paginationContainer = paginationElement;
 
     this.initializeEventListeners();
   }
@@ -122,6 +137,27 @@ export class PositionSearchManager {
     const salaryMax = formData.get('salaryMax') as string;
     if (salaryMin) this.currentFilters.salaryMin = parseInt(salaryMin);
     if (salaryMax) this.currentFilters.salaryMax = parseInt(salaryMax);
+
+    const companyInput = formData.get('company') as string;
+    if (companyInput) {
+      this.currentFilters.company = companyInput
+        .split(',')
+        .map(value => value.trim())
+        .filter(Boolean);
+    }
+
+    const skillsInput = formData.get('skills') as string;
+    if (skillsInput) {
+      this.currentFilters.skills = skillsInput
+        .split(',')
+        .map(value => value.trim())
+        .filter(Boolean);
+    }
+
+    const visa = formData.get('visa') as string;
+    if (visa) {
+      this.currentFilters.visa = visa as VisaSupport;
+    }
   }
 
   /**
@@ -145,7 +181,7 @@ export class PositionSearchManager {
       this.renderPagination(result);
 
     } catch (error) {
-      console.error('Search failed:', error);
+      logger.error('Search failed:', error);
       this.showErrorState();
     } finally {
       this.isLoading = false;
@@ -172,7 +208,7 @@ export class PositionSearchManager {
 
     const template = document.getElementById('position-card-template') as HTMLTemplateElement;
     if (!template) {
-      console.error('Position card template not found');
+      logger.error('Position card template not found');
       return;
     }
 
@@ -427,7 +463,11 @@ declare global {
 
 // 初始化搜索功能
 document.addEventListener('DOMContentLoaded', () => {
-  window.searchManager = new PositionSearchManager();
+  try {
+    window.searchManager = new PositionSearchManager();
+  } catch (error) {
+    logger.error('Failed to initialize PositionSearchManager', error);
+  }
 });
 
 export default PositionSearchManager;

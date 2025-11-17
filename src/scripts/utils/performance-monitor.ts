@@ -3,7 +3,7 @@
  * 监控Web Vitals和其他性能指标
  */
 
-import type { PerformanceConfig } from '@/types/config';
+import { logger } from '@/utils/logger';
 
 export interface PerformanceMetrics {
   /** Largest Contentful Paint */
@@ -91,7 +91,7 @@ export class PerformanceMonitor {
    * 初始化性能监控
    */
   async init(): Promise<void> {
-    console.log('🔍 Performance Monitor: Initializing...');
+    logger.perf('Performance Monitor', 'Initializing');
 
     if (this.config.observeWebVitals) {
       await this.observeWebVitals();
@@ -108,7 +108,7 @@ export class PerformanceMonitor {
     // 收集基础性能指标
     this.collectBasicMetrics();
 
-    console.log('✅ Performance Monitor: Initialized');
+    logger.perf('Performance Monitor', 'Initialized');
   }
 
   /**
@@ -135,7 +135,7 @@ export class PerformanceMonitor {
         const lastEntry = entries[entries.length - 1];
         this.metrics.lcp = lastEntry.startTime;
 
-        console.log(`📊 LCP: ${this.metrics.lcp.toFixed(2)}ms`);
+        logger.perf('LCP', `${this.metrics.lcp.toFixed(2)}ms`);
         this.checkThreshold('lcp', this.metrics.lcp);
       });
 
@@ -147,10 +147,11 @@ export class PerformanceMonitor {
     if (this.isSupported.firstInput) {
       const fidObserver = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          const fid = (entry as any).processingStart - entry.startTime;
+          const eventTiming = entry as PerformanceEventTiming;
+          const fid = eventTiming.processingStart - eventTiming.startTime;
           this.metrics.fid = fid;
 
-          console.log(`📊 FID: ${fid.toFixed(2)}ms`);
+          logger.perf('FID', `${fid.toFixed(2)}ms`);
           this.checkThreshold('fid', fid);
         }
       });
@@ -164,13 +165,14 @@ export class PerformanceMonitor {
       let clsValue = 0;
       const clsObserver = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          if (!(entry as any).hadRecentInput) {
-            clsValue += (entry as any).value;
+          const layoutShift = entry as LayoutShift;
+          if (!layoutShift.hadRecentInput) {
+            clsValue += layoutShift.value;
           }
         }
         this.metrics.cls = clsValue;
 
-        console.log(`📊 CLS: ${clsValue.toFixed(3)}`);
+        logger.perf('CLS', `${clsValue.toFixed(3)}`);
         this.checkThreshold('cls', clsValue);
       });
 
@@ -185,7 +187,7 @@ export class PerformanceMonitor {
           if (entry.name === 'first-contentful-paint') {
             this.metrics.fcp = entry.startTime;
 
-            console.log(`📊 FCP: ${this.metrics.fcp.toFixed(2)}ms`);
+            logger.perf('FCP', `${this.metrics.fcp.toFixed(2)}ms`);
             this.checkThreshold('fcp', this.metrics.fcp);
           }
         }
@@ -224,7 +226,7 @@ export class PerformanceMonitor {
         this.metrics.longTasks = entries;
 
         entries.forEach(entry => {
-          console.log(`⚠️ Long Task: ${entry.duration.toFixed(2)}ms`);
+          logger.perf('Long Task', `${entry.duration.toFixed(2)}ms`);
         });
       });
 
@@ -247,9 +249,9 @@ export class PerformanceMonitor {
         this.metrics.loadComplete = nav.loadEventEnd;
         this.metrics.ttfb = nav.responseStart - nav.requestStart;
 
-        console.log(`📊 TTFB: ${this.metrics.ttfb.toFixed(2)}ms`);
-        console.log(`📊 DOM Interactive: ${this.metrics.domInteractive.toFixed(2)}ms`);
-        console.log(`📊 Load Complete: ${this.metrics.loadComplete.toFixed(2)}ms`);
+        logger.perf('TTFB', `${this.metrics.ttfb.toFixed(2)}ms`);
+        logger.perf('DOM Interactive', `${this.metrics.domInteractive.toFixed(2)}ms`);
+        logger.perf('Load Complete', `${this.metrics.loadComplete.toFixed(2)}ms`);
       }
     }
   }
@@ -285,12 +287,14 @@ export class PerformanceMonitor {
       }
     });
 
-    console.log(`📊 Resources: ${resources.total} total, ${(resources.totalSize / 1024).toFixed(2)}KB`);
+    logger.perf('Resources', `${resources.total} total, ${(resources.totalSize / 1024).toFixed(2)}KB`);
 
     if (resources.slowResources.length > 0) {
-      console.warn(`⚠️ Slow resources: ${resources.slowResources.length}`);
+      logger.warn(`Slow resources detected: ${resources.slowResources.length}`);
       resources.slowResources.forEach(resource => {
-        console.warn(`  ${resource.name}: ${((resource.responseEnd - resource.requestStart) / 1000).toFixed(2)}s`);
+        logger.warn(
+          `${resource.name}: ${((resource.responseEnd - resource.requestStart) / 1000).toFixed(2)}s`
+        );
       });
     }
   }
@@ -318,7 +322,7 @@ export class PerformanceMonitor {
     const threshold = this.config.reportingThreshold?.[metric as keyof typeof this.config.reportingThreshold];
 
     if (threshold && value > threshold) {
-      console.warn(`⚠️ ${metric.toUpperCase()} threshold exceeded: ${value.toFixed(2)}ms > ${threshold}ms`);
+      logger.warn(`${metric.toUpperCase()} threshold exceeded: ${value.toFixed(2)}ms > ${threshold}ms`);
 
       // 发送性能警告
       this.reportPerformanceWarning(metric, value, threshold);
@@ -350,7 +354,7 @@ export class PerformanceMonitor {
           headers: {
             'Content-Type': 'application/json',
           },
-        }).catch(console.error);
+        }).catch((error) => logger.error('Failed to report performance metrics', error));
       }
     }
   }
@@ -452,9 +456,9 @@ export class PerformanceMonitor {
         },
       });
 
-      console.log('📊 Performance metrics reported');
+      logger.perf('Performance Monitor', 'Metrics reported');
     } catch (error) {
-      console.error('Failed to report performance metrics:', error);
+      logger.error('Failed to report performance metrics:', error);
     }
   }
 
@@ -464,10 +468,10 @@ export class PerformanceMonitor {
   public destroy(): void {
     this.observers.forEach((observer, name) => {
       observer.disconnect();
-      console.log(`🔍 Performance Monitor: ${name} observer disconnected`);
+      logger.perf('Performance Monitor', `${name} observer disconnected`);
     });
 
     this.observers.clear();
-    console.log('🔍 Performance Monitor: Destroyed');
+    logger.perf('Performance Monitor', 'Destroyed');
   }
 }

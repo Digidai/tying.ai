@@ -5,7 +5,7 @@ declare global {
     TyingAI: {
       app: MainApp;
     };
-    gtag?: (command: string, ...args: any[]) => void;
+    gtag?: (command: string, ...args: unknown[]) => void;
   }
 
   interface Document {
