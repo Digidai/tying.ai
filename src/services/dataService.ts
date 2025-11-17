@@ -103,8 +103,21 @@ export class DataService {
     // 应用筛选条件
     filteredPositions = this.applyFilters(filteredPositions, filters);
 
-    // 排序 - 按发布时间倒序
-    filteredPositions.sort((a, b) => b.postedAt.getTime() - a.postedAt.getTime());
+    // 排序
+    const sortOption = filters.sort || 'newest';
+    filteredPositions.sort((a, b) => {
+      if (sortOption === 'salary-desc') {
+        const aMax = a.salary?.max ?? a.salary?.min ?? 0;
+        const bMax = b.salary?.max ?? b.salary?.min ?? 0;
+        return bMax - aMax;
+      }
+      if (sortOption === 'salary-asc') {
+        const aMin = a.salary?.min ?? a.salary?.max ?? 0;
+        const bMin = b.salary?.min ?? b.salary?.max ?? 0;
+        return aMin - bMin;
+      }
+      return b.postedAt.getTime() - a.postedAt.getTime();
+    });
 
     // 分页
     const total = filteredPositions.length;
@@ -159,11 +172,17 @@ export class DataService {
       }
 
       // 薪资范围筛选
-      if (filters.salaryMin && position.salary && position.salary.min < filters.salaryMin) {
-        return false;
+      if (filters.salaryMin && position.salary) {
+        const salaryMax = position.salary.max ?? position.salary.min ?? 0;
+        if (salaryMax < filters.salaryMin) {
+          return false;
+        }
       }
-      if (filters.salaryMax && position.salary && position.salary.max > filters.salaryMax) {
-        return false;
+      if (filters.salaryMax && position.salary) {
+        const salaryMin = position.salary.min ?? position.salary.max ?? 0;
+        if (salaryMin > filters.salaryMax) {
+          return false;
+        }
       }
 
       // 公司筛选

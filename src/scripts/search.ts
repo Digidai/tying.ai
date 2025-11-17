@@ -9,6 +9,7 @@ import type {
   RemoteType,
   SalaryRange,
   VisaSupport,
+  SearchSortOption,
 } from '@/types';
 
 /**
@@ -157,7 +158,12 @@ export class PositionSearchManager {
     const visa = formData.get('visa') as string;
     if (visa) {
       this.currentFilters.visa = visa as VisaSupport;
+    } else {
+      delete this.currentFilters.visa;
     }
+
+    const sortValue = formData.get('sort') as string;
+    this.currentFilters.sort = (sortValue as SearchSortOption) || 'newest';
   }
 
   /**

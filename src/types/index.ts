@@ -73,6 +73,8 @@ export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert';
  * 搜索和筛选相关类型
  */
 
+export type SearchSortOption = 'newest' | 'salary-desc' | 'salary-asc';
+
 export interface SearchFilters {
   keywords?: string;
   location?: string;
@@ -86,6 +88,7 @@ export interface SearchFilters {
   skills?: string[];
   datePosted?: DateRange;
   visa?: VisaSupport;
+  sort?: SearchSortOption;
 }
 
 export interface DateRange {
