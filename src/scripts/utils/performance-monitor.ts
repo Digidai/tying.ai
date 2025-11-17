@@ -5,6 +5,11 @@
 
 import { logger } from '@/utils/logger';
 
+type LayoutShiftEntry = PerformanceEntry & {
+  value: number;
+  hadRecentInput: boolean;
+};
+
 export interface PerformanceMetrics {
   /** Largest Contentful Paint */
   lcp?: number;
@@ -165,7 +170,7 @@ export class PerformanceMonitor {
       let clsValue = 0;
       const clsObserver = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          const layoutShift = entry as LayoutShift;
+          const layoutShift = entry as LayoutShiftEntry;
           if (!layoutShift.hadRecentInput) {
             clsValue += layoutShift.value;
           }
