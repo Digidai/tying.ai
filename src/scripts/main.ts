@@ -8,14 +8,18 @@ import { logger } from '@/utils/logger';
 logger.log('🚀 Tying.ai v2.0 - Initializing...');
 
 // 简单的DOM加载完成后初始化
-document.addEventListener('DOMContentLoaded', () => {
-  logger.log('✅ DOM loaded, initializing basic functionality');
-
-  // 初始化基础功能
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    logger.log('✅ DOM loaded, initializing basic functionality');
+    initBasicFunctionality();
+    logger.log('✅ App initialized successfully');
+  });
+} else {
+  // DOM already loaded
+  logger.log('✅ DOM already loaded, initializing immediately');
   initBasicFunctionality();
-
   logger.log('✅ App initialized successfully');
-});
+}
 
 /**
  * 初始化基础功能

@@ -7,8 +7,8 @@ const {
   class: className = '',
 } = Astro.props;
 
-// Notion 风格卡片 - 纯白背景 + 细边框
-const cssClasses = `bg-white border border-notion-border ${className}`;
+// Modern Card - Clean, Rounded, with subtle hover effects
+const cssClasses = `bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 ${className}`;
 ---
 
 <div class={cssClasses}>
