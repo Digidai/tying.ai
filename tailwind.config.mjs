@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Notion 风格黑白灰系统
+        // Notion 风格黑白灰系统 (Legacy support)
         notion: {
           black: '#000000',
           text: '#37352F',
@@ -17,6 +17,15 @@ const config: Config = {
           white: '#FFFFFF',
           border: '#E9E9E7',
           'bg-subtle': '#F7F6F3',
+        },
+        // Glassmorphism Colors
+        glass: {
+          100: 'rgba(255, 255, 255, 0.1)',
+          200: 'rgba(255, 255, 255, 0.2)',
+          300: 'rgba(255, 255, 255, 0.3)',
+          400: 'rgba(255, 255, 255, 0.4)',
+          border: 'rgba(255, 255, 255, 0.2)',
+          surface: 'rgba(255, 255, 255, 0.7)',
         },
         primary: {
           50: '#eff6ff',
@@ -41,27 +50,57 @@ const config: Config = {
         lg: '1.25rem',    // 20px
         xl: '2rem',       // 32px
       },
-      lineHeight: {
-        tight: '1.4',
-        normal: '1.6',
-        relaxed: '1.8',
-      },
-      spacing: {
-        '1': '0.5rem',   // 8px
-        '2': '1rem',     // 16px
-        '3': '1.5rem',   // 24px
-        '4': '2rem',     // 32px
-        '6': '3rem',     // 48px
-        '8': '4rem',     // 64px
-        '12': '6rem',    // 96px
-      },
-      borderRadius: {
-        sm: '0.125rem',  // 2px
-        base: '0.25rem', // 4px
-      },
       maxWidth: {
         'notion-narrow': '900px',
         'notion-wide': '1200px',
+      },
+      animation: {
+        'blob': 'blob 7s infinite',
+        'fade-in-up': 'fadeInUp 0.5s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+        'shine': 'shine 1s',
+      },
+      keyframes: {
+        blob: {
+          '0%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+          '33%': {
+            transform: 'translate(30px, -50px) scale(1.1)',
+          },
+          '66%': {
+            transform: 'translate(-20px, 20px) scale(0.9)',
+          },
+          '100%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+        },
+        fadeInUp: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+        float: {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-20px)',
+          },
+        },
+        shine: {
+          '100%': {
+            left: '125%',
+          },
+        },
+      },
+      backdropBlur: {
+        xs: '2px',
       },
     },
   },

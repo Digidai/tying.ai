@@ -1,124 +1,166 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
 
 const pageTitle = "Tying.ai - Career Guidance Platform";
 const pageDescription = "Discover your perfect career path with comprehensive career guidance and position information.";
 ---
 
 <MainLayout title={pageTitle} description={pageDescription}>
-  <!-- Gradient Background -->
-  <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
-    <div class="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-blue-400 opacity-20 blur-[100px]"></div>
+  <!-- Animated Liquid Background -->
+  <div class="absolute inset-0 -z-10 h-full w-full overflow-hidden bg-slate-50">
+    <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-300/30 mix-blend-multiply filter blur-[128px] animate-blob"></div>
+    <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-blue-300/30 mix-blend-multiply filter blur-[128px] animate-blob animation-delay-2000"></div>
+    <div class="absolute bottom-[-20%] left-[20%] w-[500px] h-[500px] rounded-full bg-pink-300/30 mix-blend-multiply filter blur-[128px] animate-blob animation-delay-4000"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
   </div>
 
   <div class="max-w-notion-wide mx-auto px-6 md:px-8 py-16 md:py-24 lg:py-32">
     <!-- Hero Section -->
-    <div class="mb-24 text-center relative">
-      <div class="inline-block mb-6 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-medium animate-fade-in-up">
-        🚀 Your AI-Powered Career Copilot
+    <div class="mb-24 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-white/50 shadow-sm text-blue-600 text-sm font-medium animate-fade-in-up hover:bg-white/80 transition-colors cursor-default">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+        </span>
+        Your AI-Powered Career Copilot
       </div>
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-8 leading-tight tracking-tight">
+
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-8 leading-tight tracking-tight">
         Shape Your Future with <br class="hidden md:block" />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Data-Driven Guidance</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 animate-gradient">Liquid Intelligence</span>
       </h1>
-      <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12">
-        Navigate the modern job market with comprehensive insights, real-time salary data, and personalized career paths powered by AI.
+
+      <p class="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-12 font-light">
+        Navigate the modern job market with fluid insights, crystal-clear data, and personalized career paths powered by advanced AI.
       </p>
+
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="/wiki" class="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+        <Button href="/wiki" variant="primary" class="w-full sm:w-auto shadow-blue-500/20">
           Explore Careers
-        </a>
-        <a href="/report" class="w-full sm:w-auto px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-xl font-semibold hover:bg-gray-50 transition-all hover:-translate-y-1">
+        </Button>
+        <Button href="/report" variant="glass" class="w-full sm:w-auto">
           View Market Reports
-        </a>
+        </Button>
       </div>
     </div>
 
-    <!-- Features Section -->
-    <div class="mb-24">
+    <!-- Features Section with Glass Cards -->
+    <div class="mb-32">
       <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Everything You Need to Succeed</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Comprehensive tools and resources designed to help you make the best career decisions.</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Everything You Need to Succeed</h2>
+        <p class="text-slate-600 max-w-2xl mx-auto text-lg">Comprehensive tools and resources designed with a modern, fluid interface to help you make the best career decisions.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="group p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6 text-2xl">📚</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">Career Encyclopedia</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
+        <Card variant="glass" class="group p-8">
+          <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl group-hover:scale-110 transition-transform duration-300">📚</div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">Career Encyclopedia</h3>
+          <p class="text-slate-600 mb-6 leading-relaxed">
             100+ detailed career profiles with job descriptions, required skills, and career growth paths.
           </p>
-          <a href="/wiki" class="inline-flex items-center text-blue-600 font-medium hover:underline">
+          <a href="/wiki" class="inline-flex items-center text-blue-600 font-semibold hover:underline group/link">
             Browse careers
-            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-        </div>
+        </Card>
 
-        <div class="group p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6 text-2xl">💰</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">Company Database</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
+        <Card variant="glass" class="group p-8">
+          <div class="w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl group-hover:scale-110 transition-transform duration-300">💰</div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-green-600 transition-colors">Company Database</h3>
+          <p class="text-slate-600 mb-6 leading-relaxed">
             Track the latest funding rounds, investments, and startup news. Deep dive into company health.
           </p>
-          <a href="/company/" class="inline-flex items-center text-green-600 font-medium hover:underline">
+          <a href="/company/" class="inline-flex items-center text-green-600 font-semibold hover:underline group/link">
             View companies
-            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-        </div>
+        </Card>
 
-        <div class="group p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6 text-2xl">📊</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">Industry Reports</h3>
-          <p class="text-gray-600 mb-6 leading-relaxed">
+        <Card variant="glass" class="group p-8">
+          <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl group-hover:scale-110 transition-transform duration-300">📊</div>
+          <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-purple-600 transition-colors">Industry Reports</h3>
+          <p class="text-slate-600 mb-6 leading-relaxed">
             Data-driven insights and market trends to help you make informed career decisions.
           </p>
-          <a href="/report" class="inline-flex items-center text-purple-600 font-medium hover:underline">
+          <a href="/report" class="inline-flex items-center text-purple-600 font-semibold hover:underline group/link">
             Read reports
-            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
-        </div>
+        </Card>
       </div>
     </div>
 
-    <!-- 热门职位 -->
+    <!-- 热门职位 - Enhanced Glass Grid -->
     <div>
-      <h2 class="text-2xl font-bold text-notion-text mb-8">Popular Career Paths</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <a href="/wiki/software-engineer" class="block p-6 border border-notion-border hover:border-notion-text">
-          <h3 class="font-semibold text-notion-text mb-2">Software Engineer</h3>
-          <p class="text-sm text-notion-text-light">Design, develop, and maintain software applications and systems.</p>
-        </a>
+      <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-8 text-center">Popular Career Paths</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card variant="glass" class="p-0 hover:border-blue-200/50 transition-colors">
+          <a href="/wiki/software-engineer" class="block p-6 h-full">
+            <h3 class="font-bold text-slate-900 mb-2 text-lg">Software Engineer</h3>
+            <p class="text-sm text-slate-500 mb-4">Design, develop, and maintain software applications and systems.</p>
+            <div class="flex items-center text-xs font-medium text-blue-600">
+              Learn more <span class="ml-1">→</span>
+            </div>
+          </a>
+        </Card>
 
-        <a href="/wiki/data-scientist" class="block p-6 border border-notion-border hover:border-notion-text">
-          <h3 class="font-semibold text-notion-text mb-2">Data Scientist</h3>
-          <p class="text-sm text-notion-text-light">Analyze complex data to help organizations make better decisions.</p>
-        </a>
+        <Card variant="glass" class="p-0 hover:border-blue-200/50 transition-colors">
+          <a href="/wiki/data-scientist" class="block p-6 h-full">
+            <h3 class="font-bold text-slate-900 mb-2 text-lg">Data Scientist</h3>
+            <p class="text-sm text-slate-500 mb-4">Analyze complex data to help organizations make better decisions.</p>
+            <div class="flex items-center text-xs font-medium text-blue-600">
+              Learn more <span class="ml-1">→</span>
+            </div>
+          </a>
+        </Card>
 
-        <a href="/wiki/product-manager" class="block p-6 border border-notion-border hover:border-notion-text">
-          <h3 class="font-semibold text-notion-text mb-2">Product Manager</h3>
-          <p class="text-sm text-notion-text-light">Lead product strategy and development from concept to launch.</p>
-        </a>
+        <Card variant="glass" class="p-0 hover:border-blue-200/50 transition-colors">
+          <a href="/wiki/product-manager" class="block p-6 h-full">
+            <h3 class="font-bold text-slate-900 mb-2 text-lg">Product Manager</h3>
+            <p class="text-sm text-slate-500 mb-4">Lead product strategy and development from concept to launch.</p>
+            <div class="flex items-center text-xs font-medium text-blue-600">
+              Learn more <span class="ml-1">→</span>
+            </div>
+          </a>
+        </Card>
 
-        <a href="/wiki/ux-designer" class="block p-6 border border-notion-border hover:border-notion-text">
-          <h3 class="font-semibold text-notion-text mb-2">UX Designer</h3>
-          <p class="text-sm text-notion-text-light">Create intuitive user experiences for digital products.</p>
-        </a>
+        <Card variant="glass" class="p-0 hover:border-blue-200/50 transition-colors">
+          <a href="/wiki/ux-designer" class="block p-6 h-full">
+            <h3 class="font-bold text-slate-900 mb-2 text-lg">UX Designer</h3>
+            <p class="text-sm text-slate-500 mb-4">Create intuitive user experiences for digital products.</p>
+            <div class="flex items-center text-xs font-medium text-blue-600">
+              Learn more <span class="ml-1">→</span>
+            </div>
+          </a>
+        </Card>
 
-        <a href="/wiki/marketing-manager" class="block p-6 border border-notion-border hover:border-notion-text">
-          <h3 class="font-semibold text-notion-text mb-2">Marketing Manager</h3>
-          <p class="text-sm text-notion-text-light">Develop and execute marketing strategies to drive business growth.</p>
-        </a>
+        <Card variant="glass" class="p-0 hover:border-blue-200/50 transition-colors">
+          <a href="/wiki/marketing-manager" class="block p-6 h-full">
+            <h3 class="font-bold text-slate-900 mb-2 text-lg">Marketing Manager</h3>
+            <p class="text-sm text-slate-500 mb-4">Develop and execute marketing strategies to drive business growth.</p>
+            <div class="flex items-center text-xs font-medium text-blue-600">
+              Learn more <span class="ml-1">→</span>
+            </div>
+          </a>
+        </Card>
 
-        <a href="/wiki/financial-analyst" class="block p-6 border border-notion-border hover:border-notion-text">
-          <h3 class="font-semibold text-notion-text mb-2">Financial Analyst</h3>
-          <p class="text-sm text-notion-text-light">Evaluate financial data and provide investment recommendations.</p>
-        </a>
+        <Card variant="glass" class="p-0 hover:border-blue-200/50 transition-colors">
+          <a href="/wiki/financial-analyst" class="block p-6 h-full">
+            <h3 class="font-bold text-slate-900 mb-2 text-lg">Financial Analyst</h3>
+            <p class="text-sm text-slate-500 mb-4">Evaluate financial data and provide investment recommendations.</p>
+            <div class="flex items-center text-xs font-medium text-blue-600">
+              Learn more <span class="ml-1">→</span>
+            </div>
+          </a>
+        </Card>
       </div>
     </div>
   </div>
