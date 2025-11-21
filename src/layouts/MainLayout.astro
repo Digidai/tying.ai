@@ -76,19 +76,3 @@ const {
     </div>
   </footer>
 </BaseLayout>
-
-<script>
-  // 移动端菜单切换
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
-        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-        mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-  });
-</script>

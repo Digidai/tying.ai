@@ -1,16 +1,35 @@
 ---
 export interface Props {
   class?: string;
+  variant?: 'default' | 'glass' | 'gradient';
 }
 
 const {
   class: className = '',
+  variant = 'glass',
 } = Astro.props;
 
-// Notion 风格卡片 - 纯白背景 + 细边框
-const cssClasses = `bg-white border border-notion-border ${className}`;
+const baseClasses = 'relative overflow-hidden rounded-2xl transition-all duration-300';
+
+const variantClasses = {
+  default: 'bg-white border border-gray-100 shadow-sm hover:shadow-md',
+  glass: 'bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg hover:shadow-xl hover:-translate-y-1',
+  gradient: 'bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-md border border-white/40 shadow-lg hover:shadow-2xl hover:-translate-y-1',
+};
+
+const cssClasses = [
+  baseClasses,
+  variantClasses[variant],
+  className,
+].join(' ');
 ---
 
 <div class={cssClasses}>
-  <slot />
+  {/* Shine effect for glass cards */}
+  {variant !== 'default' && (
+    <div class="absolute -inset-full top-0 block h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shine" />
+  )}
+  <div class="relative z-10">
+    <slot />
+  </div>
 </div>

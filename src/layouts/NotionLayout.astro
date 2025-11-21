@@ -55,11 +55,11 @@ const {
     <article class="max-w-notion-narrow mx-auto px-8 py-12">
       <!-- 面包屑导航 -->
       {breadcrumbs.length > 0 && (
-        <nav class="flex items-center space-x-2 text-sm text-notion-text-light mb-8">
+        <nav class="flex items-center space-x-2 text-sm text-notion-text-light mb-8 overflow-x-auto whitespace-nowrap py-2 -my-2 z-0 relative">
           {breadcrumbs.map((crumb, index) => (
             <>
-              <a href={crumb.href} class="hover:text-notion-text">{crumb.label}</a>
-              {index < breadcrumbs.length - 1 && <span>/</span>}
+              <a href={crumb.href} class="hover:text-notion-text flex-shrink-0">{crumb.label}</a>
+              {index < breadcrumbs.length - 1 && <span class="flex-shrink-0">/</span>}
             </>
           ))}
         </nav>
@@ -189,17 +189,3 @@ const {
   }
 </style>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
-        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-        mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-  });
-</script>
