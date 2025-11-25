@@ -56,7 +56,7 @@ function initSmoothScroll() {
   const links = document.querySelectorAll('a[href^="#"]');
 
   links.forEach(link => {
-    link.addEventListener('click', (e) => {
+    link.addEventListener('click', e => {
       e.preventDefault();
       const href = link.getAttribute('href');
       if (!href) return;
@@ -66,7 +66,7 @@ function initSmoothScroll() {
       if (targetElement) {
         targetElement.scrollIntoView({
           behavior: 'smooth',
-          block: 'start'
+          block: 'start',
         });
       }
     });
@@ -81,7 +81,7 @@ function initFormHandling() {
   const forms = document.querySelectorAll('form');
 
   forms.forEach(form => {
-    form.addEventListener('submit', (_e) => {
+    form.addEventListener('submit', _e => {
       // 这里可以添加通用的表单处理逻辑
       logger.log('Form submitted:', form.id || 'unnamed form');
     });

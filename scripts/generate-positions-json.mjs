@@ -39,9 +39,10 @@ async function buildPositionsJson() {
     throw new Error('positions export not found in src/data/positions.ts');
   }
 
-  const jsonData = positions.map((position) => ({
+  const jsonData = positions.map(position => ({
     ...position,
-    postedAt: position.postedAt instanceof Date ? position.postedAt.toISOString() : position.postedAt,
+    postedAt:
+      position.postedAt instanceof Date ? position.postedAt.toISOString() : position.postedAt,
   }));
 
   await mkdir(distPath, { recursive: true });
@@ -51,7 +52,7 @@ async function buildPositionsJson() {
   console.log(`✅ Generated ${outputFile} from src/data/positions.ts`);
 }
 
-buildPositionsJson().catch((error) => {
+buildPositionsJson().catch(error => {
   console.error('Failed to generate positions.json:', error);
   process.exitCode = 1;
 });

@@ -20,7 +20,8 @@ export const positions: Position[] = [
       currency: 'USD',
       period: 'yearly',
     },
-    description: 'Lead the design and implementation of our AI experimentation platform that powers large-scale model training and deployment.',
+    description:
+      'Lead the design and implementation of our AI experimentation platform that powers large-scale model training and deployment.',
     requirements: [
       '7+ years of backend engineering experience',
       'Strong proficiency with TypeScript or Go',
@@ -31,11 +32,7 @@ export const positions: Position[] = [
       'Partner with researchers to productionize new capabilities',
       'Mentor a team of mid-level engineers',
     ],
-    benefits: [
-      'Comprehensive healthcare',
-      '401k with employer match',
-      'Monthly wellness stipend',
-    ],
+    benefits: ['Comprehensive healthcare', '401k with employer match', 'Monthly wellness stipend'],
     skills: ['TypeScript', 'Go', 'Kubernetes', 'PostgreSQL', 'LLM Ops'],
     postedAt: new Date('2025-02-10T00:00:00.000Z'),
     isActive: true,
@@ -62,7 +59,8 @@ export const positions: Position[] = [
       currency: 'USD',
       period: 'yearly',
     },
-    description: 'Own roadmap execution for the analytics experience that helps enterprises understand workforce skill gaps.',
+    description:
+      'Own roadmap execution for the analytics experience that helps enterprises understand workforce skill gaps.',
     requirements: [
       '4+ years of product management experience',
       'Data analytics or HR-tech background',
@@ -73,11 +71,7 @@ export const positions: Position[] = [
       'Ship onboarding flows that drive activation',
       'Coordinate customer research across enterprise accounts',
     ],
-    benefits: [
-      'Flexible PTO',
-      'Learning & development allowance',
-      'Hybrid work policy',
-    ],
+    benefits: ['Flexible PTO', 'Learning & development allowance', 'Hybrid work policy'],
     skills: ['Product Discovery', 'SQL', 'Experiment Design', 'Stakeholder Management'],
     postedAt: new Date('2025-02-05T00:00:00.000Z'),
     isActive: true,
@@ -104,7 +98,8 @@ export const positions: Position[] = [
       currency: 'USD',
       period: 'yearly',
     },
-    description: 'Design ranking systems that power personalized career recommendations for millions of professionals.',
+    description:
+      'Design ranking systems that power personalized career recommendations for millions of professionals.',
     requirements: [
       'Expertise in causal inference or recommender systems',
       'Production ML experience with Python',
@@ -115,11 +110,7 @@ export const positions: Position[] = [
       'Define metrics and run large-scale experiments',
       'Coach junior scientists',
     ],
-    benefits: [
-      'Remote-first culture',
-      'Equity grants',
-      'Annual learning stipend',
-    ],
+    benefits: ['Remote-first culture', 'Equity grants', 'Annual learning stipend'],
     skills: ['Python', 'Spark', 'Causal Inference', 'MLOps'],
     postedAt: new Date('2025-02-12T00:00:00.000Z'),
     isActive: true,
@@ -146,7 +137,8 @@ export const positions: Position[] = [
       currency: 'GBP',
       period: 'yearly',
     },
-    description: 'Guide a multidisciplinary team crafting multi-step planning experiences for international learners.',
+    description:
+      'Guide a multidisciplinary team crafting multi-step planning experiences for international learners.',
     requirements: [
       'Portfolio showcasing complex workflows',
       'Experience facilitating research sprints',
@@ -157,11 +149,7 @@ export const positions: Position[] = [
       'Collaborate closely with localization partners',
       'Build rapid prototypes to validate concepts',
     ],
-    benefits: [
-      'Hybrid policy with London studio',
-      'Private healthcare',
-      'Wellness allowance',
-    ],
+    benefits: ['Hybrid policy with London studio', 'Private healthcare', 'Wellness allowance'],
     skills: ['Figma', 'Design Systems', 'User Research', 'Workshop Facilitation'],
     postedAt: new Date('2025-01-30T00:00:00.000Z'),
     isActive: true,
@@ -188,7 +176,8 @@ export const positions: Position[] = [
       currency: 'USD',
       period: 'yearly',
     },
-    description: "Grow the adoption of StackShift's workflow automation APIs through content, demos, and direct customer support.",
+    description:
+      "Grow the adoption of StackShift's workflow automation APIs through content, demos, and direct customer support.",
     requirements: [
       'Strong JavaScript/TypeScript background',
       'Public speaking or workshop facilitation experience',
@@ -199,11 +188,7 @@ export const positions: Position[] = [
       'Build demos for conferences and webinars',
       'Collaborate with product to prioritize roadmap items',
     ],
-    benefits: [
-      'Quarterly travel stipend',
-      'Conference budget',
-      'Employee stock options',
-    ],
+    benefits: ['Quarterly travel stipend', 'Conference budget', 'Employee stock options'],
     skills: ['TypeScript', 'Next.js', 'Public Speaking', 'Community Building'],
     postedAt: new Date('2025-02-03T00:00:00.000Z'),
     isActive: true,
@@ -230,7 +215,8 @@ export const positions: Position[] = [
       currency: 'SGD',
       period: 'yearly',
     },
-    description: 'Drive cross-border execution for employer partnerships and learner cohorts across APAC.',
+    description:
+      'Drive cross-border execution for employer partnerships and learner cohorts across APAC.',
     requirements: [
       'Experience scaling regional operations programs',
       'Strong analytical and communication skills',
@@ -241,11 +227,7 @@ export const positions: Position[] = [
       'Define process playbooks and tooling',
       'Report business health metrics to leadership',
     ],
-    benefits: [
-      'Annual bonus',
-      'Flexible work hours',
-      'Commuter benefits',
-    ],
+    benefits: ['Annual bonus', 'Flexible work hours', 'Commuter benefits'],
     skills: ['Program Management', 'Notion', 'Airtable', 'Process Design'],
     postedAt: new Date('2025-01-27T00:00:00.000Z'),
     isActive: true,

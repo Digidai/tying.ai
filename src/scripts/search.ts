@@ -1,19 +1,9 @@
 import { dataService } from '@/services/dataService';
 import { logger } from '@/utils/logger';
-import type {
-  SearchFilters,
-  SearchResult,
-  Position,
-  PositionType,
-  ExperienceLevel,
-  RemoteType,
-  SalaryRange,
-  VisaSupport,
-  SearchSortOption,
-} from '@/types';
+import type { SearchFilters, SearchResult, Position, SalaryRange } from '@/types';
 
 /**
- * 搜索功能类 - 处理前端的职位搜索逻辑
+ * 简化版搜索管理器：仅按职位标题关键词搜索
  */
 export class PositionSearchManager {
   private form: HTMLFormElement;
@@ -32,7 +22,12 @@ export class PositionSearchManager {
     const statsElement = document.getElementById('results-count');
     const paginationElement = document.getElementById('pagination');
 
-    if (!(formElement instanceof HTMLFormElement) || !resultsElement || !statsElement || !paginationElement) {
+    if (
+      !(formElement instanceof HTMLFormElement) ||
+      !resultsElement ||
+      !statsElement ||
+      !paginationElement
+    ) {
       logger.error('Search form or related containers not found in DOM');
       throw new Error('Search page missing required markup for PositionSearchManager');
     }
@@ -45,36 +40,28 @@ export class PositionSearchManager {
     this.initializeEventListeners();
   }
 
-  /**
-   * 初始化事件监听器
-   */
   private initializeEventListeners(): void {
-    // 表单提交
-    this.form.addEventListener('submit', (e) => {
+    this.form.addEventListener('submit', e => {
       e.preventDefault();
       this.handleSearch();
     });
 
-    // 筛选条件变化
-    this.form.addEventListener('change', (e) => {
+    this.form.addEventListener('input', e => {
       const target = e.target as HTMLElement;
-      if (target.tagName === 'INPUT' || target.tagName === 'SELECT') {
+      if (target.tagName === 'INPUT') {
         this.handleFilterChange();
       }
     });
 
-    // 排序选择
-    const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
-    if (sortSelect) {
-      sortSelect.addEventListener('change', () => {
-        this.handleSort();
-      });
-    }
+    this.form.addEventListener('reset', () => {
+      window.setTimeout(() => {
+        this.currentFilters = {};
+        this.currentPage = 1;
+        void this.performSearch();
+      }, 0);
+    });
   }
 
-  /**
-   * 处理搜索
-   */
   private async handleSearch(): Promise<void> {
     if (this.isLoading) return;
 
@@ -83,11 +70,7 @@ export class PositionSearchManager {
     await this.performSearch();
   }
 
-  /**
-   * 处理筛选条件变化
-   */
   private handleFilterChange(): void {
-    // 防抖处理
     if (this.debounceTimer !== null) {
       clearTimeout(this.debounceTimer);
     }
@@ -97,78 +80,14 @@ export class PositionSearchManager {
   }
 
   /**
-   * 处理排序
-   */
-  private async handleSort(): Promise<void> {
-    await this.performSearch();
-  }
-
-  /**
-   * 收集筛选条件
+   * 只收集标题关键词
    */
   private collectFilters(): void {
     const formData = new FormData(this.form);
-
-    // 关键词和地点
-    this.currentFilters = {
-      keywords: formData.get('keywords') as string || undefined,
-      location: formData.get('location') as string || undefined,
-    };
-
-    // 职位类型
-    const types = formData.getAll('type') as string[];
-    if (types.length > 0) {
-      this.currentFilters.type = types as PositionType[];
-    }
-
-    // 经验级别
-    const experiences = formData.getAll('experience') as string[];
-    if (experiences.length > 0) {
-      this.currentFilters.experience = experiences as ExperienceLevel[];
-    }
-
-    // 远程类型
-    const remotes = formData.getAll('remote') as string[];
-    if (remotes.length > 0) {
-      this.currentFilters.remote = remotes as RemoteType[];
-    }
-
-    // 薪资范围
-    const salaryMin = formData.get('salaryMin') as string;
-    const salaryMax = formData.get('salaryMax') as string;
-    if (salaryMin) this.currentFilters.salaryMin = parseInt(salaryMin);
-    if (salaryMax) this.currentFilters.salaryMax = parseInt(salaryMax);
-
-    const companyInput = formData.get('company') as string;
-    if (companyInput) {
-      this.currentFilters.company = companyInput
-        .split(',')
-        .map(value => value.trim())
-        .filter(Boolean);
-    }
-
-    const skillsInput = formData.get('skills') as string;
-    if (skillsInput) {
-      this.currentFilters.skills = skillsInput
-        .split(',')
-        .map(value => value.trim())
-        .filter(Boolean);
-    }
-
-    const visa = formData.get('visa') as string;
-    if (visa) {
-      this.currentFilters.visa = visa as VisaSupport;
-    } else {
-      delete this.currentFilters.visa;
-    }
-
-    const sortValue = formData.get('sort') as string;
-    this.currentFilters.sort = (sortValue as SearchSortOption) || 'newest';
+    const keywords = (formData.get('keywords') as string | null)?.trim();
+    this.currentFilters = keywords ? { keywords } : {};
   }
 
-  /**
-   * 执行搜索
-   */
   private async performSearch(): Promise<void> {
     if (this.isLoading) return;
 
@@ -179,25 +98,20 @@ export class PositionSearchManager {
       const result = await dataService.searchPositions(
         this.currentFilters,
         this.currentPage,
-        this.pageSize
+        this.pageSize,
       );
 
       this.renderResults(result);
       this.renderStats(result);
       this.renderPagination(result);
-
     } catch (error) {
       logger.error('Search failed:', error);
       this.showErrorState();
     } finally {
       this.isLoading = false;
-      this.hideLoadingState();
     }
   }
 
-  /**
-   * 渲染搜索结果
-   */
   private renderResults(result: SearchResult): void {
     if (result.positions.length === 0) {
       this.resultsContainer.innerHTML = `
@@ -206,13 +120,13 @@ export class PositionSearchManager {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
           <h3 class="text-lg font-medium text-neutral-900 mb-2">没有找到匹配的职位</h3>
-          <p class="text-neutral-600">尝试调整搜索条件或筛选器</p>
+          <p class="text-neutral-600">尝试调整搜索关键词</p>
         </div>
       `;
       return;
     }
 
-    const template = document.getElementById('position-card-template') as HTMLTemplateElement;
+    const template = document.getElementById('position-card-template') as HTMLTemplateElement | null;
     if (!template) {
       logger.error('Position card template not found');
       return;
@@ -227,9 +141,6 @@ export class PositionSearchManager {
     this.resultsContainer.appendChild(fragment);
   }
 
-  /**
-   * 创建职位卡片
-   */
   private createPositionCard(position: Position, template: HTMLTemplateElement): HTMLElement {
     const templateRoot = template.content.firstElementChild?.cloneNode(true) as HTMLElement | null;
     const cardElement = templateRoot ?? document.createElement('article');
@@ -285,22 +196,16 @@ export class PositionSearchManager {
     return cardElement;
   }
 
-  /**
-   * 渲染统计信息
-   */
   private renderStats(result: SearchResult): void {
+    if (result.total === 0) {
+      this.statsContainer.textContent = '没有找到结果';
+      return;
+    }
     const start = (this.currentPage - 1) * this.pageSize + 1;
     const end = Math.min(this.currentPage * this.pageSize, result.total);
-
-    this.statsContainer.textContent =
-      result.total === 0
-        ? '没有找到结果'
-        : `显示 ${start}-${end} 个职位，共 ${result.total} 个`;
+    this.statsContainer.textContent = `显示 ${start}-${end} 个职位，共 ${result.total} 个`;
   }
 
-  /**
-   * 渲染分页
-   */
   private renderPagination(result: SearchResult): void {
     const totalPages = Math.ceil(result.total / this.pageSize);
 
@@ -311,7 +216,6 @@ export class PositionSearchManager {
 
     let paginationHTML = '<div class="flex items-center gap-2">';
 
-    // 上一页
     if (this.currentPage > 1) {
       paginationHTML += `
         <button class="px-3 py-2 border border-neutral-300 rounded-md hover:bg-neutral-50" onclick="searchManager.goToPage(${this.currentPage - 1})">
@@ -320,38 +224,18 @@ export class PositionSearchManager {
       `;
     }
 
-    // 页码
-    const startPage = Math.max(1, this.currentPage - 2);
-    const endPage = Math.min(totalPages, this.currentPage + 2);
-
-    if (startPage > 1) {
-      paginationHTML += `<button class="px-3 py-2 border border-neutral-300 rounded-md hover:bg-neutral-50" onclick="searchManager.goToPage(1)">1</button>`;
-      if (startPage > 2) {
-        paginationHTML += `<span class="px-2">...</span>`;
-      }
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
+    for (let i = 1; i <= totalPages; i++) {
       const isActive = i === this.currentPage;
       paginationHTML += `
-        <button class="px-3 py-2 border rounded-md ${
-          isActive
-            ? 'bg-primary-600 text-white border-primary-600'
-            : 'border-neutral-300 hover:bg-neutral-50'
+        <button class="px-3 py-2 border rounded-md ${isActive
+          ? 'bg-primary-600 text-white border-primary-600'
+          : 'border-neutral-300 hover:bg-neutral-50'
         }" onclick="searchManager.goToPage(${i})">
           ${i}
         </button>
       `;
     }
 
-    if (endPage < totalPages) {
-      if (endPage < totalPages - 1) {
-        paginationHTML += `<span class="px-2">...</span>`;
-      }
-      paginationHTML += `<button class="px-3 py-2 border border-neutral-300 rounded-md hover:bg-neutral-50" onclick="searchManager.goToPage(${totalPages})">${totalPages}</button>`;
-    }
-
-    // 下一页
     if (this.currentPage < totalPages) {
       paginationHTML += `
         <button class="px-3 py-2 border border-neutral-300 rounded-md hover:bg-neutral-50" onclick="searchManager.goToPage(${this.currentPage + 1})">
@@ -364,18 +248,12 @@ export class PositionSearchManager {
     this.paginationContainer.innerHTML = paginationHTML;
   }
 
-  /**
-   * 跳转到指定页面
-   */
   public async goToPage(page: number): Promise<void> {
     this.currentPage = page;
     await this.performSearch();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /**
-   * 显示加载状态
-   */
   private showLoadingState(): void {
     this.resultsContainer.innerHTML = `
       <div class="text-center py-12">
@@ -385,16 +263,6 @@ export class PositionSearchManager {
     `;
   }
 
-  /**
-   * 隐藏加载状态
-   */
-  private hideLoadingState(): void {
-    // 加载状态会在渲染结果时被替换
-  }
-
-  /**
-   * 显示错误状态
-   */
   private showErrorState(): void {
     this.resultsContainer.innerHTML = `
       <div class="text-center py-12">
@@ -407,14 +275,13 @@ export class PositionSearchManager {
     `;
   }
 
-  // 辅助方法
   private getTypeLabel(type: string): string {
     const labels = {
       'full-time': '全职',
       'part-time': '兼职',
-      'contract': '合同工',
-      'internship': '实习',
-      'freelance': '自由职业'
+      contract: '合同工',
+      internship: '实习',
+      freelance: '自由职业',
     };
     return labels[type as keyof typeof labels] || type;
   }
@@ -423,9 +290,9 @@ export class PositionSearchManager {
     if (!remote) return '未指定';
     const labels = {
       'on-site': '现场办公',
-      'hybrid': '混合办公',
-      'remote': '完全远程',
-      'flexible': '灵活办公'
+      hybrid: '混合办公',
+      remote: '完全远程',
+      flexible: '灵活办公',
     };
     return labels[remote as keyof typeof labels] || remote;
   }
@@ -460,14 +327,12 @@ export class PositionSearchManager {
   }
 }
 
-// 全局搜索管理器实例
 declare global {
   interface Window {
     searchManager?: PositionSearchManager;
   }
 }
 
-// 初始化搜索功能
 document.addEventListener('DOMContentLoaded', () => {
   try {
     window.searchManager = new PositionSearchManager();

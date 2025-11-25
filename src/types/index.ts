@@ -209,7 +209,15 @@ export interface Application {
   coverLetter?: string;
 }
 
-export type ApplicationStatus = 'draft' | 'submitted' | 'viewed' | 'responded' | 'interview' | 'offer' | 'rejected' | 'withdrawn';
+export type ApplicationStatus =
+  | 'draft'
+  | 'submitted'
+  | 'viewed'
+  | 'responded'
+  | 'interview'
+  | 'offer'
+  | 'rejected'
+  | 'withdrawn';
 
 /**
  * API 响应类型

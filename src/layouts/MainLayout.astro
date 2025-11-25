@@ -6,13 +6,13 @@ export interface Props {
   description?: string;
   image?: string;
   keywords?: string;
-  customStructuredData?: any;
+  customStructuredData?: Record<string, unknown>;
 }
 
 const {
   title,
   description,
-  image = "https://placehold.co/1200x630/png?text=Tying.ai",
+  image = 'https://placehold.co/1200x630/png?text=Tying.ai',
   keywords,
   customStructuredData,
 } = Astro.props;
@@ -43,9 +43,19 @@ const {
         </div>
 
         <!-- 移动端菜单按钮 -->
-        <button class="md:hidden p-2" id="mobile-menu-button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+        <button
+          class="md:hidden p-2"
+          id="mobile-menu-button"
+          aria-label="Menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
@@ -71,24 +81,9 @@ const {
   <footer class="border-t border-notion-border bg-white">
     <div class="max-w-notion-wide mx-auto px-8 py-6">
       <p class="text-sm text-notion-text-light text-center">
-        &copy; 2024 <a href="/" class="text-notion-text hover:underline">Tying.ai</a>. Career Guidance Platform.
+        &copy; 2024 <a href="/" class="text-notion-text hover:underline">Tying.ai</a>. Career
+        Guidance Platform.
       </p>
     </div>
   </footer>
 </BaseLayout>
-
-<script>
-  // 移动端菜单切换
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
-        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-        mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-  });
-</script>

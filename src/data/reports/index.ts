@@ -14,21 +14,24 @@ export const reports: ReportMetadata[] = [
   {
     slug: 'us-recruitment-market',
     title: 'US Recruitment Market Analysis',
-    subtitle: 'A Comprehensive Study of Labor Market Dynamics, Talent Acquisition Trends, and Future Workforce Implications',
+    subtitle:
+      'A Comprehensive Study of Labor Market Dynamics, Talent Acquisition Trends, and Future Workforce Implications',
     date: 'November 13, 2025',
     category: 'Recruitment & Labor Economics',
   },
   {
     slug: 'agentic-ai-vs-ai-agent',
     title: 'Agentic AI vs AI Agent: Understanding the Difference',
-    subtitle: 'A Comprehensive Analysis of Architectural Paradigms, Implementation Strategies, and Future Trajectories in Autonomous AI Systems',
+    subtitle:
+      'A Comprehensive Analysis of Architectural Paradigms, Implementation Strategies, and Future Trajectories in Autonomous AI Systems',
     date: 'November 13, 2025',
     category: 'AI Research & Engineering',
   },
   {
     slug: 'ai-recruitment',
     title: 'AI in Recruitment: Transforming Talent Acquisition',
-    subtitle: 'A Comprehensive Analysis of AI-Powered Recruitment Technologies, Implementation Strategies, Ethical Considerations, and Future Impact on Hiring',
+    subtitle:
+      'A Comprehensive Analysis of AI-Powered Recruitment Technologies, Implementation Strategies, Ethical Considerations, and Future Impact on Hiring',
     date: 'January 10, 2025',
     category: 'AI & HR Technology',
   },

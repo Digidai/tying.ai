@@ -1,6 +1,7 @@
 # Tying.ai Official Website
 
-This repository contains the source for **tying.ai**, a comprehensive AI career guidance platform built with modern HTML, CSS, and JavaScript.
+This repository contains the source for **tying.ai**, a comprehensive AI career
+guidance platform built with modern HTML, CSS, and JavaScript.
 
 ## Tech Stack
 
@@ -10,7 +11,8 @@ This repository contains the source for **tying.ai**, a comprehensive AI career 
 - **Performance**: Service Worker for offline caching (PWA)
 - **SEO**: Complete meta tags, structured data, and sitemap
 - **Accessibility**: WCAG 2.1 AA compliant with screen reader support
-- **Build**: Simple npm scripts with [serve](https://www.npmjs.com/package/serve)
+- **Build**: Simple npm scripts with
+  [serve](https://www.npmjs.com/package/serve)
 
 ## Features
 
@@ -30,7 +32,8 @@ npm install
 npm run dev
 ```
 
-The development server exposes the site at <http://localhost:3000> using `serve`.
+The development server exposes the site at <http://localhost:3000> using
+`serve`.
 
 ## Build and Preview
 
@@ -39,7 +42,8 @@ npm run build
 npm start
 ```
 
-The build script copies the site into `dist/` and `npm start` serves the generated folder on port 3000.
+The build script copies the site into `dist/` and `npm start` serves the
+generated folder on port 3000.
 
 ## Project Structure
 
@@ -69,9 +73,11 @@ tying.ai/
 ## Key Pages
 
 - **Homepage** (`/`): Main landing page with features and content
-- **Career Wiki** (`/wiki/`): Comprehensive career database with 180+ job profiles
+- **Career Wiki** (`/wiki/`): Comprehensive career database with 180+ job
+  profiles
 - **Industry Reports** (`/report/`): Market analysis and career insights
-- **Company Funding** (`/company/`): Latest funding rounds, investments, and startup news database
+- **Company Funding** (`/company/`): Latest funding rounds, investments, and
+  startup news database
 - **Profile** (`/genedai.html`): Personal profile page with minimalist design
 
 ## Optimization Features

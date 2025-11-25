@@ -191,54 +191,54 @@
 /* ===== Mobile Responsive Components ===== */
 
 @media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: block;
-    }
+  .mobile-menu-toggle {
+    display: block;
+  }
 
-    .main-nav {
-        position: fixed;
-        top: var(--header-height);
-        left: 0;
-        right: 0;
-        background: var(--header-bg);
-        backdrop-filter: var(--glass-blur);
-        -webkit-backdrop-filter: var(--glass-blur);
-        flex-direction: column;
-        padding: var(--space-lg);
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: var(--transition-normal);
-        box-shadow: var(--shadow-modal);
-    }
+  .main-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: var(--header-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    flex-direction: column;
+    padding: var(--space-lg);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-modal);
+  }
 
-    .main-nav.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
+  .main-nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
 
-    .nav-link {
-        width: 100%;
-        padding: var(--space-md);
-        text-align: center;
-    }
+  .nav-link {
+    width: 100%;
+    padding: var(--space-md);
+    text-align: center;
+  }
 
-    .hero-title {
-        font-size: var(--font-size-4xl);
-    }
+  .hero-title {
+    font-size: var(--font-size-4xl);
+  }
 
-    .hero-buttons,
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
+  .hero-buttons,
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .features-grid,
-    .content-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
-    }
+  .features-grid,
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
 }
 
 /* ===== Company Table Components ===== */

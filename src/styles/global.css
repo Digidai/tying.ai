@@ -112,23 +112,6 @@ p {
 }
 
 /* =============================================
-   列表
-   ============================================= */
-
-.list li {
-  position: relative;
-  padding-left: var(--space-3);
-  margin-bottom: var(--space-1);
-}
-
-.list li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: var(--text-primary);
-}
-
-/* =============================================
    代码
    ============================================= */
 

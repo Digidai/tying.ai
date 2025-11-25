@@ -17,7 +17,7 @@ export async function loadPositions(): Promise<Position[]> {
   const fileContent = await readFile(dataPath, 'utf-8');
   const rawPositions = JSON.parse(fileContent) as RawPosition[];
 
-  cachedPositions = rawPositions.map((position) => ({
+  cachedPositions = rawPositions.map(position => ({
     ...position,
     postedAt: new Date(position.postedAt),
   }));

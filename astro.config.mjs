@@ -15,24 +15,19 @@ export default defineConfig({
     tailwind({
       config: {
         applyBaseStyles: false, // 我们将使用自定义CSS
-      }
+      },
     }),
     sitemap({
       // Sitemap 配置
-      filter: (page) => {
+      filter: page => {
         // 排除不需要索引的页面
-        return !page.includes('/simple') &&
-               !page.includes('/404');
+        return !page.includes('/simple') && !page.includes('/404');
       },
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
       // 自定义 URL
-      customPages: [
-        'https://tying.ai/',
-        'https://tying.ai/wiki',
-        'https://tying.ai/report',
-      ],
+      customPages: ['https://tying.ai/', 'https://tying.ai/wiki', 'https://tying.ai/report'],
       // i18n (如果需要多语言)
       i18n: {
         defaultLocale: 'en',
@@ -56,7 +51,7 @@ export default defineConfig({
           manualChunks: {
             // 基础库分组
             vendor: ['lodash-es', 'date-fns'],
-          }
+          },
         },
       },
     },

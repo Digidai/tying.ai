@@ -100,13 +100,13 @@ export interface WebVitalMetric {
 
 // Event types
 export interface CustomEventMap {
-  'elementAnimated': CustomEvent<AnimationEventDetail>;
-  'counterAnimated': CustomEvent<CounterEventDetail>;
-  'mobileMenuToggle': CustomEvent<MobileMenuToggleEventDetail>;
-  'buttonClicked': CustomEvent<{ button: Element; event: Event }>;
-  'formSubmitted': CustomEvent<{ form: HTMLFormElement; event: Event }>;
-  'inputValidated': CustomEvent<{ input: HTMLInputElement; isValid: boolean; errorMessage?: string }>;
-  'rippleCreated': CustomEvent<{ button: Element; ripple: Element }>;
+  elementAnimated: CustomEvent<AnimationEventDetail>;
+  counterAnimated: CustomEvent<CounterEventDetail>;
+  mobileMenuToggle: CustomEvent<MobileMenuToggleEventDetail>;
+  buttonClicked: CustomEvent<{ button: Element; event: Event }>;
+  formSubmitted: CustomEvent<{ form: HTMLFormElement; event: Event }>;
+  inputValidated: CustomEvent<{ input: HTMLInputElement; isValid: boolean; errorMessage?: string }>;
+  rippleCreated: CustomEvent<{ button: Element; ripple: Element }>;
 }
 
 // Utility types

@@ -1,6 +1,6 @@
 import eslintPluginAstro from 'eslint-plugin-astro';
-import tsParser from '@typescript-eslint/parser';
-import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tseslint from 'typescript-eslint';
+import js from '@eslint/js';
 
 export default [
   // Ignore patterns
@@ -19,19 +19,18 @@ export default [
     ],
   },
 
+  // JavaScript files
+  js.configs.recommended,
+
   // TypeScript files
+  ...tseslint.configs.recommended,
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      parser: tsParser,
+      parser: tseslint.parser,
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
         project: './tsconfig.json',
       },
-    },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
     },
     rules: {
       // TypeScript rules
@@ -51,10 +50,8 @@ export default [
     },
   },
 
-  // Astro files - use recommended config
+  // Astro files
   ...eslintPluginAstro.configs.recommended,
-
-  // Override for Astro files
   {
     files: ['**/*.astro'],
     rules: {

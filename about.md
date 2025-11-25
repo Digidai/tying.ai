@@ -1,18 +1,19 @@
 # Tying.ai 内容创建标准手册
 
-> **快速参考**: 创建新内容时的标准操作指南
-> 最后更新: 2025-11-16
+> **快速参考**: 创建新内容时的标准操作指南最后更新: 2025-11-16
 
 ---
 
 ## 📋 目录
 
 ### 快速上手
+
 - [创建新 Report - 完整流程](#创建新-report---完整流程)
 - [创建新 Wiki 页面 - 完整流程](#创建新-wiki-页面---完整流程)
 - [常见问题速查](#常见问题速查)
 
 ### 参考资料
+
 - [项目概述](#项目概述)
 - [技术栈](#技术栈)
 - [设计系统](#设计系统)
@@ -45,54 +46,63 @@
 #### 步骤 1: 更新动态路由 `src/pages/report/[slug].astro`
 
 **1.1 添加 slug**
+
 ```typescript
 export async function getStaticPaths() {
   const reports = [
     'us-recruitment-market',
     'agentic-ai-vs-ai-agent',
     'ai-recruitment',
-    'your-new-report',  // ← 新增这里
+    'your-new-report', // ← 新增这里
   ];
-  return reports.map((slug) => ({ params: { slug } }));
+  return reports.map(slug => ({ params: { slug } }));
 }
 ```
 
 **1.2 添加 metadata**
+
 ```typescript
 const reportData: Record<string, any> = {
   'your-new-report': {
-    title: 'Report Title',                    // 报告标题
-    subtitle: 'Report Subtitle',              // 副标题
-    date: 'Month Day, Year',                  // 发布日期（如：November 13, 2025）
-    category: 'Category Name',                // 分类（如：AI & Technology）
+    title: 'Report Title', // 报告标题
+    subtitle: 'Report Subtitle', // 副标题
+    date: 'Month Day, Year', // 发布日期（如：November 13, 2025）
+    category: 'Category Name', // 分类（如：AI & Technology）
   },
 };
 ```
 
 **1.3 添加内容块（在文件末尾）**
+
 ```astro
-{slug === 'your-new-report' && (
-  <>
-    <h2>Executive Summary</h2>
-    <p>报告摘要...</p>
+{
+  slug === 'your-new-report' && (
+    <>
+      <h2>Executive Summary</h2>
+      <p>报告摘要...</p>
 
-    <h2>Section 1: Main Topic</h2>
-    <p>内容...</p>
+      <h2>Section 1: Main Topic</h2>
+      <p>内容...</p>
 
-    <h3>Subsection 1.1</h3>
-    <p>子章节内容...</p>
-    <ul>
-      <li><strong>Key Point 1:</strong> 描述</li>
-      <li><strong>Key Point 2:</strong> 描述</li>
-    </ul>
+      <h3>Subsection 1.1</h3>
+      <p>子章节内容...</p>
+      <ul>
+        <li>
+          <strong>Key Point 1:</strong> 描述
+        </li>
+        <li>
+          <strong>Key Point 2:</strong> 描述
+        </li>
+      </ul>
 
-    <h2>Section 2: Analysis</h2>
-    <p>分析内容...</p>
+      <h2>Section 2: Analysis</h2>
+      <p>分析内容...</p>
 
-    <h2>Conclusion</h2>
-    <p>结论...</p>
-  </>
-)}
+      <h2>Conclusion</h2>
+      <p>结论...</p>
+    </>
+  )
+}
 ```
 
 ---
@@ -105,12 +115,8 @@ const reportData: Record<string, any> = {
 
 ```astro
 <div class="pb-6 border-b border-notion-border">
-  <div class="text-sm text-notion-text-light mb-2">
-    Category • Month Year
-  </div>
-  <h3 class="text-lg font-semibold text-notion-text mb-2">
-    Report Title
-  </h3>
+  <div class="text-sm text-notion-text-light mb-2">Category • Month Year</div>
+  <h3 class="text-lg font-semibold text-notion-text mb-2">Report Title</h3>
   <p class="text-notion-text-light mb-2">
     Brief description of the report (1-2 sentences).
   </p>
@@ -135,6 +141,7 @@ const reportData: Record<string, any> = {
 ```
 
 **示例**:
+
 ```txt
 - AI in Recruitment: Transforming Talent Acquisition: https://tying.ai/report/ai-recruitment
   Description: Comprehensive analysis of AI-powered recruitment technologies, implementation strategies, bias mitigation, ROI analysis, and future trends in hiring automation
@@ -144,6 +151,7 @@ const reportData: Record<string, any> = {
 **3.2 更新 `public/humans.txt`**
 
 更新日期为当前日期：
+
 ```txt
 # SITE
     Last update: 2025-11-13  ← 改为当前日期
@@ -194,82 +202,92 @@ git push origin main
 ### 📊 Report 内容结构模板
 
 ```astro
-{slug === 'your-report' && (
-  <>
-    {/* 1. Executive Summary - 必需 */}
-    <h2>Executive Summary</h2>
-    <p>
-      简明扼要的报告总结，包含：
-      - 研究目的和范围
-      - 主要发现（3-5个关键点）
-      - 结论和建议
-    </p>
+{
+  slug === 'your-report' && (
+    <>
+      {/* 1. Executive Summary - 必需 */}
+      <h2>Executive Summary</h2>
+      <p>
+        简明扼要的报告总结，包含： - 研究目的和范围 - 主要发现（3-5个关键点） -
+        结论和建议
+      </p>
 
-    {/* 2. 市场/行业概览 */}
-    <h2>Market Overview / Industry Landscape</h2>
-    <ul>
-      <li><strong>Market Size:</strong> 市场规模数据</li>
-      <li><strong>Growth Rate:</strong> 增长率</li>
-      <li><strong>Key Players:</strong> 主要参与者</li>
-      <li><strong>Trends:</strong> 主要趋势</li>
-    </ul>
+      {/* 2. 市场/行业概览 */}
+      <h2>Market Overview / Industry Landscape</h2>
+      <ul>
+        <li>
+          <strong>Market Size:</strong> 市场规模数据
+        </li>
+        <li>
+          <strong>Growth Rate:</strong> 增长率
+        </li>
+        <li>
+          <strong>Key Players:</strong> 主要参与者
+        </li>
+        <li>
+          <strong>Trends:</strong> 主要趋势
+        </li>
+      </ul>
 
-    {/* 3. 详细分析章节（可多个） */}
-    <h2>Section: Analysis Deep Dive</h2>
+      {/* 3. 详细分析章节（可多个） */}
+      <h2>Section: Analysis Deep Dive</h2>
 
-    <h3>Subsection: Specific Topic</h3>
-    <p>详细分析内容...</p>
+      <h3>Subsection: Specific Topic</h3>
+      <p>详细分析内容...</p>
 
-    <h4>Sub-subsection (如需要)</h4>
-    <ul>
-      <li><strong>Point 1:</strong> 说明</li>
-      <li><strong>Point 2:</strong> 说明</li>
-    </ul>
+      <h4>Sub-subsection (如需要)</h4>
+      <ul>
+        <li>
+          <strong>Point 1:</strong> 说明
+        </li>
+        <li>
+          <strong>Point 2:</strong> 说明
+        </li>
+      </ul>
 
-    {/* 4. 数据表格（如适用） */}
-    <h3>Comparative Data</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Metric 1</th>
-          <th>Metric 2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Item 1</td>
-          <td>Value 1</td>
-          <td>Value 2</td>
-        </tr>
-      </tbody>
-    </table>
+      {/* 4. 数据表格（如适用） */}
+      <h3>Comparative Data</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Metric 1</th>
+            <th>Metric 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Item 1</td>
+            <td>Value 1</td>
+            <td>Value 2</td>
+          </tr>
+        </tbody>
+      </table>
 
-    {/* 5. 未来展望 */}
-    <h2>Future Outlook</h2>
-    <p>
-      对未来3-5年的预测和趋势分析...
-    </p>
+      {/* 5. 未来展望 */}
+      <h2>Future Outlook</h2>
+      <p>对未来3-5年的预测和趋势分析...</p>
 
-    {/* 6. 结论和建议 */}
-    <h2>Conclusion</h2>
-    <p>总结性陈述...</p>
+      {/* 6. 结论和建议 */}
+      <h2>Conclusion</h2>
+      <p>总结性陈述...</p>
 
-    <h3>Key Recommendations</h3>
-    <ol>
-      <li>建议 1</li>
-      <li>建议 2</li>
-      <li>建议 3</li>
-    </ol>
+      <h3>Key Recommendations</h3>
+      <ol>
+        <li>建议 1</li>
+        <li>建议 2</li>
+        <li>建议 3</li>
+      </ol>
 
-    {/* 7. 参考资料（可选） */}
-    <h2>References</h2>
-    <ul class="text-sm">
-      <li>来源 1</li>
-      <li>来源 2</li>
-    </ul>
-  </>
-)}
+      {/* 7. 参考资料（可选） */}
+      <h2>References</h2>
+      <ul class="text-sm">
+        <li>来源 1</li>
+        <li>来源 2</li>
+      </ul>
+    </>
+  )
+}
 ```
 
 ---
@@ -298,34 +316,37 @@ git push origin main
 #### 步骤 1: 更新动态路由 `src/pages/wiki/[slug].astro`
 
 **1.1 添加 slug**
+
 ```typescript
 export async function getStaticPaths() {
   const positions = [
     'software-engineer',
     'product-manager',
     'data-scientist',
-    'your-new-position',  // ← 新增这里
+    'your-new-position', // ← 新增这里
   ];
-  return positions.map((slug) => ({ params: { slug } }));
+  return positions.map(slug => ({ params: { slug } }));
 }
 ```
 
 **1.2 添加标题映射**
+
 ```typescript
 const titleMap: Record<string, string> = {
   'software-engineer': 'Software Engineer Career Guide',
   'product-manager': 'Product Manager Career Guide',
-  'your-new-position': 'Your Position Title Career Guide',  // ← 新增这里
+  'your-new-position': 'Your Position Title Career Guide', // ← 新增这里
 };
 ```
 
 **1.3 添加内容块（在文件末尾）**
+
 ```astro
-{slug === 'your-new-position' && (
-  <div class="notion-page">
-    {/* 内容参考下面的模板 */}
-  </div>
-)}
+{
+  slug === 'your-new-position' && (
+    <div class="notion-page">{/* 内容参考下面的模板 */}</div>
+  )
+}
 ```
 
 ---
@@ -343,10 +364,17 @@ const titleMap: Record<string, string> = {
     </p>
     <a href="/wiki/your-new-position" class="card-link">
       Read guide
-      <svg class="w-4 h-4 transition-transform group-hover:translate-x-1"
-           fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" d="M9 5l7 7-7 7"/>
+      <svg
+        class="w-4 h-4 transition-transform group-hover:translate-x-1"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"></path>
       </svg>
     </a>
   </div>
@@ -368,6 +396,7 @@ const titleMap: Record<string, string> = {
 ```
 
 **3.2 更新 `public/humans.txt`**
+
 ```txt
 Last update: 2025-11-13  ← 改为当前日期
 ```
@@ -377,160 +406,236 @@ Last update: 2025-11-13  ← 改为当前日期
 ### 📊 Wiki 页面内容结构模板
 
 ```astro
-{slug === 'your-position' && (
-  <>
-    {/* 1. Overview - 必需 */}
-    <h2>Overview</h2>
-    <div class="callout callout-info">
-      <strong>职位概要:</strong> 用 2-3 句话简明扼要地描述这个职位的核心定位和价值。
-    </div>
-    <p>详细的职位介绍，包括：</p>
-    <ul>
-      <li>职位在组织中的位置</li>
-      <li>主要工作目标</li>
-      <li>与其他角色的关系</li>
-    </ul>
+{
+  slug === 'your-position' && (
+    <>
+      {/* 1. Overview - 必需 */}
+      <h2>Overview</h2>
+      <div class="callout callout-info">
+        <strong>职位概要:</strong> 用 2-3
+        句话简明扼要地描述这个职位的核心定位和价值。
+      </div>
+      <p>详细的职位介绍，包括：</p>
+      <ul>
+        <li>职位在组织中的位置</li>
+        <li>主要工作目标</li>
+        <li>与其他角色的关系</li>
+      </ul>
 
-    {/* 2. Core Responsibilities - 必需 */}
-    <h2>Core Responsibilities</h2>
-    <ul>
-      <li><strong>责任领域 1:</strong> 详细说明</li>
-      <li><strong>责任领域 2:</strong> 详细说明</li>
-      <li><strong>责任领域 3:</strong> 详细说明</li>
-      <li><strong>责任领域 4:</strong> 详细说明</li>
-      <li><strong>责任领域 5:</strong> 详细说明</li>
-    </ul>
+      {/* 2. Core Responsibilities - 必需 */}
+      <h2>Core Responsibilities</h2>
+      <ul>
+        <li>
+          <strong>责任领域 1:</strong> 详细说明
+        </li>
+        <li>
+          <strong>责任领域 2:</strong> 详细说明
+        </li>
+        <li>
+          <strong>责任领域 3:</strong> 详细说明
+        </li>
+        <li>
+          <strong>责任领域 4:</strong> 详细说明
+        </li>
+        <li>
+          <strong>责任领域 5:</strong> 详细说明
+        </li>
+      </ul>
 
-    {/* 3. Required Skills - 必需 */}
-    <h2>Required Skills</h2>
+      {/* 3. Required Skills - 必需 */}
+      <h2>Required Skills</h2>
 
-    <h3>Technical Skills</h3>
-    <ul>
-      <li><strong>技能类别 1:</strong> 具体技能列表</li>
-      <li><strong>技能类别 2:</strong> 具体技能列表</li>
-      <li><strong>技能类别 3:</strong> 具体技能列表</li>
-    </ul>
+      <h3>Technical Skills</h3>
+      <ul>
+        <li>
+          <strong>技能类别 1:</strong> 具体技能列表
+        </li>
+        <li>
+          <strong>技能类别 2:</strong> 具体技能列表
+        </li>
+        <li>
+          <strong>技能类别 3:</strong> 具体技能列表
+        </li>
+      </ul>
 
-    <h3>Soft Skills</h3>
-    <ul>
-      <li><strong>沟通能力:</strong> 说明</li>
-      <li><strong>团队协作:</strong> 说明</li>
-      <li><strong>问题解决:</strong> 说明</li>
-      <li><strong>领导力:</strong> 说明</li>
-    </ul>
+      <h3>Soft Skills</h3>
+      <ul>
+        <li>
+          <strong>沟通能力:</strong> 说明
+        </li>
+        <li>
+          <strong>团队协作:</strong> 说明
+        </li>
+        <li>
+          <strong>问题解决:</strong> 说明
+        </li>
+        <li>
+          <strong>领导力:</strong> 说明
+        </li>
+      </ul>
 
-    {/* 4. Career Path - 必需 */}
-    <h2>Career Path</h2>
+      {/* 4. Career Path - 必需 */}
+      <h2>Career Path</h2>
 
-    <h3>Entry Level (0-2 years)</h3>
-    <p><strong>典型职位:</strong> Junior/Associate Position</p>
-    <p><strong>主要职责:</strong> 入门级工作描述</p>
-    <p><strong>技能要求:</strong> 基础技能列表</p>
+      <h3>Entry Level (0-2 years)</h3>
+      <p>
+        <strong>典型职位:</strong> Junior/Associate Position
+      </p>
+      <p>
+        <strong>主要职责:</strong> 入门级工作描述
+      </p>
+      <p>
+        <strong>技能要求:</strong> 基础技能列表
+      </p>
 
-    <h3>Mid Level (2-5 years)</h3>
-    <p><strong>典型职位:</strong> Position / Senior Associate</p>
-    <p><strong>主要职责:</strong> 中级工作描述</p>
-    <p><strong>技能要求:</strong> 进阶技能列表</p>
+      <h3>Mid Level (2-5 years)</h3>
+      <p>
+        <strong>典型职位:</strong> Position / Senior Associate
+      </p>
+      <p>
+        <strong>主要职责:</strong> 中级工作描述
+      </p>
+      <p>
+        <strong>技能要求:</strong> 进阶技能列表
+      </p>
 
-    <h3>Senior Level (5-8 years)</h3>
-    <p><strong>典型职位:</strong> Senior Position / Lead</p>
-    <p><strong>主要职责:</strong> 高级工作描述</p>
-    <p><strong>技能要求:</strong> 专家级技能列表</p>
+      <h3>Senior Level (5-8 years)</h3>
+      <p>
+        <strong>典型职位:</strong> Senior Position / Lead
+      </p>
+      <p>
+        <strong>主要职责:</strong> 高级工作描述
+      </p>
+      <p>
+        <strong>技能要求:</strong> 专家级技能列表
+      </p>
 
-    <h3>Leadership (8+ years)</h3>
-    <p><strong>典型职位:</strong> Manager / Director / VP</p>
-    <p><strong>主要职责:</strong> 领导级工作描述</p>
-    <p><strong>技能要求:</strong> 战略级技能列表</p>
+      <h3>Leadership (8+ years)</h3>
+      <p>
+        <strong>典型职位:</strong> Manager / Director / VP
+      </p>
+      <p>
+        <strong>主要职责:</strong> 领导级工作描述
+      </p>
+      <p>
+        <strong>技能要求:</strong> 战略级技能列表
+      </p>
 
-    {/* 5. Salary Range - 必需 */}
-    <h2>Salary Range</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Level</th>
-          <th>United States</th>
-          <th>Europe</th>
-          <th>Asia-Pacific</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Entry (0-2 years)</td>
-          <td>$XX,XXX - $XX,XXX</td>
-          <td>€XX,XXX - €XX,XXX</td>
-          <td>$XX,XXX - $XX,XXX</td>
-        </tr>
-        <tr>
-          <td>Mid (2-5 years)</td>
-          <td>$XX,XXX - $XX,XXX</td>
-          <td>€XX,XXX - €XX,XXX</td>
-          <td>$XX,XXX - $XX,XXX</td>
-        </tr>
-        <tr>
-          <td>Senior (5-8 years)</td>
-          <td>$XX,XXX - $XX,XXX</td>
-          <td>€XX,XXX - €XX,XXX</td>
-          <td>$XX,XXX - $XX,XXX</td>
-        </tr>
-        <tr>
-          <td>Lead/Manager (8+ years)</td>
-          <td>$XX,XXX - $XX,XXX</td>
-          <td>€XX,XXX - €XX,XXX</td>
-          <td>$XX,XXX - $XX,XXX</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="text-sm text-notion-text-light mt-2">
-      *Salary ranges vary by company size, location, and industry. Data based on 2024-2025 market research.
-    </p>
+      {/* 5. Salary Range - 必需 */}
+      <h2>Salary Range</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>United States</th>
+            <th>Europe</th>
+            <th>Asia-Pacific</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Entry (0-2 years)</td>
+            <td>$XX,XXX - $XX,XXX</td>
+            <td>€XX,XXX - €XX,XXX</td>
+            <td>$XX,XXX - $XX,XXX</td>
+          </tr>
+          <tr>
+            <td>Mid (2-5 years)</td>
+            <td>$XX,XXX - $XX,XXX</td>
+            <td>€XX,XXX - €XX,XXX</td>
+            <td>$XX,XXX - $XX,XXX</td>
+          </tr>
+          <tr>
+            <td>Senior (5-8 years)</td>
+            <td>$XX,XXX - $XX,XXX</td>
+            <td>€XX,XXX - €XX,XXX</td>
+            <td>$XX,XXX - $XX,XXX</td>
+          </tr>
+          <tr>
+            <td>Lead/Manager (8+ years)</td>
+            <td>$XX,XXX - $XX,XXX</td>
+            <td>€XX,XXX - €XX,XXX</td>
+            <td>$XX,XXX - $XX,XXX</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-sm text-notion-text-light mt-2">
+        *Salary ranges vary by company size, location, and industry. Data based
+        on 2024-2025 market research.
+      </p>
 
-    {/* 6. Education & Qualifications */}
-    <h2>Education & Qualifications</h2>
-    <h3>Educational Background</h3>
-    <ul>
-      <li><strong>最低学历:</strong> 说明</li>
-      <li><strong>推荐学历:</strong> 说明</li>
-      <li><strong>相关专业:</strong> 专业列表</li>
-    </ul>
+      {/* 6. Education & Qualifications */}
+      <h2>Education & Qualifications</h2>
+      <h3>Educational Background</h3>
+      <ul>
+        <li>
+          <strong>最低学历:</strong> 说明
+        </li>
+        <li>
+          <strong>推荐学历:</strong> 说明
+        </li>
+        <li>
+          <strong>相关专业:</strong> 专业列表
+        </li>
+      </ul>
 
-    <h3>Certifications & Training</h3>
-    <ul>
-      <li><strong>行业认证:</strong> 证书列表</li>
-      <li><strong>推荐课程:</strong> 课程建议</li>
-      <li><strong>在线资源:</strong> 学习资源</li>
-    </ul>
+      <h3>Certifications & Training</h3>
+      <ul>
+        <li>
+          <strong>行业认证:</strong> 证书列表
+        </li>
+        <li>
+          <strong>推荐课程:</strong> 课程建议
+        </li>
+        <li>
+          <strong>在线资源:</strong> 学习资源
+        </li>
+      </ul>
 
-    {/* 7. Industry Outlook */}
-    <h2>Industry Outlook</h2>
-    <p><strong>就业前景:</strong> 行业增长趋势和就业机会分析</p>
-    <p><strong>市场需求:</strong> 当前和未来需求分析</p>
-    <p><strong>技术趋势:</strong> 影响该职位的技术变革</p>
+      {/* 7. Industry Outlook */}
+      <h2>Industry Outlook</h2>
+      <p>
+        <strong>就业前景:</strong> 行业增长趋势和就业机会分析
+      </p>
+      <p>
+        <strong>市场需求:</strong> 当前和未来需求分析
+      </p>
+      <p>
+        <strong>技术趋势:</strong> 影响该职位的技术变革
+      </p>
 
-    {/* 8. Getting Started */}
-    <h2>Getting Started</h2>
-    <h3>For Students & Recent Graduates</h3>
-    <ol>
-      <li>步骤 1: 详细说明</li>
-      <li>步骤 2: 详细说明</li>
-      <li>步骤 3: 详细说明</li>
-    </ol>
+      {/* 8. Getting Started */}
+      <h2>Getting Started</h2>
+      <h3>For Students & Recent Graduates</h3>
+      <ol>
+        <li>步骤 1: 详细说明</li>
+        <li>步骤 2: 详细说明</li>
+        <li>步骤 3: 详细说明</li>
+      </ol>
 
-    <h3>For Career Switchers</h3>
-    <ol>
-      <li>步骤 1: 详细说明</li>
-      <li>步骤 2: 详细说明</li>
-      <li>步骤 3: 详细说明</li>
-    </ol>
+      <h3>For Career Switchers</h3>
+      <ol>
+        <li>步骤 1: 详细说明</li>
+        <li>步骤 2: 详细说明</li>
+        <li>步骤 3: 详细说明</li>
+      </ol>
 
-    {/* 9. Resources (可选) */}
-    <h2>Additional Resources</h2>
-    <ul>
-      <li><strong>Industry Associations:</strong> 行业组织</li>
-      <li><strong>Online Communities:</strong> 在线社区</li>
-      <li><strong>Recommended Reading:</strong> 推荐书籍/文章</li>
-    </ul>
-  </>
-)}
+      {/* 9. Resources (可选) */}
+      <h2>Additional Resources</h2>
+      <ul>
+        <li>
+          <strong>Industry Associations:</strong> 行业组织
+        </li>
+        <li>
+          <strong>Online Communities:</strong> 在线社区
+        </li>
+        <li>
+          <strong>Recommended Reading:</strong> 推荐书籍/文章
+        </li>
+      </ul>
+    </>
+  )
+}
 ```
 
 ---
@@ -542,6 +647,7 @@ Last update: 2025-11-13  ← 改为当前日期
 **原因**: 只更新了动态路由，忘记更新列表页
 
 **解决方案**:
+
 1. 检查 `src/pages/report/[slug].astro` - slug、metadata、内容 ✓
 2. **检查 `src/pages/report.astro`** - 是否添加了卡片？
 3. 清除浏览器缓存重新访问
@@ -555,6 +661,7 @@ Last update: 2025-11-13  ← 改为当前日期
 **原因**: slug 不一致或路径错误
 
 **检查清单**:
+
 - [ ] `getStaticPaths()` 中的 slug 拼写是否正确
 - [ ] 列表页链接的 URL 是否匹配 slug
 - [ ] 内容块的条件判断 `{slug === 'xxx'}` 是否正确
@@ -566,6 +673,7 @@ Last update: 2025-11-13  ← 改为当前日期
 **原因**: 忘记更新 `public/llms.txt`
 
 **解决方案**:
+
 1. 打开 `public/llms.txt`
 2. 在对应部分添加新页面条目
 3. 包含: 标题、URL、描述、话题标签
@@ -578,6 +686,7 @@ Last update: 2025-11-13  ← 改为当前日期
 **原因**: 使用了错误的布局或 CSS 类
 
 **检查**:
+
 - Report/Wiki 详情页应使用 `NotionLayout`
 - 列表页应使用 `MainLayout`
 - 使用 Notion 风格的 CSS 类: `text-notion-text`, `border-notion-border` 等
@@ -588,10 +697,8 @@ Last update: 2025-11-13  ← 改为当前日期
 
 ### 核心信息
 
-**网站**: https://tying.ai
-**类型**: 职业指导和行业分析平台
-**设计风格**: Notion 风格极简主义
-**部署**: Cloudflare Pages (自动部署)
+**网站**: https://tying.ai **类型**: 职业指导和行业分析平台 **设计风格**:
+Notion 风格极简主义 **部署**: Cloudflare Pages (自动部署)
 
 ### 主要板块
 
@@ -615,6 +722,7 @@ Last update: 2025-11-13  ← 改为当前日期
 ## 技术栈
 
 ### 核心框架
+
 ```json
 {
   "astro": "^5.15.5",
@@ -625,17 +733,19 @@ Last update: 2025-11-13  ← 改为当前日期
 ```
 
 ### 关键依赖
+
 - `@astrojs/tailwind` - Tailwind CSS 集成
 - `@astrojs/sitemap` - 自动生成 sitemap.xml
 - `tailwindcss` - 实用工具类 CSS 框架
 
 ### 构建配置
+
 ```javascript
 // astro.config.mjs
 export default defineConfig({
   site: 'https://tying.ai',
   output: 'static',
-  integrations: [tailwind(), sitemap()]
+  integrations: [tailwind(), sitemap()],
 });
 ```
 
@@ -648,17 +758,17 @@ export default defineConfig({
 ```css
 :root {
   /* 文字颜色 */
-  --text-primary: #37352F;      /* 主要文字 - 深灰黑 */
-  --text-secondary: #787774;    /* 次要文字 - 中灰 */
-  --text-tertiary: #9B9A97;     /* 三级文字 - 浅灰 */
+  --text-primary: #37352f; /* 主要文字 - 深灰黑 */
+  --text-secondary: #787774; /* 次要文字 - 中灰 */
+  --text-tertiary: #9b9a97; /* 三级文字 - 浅灰 */
 
   /* 背景颜色 */
-  --bg-primary: #FFFFFF;        /* 主背景 - 白色 */
-  --bg-secondary: #F7F6F3;      /* 次要背景 - 浅灰 */
-  --bg-hover: #F1F0ED;          /* 悬停背景 */
+  --bg-primary: #ffffff; /* 主背景 - 白色 */
+  --bg-secondary: #f7f6f3; /* 次要背景 - 浅灰 */
+  --bg-hover: #f1f0ed; /* 悬停背景 */
 
   /* 边框颜色 */
-  --border-primary: #E9E9E7;    /* 主边框 - 浅灰 */
+  --border-primary: #e9e9e7; /* 主边框 - 浅灰 */
 }
 ```
 
@@ -677,8 +787,8 @@ export default {
         'notion-bg-secondary': '#F7F6F3',
       },
       maxWidth: {
-        'notion-narrow': '700px',   // 文章内容宽度
-        'notion-wide': '1200px',    // 列表页面宽度
+        'notion-narrow': '700px', // 文章内容宽度
+        'notion-wide': '1200px', // 列表页面宽度
       },
     },
   },
@@ -688,6 +798,7 @@ export default {
 ### 常用样式组合
 
 **卡片样式**:
+
 ```html
 <div class="p-6 border border-notion-border hover:border-notion-text">
   <!-- 内容 -->
@@ -695,6 +806,7 @@ export default {
 ```
 
 **分隔线**:
+
 ```html
 <div class="pb-6 border-b border-notion-border">
   <!-- 内容 -->
@@ -702,6 +814,7 @@ export default {
 ```
 
 **文字样式**:
+
 ```html
 <p class="text-notion-text">主要文字</p>
 <p class="text-notion-text-light">次要文字</p>
@@ -709,11 +822,13 @@ export default {
 ```
 
 **链接样式**:
+
 ```html
 <a href="..." class="text-notion-text underline">链接文字</a>
 ```
 
 **容器宽度**:
+
 ```html
 <!-- 列表页面，最大宽度 1200px -->
 <div class="max-w-notion-wide mx-auto px-8 py-12">
@@ -727,6 +842,7 @@ export default {
 ```
 
 **网格布局**:
+
 ```html
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   <!-- 移动端单列，桌面端双列 -->
@@ -734,6 +850,7 @@ export default {
 ```
 
 **垂直间距**:
+
 ```html
 <div class="space-y-6">
   <!-- 子元素之间间距 24px -->
@@ -782,17 +899,20 @@ tying.ai/
 ## 布局组件详解
 
 ### BaseLayout
+
 - **用途**: 最基础的 HTML 结构
 - **特性**: SEO meta 标签、结构化数据、Open Graph
 - **位置**: `src/layouts/BaseLayout.astro`
 
 ### MainLayout
+
 - **用途**: 列表页布局
 - **特性**: 顶部导航栏、页脚、响应式
 - **使用**: `/wiki`, `/report`, `/`
 - **位置**: `src/layouts/MainLayout.astro`
 
 ### NotionLayout
+
 - **用途**: 详情页/文章布局
 - **特性**: 窄栏内容区（700px）、面包屑导航、Notion 风格排版
 - **使用**: `/wiki/[slug]`, `/report/[slug]`
@@ -805,6 +925,7 @@ tying.ai/
 ### 自动部署
 
 1. **推送到 GitHub**:
+
 ```bash
 git add .
 git commit -m "feat: 添加新内容"
@@ -919,4 +1040,4 @@ chore: 构建/工具更新
 
 ---
 
-*本文档持续更新 - 最后更新: 2025-11-16*
+_本文档持续更新 - 最后更新: 2025-11-16_

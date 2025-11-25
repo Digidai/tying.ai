@@ -1,10 +1,6 @@
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
-  content: [
-    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-    './public/**/*.html',
-  ],
+/** @type {import('tailwindcss').Config} */
+const config = {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}', './public/**/*.html'],
 
   theme: {
     extend: {
@@ -36,10 +32,10 @@ const config: Config = {
         mono: ['SF Mono', 'Monaco', 'Inconsolata', 'monospace'],
       },
       fontSize: {
-        sm: '0.875rem',   // 14px
-        base: '1rem',     // 16px
-        lg: '1.25rem',    // 20px
-        xl: '2rem',       // 32px
+        sm: '0.875rem', // 14px
+        base: '1rem', // 16px
+        lg: '1.25rem', // 20px
+        xl: '2rem', // 32px
       },
       lineHeight: {
         tight: '1.4',
@@ -47,16 +43,16 @@ const config: Config = {
         relaxed: '1.8',
       },
       spacing: {
-        '1': '0.5rem',   // 8px
-        '2': '1rem',     // 16px
-        '3': '1.5rem',   // 24px
-        '4': '2rem',     // 32px
-        '6': '3rem',     // 48px
-        '8': '4rem',     // 64px
-        '12': '6rem',    // 96px
+        1: '0.5rem', // 8px
+        2: '1rem', // 16px
+        3: '1.5rem', // 24px
+        4: '2rem', // 32px
+        6: '3rem', // 48px
+        8: '4rem', // 64px
+        12: '6rem', // 96px
       },
       borderRadius: {
-        sm: '0.125rem',  // 2px
+        sm: '0.125rem', // 2px
         base: '0.25rem', // 4px
       },
       maxWidth: {
@@ -66,9 +62,7 @@ const config: Config = {
     },
   },
 
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('@tailwindcss/typography')],
 };
 
 export default config;

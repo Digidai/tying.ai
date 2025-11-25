@@ -11,7 +11,7 @@ export interface Props {
 const {
   title,
   description,
-  image = "https://placehold.co/1200x630/png?text=Tying.ai",
+  image = 'https://placehold.co/1200x630/png?text=Tying.ai',
   breadcrumbs = [],
 } = Astro.props;
 ---
@@ -32,9 +32,19 @@ const {
           <a href="/report" class="text-notion-text hover:no-underline">Industry Reports</a>
         </div>
 
-        <button class="md:hidden p-2" id="mobile-menu-button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+        <button
+          class="md:hidden p-2"
+          id="mobile-menu-button"
+          aria-label="Menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
@@ -54,16 +64,20 @@ const {
   <main class="min-h-screen bg-white">
     <article class="max-w-notion-narrow mx-auto px-8 py-12">
       <!-- 面包屑导航 -->
-      {breadcrumbs.length > 0 && (
-        <nav class="flex items-center space-x-2 text-sm text-notion-text-light mb-8">
-          {breadcrumbs.map((crumb, index) => (
-            <>
-              <a href={crumb.href} class="hover:text-notion-text">{crumb.label}</a>
-              {index < breadcrumbs.length - 1 && <span>/</span>}
-            </>
-          ))}
-        </nav>
-      )}
+      {
+        breadcrumbs.length > 0 && (
+          <nav class="flex items-center space-x-2 text-sm text-notion-text-light mb-8">
+            {breadcrumbs.map((crumb, index) => (
+              <>
+                <a href={crumb.href} class="hover:text-notion-text">
+                  {crumb.label}
+                </a>
+                {index < breadcrumbs.length - 1 && <span>/</span>}
+              </>
+            ))}
+          </nav>
+        )
+      }
 
       <!-- 页面标题 -->
       <h1 class="text-4xl font-bold text-notion-text mb-8">{title}</h1>
@@ -188,18 +202,3 @@ const {
     font-weight: var(--font-weight-semibold);
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
-        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-        mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-  });
-</script>

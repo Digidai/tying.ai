@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/triple-slash-reference */
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
+/* eslint-enable @typescript-eslint/triple-slash-reference */
 
 // Import meta environment variables
 interface ImportMetaEnv {
@@ -9,6 +11,8 @@ interface ImportMetaEnv {
   readonly BASE_URL: string;
   readonly SITE?: string;
   readonly ASSETS_PREFIX?: string;
+  readonly PUBLIC_OPENROUTER_API_KEY?: string;
+  readonly PUBLIC_JINA_API_KEY?: string;
 }
 
 /* eslint-disable @typescript-eslint/no-unused-vars */

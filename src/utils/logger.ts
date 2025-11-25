@@ -58,7 +58,7 @@ export const logger = {
     if (isDev) {
       console.groupEnd();
     }
-  }
+  },
 };
 
 // Default export for convenience

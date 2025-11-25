@@ -100,24 +100,11 @@ export class DataService {
 
     let filteredPositions = [...this.positions];
 
-    // 应用筛选条件
+    // 应用筛选条件（仅标题关键词）
     filteredPositions = this.applyFilters(filteredPositions, filters);
 
-    // 排序
-    const sortOption = filters.sort || 'newest';
-    filteredPositions.sort((a, b) => {
-      if (sortOption === 'salary-desc') {
-        const aMax = a.salary?.max ?? a.salary?.min ?? 0;
-        const bMax = b.salary?.max ?? b.salary?.min ?? 0;
-        return bMax - aMax;
-      }
-      if (sortOption === 'salary-asc') {
-        const aMin = a.salary?.min ?? a.salary?.max ?? 0;
-        const bMin = b.salary?.min ?? b.salary?.max ?? 0;
-        return aMin - bMin;
-      }
-      return b.postedAt.getTime() - a.postedAt.getTime();
-    });
+    // 按发布时间排序
+    filteredPositions.sort((a, b) => b.postedAt.getTime() - a.postedAt.getTime());
 
     // 分页
     const total = filteredPositions.length;
@@ -142,71 +129,10 @@ export class DataService {
    */
   private applyFilters(positions: Position[], filters: SearchFilters): Position[] {
     return positions.filter(position => {
-      // 关键词搜索
       if (filters.keywords) {
         const keywords = filters.keywords.toLowerCase();
-        const searchText = `${position.title} ${position.description} ${position.company} ${position.skills.join(' ')}`.toLowerCase();
-        if (!searchText.includes(keywords)) {
-          return false;
-        }
+        return position.title.toLowerCase().includes(keywords);
       }
-
-      // 地点筛选
-      if (filters.location && !position.location.toLowerCase().includes(filters.location.toLowerCase())) {
-        return false;
-      }
-
-      // 职位类型筛选
-      if (filters.type && filters.type.length > 0 && !filters.type.includes(position.type)) {
-        return false;
-      }
-
-      // 经验级别筛选
-      if (filters.experience && filters.experience.length > 0 && !filters.experience.includes(position.experience)) {
-        return false;
-      }
-
-      // 远程类型筛选
-      if (filters.remote && filters.remote.length > 0 && (!position.remote || !filters.remote.includes(position.remote))) {
-        return false;
-      }
-
-      // 薪资范围筛选
-      if (filters.salaryMin && position.salary) {
-        const salaryMax = position.salary.max ?? position.salary.min ?? 0;
-        if (salaryMax < filters.salaryMin) {
-          return false;
-        }
-      }
-      if (filters.salaryMax && position.salary) {
-        const salaryMin = position.salary.min ?? position.salary.max ?? 0;
-        if (salaryMin > filters.salaryMax) {
-          return false;
-        }
-      }
-
-      // 公司筛选
-      if (filters.company && filters.company.length > 0 && !filters.company.includes(position.company)) {
-        return false;
-      }
-
-      // 技能筛选
-      if (filters.skills && filters.skills.length > 0) {
-        const hasRequiredSkills = filters.skills.some(skill =>
-          position.skills.some(positionSkill =>
-            positionSkill.toLowerCase().includes(skill.toLowerCase())
-          )
-        );
-        if (!hasRequiredSkills) {
-          return false;
-        }
-      }
-
-      // 签证支持筛选
-      if (filters.visa && position.visa !== filters.visa) {
-        return false;
-      }
-
       return true;
     });
   }
@@ -277,7 +203,10 @@ export class DataService {
   /**
    * 获取推荐职位
    */
-  async getRecommendedPositions(userPreferences?: Partial<SearchFilters>, limit = 10): Promise<Position[]> {
+  async getRecommendedPositions(
+    userPreferences?: Partial<SearchFilters>,
+    limit = 10,
+  ): Promise<Position[]> {
     await this.initialize();
     // 简单的推荐算法 - 基于技能匹配和新鲜度
     return this.positions
@@ -285,7 +214,8 @@ export class DataService {
       .sort((a, b) => {
         // 优先考虑最近发布的职位
         const dateDiff = b.postedAt.getTime() - a.postedAt.getTime();
-        if (Math.abs(dateDiff) > 7 * 24 * 60 * 60 * 1000) { // 7天内
+        if (Math.abs(dateDiff) > 7 * 24 * 60 * 60 * 1000) {
+          // 7天内
           return dateDiff;
         }
         // 随机排序以提供多样性
@@ -316,14 +246,14 @@ export class DataService {
           id: 'eng',
           name: 'Engineering',
           description: 'Software development and engineering roles',
-          icon: '💻'
+          icon: '💻',
         },
         experience: 'senior',
         salary: {
           min: 120000,
           max: 180000,
           currency: 'USD',
-          period: 'yearly'
+          period: 'yearly',
         },
         description: 'We are looking for an experienced frontend developer to join our team.',
         requirements: ['5+ years of experience', 'React expertise', 'TypeScript knowledge'],
@@ -334,7 +264,7 @@ export class DataService {
         isActive: true,
         remote: 'hybrid',
         visa: 'yes',
-        tags: ['frontend', 'react', 'typescript', 'senior']
+        tags: ['frontend', 'react', 'typescript', 'senior'],
       },
       {
         id: 'pos_2',
@@ -346,17 +276,21 @@ export class DataService {
           id: 'pm',
           name: 'Product Management',
           description: 'Product strategy and management roles',
-          icon: '📊'
+          icon: '📊',
         },
         experience: 'mid',
         salary: {
           min: 100000,
           max: 150000,
           currency: 'USD',
-          period: 'yearly'
+          period: 'yearly',
         },
         description: 'Join our product team to help shape the future of our platform.',
-        requirements: ['3+ years product management experience', 'Analytical skills', 'Communication skills'],
+        requirements: [
+          '3+ years product management experience',
+          'Analytical skills',
+          'Communication skills',
+        ],
         responsibilities: ['Product strategy', 'Roadmap planning', 'Stakeholder management'],
         benefits: ['Equity', 'Flexible hours', 'Professional development'],
         skills: ['Product Strategy', 'Analytics', 'Communication', 'Leadership'],
@@ -364,7 +298,7 @@ export class DataService {
         isActive: true,
         remote: 'remote',
         visa: 'potential',
-        tags: ['product', 'strategy', 'analytics', 'remote']
+        tags: ['product', 'strategy', 'analytics', 'remote'],
       },
       {
         id: 'pos_3',
@@ -376,14 +310,14 @@ export class DataService {
           id: 'design',
           name: 'Design',
           description: 'UI/UX and design roles',
-          icon: '🎨'
+          icon: '🎨',
         },
         experience: 'mid',
         salary: {
           min: 85000,
           max: 120000,
           currency: 'USD',
-          period: 'yearly'
+          period: 'yearly',
         },
         description: 'Creative UX designer needed for innovative product design.',
         requirements: ['Portfolio required', '3+ years experience', 'Figma proficiency'],
@@ -394,8 +328,8 @@ export class DataService {
         isActive: true,
         remote: 'flexible',
         visa: 'yes',
-        tags: ['ux', 'design', 'figma', 'research']
-      }
+        tags: ['ux', 'design', 'figma', 'research'],
+      },
     ];
   }
 }

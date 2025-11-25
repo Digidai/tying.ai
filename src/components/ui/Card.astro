@@ -3,9 +3,7 @@ export interface Props {
   class?: string;
 }
 
-const {
-  class: className = '',
-} = Astro.props;
+const { class: className = '' } = Astro.props;
 
 // Notion 风格卡片 - 纯白背景 + 细边框
 const cssClasses = `bg-white border border-notion-border ${className}`;

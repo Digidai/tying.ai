@@ -5,14 +5,14 @@ import { loadPositions } from '@/utils/positions';
 export async function getStaticPaths() {
   const positions = await loadPositions();
 
-  return positions.map((position) => ({
+  return positions.map(position => ({
     params: { id: position.id },
   }));
 }
 
 const { id } = Astro.params;
 const positions = await loadPositions();
-const position = positions.find((item) => item.id === id);
+const position = positions.find(item => item.id === id);
 
 if (!position) {
   return Astro.redirect('/search');
@@ -52,12 +52,14 @@ function formatSalary() {
       <span>{position.company}</span>
       <span>•</span>
       <span>{position.location}</span>
-      {position.remote && (
-        <>
-          <span>•</span>
-          <span>{position.remote.replace('-', ' ')}</span>
-        </>
-      )}
+      {
+        position.remote && (
+          <>
+            <span>•</span>
+            <span>{position.remote.replace('-', ' ')}</span>
+          </>
+        )
+      }
       <span>•</span>
       <span>{position.type.replace('-', ' ')}</span>
       <span>•</span>
@@ -72,7 +74,15 @@ function formatSalary() {
         </div>
         <div>
           <dt class="text-notion-text-light mb-1">Posted</dt>
-          <dd>{position.postedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</dd>
+          <dd>
+            {
+              position.postedAt.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })
+            }
+          </dd>
         </div>
         <div>
           <dt class="text-notion-text-light mb-1">Visa Support</dt>
@@ -91,49 +101,59 @@ function formatSalary() {
         <p>{position.description}</p>
       </section>
 
-      {position.requirements.length > 0 && (
-        <section>
-          <h2>Requirements</h2>
-          <ul>
-            {position.requirements.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {
+        position.requirements.length > 0 && (
+          <section>
+            <h2>Requirements</h2>
+            <ul>
+              {position.requirements.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
 
-      {position.responsibilities.length > 0 && (
-        <section>
-          <h2>Responsibilities</h2>
-          <ul>
-            {position.responsibilities.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {
+        position.responsibilities.length > 0 && (
+          <section>
+            <h2>Responsibilities</h2>
+            <ul>
+              {position.responsibilities.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
 
-      {position.skills.length > 0 && (
-        <section>
-          <h2>Key Skills</h2>
-          <div class="flex flex-wrap gap-2">
-            {position.skills.map((skill) => (
-              <span class="px-3 py-1 border border-notion-border rounded-full text-sm">{skill}</span>
-            ))}
-          </div>
-        </section>
-      )}
+      {
+        position.skills.length > 0 && (
+          <section>
+            <h2>Key Skills</h2>
+            <div class="flex flex-wrap gap-2">
+              {position.skills.map(skill => (
+                <span class="px-3 py-1 border border-notion-border rounded-full text-sm">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </section>
+        )
+      }
 
-      {position.benefits && position.benefits.length > 0 && (
-        <section>
-          <h2>Benefits</h2>
-          <ul>
-            {position.benefits.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {
+        position.benefits && position.benefits.length > 0 && (
+          <section>
+            <h2>Benefits</h2>
+            <ul>
+              {position.benefits.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
     </article>
   </section>
 </NotionLayout>
