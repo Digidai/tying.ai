@@ -12,6 +12,8 @@ export interface Props {
   class?: string;
   keywords?: string;
   customStructuredData?: Record<string, unknown>;
+  publishedAt?: Date;
+  updatedAt?: Date;
 }
 
 const defaultOgImage = 'https://placehold.co/1200x630/png?text=Tying.ai';
@@ -28,6 +30,8 @@ const {
   class: className = '',
   keywords,
   customStructuredData,
+  publishedAt,
+  updatedAt,
 } = Astro.props;
 
 // 网站配置
@@ -65,8 +69,8 @@ const structuredData = {
       '@type': 'Person',
       name: siteConfig.author,
     },
-    datePublished: new Date().toISOString(),
-    dateModified: new Date().toISOString(),
+    datePublished: (publishedAt ?? new Date()).toISOString(),
+    dateModified: (updatedAt ?? publishedAt ?? new Date()).toISOString(),
     headline: title,
     mainEntityOfPage: {
       '@type': 'WebPage',

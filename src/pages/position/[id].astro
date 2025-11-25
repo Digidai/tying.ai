@@ -1,5 +1,6 @@
 ---
 import NotionLayout from '@/layouts/NotionLayout.astro';
+import Button from '@/components/ui/Button.astro';
 import { loadPositions } from '@/utils/positions';
 
 export async function getStaticPaths() {
@@ -12,11 +13,16 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params;
 const positions = await loadPositions();
-const position = positions.find(item => item.id === id);
+const currentIndex = positions.findIndex(item => item.id === id);
+const position = positions[currentIndex];
 
 if (!position) {
   return Astro.redirect('/search');
 }
+
+// Calculate previous and next positions
+const prevPosition = currentIndex > 0 ? positions[currentIndex - 1] : null;
+const nextPosition = currentIndex < positions.length - 1 ? positions[currentIndex + 1] : null;
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
@@ -47,78 +53,85 @@ function formatSalary() {
   description={position.description}
   breadcrumbs={breadcrumbs}
 >
-  <section class="space-y-6">
-    <div class="flex flex-wrap gap-4 text-sm text-notion-text-light">
-      <span>{position.company}</span>
-      <span>•</span>
-      <span>{position.location}</span>
-      {
-        position.remote && (
-          <>
-            <span>•</span>
-            <span>{position.remote.replace('-', ' ')}</span>
-          </>
-        )
-      }
-      <span>•</span>
-      <span>{position.type.replace('-', ' ')}</span>
-      <span>•</span>
-      <span>Experience: {position.experience}</span>
+  <div class="space-y-8">
+    {/* Header Meta Info */}
+    <div class="space-y-4">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-notion-text-light">
+        <span class="font-medium text-notion-text">{position.company}</span>
+        <span class="text-gray-300">•</span>
+        <span>{position.location}</span>
+        {
+          position.remote && (
+            <>
+              <span class="text-gray-300">•</span>
+              <span class="capitalize">{position.remote.replace('-', ' ')}</span>
+            </>
+          )
+        }
+        <span class="text-gray-300">•</span>
+        <span class="capitalize">{position.type.replace('-', ' ')}</span>
+      </div>
+
+      {/* Tags */}
+      {position.tags && position.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {position.tags.map(tag => (
+            <span class="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded border border-gray-200">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
 
-    <div class="border border-notion-border rounded-lg p-4 bg-white">
-      <dl class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-        <div>
-          <dt class="text-notion-text-light mb-1">Salary Range</dt>
-          <dd class="text-notion-text font-semibold">{formatSalary()}</dd>
-        </div>
-        <div>
-          <dt class="text-notion-text-light mb-1">Posted</dt>
-          <dd>
-            {
-              position.postedAt.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-              })
-            }
-          </dd>
-        </div>
-        <div>
-          <dt class="text-notion-text-light mb-1">Visa Support</dt>
-          <dd>{position.visa ?? 'Not specified'}</dd>
-        </div>
-        <div>
-          <dt class="text-notion-text-light mb-1">Work Mode</dt>
-          <dd>{position.remote ? position.remote.replace('-', ' ') : 'Not specified'}</dd>
-        </div>
-      </dl>
+    {/* Key Details Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-gray-50 rounded-xl border border-notion-border">
+      <div class="space-y-1">
+        <dt class="text-xs font-medium text-notion-text-light uppercase tracking-wider">Salary Range</dt>
+        <dd class="text-lg font-semibold text-notion-text">{formatSalary()}</dd>
+      </div>
+      
+      <div class="space-y-1">
+        <dt class="text-xs font-medium text-notion-text-light uppercase tracking-wider">Experience Level</dt>
+        <dd class="text-lg font-semibold text-notion-text capitalize">{position.experience}</dd>
+      </div>
+
+      <div class="space-y-1">
+        <dt class="text-xs font-medium text-notion-text-light uppercase tracking-wider">Posted Date</dt>
+        <dd class="text-notion-text">
+          {
+            position.postedAt.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })
+          }
+        </dd>
+      </div>
+
+      <div class="space-y-1">
+        <dt class="text-xs font-medium text-notion-text-light uppercase tracking-wider">Visa Support</dt>
+        <dd class="flex items-center gap-2">
+          <span class={`w-2 h-2 rounded-full ${position.visa === 'yes' ? 'bg-green-500' : position.visa === 'potential' ? 'bg-yellow-500' : 'bg-red-400'}`}></span>
+          <span class="capitalize">{position.visa || 'Not specified'}</span>
+        </dd>
+      </div>
     </div>
 
-    <article class="space-y-6">
+    <div class="border-t border-notion-border my-8"></div>
+
+    {/* Main Content */}
+    <article class="prose prose-slate max-w-none prose-headings:font-semibold prose-headings:text-notion-text prose-p:text-notion-text prose-li:text-notion-text">
       <section>
-        <h2>Description</h2>
-        <p>{position.description}</p>
+        <h2 class="text-xl mb-4">About the Role</h2>
+        <p class="whitespace-pre-line">{position.description}</p>
       </section>
 
       {
-        position.requirements.length > 0 && (
-          <section>
-            <h2>Requirements</h2>
-            <ul>
-              {position.requirements.map(item => (
-                <li>{item}</li>
-              ))}
-            </ul>
-          </section>
-        )
-      }
-
-      {
         position.responsibilities.length > 0 && (
-          <section>
-            <h2>Responsibilities</h2>
-            <ul>
+          <section class="mt-8">
+            <h2 class="text-xl mb-4">Responsibilities</h2>
+            <ul class="list-disc pl-5 space-y-2">
               {position.responsibilities.map(item => (
                 <li>{item}</li>
               ))}
@@ -128,12 +141,25 @@ function formatSalary() {
       }
 
       {
+        position.requirements.length > 0 && (
+          <section class="mt-8">
+            <h2 class="text-xl mb-4">Requirements</h2>
+            <ul class="list-disc pl-5 space-y-2">
+              {position.requirements.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      {
         position.skills.length > 0 && (
-          <section>
-            <h2>Key Skills</h2>
-            <div class="flex flex-wrap gap-2">
+          <section class="mt-8">
+            <h2 class="text-xl mb-4">Required Skills</h2>
+            <div class="flex flex-wrap gap-2 not-prose">
               {position.skills.map(skill => (
-                <span class="px-3 py-1 border border-notion-border rounded-full text-sm">
+                <span class="px-3 py-1 bg-white border border-notion-border rounded-full text-sm text-notion-text shadow-sm">
                   {skill}
                 </span>
               ))}
@@ -144,9 +170,9 @@ function formatSalary() {
 
       {
         position.benefits && position.benefits.length > 0 && (
-          <section>
-            <h2>Benefits</h2>
-            <ul>
+          <section class="mt-8">
+            <h2 class="text-xl mb-4">Benefits</h2>
+            <ul class="list-disc pl-5 space-y-2">
               {position.benefits.map(item => (
                 <li>{item}</li>
               ))}
@@ -155,5 +181,26 @@ function formatSalary() {
         )
       }
     </article>
-  </section>
+
+
+
+    {/* Navigation */}
+    <nav class="mt-12 pt-8 border-t border-notion-border grid grid-cols-1 md:grid-cols-2 gap-4">
+      {prevPosition ? (
+        <a href={`/position/${prevPosition.id}`} class="group block p-4 border border-notion-border rounded-lg hover:border-blue-500 hover:shadow-sm transition-all">
+          <div class="text-xs text-notion-text-light mb-1 uppercase tracking-wider">Previous</div>
+          <div class="font-medium text-notion-text group-hover:text-blue-600 truncate transition-colors">{prevPosition.title}</div>
+          <div class="text-sm text-notion-text-light truncate">{prevPosition.company}</div>
+        </a>
+      ) : <div />}
+      
+      {nextPosition ? (
+        <a href={`/position/${nextPosition.id}`} class="group block p-4 border border-notion-border rounded-lg hover:border-blue-500 hover:shadow-sm transition-all text-right">
+          <div class="text-xs text-notion-text-light mb-1 uppercase tracking-wider">Next</div>
+          <div class="font-medium text-notion-text group-hover:text-blue-600 truncate transition-colors">{nextPosition.title}</div>
+          <div class="text-sm text-notion-text-light truncate">{nextPosition.company}</div>
+        </a>
+      ) : <div />}
+    </nav>
+  </div>
 </NotionLayout>

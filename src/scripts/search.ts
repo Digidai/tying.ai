@@ -224,7 +224,22 @@ export class PositionSearchManager {
       `;
     }
 
-    for (let i = 1; i <= totalPages; i++) {
+    // 限制显示的页码数量，最多显示 7 个页码
+    const maxVisiblePages = 7;
+    const endPage = Math.min(totalPages, this.currentPage + Math.floor(maxVisiblePages / 2));
+    const startPage = Math.max(1, endPage - maxVisiblePages + 1);
+
+    // 显示第一页和省略号
+    if (startPage > 1) {
+      paginationHTML += `
+        <button class="px-3 py-2 border border-neutral-300 rounded-md hover:bg-neutral-50" onclick="searchManager.goToPage(1)">1</button>
+      `;
+      if (startPage > 2) {
+        paginationHTML += `<span class="px-2 text-neutral-400">...</span>`;
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
       const isActive = i === this.currentPage;
       paginationHTML += `
         <button class="px-3 py-2 border rounded-md ${isActive
@@ -233,6 +248,16 @@ export class PositionSearchManager {
         }" onclick="searchManager.goToPage(${i})">
           ${i}
         </button>
+      `;
+    }
+
+    // 显示省略号和最后一页
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        paginationHTML += `<span class="px-2 text-neutral-400">...</span>`;
+      }
+      paginationHTML += `
+        <button class="px-3 py-2 border border-neutral-300 rounded-md hover:bg-neutral-50" onclick="searchManager.goToPage(${totalPages})">${totalPages}</button>
       `;
     }
 
@@ -316,8 +341,9 @@ export class PositionSearchManager {
   private formatDate(date: Date): string {
     const now = new Date();
     const diffTime = now.getTime() - date.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
+    if (diffDays < 0) return '即将发布';
     if (diffDays === 0) return '今天发布';
     if (diffDays === 1) return '昨天发布';
     if (diffDays <= 7) return `${diffDays}天前发布`;

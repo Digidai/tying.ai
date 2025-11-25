@@ -56,7 +56,7 @@ export class DataService {
       const response = await fetch('/data/positions.json');
       if (response.ok) {
         const data = (await response.json()) as RawPosition[];
-        return data.map(this.transformPositionData);
+        return data.map(item => this.transformPositionData(item));
       }
     } catch (error) {
       console.warn('Failed to load positions from local data:', error);
@@ -228,7 +228,7 @@ export class DataService {
    * 生成唯一ID
    */
   private generateId(): string {
-    return `pos_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    return `pos_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
   }
 
   /**
