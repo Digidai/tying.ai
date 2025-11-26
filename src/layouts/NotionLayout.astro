@@ -19,7 +19,7 @@ const {
 <BaseLayout title={title} description={description} image={image}>
   <!-- Notion 风格导航栏 -->
   <header class="border-b border-notion-border bg-white sticky top-0 z-50">
-    <nav class="max-w-notion-wide mx-auto px-8 py-4">
+    <nav class="max-w-notion-wide mx-auto px-4 md:px-8 py-4">
       <div class="flex items-center justify-between">
         <a href="/" class="flex items-center space-x-2">
           <span class="text-lg font-semibold text-notion-text">Tying.ai</span>
@@ -62,17 +62,17 @@ const {
 
   <!-- Notion 风格窄栏内容区 -->
   <main class="min-h-screen bg-white">
-    <article class="max-w-notion-narrow mx-auto px-8 py-12">
+    <article class="max-w-notion-narrow mx-auto px-4 md:px-8 py-12">
       <!-- 面包屑导航 -->
       {
         breadcrumbs.length > 0 && (
-          <nav class="flex items-center space-x-2 text-sm text-notion-text-light mb-8">
+          <nav class="flex flex-wrap items-center gap-2 text-sm text-notion-text-light mb-8">
             {breadcrumbs.map((crumb, index) => (
               <>
-                <a href={crumb.href} class="hover:text-notion-text">
+                <a href={crumb.href} class="hover:text-notion-text truncate max-w-[200px] md:max-w-none">
                   {crumb.label}
                 </a>
-                {index < breadcrumbs.length - 1 && <span>/</span>}
+                {index < breadcrumbs.length - 1 && <span class="text-gray-300">/</span>}
               </>
             ))}
           </nav>
