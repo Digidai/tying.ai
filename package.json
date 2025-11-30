@@ -38,6 +38,8 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
     "alpinejs": "^3.15.2",
     "astro": "^5.16.1",
     "date-fns": "^4.1.0",

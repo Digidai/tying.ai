@@ -1,6 +1,15 @@
 ---
 import mainScriptUrl from '../scripts/main.ts?url';
 import { ClientRouter } from 'astro:transitions';
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/800.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/600.css';
 
 export interface Props {
   title: string;
@@ -216,23 +225,7 @@ const breadcrumbSchema =
     />
     <meta name="theme-color" content="#3b82f6" />
 
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Google Fonts - Optimized loading -->
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
 
     <!-- 样式文件 -->
     <style>
@@ -246,7 +239,6 @@ const breadcrumbSchema =
 
     <!-- DNS预解析 -->
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
 
     <!-- 结构化数据 -->
     <script
