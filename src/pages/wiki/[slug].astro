@@ -97,6 +97,12 @@ const breadcrumbs = [
   description={`Complete guide to becoming a ${title}. Learn about responsibilities, required skills, salary ranges, and career progression.`}
   breadcrumbs={breadcrumbs}
 >
+  <!-- Page Header with Icon -->
+  <div class="flex items-center gap-4 mb-8">
+    <img src={`/icons/wiki/${slug}.svg`} alt={`${title} icon`} class="w-16 h-16" />
+    <h1 class="text-3xl font-bold text-notion-text">{title}</h1>
+  </div>
+
   <!-- Overview -->
   <h2>Overview</h2>
   <p>
