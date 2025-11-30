@@ -1,26 +1,246 @@
-/**
- * Notion 风格组件样式
- * 极简主义 - 仅保留必要的组件样式
- */
+/* Components CSS - All UI component styles */
 
-/* =============================================
-   工具类
-   ============================================= */
+/* ===== Header Component ===== */
+/* Note: Header styles are now defined inline in components/header.html */
+/* Keeping this section for backwards compatibility, but styles are disabled */
 
-.border-notion {
-  border: 1px solid var(--border-primary);
+/*
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    background: var(--header-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--glass-transition);
+    will-change: transform;
 }
 
-.hover-border-notion:hover {
-  border-color: var(--text-primary);
+.main-header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-nav);
 }
 
-/* =============================================
-   响应式工具
-   ============================================= */
+.main-header.is-hidden {
+    transform: translateY(-100%);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 16px 0;
+}
+
+.site-branding {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 700;
+    transition: var(--transition-fast);
+}
+
+.logo-link:hover {
+    color: var(--primary-color);
+}
+
+.site-logo-emoji {
+    font-size: 28px;
+    display: inline-block;
+}
+
+.site-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li {
+    margin: 0;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: var(--primary-color);
+    background-color: var(--bg-hover);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: var(--space-sm);
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: var(--transition-fast);
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: var(--space-md);
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-nav-link {
+    color: var(--text-primary);
+    padding: var(--space-sm);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+    color: var(--primary-color);
+    background: var(--bg-hover);
+}
 
 @media (max-width: 768px) {
-  .md\:hidden {
-    display: none;
+    .main-nav {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+}
+*/
+
+/* ===== Footer Component ===== */
+/* Note: Footer styles are now defined inline in components/footer.html */
+
+/*
+.main-footer {
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    padding: var(--space-2xl) 0;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-copyright {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+}
+
+.footer-copyright a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.footer-copyright a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+*/
+
+/* Decorative components removed - company page only needs table styles */
+
+/* ===== Mobile Responsive Components ===== */
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: var(--header-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    flex-direction: column;
+    padding: var(--space-lg);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-modal);
+  }
+
+  .main-nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: var(--space-md);
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-4xl);
+  }
+
+  .hero-buttons,
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .features-grid,
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
   }
 }
+
+/* ===== Company Table Components ===== */
+/* Company page has been migrated to Astro + Tailwind */
+/* Styles are no longer needed - using Tailwind utility classes */

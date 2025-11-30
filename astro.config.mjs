@@ -38,14 +38,34 @@ export default defineConfig({
     }),
   ],
 
+  // 图片优化配置
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
+  },
+
   // 构建优化配置
   build: {
     format: 'file',
+    inlineStylesheets: 'auto',
+    assets: '_assets',
   },
 
   // Vite配置优化
   vite: {
     build: {
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        },
+        format: {
+          comments: false,
+        },
+      },
+      cssMinify: 'lightningcss',
       rollupOptions: {
         output: {
           manualChunks: {

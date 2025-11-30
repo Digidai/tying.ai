@@ -299,48 +299,11 @@
     initLazyLoading();
   };
 
-  // Add CSS for ripple effect
-  const addRippleStyles = () => {
-    if (!document.getElementById('ripple-styles')) {
-      const style = document.createElement('style');
-      style.id = 'ripple-styles';
-      style.textContent = `
-        .btn {
-          position: relative;
-          overflow: hidden;
-        }
-        .ripple {
-          position: absolute;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.3);
-          transform: scale(0);
-          animation: ripple-animation 0.6s linear;
-          pointer-events: none;
-        }
-        @keyframes ripple-animation {
-          to {
-            transform: scale(4);
-            opacity: 0;
-          }
-        }
-        .performance-mode * {
-          transition-duration: 0.01ms !important;
-          animation-duration: 0.01ms !important;
-        }
-      `;
-      document.head.appendChild(style);
-    }
-  };
-
   window.initGlobalInteractions = initGlobalInteractions;
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      addRippleStyles();
-      initGlobalInteractions();
-    });
+    document.addEventListener('DOMContentLoaded', initGlobalInteractions);
   } else {
-    addRippleStyles();
     initGlobalInteractions();
   }
 })();

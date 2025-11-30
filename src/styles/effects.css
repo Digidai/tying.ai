@@ -1,0 +1,32 @@
+/**
+ * 交互效果样式
+ * 从 site.js 中的内联样式迁移而来
+ */
+
+/* Ripple 效果 */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* 性能模式优化 */
+.performance-mode * {
+  transition-duration: 0.01ms !important;
+  animation-duration: 0.01ms !important;
+}
