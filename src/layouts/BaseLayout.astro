@@ -1,5 +1,6 @@
 ---
 import mainScriptUrl from '../scripts/main.ts?url';
+import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -152,6 +153,7 @@ const breadcrumbSchema =
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
 
     <!-- 基础SEO -->
     <title>{title}</title>
