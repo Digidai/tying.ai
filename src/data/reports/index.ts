@@ -51,14 +51,6 @@ export const reports: ReportMetadata[] = [
     date: 'December 1, 2025',
     category: 'Career & Software Engineering',
   },
-  {
-    slug: 'us-data-scientist-market',
-    title: 'US Data Scientist Market Analysis 2025',
-    subtitle:
-      'A Deep Dive into the Evolving Role of Data Science, AI Augmentation, Salary Trends, and the Rise of Specialized Tracks in the Era of Generative AI',
-    date: 'December 2, 2025',
-    category: 'Career & Data Science',
-  },
 ];
 
 /**
