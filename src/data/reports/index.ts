@@ -35,6 +35,14 @@ export const reports: ReportMetadata[] = [
     date: 'January 10, 2025',
     category: 'AI & HR Technology',
   },
+  {
+    slug: 'us-product-manager-market',
+    title: 'US Product Manager Market Analysis 2025',
+    subtitle:
+      'A Comprehensive Study of Market Dynamics, Compensation Trends, Skill Evolution, and the Future of Product Management in the AI Era',
+    date: 'December 1, 2025',
+    category: 'Career & Product Management',
+  },
 ];
 
 /**

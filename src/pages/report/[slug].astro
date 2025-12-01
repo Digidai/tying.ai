@@ -2,7 +2,7 @@
 import NotionLayout from '@/layouts/NotionLayout.astro';
 
 export async function getStaticPaths() {
-  const reports = ['us-recruitment-market', 'agentic-ai-vs-ai-agent', 'ai-recruitment'];
+  const reports = ['us-recruitment-market', 'agentic-ai-vs-ai-agent', 'ai-recruitment', 'us-product-manager-market'];
 
   return reports.map(slug => ({
     params: { slug },
@@ -36,6 +36,13 @@ const reportData: Record<
       'A Comprehensive Analysis of AI-Powered Recruitment Technologies, Implementation Strategies, Ethical Considerations, and Future Impact on Hiring',
     date: 'January 10, 2025',
     category: 'AI & HR Technology',
+  },
+  'us-product-manager-market': {
+    title: 'US Product Manager Market Analysis 2025',
+    subtitle:
+      'A Comprehensive Study of Market Dynamics, Compensation Trends, Skill Evolution, and the Future of Product Management in the AI Era',
+    date: 'December 1, 2025',
+    category: 'Career & Product Management',
   },
 };
 
@@ -3327,6 +3334,285 @@ const breadcrumbs = [
           optimal path forward for recruitment transformation.
         </p>
       </>
+    )
+  }
+
+  {
+    slug === 'us-product-manager-market' && (
+      <>
+        {/* Executive Summary */}
+        <h2>Executive Summary</h2>
+        <p>
+          The United States product management market in 2025 stands at a transformative inflection
+          point, driven by the explosive integration of artificial intelligence, evolving skill
+          requirements, and fundamental shifts in how organizations conceptualize and execute
+          product strategy. This comprehensive analysis examines the current state and future
+          trajectory of product management as both a profession and a critical business function,
+          drawing on compensation data, hiring trends, skill evolution patterns, and longitudinal
+          career path research.
+        </p>
+        <p>
+          With over 125,000 active product manager job openings and an estimated 43,600+ employed
+          product managers nationwide, the field demonstrates remarkable resilience and growth
+          despite broader technology sector volatility. The market has rebounded 54% from its 2023
+          low point, reaching the highest level of open positions in 2.5 years. Average
+          compensation ranges from $127,000 to $159,000 for mid-level practitioners, with senior
+          roles commanding $150,000-$230,000 and elite positions at top-tier companies reaching
+          $400,000-$1,000,000 in total compensation.
+        </p>
+        <p>
+          However, these aggregate figures mask significant heterogeneity across company stages,
+          geographic markets, industry verticals, and specialization areas. Product managers focused
+          on AI/ML products, those with deep technical backgrounds (Technical Product Managers), and
+          practitioners skilled in product-led growth strategies command substantial premiums.
+          Conversely, generalist product managers face increasing competition and pressure to
+          specialize or develop distinctive expertise.
+        </p>
+        <p>
+          The integration of AI represents the single most consequential trend reshaping product
+          management. By 2025, AI fluency—understanding how AI systems learn, their limitations,
+          ethical implications, and strategic applications—has transitioned from optional to
+          essential. Product managers must now navigate complex decisions around AI feature
+          development, algorithmic bias mitigation, user privacy protection, and the strategic
+          versus tactical deployment of AI capabilities. This creates both opportunity and
+          disruption: demand surges for AI product managers while traditional feature-prioritization
+          skills become partially automated.
+        </p>
+        <p>
+          This report provides actionable intelligence for aspiring product managers, current
+          practitioners seeking career advancement, organizations building product teams, and
+          investors analyzing talent market dynamics. Key findings indicate that successful product
+          managers in 2025 must combine technical literacy with strategic thinking, data fluency
+          with customer empathy, and execution excellence with ethical awareness—a significantly
+          more demanding skillset than required even three years prior.
+        </p>
+
+        {/* Market Size and Economic Context */}
+        <h2>Market Size and Economic Context</h2>
+
+        <h3>Employment and Job Market Dynamics</h3>
+        <p>
+          As of November 2025, the United States product management labor market encompasses
+          approximately 43,600 actively employed product managers, with over 125,000 job openings
+          across all experience levels. This represents a healthy supply-demand imbalance favoring
+          qualified practitioners, though competition intensifies significantly for entry-level and
+          junior positions.
+        </p>
+        <p>
+          The market experienced significant turbulence from 2022-2023, with high-profile technology
+          layoffs disproportionately affecting product management roles. However, 2024-2025 has seen
+          robust recovery, with job postings increasing 54% from the 2023 trough. The United States
+          outpaces other markets in growth velocity, with a 6.8% month-over-month increase in August
+          2025 alone.
+        </p>
+        <p>
+          Job distribution by experience level reveals strategic hiring patterns. LinkedIn data from
+          May 2025 showed approximately 12,000 Product Manager openings, 3,061 Senior Product
+          Manager roles, and 10,368 Director of Product positions. Notably, Associate Product
+          Manager listings surged 37% in August before normalizing, suggesting renewed investment in
+          talent pipeline development after extended hiring freezes.
+        </p>
+
+        <h3>Compensation Landscape</h3>
+        <p>
+          Product manager compensation in 2025 exhibits wide variation based on experience,
+          specialization, company stage, and geographic location. Understanding these dynamics is
+          critical for both practitioners evaluating opportunities and organizations structuring
+          competitive offers.
+        </p>
+        <p>
+          <strong>Aggregate Salary Data:</strong> Multiple sources report average total compensation
+          ranging from $124,000 to $159,000 annually. However, these aggregates obscure substantial
+          distribution: median salaries cluster around $132,000, with 80% of practitioners earning
+          between $75,000 and $190,000. The top decile exceeds $407,000 in total compensation,
+          driven by stock options and performance bonuses at high-growth technology companies.
+        </p>
+        <p>
+          <strong>Experience-Based Compensation Tiers:</strong>
+        </p>
+        <ul>
+          <li>
+            <strong>Associate/Junior Product Manager:</strong> $79,000-$95,000 base salary.
+            Entry-level roles typically offer lower compensation but provide valuable learning
+            opportunities and career foundation. Many organizations maintain structured APM programs
+            with defined progression timelines.
+          </li>
+          <li>
+            <strong>Product Manager (Mid-Level):</strong> $104,000-$133,000. This represents the
+            largest employment category, with practitioners typically having 3-7 years of experience
+            and ownership of significant product areas.
+          </li>
+          <li>
+            <strong>Senior Product Manager:</strong> $125,000-$154,000. Senior PMs often manage
+            multiple junior PMs, drive cross-functional initiatives, and influence broader product
+            strategy. Total compensation frequently exceeds base salary through equity grants.
+          </li>
+          <li>
+            <strong>Technical Product Manager:</strong> $140,000 average. TPMs with engineering
+            backgrounds command premiums due to their ability to bridge technical and business
+            domains, particularly valuable in infrastructure and platform products.
+          </li>
+          <li>
+            <strong>Director of Product Management:</strong> $151,000-$182,000. Directors oversee
+            product portfolios, manage teams of PMs, and participate in executive strategic
+            planning.
+          </li>
+          <li>
+            <strong>VP of Product:</strong> $175,000-$199,000 base, with total compensation
+            frequently doubling through equity. VPs define organizational product vision and build
+            product management capabilities.
+          </li>
+          <li>
+            <strong>Chief Product Officer (CPO):</strong> $206,000-$232,000 base. CPOs at larger
+            organizations or high-growth startups can exceed $500,000 in total compensation,
+            reflecting their strategic importance and executive accountability.
+          </li>
+        </ul>
+
+        <h3>Geographic Salary Variations</h3>
+        <p>
+          Location significantly impacts compensation, reflecting both cost-of-living differentials
+          and market dynamics:
+        </p>
+        <ul>
+          <li>
+            <strong>West Coast (San Francisco, Seattle, Los Angeles):</strong> Median $120,000.
+            Premium compensation reflects intense competition for talent, higher living costs, and
+            concentration of technology companies. San Francisco Bay Area roles often include
+            substantial equity packages.
+          </li>
+          <li>
+            <strong>East Coast (New York, Boston):</strong> Median $110,000. Financial services and
+            enterprise software dominate, with competitive but slightly lower compensation than West
+            Coast technology hubs.
+          </li>
+          <li>
+            <strong>Midwest (Chicago, Denver):</strong> Median $114,000. Emerging technology
+            ecosystems offer attractive compensation relative to cost of living, increasingly
+            competitive for remote-capable talent.
+          </li>
+          <li>
+            <strong>South (Atlanta, Austin, Miami):</strong> Median $103,000. Rapidly growing
+            markets with favorable cost-of-living ratios, attracting both established companies and
+            startups.
+          </li>
+        </ul>
+        <p>
+          However, remote work normalization is compressing geographic differentials. Many
+          organizations now employ location-adjusted compensation bands, while others adopt
+          location-agnostic pay structures to access national talent pools. This creates
+          opportunities for practitioners in lower cost-of-living regions to access coastal salaries
+          while realizing higher purchasing power.
+        </p>
+
+        {/* Industry-Specific Product Management */}
+        <h2>Industry-Specific Product Management Dynamics</h2>
+
+        <h3>Technology and Software (B2B SaaS)</h3>
+        <p>
+          B2B SaaS represents the archetypal product management environment, characterized by
+          subscription business models, complex stakeholder ecosystems, and strategic emphasis on
+          retention and expansion revenue. Product managers in this sector must balance feature
+          development, technical debt management, and strategic positioning.
+        </p>
+        <p>
+          <strong>Key Responsibilities and Focus Areas:</strong> B2B SaaS product managers emphasize
+          customer lifecycle optimization—onboarding, activation, engagement, and renewal. Enterprise
+          sales heavily influence product roadmaps, creating tension between strategic vision and
+          customer-specific feature requests. Successful practitioners develop frameworks for
+          prioritizing common needs versus one-off customizations.
+        </p>
+        <p>
+          Product-led growth (PLG) has become the dominant paradigm, where the product itself drives
+          acquisition and conversion. This necessitates expertise in viral mechanics, freemium
+          model optimization, and in-product monetization strategies. Product managers must
+          collaborate closely with growth teams, analyzing user behavior data to reduce friction and
+          accelerate time-to-value.
+        </p>
+        <p>
+          <strong>Compensation and Demand:</strong> B2B SaaS product managers averaged $140,000-
+          $170,000 in 2025, with significant upside through equity appreciation at high-growth
+          companies. Demand remains robust, particularly for practitioners with domain expertise in
+          specific verticals (HR tech, martech, fintech) or horizontal capabilities (API platforms,
+          developer tools).
+        </p>
+
+        <h3>Consumer Technology (B2C)</h3>
+        <p>
+          Consumer product management emphasizes user experience, growth at scale, and rapid
+          iteration. Unlike B2B, where individual customers may represent significant revenue,
+          consumer products optimize for large user bases with lower individual monetization.
+        </p>
+        <p>
+          <strong>Distinct Characteristics:</strong> B2C product managers prioritize engagement
+          metrics, viral coefficients, and retention curves. A/B testing culture dominates decision-
+          making, with statistical rigor applied to feature launches and UI changes. Mobile-first
+          product development, cross-platform consistency, and app store optimization represent core
+          competencies.
+        </p>
+        <p>
+          Consumer products face unique challenges including privacy regulations (CCPA, GDPR),
+          platform dependencies (iOS/Android app store policies), and intense competition for user
+          attention. Product managers must balance monetization imperatives—advertising, in-app
+          purchases, subscriptions—with user experience preservation.
+        </p>
+        <p>
+          <strong>Market Dynamics:</strong> Consumer tech hiring fluctuates dramatically with
+          funding cycles and macroeconomic conditions. While base salaries ($130,000-$160,000) align
+          with B2B, equity value depends heavily on company trajectory. Social media, gaming,
+          streaming, and super-app platforms continue hiring despite broader market volatility.
+        </p>
+
+        <h3>Financial Services and Fintech</h3>
+        <p>
+          Financial services product management operates under stringent regulatory frameworks,
+          requiring deep compliance knowledge alongside traditional product skills. Fintech disruption
+          creates opportunities for practitioners who can navigate both innovation and regulation.
+        </p>
+        <p>
+          Traditional financial institutions (banks, insurance, asset management) seek product
+          managers to drive digital transformation initiatives—mobile banking, robo-advisors,
+          embedded finance. These roles emphasize stakeholder management across legal, compliance,
+          risk, and technology organizations, requiring patience and political acumen.
+        </p>
+        <p>
+          Fintech startups offer faster-paced environments focused on user experience and product-
+          market fit. Payments, lending, wealth management, and cryptocurrency represent active
+          hiring categories. Product managers must understand financial primitives, regulatory
+          requirements (KYC/AML, licensing), and technical infrastructure (payment rails, ledger
+          systems).
+        </p>
+        <p>
+          <strong>Compensation Premium:</strong> Financial services product managers command 10-15%
+          premiums over comparable technology roles, averaging $145,000-$180,000. This reflects both
+          regulatory complexity and competition from lucrative finance careers.
+        </p>
+
+        <h3>Healthcare and Health Tech</h3>
+        <p>
+          Healthcare product management combines technical complexity with life-impacting stakes,
+          requiring empathy, regulatory expertise, and persistence. The sector spans electronic
+          health records, telemedicine, medical devices, health analytics, and consumer wellness
+          applications.
+        </p>
+        <p>
+          <strong>Regulatory Landscape:</strong> HIPAA compliance, FDA approval processes (for
+          medical devices and clinical decision support), and reimbursement complexity create
+          substantial barriers to entry but also competitive moats. Product managers must understand
+          clinical workflows, integrate with legacy healthcare IT systems, and navigate payer-
+          provider dynamics.
+        </p>
+        <p>
+          Digital health startups have attracted substantial investment, creating demand for product
+          managers who can balance innovation with evidence-based medical practice. Mental health
+          platforms, chronic disease management, and AI-powered diagnostics represent growth areas.
+        </p>
+        <p>
+          Healthcare product managers average $135,000-$165,000, with mission-driven individuals
+          accepting modest discounts relative to pure technology roles. However, successful
+          healthcare IT companies offer substantial equity upside and meaningful societal impact.
+        </p>
+      
     )
   }
 </NotionLayout>
