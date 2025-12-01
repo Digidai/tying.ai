@@ -2,7 +2,7 @@
 import NotionLayout from '@/layouts/NotionLayout.astro';
 
 export async function getStaticPaths() {
-  const reports = ['us-recruitment-market', 'agentic-ai-vs-ai-agent', 'ai-recruitment', 'us-product-manager-market'];
+  const reports = ['us-recruitment-market', 'agentic-ai-vs-ai-agent', 'ai-recruitment', 'us-product-manager-market', 'us-software-engineer-market'];
 
   return reports.map(slug => ({
     params: { slug },
@@ -43,6 +43,13 @@ const reportData: Record<
       'A Comprehensive Study of Market Dynamics, Compensation Trends, Skill Evolution, and the Future of Product Management in the AI Era',
     date: 'December 1, 2025',
     category: 'Career & Product Management',
+  },
+  'us-software-engineer-market': {
+    title: 'US Software Engineer Market Analysis 2025',
+    subtitle:
+      'A Comprehensive Analysis of Employment Trends, Specialization Tracks, AI Integration, Compensation Patterns, and the Evolving Landscape of Software Development',
+    date: 'December 1, 2025',
+    category: 'Career & Software Engineering',
   },
 };
 
@@ -3904,6 +3911,354 @@ const breadcrumbs = [
           guardrails, and who drive business results while creating products users genuinely value.
           This combination—increasingly difficult to develop but increasingly valuable when
           achieved—defines the future of exceptional product management.
+        </p>
+      </>
+    )
+  }
+
+  {
+    slug === 'us-software-engineer-market' && (
+      <>
+        {/* Executive Summary */}
+        <h2>Executive Summary</h2>
+        <p>
+          The United States software engineering market in 2025 stands as one of the most dynamic
+          and transformative sectors in the global economy, characterized by unprecedented growth,
+          technological disruption, and evolving skill requirements. This comprehensive analysis
+          examines the current landscape and future trajectory of software engineering as both a
+          profession and a critical driver of digital transformation across all industries.
+        </p>
+        <p>
+          With approximately 1.42 million actively employed software engineers and a projected 15-17%
+          employment growth rate through 2034, the field demonstrates remarkable resilience and
+          expansion. The market has added 228,000 technology positions in early 2025 alone, with
+          476,000 active job openings. Average compensation ranges from $80,000-$120,000 for entry-level
+          engineers to $160,000-$220,000+ for senior practitioners, with specialized roles in AI/ML
+          commanding premiums of 10-18% above baseline salaries.
+        </p>
+        <p>
+          However, beneath these aggregate figures lies a market undergoing fundamental restructuring.
+          Artificial intelligence has transitioned from experimental tooling to core infrastructure,
+          with AI-augmented development increasing productivity by 10-30% while simultaneously
+          disrupting traditional career entry points. The "hollowing out" of junior positions
+          reflects AI's ability to automate routine coding tasks, elevating expectations for
+          entry-level candidates while creating unprecedented opportunities for engineers who can
+          orchestrate AI tools effectively.
+        </p>
+        <p>
+          Specialization tracks have crystallized around four primary domains: Frontend Development
+          (React, Vue, modern JavaScript frameworks), Backend Development (cloud-native architectures,
+          microservices, API design), Full-Stack Development (end-to-end ownership with AI integration),
+          and DevOps/SRE (infrastructure as code, Kubernetes, observability). Each track demands
+          distinct skill combinations while sharing common foundations in cloud computing, security
+          awareness, and AI literacy.
+        </p>
+        <p>
+          This report provides actionable intelligence for aspiring software engineers evaluating
+          educational pathways, current practitioners navigating specialization decisions, organizations
+          building engineering teams, and policymakers addressing workforce development. Key findings
+          indicate that successful software engineers in 2025 combine deep technical expertise with
+          AI orchestration capabilities, systems thinking, and continuous learning agility—a
+          significantly elevated bar compared to previous generations of software development.
+        </p>
+
+        {/* Market Size and Employment Landscape */}
+        <h2>Market Size and Employment Landscape</h2>
+
+        <h3>Current Employment and Growth Projections</h3>
+        <p>
+          As of November 2025, the United States employs approximately 1.42 million software engineers
+          across diverse industries and specializations. The Bureau of Labor Statistics projects
+          software developer employment to grow 15% from 2024 to 2034, substantially faster than the
+          average for all occupations. Alternative estimates suggest even stronger growth at 17% from
+          2023 to 2033, translating to approximately 327,900 new positions over the decade.
+        </p>
+        <p>
+          This robust growth reflects the accelerating digital transformation across traditional
+          industries—healthcare, finance, manufacturing, retail—alongside continued expansion in
+          technology-native sectors. The World Economic Forum projects global digital jobs,
+          predominantly software development roles, will increase 25% to exceed 90 million positions
+          by 2030, with the United States maintaining its position as the largest software engineering
+          labor market globally.
+        </p>
+        <p>
+          Monthly job market dynamics reveal continued strength despite broader technology sector
+          volatility. January 2025 saw 228,000 new technology occupation additions, with 476,000
+          active open positions representing a 51,000 net increase. However, IT unemployment rose to
+          2.9% in early 2025, suggesting renewed job search activity following earlier layoffs rather
+          than fundamental demand weakness.
+        </p>
+
+        <h3>Compensation Structure and Analysis</h3>
+        <p>
+          Software engineer compensation in 2025 exhibits wide variation based on experience level,
+          specialization, geographic location, and company characteristics. Understanding these
+          dynamics is essential for both career planning and organizational talent strategy.
+        </p>
+        <p>
+          <strong>Experience-Based Compensation Tiers:</strong>
+        </p>
+        <ul>
+          <li>
+            <strong>Entry-Level/Junior Engineer (0-2 years):</strong> $80,000-$120,000 base salary.
+            Entry positions increasingly require portfolio evidence or bootcamp/internship experience,
+            with pure novices facing heightened competition. Geographic variation is substantial,
+            with Silicon Valley entry salaries around $100,000 versus $70,000-$85,000 in secondary markets.
+          </li>
+          <li>
+            <strong>Mid-Level Engineer (2-5 years):</strong> $120,000-$160,000. Engineers at this
+            level own features independently, participate in architectural decisions, and begin
+            specializing in specific domains. Total compensation often exceeds $180,000 when including
+            equity at high-growth companies.
+          </li>
+          <li>
+            <strong>Senior Engineer (5-10 years):</strong> $160,000-$220,000+. Senior engineers lead
+            technical design, mentor junior team members, and drive strategic technical initiatives.
+            Median compensation across all sources approximates $133,080 annually, with significant
+            upside through equity and bonuses.
+          </li>
+          <li>
+            <strong>Staff Engineer (8+ years):</strong> $200,000-$280,000+. Staff-level individual
+            contributors operate across multiple teams, set technical standards, and solve
+            organization-wide architectural challenges. This level represents the first major IC
+            leadership tier.
+          </li>
+          <li>
+            <strong>Principal/Distinguished Engineer (10+ years):</strong> $250,000-$400,000+. These
+            senior IC roles influence company-wide technical direction, represent the organization
+            externally, and solve mission-critical challenges. Compensation includes substantial equity
+            components.
+          </li>
+        </ul>
+        <p>
+          <strong>Specialization Premiums:</strong> AI/ML engineers command 10-18% salary premiums,
+          with compensation ranging from $150,000 to $200,000+ for mid-level practitioners. DevOps/SRE
+          specialists average $125,000-$165,000 mid-level, reflecting the critical importance of
+          infrastructure reliability. Backend engineers with cloud-native expertise see 8-12% premiums
+          over generalist developers.
+        </p>
+
+        <h3>Geographic Salary Variations</h3>
+        <p>
+          Location significantly impacts compensation, though remote work normalization is compressing
+          differentials:
+        </p>
+        <ul>
+          <li>
+            <strong>San Francisco Bay Area:</strong> Entry $100,000, Mid $130,000-$160,000, Senior
+            $200,000+. Highest nominal salaries reflect intense talent competition, concentration of
+            high-growth startups, and elevated living costs. Total compensation packages often double
+            base salaries through equity.
+          </li>
+          <li>
+            <strong>Seattle:</strong> Entry $95,000, Mid $125,000-$155,000, Senior $180,000+. Strong
+            technology ecosystem anchored by Amazon, Microsoft, and thriving startup community.
+          </li>
+          <li>
+            <strong>New York City:</strong> Entry $90,000, Mid $120,000-$150,000, Senior $175,000+.
+            Financial services and enterprise software drive demand, with compensation reflecting high
+            cost of living.
+          </li>
+          <li>
+            <strong>Austin/Denver/Boston:</strong> Entry $85,000, Mid $110,000-$140,000, Senior
+            $160,000+. Emerging technology hubs offering attractive compensation-to-cost-of-living ratios.
+          </li>
+          <li>
+            <strong>Remote Positions:</strong> Increasingly location-agnostic compensation, though many
+            organizations employ graduated pay scales. 25-30% of software engineering roles listed as
+            remote, with hybrid models at 28% and on-site at 54%.
+          </li>
+        </ul>
+
+        {/* Core Specialization Tracks */}
+        <h2>Core Specialization Tracks</h2>
+        <p>
+          The "generalist" software engineer is increasingly evolving into specialized roles, though
+          full-stack capabilities remain highly valued. Four primary tracks dominate the 2025 landscape:
+        </p>
+
+        <h3>1. Frontend Engineering</h3>
+        <p>
+          <strong>Focus:</strong> User experience, performance optimization, and complex state management.
+          <br />
+          <strong>Key Trends:</strong> Shift from simple UI building to "Frontend Ops" and complex
+          application architecture. Heavy reliance on component-based frameworks and edge rendering.
+          <br />
+          <strong>Dominant Stack:</strong> React (remains king), Vue.js, TypeScript, Next.js, Tailwind CSS.
+        </p>
+
+        <h3>2. Backend Engineering</h3>
+        <p>
+          <strong>Focus:</strong> Scalability, data integrity, security, and API design.
+          <br />
+          <strong>Key Trends:</strong> Move towards serverless architectures, event-driven systems,
+          and "security-by-design." increasing integration of vector databases for AI applications.
+          <br />
+          <strong>Dominant Stack:</strong> Python (Django/FastAPI), Node.js, Java (Spring Boot), Go, Rust, PostgreSQL, MongoDB.
+        </p>
+
+        <h3>3. Full-Stack Development</h3>
+        <p>
+          <strong>Focus:</strong> End-to-end feature ownership and system integration.
+          <br />
+          <strong>Key Trends:</strong> The definition of "Full-Stack" is expanding to include
+          infrastructure (IaC) and basic AI integration. 60% of companies prefer full-stack hires
+          for their versatility and ownership capabilities.
+          <br />
+          <strong>Dominant Stack:</strong> MERN/MEAN stack, Next.js + Supabase/Firebase, Serverless platforms.
+        </p>
+
+        <h3>4. DevOps & Platform Engineering</h3>
+        <p>
+          <strong>Focus:</strong> Developer experience (DX), infrastructure automation, and reliability.
+          <br />
+          <strong>Key Trends:</strong> Evolution from "DevOps" to "Platform Engineering"—building
+          internal developer platforms (IDPs) to self-serve infrastructure.
+          <br />
+          <strong>Dominant Stack:</strong> Kubernetes, Terraform, AWS/Azure/GCP, GitHub Actions, Prometheus.
+        </p>
+
+        {/* In-Demand Technology Stack 2025 */}
+        <h2>In-Demand Technology Stack 2025</h2>
+        <p>
+          While foundational concepts remain constant, the specific toolchain has evolved. Proficiency
+          in these technologies represents the baseline for employability in 2025.
+        </p>
+        <ul>
+          <li>
+            <strong>Languages:</strong>
+            <ul>
+              <li><strong>Python:</strong> #1 demand due to AI/Data dominance.</li>
+              <li><strong>JavaScript/TypeScript:</strong> Essential for web; TypeScript is now the industry standard for large projects.</li>
+              <li><strong>Java/C#:</strong> Stable enterprise backbones.</li>
+              <li><strong>Go/Rust:</strong> High-growth languages for systems and cloud infrastructure.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Frameworks & Libraries:</strong> React, Next.js, Node.js, Spring Boot, FastAPI, TensorFlow/PyTorch (for AI integration).
+          </li>
+          <li>
+            <strong>Data & Infrastructure:</strong> SQL (non-negotiable), NoSQL (Mongo/Cassandra), Docker, Kubernetes, AWS/Azure/GCP.
+          </li>
+        </ul>
+
+        {/* The AI Transformation */}
+        <h2>The AI Transformation: From Coder to Orchestrator</h2>
+        <p>
+          Artificial Intelligence is not replacing software engineers, but it is fundamentally changing
+          the job description. The era of "writing boilerplate" is over; the era of "AI Orchestration" has begun.
+        </p>
+        <h3>Impact on Productivity and Workflow</h3>
+        <p>
+          AI coding assistants (GitHub Copilot, Amazon CodeWhisperer, Cursor) have penetrated 92% of
+          professional workflows.
+        </p>
+        <ul>
+          <li><strong>Productivity Gains:</strong> 10-30% increase in overall output; up to 55% reduction in time for boilerplate tasks.</li>
+          <li><strong>Shift in Focus:</strong> Engineers spend less time on syntax and more time on system design, architecture, and reviewing AI-generated code.</li>
+          <li><strong>New Skill: Prompt Engineering:</strong> The ability to effectively prompt AI tools to generate secure, efficient code is now a distinct technical skill.</li>
+        </ul>
+
+        <h3>The "Hollowing Out" of Junior Roles</h3>
+        <p>
+          A critical challenge in 2025 is the raising of the "entry-level bar." AI tools can now
+          perform tasks previously assigned to junior engineers (bug fixes, simple features, documentation).
+          <br />
+          <strong>Implication:</strong> Entry-level candidates must now demonstrate capabilities previously
+          expected of mid-level engineers—system understanding, debugging complex logic, and
+          architectural awareness—to secure their first role.
+        </p>
+
+        {/* Education and Skills Evolution */}
+        <h2>Education and Skills Evolution</h2>
+        <p>
+          The pathway to becoming a software engineer has diversified, but the "Gold Standard" remains debated.
+        </p>
+        <ul>
+          <li>
+            <strong>Computer Science Degrees:</strong> Remain the safest bet for long-term career stability,
+            especially for specialized roles (AI, Systems, Security). Employers value the theoretical
+            foundation in algorithms and data structures.
+          </li>
+          <li>
+            <strong>Bootcamps:</strong> viable for web development roles but facing headwinds. Successful
+            graduates in 2025 are those who supplement bootcamp curriculum with deep self-study in
+            CS fundamentals and AI tools.
+          </li>
+          <li>
+            <strong>Self-Taught:</strong> A harder path than before due to competition, but still possible
+            with a strong portfolio of complex, deployed applications.
+          </li>
+        </ul>
+
+        {/* Career Progression */}
+        <h2>Career Progression: The Dual Track</h2>
+        <p>
+          The industry has solidified the "Dual Track" career ladder, allowing engineers to advance
+          without being forced into management.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse my-4">
+            <thead>
+              <tr class="border-b border-notion-border">
+                <th class="py-2 font-semibold text-notion-text">Level</th>
+                <th class="py-2 font-semibold text-notion-text">Individual Contributor (IC) Focus</th>
+                <th class="py-2 font-semibold text-notion-text">Management Focus</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-notion-border">
+                <td class="py-2 text-notion-text-light">Entry/Mid</td>
+                <td class="py-2 text-notion-text-light">Execution, Code Quality, Feature Delivery</td>
+                <td class="py-2 text-notion-text-light">N/A</td>
+              </tr>
+              <tr class="border-b border-notion-border">
+                <td class="py-2 text-notion-text-light">Senior</td>
+                <td class="py-2 text-notion-text-light">System Design, Mentorship, Project Ownership</td>
+                <td class="py-2 text-notion-text-light">Tech Lead / Team Lead</td>
+              </tr>
+              <tr class="border-b border-notion-border">
+                <td class="py-2 text-notion-text-light">Staff/Principal</td>
+                <td class="py-2 text-notion-text-light">Cross-team Architecture, Technical Strategy</td>
+                <td class="py-2 text-notion-text-light">Engineering Manager / Director</td>
+              </tr>
+              <tr>
+                <td class="py-2 text-notion-text-light">Distinguished/Fellow</td>
+                <td class="py-2 text-notion-text-light">Industry Impact, Company-wide Vision</td>
+                <td class="py-2 text-notion-text-light">VP of Engineering / CTO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Future Outlook */}
+        <h2>Future Outlook: 2026 and Beyond</h2>
+        <p>
+          The software engineering profession is not disappearing, but it is maturing. The "coder" of
+          2015 is becoming the "Product Engineer" or "AI Architect" of 2026.
+        </p>
+        <ul>
+          <li>
+            <strong>Rise of the "Product Engineer":</strong> Engineers will be expected to have stronger
+            product sense, understanding user needs and business metrics directly, as coding becomes faster.
+          </li>
+          <li>
+            <strong>Global Talent Competition:</strong> Remote work has globalized the talent pool.
+            US engineers are increasingly competing with high-skilled talent in LATAM, Eastern Europe,
+            and Asia, driving a need for higher-level strategic skills to justify compensation premiums.
+          </li>
+          <li>
+            <strong>Security as a Core Competency:</strong> With supply chain attacks and AI-generated
+            vulnerabilities, security expertise will move from a specialist role to a generalist requirement.
+          </li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          Software Engineering in 2025 remains a premier career choice, offering intellectual challenge,
+          high compensation, and the ability to shape the future. However, the "easy entry" era is over.
+          Success now requires a commitment to continuous learning, a mastery of AI-augmented workflows,
+          and a shift from viewing oneself as a "writer of code" to a "builder of solutions."
         </p>
       </>
     )

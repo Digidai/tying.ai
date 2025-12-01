@@ -43,6 +43,14 @@ export const reports: ReportMetadata[] = [
     date: 'December 1, 2025',
     category: 'Career & Product Management',
   },
+  {
+    slug: 'us-software-engineer-market',
+    title: 'US Software Engineer Market Analysis 2025',
+    subtitle:
+      'A Comprehensive Analysis of Employment Trends, Specialization Tracks, AI Integration, Compensation Patterns, and the Evolving Landscape of Software Development',
+    date: 'December 1, 2025',
+    category: 'Career & Software Engineering',
+  },
 ];
 
 /**
