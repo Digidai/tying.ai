@@ -2,7 +2,7 @@
 import NotionLayout from '@/layouts/NotionLayout.astro';
 
 export async function getStaticPaths() {
-  const reports = ['us-recruitment-market', 'agentic-ai-vs-ai-agent', 'ai-recruitment', 'us-product-manager-market', 'us-software-engineer-market'];
+  const reports = ['us-recruitment-market', 'agentic-ai-vs-ai-agent', 'ai-recruitment', 'us-product-manager-market', 'us-software-engineer-market', 'us-data-scientist-market'];
 
   return reports.map(slug => ({
     params: { slug },
@@ -50,6 +50,13 @@ const reportData: Record<
       'A Comprehensive Analysis of Employment Trends, Specialization Tracks, AI Integration, Compensation Patterns, and the Evolving Landscape of Software Development',
     date: 'December 1, 2025',
     category: 'Career & Software Engineering',
+  },
+  'us-data-scientist-market': {
+    title: 'US Data Scientist Market Analysis 2025',
+    subtitle:
+      'A Deep Dive into the Evolving Role of Data Science, AI Augmentation, Salary Trends, and the Rise of Specialized Tracks in the Era of Generative AI',
+    date: 'December 2, 2025',
+    category: 'Career & Data Science',
   },
 };
 
@@ -4259,6 +4266,211 @@ const breadcrumbs = [
           high compensation, and the ability to shape the future. However, the "easy entry" era is over.
           Success now requires a commitment to continuous learning, a mastery of AI-augmented workflows,
           and a shift from viewing oneself as a "writer of code" to a "builder of solutions."
+        </p>
+      </>
+    )
+  }
+
+  {
+    slug === 'us-data-scientist-market' && (
+      <>
+        {/* Executive Summary */}
+        <h2>Executive Summary</h2>
+        <p>
+          In 2025, the Data Science profession is undergoing a pivotal transformation. Once defined by
+          generalist capabilities, the field has matured into highly specialized tracks, driven by the
+          ubiquity of Generative AI and the operationalization of machine learning.
+        </p>
+        <p>
+          While the "hype cycle" has settled, the fundamental demand for data-driven decision-making
+          has never been stronger. The market is projected to reach <strong>$175 billion</strong> by
+          year-end, with employment growth outpacing the broader tech sector at <strong>36%</strong>.
+          However, the bar for entry has risen significantly: proficiency in AI orchestration,
+          production-grade engineering, and deep domain expertise are now baseline requirements.
+        </p>
+        <div class="my-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+          <h4 class="text-lg font-semibold text-blue-900 mt-0 mb-2">Key 2025 Insights</h4>
+          <ul class="list-disc list-inside text-blue-800 space-y-1">
+            <li><strong>Growth:</strong> ~220,000 active positions; 36% projected 10-year growth.</li>
+            <li><strong>Salary:</strong> Median total compensation remains high at $166,000, with AI specialists commanding 20%+ premiums.</li>
+            <li><strong>AI Impact:</strong> Generative AI is automating routine analysis, shifting focus to "Model Overseeing" and strategic interpretation.</li>
+            <li><strong>Specialization:</strong> Clear bifurcation into Data Science (Insights), ML Engineering (Production), and Data Engineering (Infrastructure).</li>
+          </ul>
+        </div>
+
+        {/* Market Size and Employment Landscape */}
+        <h2>Market Size and Employment Landscape</h2>
+        <p>
+          The US Data Science market continues to be a robust engine of the tech economy. Despite
+          broader economic fluctuations, the reliance on data for competitive advantage ensures steady demand.
+        </p>
+        <ul>
+          <li>
+            <strong>Total Market Value:</strong> Estimated at $166.89B - $175.15B in 2025, with a CAGR of 26.5%.
+          </li>
+          <li>
+            <strong>Workforce Size:</strong> Approximately 220,000 active data science professionals in the US.
+          </li>
+          <li>
+            <strong>Job Openings:</strong> ~20,800 - 23,400 projected annual openings through 2033.
+          </li>
+        </ul>
+
+        <h3>Industry Demand Distribution</h3>
+        <p>
+          Demand is no longer confined to "Big Tech." Traditional industries are aggressively hiring
+          to fuel their digital transformations.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse my-4">
+            <thead>
+              <tr class="border-b border-notion-border">
+                <th class="py-2 font-semibold text-notion-text">Sector</th>
+                <th class="py-2 font-semibold text-notion-text">Share of Jobs</th>
+                <th class="py-2 font-semibold text-notion-text">Key Focus Areas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-notion-border">
+                <td class="py-2 text-notion-text-light">Technology</td>
+                <td class="py-2 text-notion-text-light">38%</td>
+                <td class="py-2 text-notion-text-light">GenAI, Product Analytics, Recommendation Systems</td>
+              </tr>
+              <tr class="border-b border-notion-border">
+                <td class="py-2 text-notion-text-light">Finance (FinTech)</td>
+                <td class="py-2 text-notion-text-light">22%</td>
+                <td class="py-2 text-notion-text-light">Fraud Detection, Algorithmic Trading, Risk Modeling</td>
+              </tr>
+              <tr class="border-b border-notion-border">
+                <td class="py-2 text-notion-text-light">Healthcare</td>
+                <td class="py-2 text-notion-text-light">16%</td>
+                <td class="py-2 text-notion-text-light">Drug Discovery, Patient Outcome Prediction, Genomics</td>
+              </tr>
+              <tr>
+                <td class="py-2 text-notion-text-light">Retail/E-commerce</td>
+                <td class="py-2 text-notion-text-light">12%</td>
+                <td class="py-2 text-notion-text-light">Supply Chain Optimization, Customer Personalization</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Compensation Structure */}
+        <h2>Compensation Structure 2025</h2>
+        <p>
+          Compensation for data professionals remains top-tier, reflecting the high value and scarcity
+          of skilled talent. Figures below represent Total Compensation (Base + Bonus + Equity).
+        </p>
+
+        <h3>Salary by Experience Level</h3>
+        <ul>
+          <li>
+            <strong>Entry-Level (0-2 years):</strong> $95,000 - $150,000
+            <br />
+            <span class="text-sm text-gray-600">Wide variance depends heavily on education (PhD vs. BS) and location.</span>
+          </li>
+          <li>
+            <strong>Mid-Level (3-5 years):</strong> $150,000 - $190,000
+            <br />
+            <span class="text-sm text-gray-600">The "sweet spot" for hiring; high demand for independent contributors.</span>
+          </li>
+          <li>
+            <strong>Senior (6+ years):</strong> $190,000 - $250,000+
+            <br />
+            <span class="text-sm text-gray-600">Requires proven track record of delivering business impact.</span>
+          </li>
+          <li>
+            <strong>Principal / Staff:</strong> $300,000 - $500,000+
+            <br />
+            <span class="text-sm text-gray-600">Strategic leadership roles, often comparable to VP-level impact.</span>
+          </li>
+        </ul>
+
+        <h3>The "AI Premium"</h3>
+        <p>
+          Specialization pays. Roles explicitly focused on AI and Machine Learning Engineering command
+          significantly higher compensation than generalist analytics roles.
+        </p>
+        <ul>
+          <li><strong>Machine Learning Engineer:</strong> +15-20% premium ($170k avg. base)</li>
+          <li><strong>Generative AI Specialist:</strong> +25-30% premium (High scarcity)</li>
+          <li><strong>Data Engineer:</strong> +10% premium (Critical infrastructure demand)</li>
+        </ul>
+
+        {/* Core Specialization Tracks */}
+        <h2>The Triad of Data Roles</h2>
+        <p>
+          The title "Data Scientist" is becoming an umbrella term. In practice, the field has split
+          into three distinct, though overlapping, primary tracks.
+        </p>
+
+        <h3>1. Data Scientist (The "Insight Generator")</h3>
+        <p>
+          <strong>Focus:</strong> Statistical analysis, experimentation (A/B testing), and product strategy.
+          <br />
+          <strong>Goal:</strong> Answer "Why did this happen?" and "What should we do next?"
+          <br />
+          <strong>Key Skills:</strong> SQL, Python/R, Statistics, Product Sense, Visualization (Tableau/Looker).
+        </p>
+
+        <h3>2. Machine Learning Engineer (The "Builder")</h3>
+        <p>
+          <strong>Focus:</strong> Productionizing models, scalability, and system performance.
+          <br />
+          <strong>Goal:</strong> Build systems that make automated decisions at scale.
+          <br />
+          <strong>Key Skills:</strong> Python, MLOps (Docker/Kubernetes), Cloud Platforms (AWS/GCP), Deep Learning frameworks (PyTorch/TensorFlow).
+        </p>
+
+        <h3>3. Data Engineer (The "Architect")</h3>
+        <p>
+          <strong>Focus:</strong> Data pipelines, warehousing, and data quality.
+          <br />
+          <strong>Goal:</strong> Ensure data is reliable, accessible, and timely for the other two tracks.
+          <br />
+          <strong>Key Skills:</strong> SQL, Spark/Hadoop, Airflow, dbt, Cloud Data Warehouses (Snowflake/BigQuery).
+        </p>
+
+        {/* The AI Transformation */}
+        <h2>The AI Transformation: Augmentation, Not Replacement</h2>
+        <p>
+          Generative AI is reshaping the daily workflow of data scientists, automating the "drudgery"
+          and elevating the role.
+        </p>
+        <ul>
+          <li>
+            <strong>Coding Assistant:</strong> AI writes 40-60% of boilerplate code (cleaning scripts, visualization templates), increasing productivity.
+          </li>
+          <li>
+            <strong>From Builder to Overseer:</strong> The focus shifts from training simple models (which AutoML can handle) to designing complex systems and validating AI outputs for bias and accuracy.
+          </li>
+          <li>
+            <strong>New Capabilities:</strong> Unstructured data (text, images, audio) is now a first-class citizen. Data scientists must know how to leverage LLMs and vector databases to extract value from these sources.
+          </li>
+        </ul>
+
+        {/* Skills & Education */}
+        <h2>Skills & Education: The 2025 Toolkit</h2>
+        <p>
+          <strong>Must-Have Technical Skills:</strong>
+        </p>
+        <ul>
+          <li><strong>Languages:</strong> Python (Non-negotiable), SQL (Expert level required). R remains relevant in research/academia.</li>
+          <li><strong>AI/ML:</strong> Scikit-learn, PyTorch/TensorFlow, Hugging Face (Transformers), Prompt Engineering.</li>
+          <li><strong>Infrastructure:</strong> Git, Docker, Basic Cloud (AWS/Azure) proficiency.</li>
+        </ul>
+
+        <p>
+          <strong>The Soft Skills Differentiator:</strong>
+          <br />
+          As technical barriers lower, <strong>Business Acumen</strong> and <strong>Communication</strong> become the primary differentiators. The ability to translate complex model outputs into clear, actionable business strategies is what separates a Senior Data Scientist from a Junior one.
+        </p>
+
+        <h2>Future Outlook</h2>
+        <p>
+          The future of Data Science is bright but demanding. The era of the "citizen data scientist"
+          is merging with the "AI engineer." Professionals who can bridge the gap between rigorous
+          statistical methodology and modern software engineering practices will define the next decade of the industry.
         </p>
       </>
     )
