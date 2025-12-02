@@ -4288,15 +4288,12 @@ const breadcrumbs = [
           However, the bar for entry has risen significantly: proficiency in AI orchestration,
           production-grade engineering, and deep domain expertise are now baseline requirements.
         </p>
-        <div class="my-6 p-4 bg-gray-50 border-l-4 border-gray-400 rounded-r-lg">
-          <h4 class="text-lg font-semibold text-notion-text mt-0 mb-2">Key 2025 Insights</h4>
-          <ul class="list-disc list-inside text-notion-text-light space-y-1">
-            <li><strong>Growth:</strong> ~220,000 active positions; 36% projected 10-year growth.</li>
-            <li><strong>Salary:</strong> Median total compensation remains high at $166,000, with AI specialists commanding 20%+ premiums.</li>
-            <li><strong>AI Impact:</strong> Generative AI is automating routine analysis, shifting focus to "Model Overseeing" and strategic interpretation.</li>
-            <li><strong>Specialization:</strong> Clear bifurcation into Data Science (Insights), ML Engineering (Production), and Data Engineering (Infrastructure).</li>
-          </ul>
-        </div>
+        <p>
+          The era of the "generalist" data scientist is fading. In its place, a clear bifurcation is emerging:
+          <strong>Product Data Science</strong>, focused on causal inference and strategic insights, and
+          <strong>Machine Learning Engineering</strong>, focused on scalable AI systems. This report explores
+          these shifts, the "AI Premium" in compensation, and the new skills required to thrive in 2025.
+        </p>
 
         {/* Market Size and Employment Landscape */}
         <h2>Market Size and Employment Landscape</h2>
@@ -4363,26 +4360,30 @@ const breadcrumbs = [
         </p>
 
         <h3>Salary by Experience Level</h3>
+        <p class="text-sm text-gray-600 mb-4">
+          <em>Note: Figures represent Total Compensation (Base + Bonus + Equity) for Tier 1 US Tech Hubs (SF, NYC, Seattle).
+          Expect ~15-20% lower for Tier 2 cities (Austin, Boston, Chicago).</em>
+        </p>
         <ul>
           <li>
-            <strong>Entry-Level (0-2 years):</strong> $95,000 - $150,000
+            <strong>Entry-Level (0-2 years):</strong> $120,000 - $165,000
             <br />
-            <span class="text-sm text-gray-600">Wide variance depends heavily on education (PhD vs. BS) and location.</span>
+            <span class="text-sm text-gray-600">Base salaries have stabilized, but equity packages have shrunk for junior roles.</span>
           </li>
           <li>
-            <strong>Mid-Level (3-5 years):</strong> $150,000 - $190,000
+            <strong>Mid-Level (3-5 years):</strong> $170,000 - $225,000
             <br />
-            <span class="text-sm text-gray-600">The "sweet spot" for hiring; high demand for independent contributors.</span>
+            <span class="text-sm text-gray-600">The "sweet spot" for hiring. Companies pay a premium for "independent execution."</span>
           </li>
           <li>
-            <strong>Senior (6+ years):</strong> $190,000 - $250,000+
+            <strong>Senior (6+ years):</strong> $230,000 - $350,000+
             <br />
-            <span class="text-sm text-gray-600">Requires proven track record of delivering business impact.</span>
+            <span class="text-sm text-gray-600">Significant equity component (30-50% of TC). Requires ability to lead cross-functional initiatives.</span>
           </li>
           <li>
-            <strong>Principal / Staff:</strong> $300,000 - $500,000+
+            <strong>Staff / Principal:</strong> $400,000 - $650,000+
             <br />
-            <span class="text-sm text-gray-600">Strategic leadership roles, often comparable to VP-level impact.</span>
+            <span class="text-sm text-gray-600">Strategic leadership roles. Compensation is heavily tied to company performance (RSUs).</span>
           </li>
         </ul>
 
@@ -4397,55 +4398,84 @@ const breadcrumbs = [
           <li><strong>Data Engineer:</strong> +10% premium (Critical infrastructure demand)</li>
         </ul>
 
-        {/* Core Specialization Tracks */}
-        <h2>The Triad of Data Roles</h2>
+        {/* The Great Bifurcation */}
+        <h2>The Great Bifurcation: Role Evolution</h2>
         <p>
-          The title "Data Scientist" is becoming an umbrella term. In practice, the field has split
-          into three distinct, though overlapping, primary tracks.
+          The title "Data Scientist" is becoming an umbrella term that often obscures more than it reveals.
+          In 2025, the market has decisively split into two primary, distinct career tracks.
         </p>
 
-        <h3>1. Data Scientist (The "Insight Generator")</h3>
+        <h3>1. Product Data Science (The "Insight Generator")</h3>
         <p>
-          <strong>Focus:</strong> Statistical analysis, experimentation (A/B testing), and product strategy.
+          <strong>Focus:</strong> Causal inference, experimentation (A/B testing), and product strategy.
           <br />
-          <strong>Goal:</strong> Answer "Why did this happen?" and "What should we do next?"
+          <strong>The Shift:</strong> This role is moving closer to Product Management. It's no longer enough to build a dashboard;
+          Product DSs must answer "Why did this happen?" and "What should we do next?" using rigorous statistical methods.
           <br />
-          <strong>Key Skills:</strong> SQL, Python/R, Statistics, Product Sense, Visualization (Tableau/Looker).
+          <strong>Key Toolkit:</strong> SQL (Advanced), Python/R (Statsmodels), Tableau/Looker, Metric Design.
         </p>
 
-        <h3>2. Machine Learning Engineer (The "Builder")</h3>
+        <h3>2. Machine Learning Engineering (The "Builder")</h3>
         <p>
-          <strong>Focus:</strong> Productionizing models, scalability, and system performance.
+          <strong>Focus:</strong> Productionizing models, system scalability, and MLOps.
           <br />
-          <strong>Goal:</strong> Build systems that make automated decisions at scale.
+          <strong>The Shift:</strong> This role is merging with Software Engineering. The focus is less on "training" models
+          (which is increasingly commoditized) and more on "serving" them reliably.
           <br />
-          <strong>Key Skills:</strong> Python, MLOps (Docker/Kubernetes), Cloud Platforms (AWS/GCP), Deep Learning frameworks (PyTorch/TensorFlow).
+          <strong>Key Toolkit:</strong> Python, Docker/Kubernetes, AWS/GCP, Vector Databases (Pinecone/Milvus), LLM Orchestration (LangChain).
         </p>
 
-        <h3>3. Data Engineer (The "Architect")</h3>
+        <h3>3. Data Engineering (The "Foundation")</h3>
         <p>
           <strong>Focus:</strong> Data pipelines, warehousing, and data quality.
           <br />
-          <strong>Goal:</strong> Ensure data is reliable, accessible, and timely for the other two tracks.
+          <strong>The Shift:</strong> With the rise of GenAI, unstructured data (text, images) has become a first-class citizen.
+          DEs are now architects of "Context Windows," ensuring LLMs have access to clean, relevant enterprise data.
           <br />
-          <strong>Key Skills:</strong> SQL, Spark/Hadoop, Airflow, dbt, Cloud Data Warehouses (Snowflake/BigQuery).
+          <strong>Key Toolkit:</strong> Spark, Airflow, dbt, Snowflake/BigQuery, Unstructured Data Pipelines.
         </p>
 
-        {/* The AI Transformation */}
-        <h2>The AI Transformation: Augmentation, Not Replacement</h2>
+        {/* The Evolving Interview Loop */}
+        <h2>The Evolving Interview Loop</h2>
         <p>
-          Generative AI is reshaping the daily workflow of data scientists, automating the "drudgery"
-          and elevating the role.
+          The interview process for data roles has shifted dramatically to filter for practical, production-ready skills
+          over theoretical knowledge.
         </p>
         <ul>
           <li>
-            <strong>Coding Assistant:</strong> AI writes 40-60% of boilerplate code (cleaning scripts, visualization templates), increasing productivity.
+            <strong>Decline of LeetCode:</strong> Pure algorithmic puzzles are being replaced by practical coding assessments
+            (e.g., "Clean this dirty dataset and build a baseline model in 45 minutes").
           </li>
           <li>
-            <strong>From Builder to Overseer:</strong> The focus shifts from training simple models (which AutoML can handle) to designing complex systems and validating AI outputs for bias and accuracy.
+            <strong>Rise of System Design:</strong> Candidates are now routinely asked to design end-to-end ML systems.
+            <em>"How would you build a recommendation system for a video platform?"</em> requires discussing data ingestion,
+            model selection, latency constraints, and feedback loops.
           </li>
           <li>
-            <strong>New Capabilities:</strong> Unstructured data (text, images, audio) is now a first-class citizen. Data scientists must know how to leverage LLMs and vector databases to extract value from these sources.
+            <strong>The "Take-Home" Renaissance:</strong> Companies are favoring realistic 4-6 hour take-home projects
+            that mimic actual work (e.g., "Analyze this A/B test result and write a memo to the VP of Product").
+          </li>
+        </ul>
+
+        {/* The AI Transformation */}
+        <h2>The AI Transformation: From "Training" to "Tuning"</h2>
+        <p>
+          Generative AI is not just a tool; it's a platform shift. The daily workflow of a Data Scientist
+          in 2025 looks radically different from 2023.
+        </p>
+        <ul>
+          <li>
+            <strong>The "10x" Analyst:</strong> Tools like <em>GitHub Copilot</em> and <em>Cursor</em> handle 60-80% of boilerplate code
+            (data cleaning, visualization plotting), allowing scientists to spend their time on high-leverage interpretation and strategy.
+          </li>
+          <li>
+            <strong>RAG is the New Modeling:</strong> For many business problems, training a custom model from scratch is overkill.
+            The new skill is <strong>Retrieval-Augmented Generation (RAG)</strong>—architecting systems that feed proprietary data
+            into powerful foundation models (GPT-4, Claude 3.5) to generate insights.
+          </li>
+          <li>
+            <strong>Unstructured Data Revolution:</strong> Previously, 80% of enterprise data (emails, PDFs, call logs) was "dark."
+            With LLMs, Data Scientists can now query this unstructured data as easily as a SQL table, unlocking massive new value.
           </li>
         </ul>
 
