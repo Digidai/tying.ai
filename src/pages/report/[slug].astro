@@ -4313,44 +4313,39 @@ const breadcrumbs = [
           </li>
         </ul>
 
-        <h3>Industry Demand Distribution</h3>
+        <h3>Industry-Specific Deep Dives</h3>
         <p>
-          Demand is no longer confined to "Big Tech." Traditional industries are aggressively hiring
-          to fuel their digital transformations.
+          Data Science is not a monolith. The day-to-day reality varies drastically by sector.
         </p>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse my-4">
-            <thead>
-              <tr class="border-b border-notion-border">
-                <th class="py-2 font-semibold text-notion-text">Sector</th>
-                <th class="py-2 font-semibold text-notion-text">Share of Jobs</th>
-                <th class="py-2 font-semibold text-notion-text">Key Focus Areas</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-b border-notion-border">
-                <td class="py-2 text-notion-text-light">Technology</td>
-                <td class="py-2 text-notion-text-light">38%</td>
-                <td class="py-2 text-notion-text-light">GenAI, Product Analytics, Recommendation Systems</td>
-              </tr>
-              <tr class="border-b border-notion-border">
-                <td class="py-2 text-notion-text-light">Finance (FinTech)</td>
-                <td class="py-2 text-notion-text-light">22%</td>
-                <td class="py-2 text-notion-text-light">Fraud Detection, Algorithmic Trading, Risk Modeling</td>
-              </tr>
-              <tr class="border-b border-notion-border">
-                <td class="py-2 text-notion-text-light">Healthcare</td>
-                <td class="py-2 text-notion-text-light">16%</td>
-                <td class="py-2 text-notion-text-light">Drug Discovery, Patient Outcome Prediction, Genomics</td>
-              </tr>
-              <tr>
-                <td class="py-2 text-notion-text-light">Retail/E-commerce</td>
-                <td class="py-2 text-notion-text-light">12%</td>
-                <td class="py-2 text-notion-text-light">Supply Chain Optimization, Customer Personalization</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+
+        <h4>FinTech: The High-Stakes Arena</h4>
+        <p>
+          <strong>Focus:</strong> Real-time Fraud Detection, Algorithmic Trading, Credit Risk Modeling.
+          <br />
+          <strong>Key Challenge:</strong> Explainability (XAI). You can't just deny a loan with a "black box" model;
+          regulatory compliance (SR 11-7) requires transparent feature importance.
+          <br />
+          <strong>Stack:</strong> KDB+ (Time-series), PyTorch, Flink (Streaming).
+        </p>
+
+        <h4>Healthcare & Biotech: Life or Death Data</h4>
+        <p>
+          <strong>Focus:</strong> Drug Discovery (AlphaFold), Patient Outcome Prediction, Genomic Sequencing.
+          <br />
+          <strong>Key Challenge:</strong> Small data, high dimensionality. Unlike tech with billions of clicks,
+          clinical trials have few patients. Causal inference is critical here.
+          <br />
+          <strong>Stack:</strong> R (Bioconductor), Python, AWS HealthOmics.
+        </p>
+
+        <h4>Retail & E-commerce: The Personalization Engine</h4>
+        <p>
+          <strong>Focus:</strong> Dynamic Pricing, Supply Chain Optimization, Recommender Systems.
+          <br />
+          <strong>Key Challenge:</strong> Latency. Recommendations must be served in milliseconds during page load.
+          <br />
+          <strong>Stack:</strong> Snowflake, Redis, Databricks.
+        </p>
 
         {/* Compensation Structure */}
         <h2>Compensation Structure 2025</h2>
@@ -4384,6 +4379,29 @@ const breadcrumbs = [
             <strong>Staff / Principal:</strong> $400,000 - $650,000+
             <br />
             <span class="text-sm text-gray-600">Strategic leadership roles. Compensation is heavily tied to company performance (RSUs).</span>
+          </li>
+        </ul>
+
+        <h3>Geographic Hubs: Beyond Silicon Valley</h3>
+        <p>
+          While the Bay Area remains the epicenter for AI research, data science talent is distributing broadly.
+        </p>
+        <ul>
+          <li>
+            <strong>Bay Area (SF/South Bay):</strong> The "AI Core." Highest salaries ($200k+ median), highest cost of living.
+            Focus on GenAI foundation models and deep tech.
+          </li>
+          <li>
+            <strong>New York City:</strong> The "FinTech & Media Capital." High demand for quantitative analysis and ad-tech.
+            Salaries rival SF.
+          </li>
+          <li>
+            <strong>Austin & Boston:</strong> The "BioTech & Enterprise Hubs." Boston dominates in pharma/biotech data roles.
+            Austin attracts enterprise SaaS.
+          </li>
+          <li>
+            <strong>Washington D.C. (DMV):</strong> The "GovTech & Security" hub. Massive demand for cleared professionals
+            working on national security and public policy data.
           </li>
         </ul>
 
@@ -4479,6 +4497,46 @@ const breadcrumbs = [
           </li>
         </ul>
 
+        {/* The Modern Data Stack 2.0 */}
+        <h2>The Modern Data Stack 2.0</h2>
+        <p>
+          The toolchain has evolved from simple "ELT" to a complex, AI-native ecosystem. Proficiency in the "Modern Data Stack"
+          is now a resume keyword.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse my-4">
+            <thead>
+              <tr class="border-b border-notion-border">
+                <th class="py-2 font-semibold text-notion-text">Layer</th>
+                <th class="py-2 font-semibold text-notion-text">Legacy Tool</th>
+                <th class="py-2 font-semibold text-notion-text">2025 Standard</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-notion-border">
+                <td class="py-2 text-notion-text-light">Orchestration</td>
+                <td class="py-2 text-notion-text-light">Cron / Jenkins</td>
+                <td class="py-2 text-notion-text-light"><strong>Airflow / Prefect / Dagster</strong></td>
+              </tr>
+              <tr class="border-b border-notion-border">
+                <td class="py-2 text-notion-text-light">Compute</td>
+                <td class="py-2 text-notion-text-light">Local / On-prem Hadoop</td>
+                <td class="py-2 text-notion-text-light"><strong>Spark (Databricks) / Ray</strong></td>
+              </tr>
+              <tr class="border-b border-notion-border">
+                <td class="py-2 text-notion-text-light">Storage</td>
+                <td class="py-2 text-notion-text-light">Postgres / MySQL</td>
+                <td class="py-2 text-notion-text-light"><strong>Snowflake / BigQuery / Iceberg</strong></td>
+              </tr>
+              <tr>
+                <td class="py-2 text-notion-text-light">AI Memory</td>
+                <td class="py-2 text-notion-text-light">N/A</td>
+                <td class="py-2 text-notion-text-light"><strong>Vector DBs (Pinecone / Weaviate)</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         {/* Skills & Education */}
         <h2>Skills & Education: The 2025 Toolkit</h2>
         <p>
@@ -4495,6 +4553,26 @@ const breadcrumbs = [
           <br />
           As technical barriers lower, <strong>Business Acumen</strong> and <strong>Communication</strong> become the primary differentiators. The ability to translate complex model outputs into clear, actionable business strategies is what separates a Senior Data Scientist from a Junior one.
         </p>
+
+        {/* Career Path & Promotion Criteria */}
+        <h2>Career Path & Promotion Criteria</h2>
+        <p>
+          Moving up the ladder requires more than just better code. It requires expanding your "Blast Radius"—the scope of your impact.
+        </p>
+        <ul>
+          <li>
+            <strong>Senior (L5):</strong> You own a problem. You can take a vague business request ("reduce churn") and turn it into a delivered model.
+            You mentor juniors.
+          </li>
+          <li>
+            <strong>Staff (L6):</strong> You own a domain. You define the technical roadmap for "Personalization" or "Risk."
+            You solve cross-team architectural conflicts.
+          </li>
+          <li>
+            <strong>Principal (L7+):</strong> You own a business outcome. You identify new product opportunities enabled by AI.
+            Your work influences the company's stock price.
+          </li>
+        </ul>
 
         <h2>Future Outlook</h2>
         <p>
